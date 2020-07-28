@@ -1,63 +1,81 @@
 {
-    "$schema": "https://aka.ms/terminal-profiles-schema",
-    "theme": "dark",
-    "initialCols": 185,
-    "initialRows": 65,
-    "initialPosition": "90,35",
-    "cursorTextColor": "textBackground",
-    "confirmCloseAllTabs": false,
-    "defaultProfile": "{00000000-0000-0000-ba54-000000000002}",
-    "profiles":
-    {
-        "list":
-        [
-            {
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "name": "Windows PowerShell",
-                "commandline": "powershell.exe",
-                "hidden": false
-            },
-            {
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "name": "Command Prompt",
-                "commandline": "cmd.exe",
-                "hidden": false
-            },
-            {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": false,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
-            },
-	    {
-        	"guid": "{00000000-0000-0000-ba54-000000000002}",
-        	"acrylicOpacity" : 0.8,
-        	"closeOnExit" : true,
-        	"colorScheme" : "Tango Dark",
-		"background" : "#0a0a0a",
-        	"commandline" : "\"%PROGRAMFILES%\\git\\usr\\bin\\bash.exe\" -i -l",
-        	"cursorShape" : "filledBox",
-		"fontFace": "Fira Code",
-        	"fontSize" : 9,
-        	"icon" : "%USERPROFILE%/magic.png",
-        	"name" : ">>>>>>>>>>>",
-        	"padding" : "0, 0, -18, 0",
-		"startingDirectory" : "%USERPROFILE%/main/code",
-        	"snapOnInput" : true,
-        	"useAcrylic" : false,
-		"antialiasingMode": "cleartype",
-		"suppressApplicationTitle": true,
-		"cursorColor": "#636363"
-    	     }
-        ]
-    },
-    "schemes": [],
-
-    "keybindings":
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "theme": "default",
+  "initialCols": 150,
+  "initialRows": 70,
+  "initialPosition": "90,35",
+  "cursorTextColor": "textBackground",
+  "confirmCloseAllTabs": false,
+  "defaultProfile": "{00000000-0000-0000-ba54-000000000002}",
+  "profiles":
+  {
+    "list":
     [
-        { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
-        { "command": "paste", "keys": "ctrl+v" },
-        { "command": "find", "keys": "ctrl+shift+f" },
-        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+      {
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "name": "Windows PowerShell",
+        "commandline": "powershell.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "name": "Command Prompt",
+        "commandline": "cmd.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "hidden": false,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
+      },
+      {
+        "guid": "{00000000-0000-0000-ba54-000000000002}",
+        "acrylicOpacity" : 0.8,
+        "closeOnExit" : true,
+        "colorScheme" : "NightLion v2",
+        "commandline" : "\"%PROGRAMFILES%\\git\\usr\\bin\\bash.exe\" -i -l",
+        "cursorShape" : "filledBox",
+        "fontFace": "SF Mono",
+        "fontSize" : 9,
+        "icon" : "%USERPROFILE%/magic.png",
+        "name" : "Bash",
+        "padding" : "0, 0, -18, 0",
+        "startingDirectory" : "%USERPROFILE%/main/code",
+        "snapOnInput" : true,
+        "useAcrylic" : false,
+        "antialiasingMode": "cleartype",
+        "suppressApplicationTitle": true,
+        "cursorColor": "#656565"
+      }
     ]
+  },
+  "schemes": [{
+    "name": "NightLion v2",
+    "black": "#4c4c4c",
+    "red": "#bb0000",
+    "green": "#04f623",
+    "yellow": "#f3f167",
+    "blue": "#64d0f0",
+    "purple": "#ce6fdb",
+    "cyan": "#00dadf",
+    "white": "#bbbbbb",
+    "brightBlack": "#555555",
+    "brightRed": "#ff5555",
+    "brightGreen": "#7df71d",
+    "brightYellow": "#ffff55",
+    "brightBlue": "#62cbe8",
+    "brightPurple": "#ff9bf5",
+    "brightCyan": "#00ccd8",
+    "brightWhite": "#ffffff",
+    "background": "#171717",
+    "foreground": "#bbbbbb"
+  }],
+  "keybindings":
+  [
+    { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
+    { "command": "paste", "keys": "ctrl+v" },
+    { "command": "find", "keys": "ctrl+shift+f" },
+    { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+  ]
 }

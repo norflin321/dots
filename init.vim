@@ -2,8 +2,8 @@ let mapleader = " "
 
 language en_US
 set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
+set tabstop=2 softtabstop=2
+set shiftwidth=2
 set expandtab
 set smartindent
 set nowrap
@@ -25,7 +25,8 @@ set scrolljump=10
 set mouse=a
 set number
 syntax enable
-set guifont=Fira\ Code:9
+filetype indent plugin on
+autocmd Filetype python setlocal ts=2 sts=2 sw=2
 
 
 call plug#begin("~/.vim/plugged")
@@ -35,7 +36,7 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 set termguicolors
-colors candle-grey 
+colors codedark 
 
 " nerdcommenter
 filetype plugin on
