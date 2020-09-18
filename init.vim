@@ -24,6 +24,7 @@ set shellslash
 set scrolljump=10
 set mouse=a
 set number
+set guicursor=i:block
 syntax enable
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
@@ -81,12 +82,12 @@ nnoremap yw yiw
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 nmap <C-z> <Nop>
-nnoremap ( {
-nnoremap ) }
+nnoremap ) 15j
+nnoremap ( 15k
 
 
 " statusline
 set statusline=
 set statusline+=%=
-set statusline+=%l,%-25c 
-set statusline+=%-10L
+" set statusline+=%l,%-25c 
+" set statusline+=%-10L
