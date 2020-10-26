@@ -31,6 +31,11 @@ syntax enable
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
 
+call plug#begin("~/.vim/plugged")	
+  Plug 'jiangmiao/auto-pairs'	
+  Plug 'ctrlpvim/ctrlp.vim'	
+call plug#end()
+
 set termguicolors
 colors onehalfdark 
 
