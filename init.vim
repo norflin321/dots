@@ -25,38 +25,15 @@ set scrolljump=10
 set mouse=a
 set number
 set guicursor=i:block
+set statusline=
+set statusline+=%=
 syntax enable
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
 
-
-call plug#begin("~/.vim/plugged")
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'scrooloose/nerdcommenter'
-call plug#end()
-
 set termguicolors
-colors codedark 
+colors onehalfdark 
 
-" nerdcommenter
-filetype plugin on
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-nmap <C-c> <plug>NERDCommenterToggle 
-xmap <C-c> <plug>NERDCommenterToggle 
-
-" auto-pairs
-let g:AutoPairsMultilineClose=0
-
-" ctrlp
-set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-let g:ctrlp_working_path_mode = ''
-"autocmd VimEnter * CtrlP
-
-" use alt+hjkl to move between split/vsplit panels
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
@@ -66,8 +43,6 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 nnoremap <Space> <NOP>
-
-" custom maps
 nnoremap x "_x
 nnoremap dd "_dd
 nnoremap a i
@@ -82,12 +57,5 @@ nnoremap yw yiw
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 nmap <C-z> <Nop>
-nnoremap ) 15j
-nnoremap ( 15k
-
-
-" statusline
-set statusline=
-set statusline+=%=
-" set statusline+=%l,%-25c 
-" set statusline+=%-10L
+nnoremap ) 10j
+nnoremap ( 10k
