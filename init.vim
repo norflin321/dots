@@ -32,12 +32,50 @@ filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
 
 call plug#begin("~/.vim/plugged")	
-  Plug 'jiangmiao/auto-pairs'	
   Plug 'ctrlpvim/ctrlp.vim'	
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'preservim/nerdcommenter'
 call plug#end()
 
+set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe	
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'	
+let g:ctrlp_working_path_mode = ''
+
+let g:coc_node_path = 'C:\Users\norfl\node\node'
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-pairs' ]
+set pumheight=25
+set signcolumn=yes
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<Tab>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+map <C-c> <plug>NERDCommenterToggle
+let g:NERDSpaceDelims = 1
+
+nmap <silent> gd <Plug>(coc-definition)
+
+set background=dark
 set termguicolors
-colors onehalfdark 
+colors ayu 
 
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
