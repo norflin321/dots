@@ -1,9 +1,9 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "theme": "dark",
-    "initialCols": 140,
+    "initialCols": 155,
     "initialRows": 67,
-    "initialPosition": "90,35",
+    "initialPosition": "800,30",
     "cursorTextColor": "textBackground",
     "confirmCloseAllTabs": false,
     "defaultProfile": "{00000000-0000-0000-ba54-000000000002}",

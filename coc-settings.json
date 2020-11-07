@@ -1,15 +1,8 @@
 {
   "suggest.noselect": false,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "typescript.tsx",
-    "graphql"
-  ],
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-  "coc.preferences.enableFloatHighlight": false
+  "coc.preferences.formatOnSaveFiletypes": [],
+  "diagnostic.errorSign": "❌",
+  "diagnostic.warningSign": "⚠️" ,
+  "diagnostic.infoSign": "❕",
+  "coc.preferences.jumpCommand": "vsplit"
 }

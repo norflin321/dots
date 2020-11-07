@@ -24,9 +24,8 @@ set shellslash
 set scrolljump=10
 set mouse=a
 set number
-set guicursor=i:block
-set statusline=
-set statusline+=%=
+set cursorline
+
 syntax enable
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
@@ -36,6 +35,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'preservim/nerdcommenter'
+  Plug 'scrooloose/nerdtree'
+  Plug 'inkarkat/vim-CursorLineCurrentWindow', {'brach': 'stable'}
 call plug#end()
 
 set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe	
@@ -44,17 +45,16 @@ let g:ctrlp_working_path_mode = ''
 
 let g:coc_node_path = 'C:\Users\norfl\node\node'
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-pairs' ]
+
 set pumheight=25
 set signcolumn=yes
 
-" if hidden is not set, TextEdit might fail.
 set hidden
-" Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
-" don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-" Use K to show documentation in preview window
+set noshowcmd
+
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -72,10 +72,24 @@ map <C-c> <plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 set background=dark
 set termguicolors
-colors ayu 
+colors one 
+
+hi! CocErrorSign guifg=#f03a17
+hi! CocInfoSign guifg=#ffffff
+hi! CocWarningSign guifg=#fce100
+
+nmap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeShowHidden=1
+let g:NERDTreeIgnore = ['^node_modules$']
+" let g:NERDTreeMinimalMenu=1
+let g:NERDTreeStatusline=' '
 
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
@@ -102,3 +116,8 @@ nmap <CR> o<Esc>
 nmap <C-z> <Nop>
 nnoremap ) 10j
 nnoremap ( 10k
+
+set statusline=
+set statusline+=%=
+set statusline+=%f
+set laststatus=2
