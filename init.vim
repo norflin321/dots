@@ -24,7 +24,8 @@ set shellslash
 set scrolloff=5
 set mouse=a
 set number
-set cursorline
+set guicursor+=a:blinkon100
+" set cursorline
 
 syntax enable
 filetype indent plugin on

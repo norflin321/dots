@@ -33,7 +33,7 @@
 	    {
         	"guid": "{00000000-0000-0000-ba54-000000000002}",
 		"useAcrylic": true,
-		"acrylicOpacity": 0.8,
+		"acrylicOpacity": 0.9,
         	"closeOnExit" : true,
         	"colorScheme" : "Ayu Dark",
         	"commandline" : "\"%PROGRAMFILES%\\git\\usr\\bin\\bash.exe\" -i -l",
@@ -47,7 +47,9 @@
 		"antialiasingMode": "cleartype",
 		"suppressApplicationTitle": true,
 		"cursorColor": "#656565",
-		"fontWeight": "semi-light"
+		"fontWeight": "semi-light",
+		"backgroundImage": "C:/Users/norfl/terminalBg.jpg",
+		"backgroundImageOpacity" : 0.2
     	     }
         ]
     },
