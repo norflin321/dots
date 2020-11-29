@@ -1,83 +1,82 @@
 {
-  "$schema": "https://aka.ms/terminal-profiles-schema",
-  "theme": "dark",
-  "initialCols": 155,
-  "initialRows": 67,
-  "initialPosition": "800,30",
-  "cursorTextColor": "textBackground",
-  "confirmCloseAllTabs": false,
-  "defaultProfile": "{00000000-0000-0000-ba54-000000000002}",
-  "useTabSwitcher": false,
-  "launchMode": "maximized",
-  "profiles":
-  {
-    "list":
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "theme": "dark",
+    "initialCols": 248,
+    "initialRows": 67,
+    "cursorTextColor": "textBackground",
+    "confirmCloseAllTabs": false,
+    "initialPosition": "100,20",
+    "defaultProfile": "{00000000-0000-0000-ba54-000000000002}",
+"useTabSwitcher": false,
+    "profiles":
+    {
+        "list":
+        [
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name": "Windows PowerShell",
+                "commandline": "powershell.exe",
+                "hidden": false
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name": "Command Prompt",
+                "commandline": "cmd.exe",
+                "hidden": false
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+	    {
+        	"guid": "{00000000-0000-0000-ba54-000000000002}",
+		"useAcrylic": true,
+		"acrylicOpacity": 0.8,
+        	"closeOnExit" : true,
+        	"colorScheme" : "Ayu Dark",
+        	"commandline" : "\"%PROGRAMFILES%\\git\\usr\\bin\\bash.exe\" -i -l",
+        	"cursorShape" : "filledBox",
+        	"fontSize" : 9,
+        	"icon" : "%USERPROFILE%/magic.png",
+        	"name" : "Bash",
+        	"padding" : "0, 0, -18, 0",
+		"startingDirectory" : "%USERPROFILE%/main/code",
+        	"snapOnInput" : true,
+		"antialiasingMode": "cleartype",
+		"suppressApplicationTitle": true,
+		"cursorColor": "#656565",
+		"fontWeight": "semi-light"
+    	     }
+        ]
+    },
+    "schemes": [{
+            "background" : "#0a0e14",
+            "black" : "#01060e",
+            "blue" : "#53bdfa",
+            "brightBlack" : "#686868",
+            "brightBlue" : "#59c2ff",
+            "brightCyan" : "#95e6cb",
+            "brightGreen" : "#c2d94c",
+            "brightPurple" : "#ffee99",
+            "brightRed" : "#f07178",
+            "brightWhite" : "#ffffff",
+            "brightYellow" : "#ffb454",
+            "cyan" : "#90e1c6",
+            "foreground" : "#b3b1ad",
+            "green" : "#91b362",
+            "name" : "Ayu Dark",
+            "purple" : "#fae994",
+            "red" : "#ea6c73",
+            "white" : "#c7c7c7",
+            "yellow" : "#f9af4f"
+        }],
+    "keybindings":
     [
-      {
-        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-        "name": "Windows PowerShell",
-        "commandline": "powershell.exe",
-        "hidden": false
-      },
-      {
-        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-        "name": "Command Prompt",
-        "commandline": "cmd.exe",
-        "hidden": false
-      },
-      {
-        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-        "hidden": false,
-        "name": "Azure Cloud Shell",
-        "source": "Windows.Terminal.Azure"
-      },
-      {
-        "guid": "{00000000-0000-0000-ba54-000000000002}",
-        "acrylicOpacity" : 0.8,
-        "closeOnExit" : true,
-        "colorScheme" : "Ayu Dark",
-        "commandline" : "\"%PROGRAMFILES%\\git\\usr\\bin\\bash.exe\" -i -l",
-        "cursorShape" : "filledBox",
-        "fontSize" : 9,
-        "icon" : "%USERPROFILE%/magic.png",
-        "name" : "Bash",
-        "padding" : "0, 0, -18, 0",
-        "startingDirectory" : "%USERPROFILE%/main/code",
-        "snapOnInput" : true,
-        "useAcrylic" : false,
-        "antialiasingMode": "cleartype",
-        "suppressApplicationTitle": true,
-        "cursorColor": "#656565",
-        "fontWeight": "semi-light"
-      }
+        { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
+        { "command": "paste", "keys": "ctrl+v" },
+        { "command": "find", "keys": "ctrl+shift+f" },
+        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate"}, "keys": "alt+shift+d" }
     ]
-  },
-  "schemes": [{
-    "background" : "#0a0e14",
-    "black" : "#01060e",
-    "blue" : "#53bdfa",
-    "brightBlack" : "#686868",
-    "brightBlue" : "#59c2ff",
-    "brightCyan" : "#95e6cb",
-    "brightGreen" : "#c2d94c",
-    "brightPurple" : "#ffee99",
-    "brightRed" : "#f07178",
-    "brightWhite" : "#ffffff",
-    "brightYellow" : "#ffb454",
-    "cyan" : "#90e1c6",
-    "foreground" : "#b3b1ad",
-    "green" : "#91b362",
-    "name" : "Ayu Dark",
-    "purple" : "#fae994",
-    "red" : "#ea6c73",
-    "white" : "#c7c7c7",
-    "yellow" : "#f9af4f"
-  }],
-  "keybindings":
-  [
-    { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
-    { "command": "paste", "keys": "ctrl+v" },
-    { "command": "find", "keys": "ctrl+shift+f" },
-    { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
-  ]
 }

@@ -4,5 +4,5 @@
   "diagnostic.errorSign": "❌",
   "diagnostic.warningSign": "⚠️" ,
   "diagnostic.infoSign": "❕",
-  "coc.preferences.jumpCommand": "vsplit"
+ "tsserver.trace.server": "verbose"
 }
