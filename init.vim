@@ -23,9 +23,12 @@ set clipboard=unnamed
 set shellslash
 set scrolloff=5
 set mouse=a
-set number
+" set number
+set guicursor=a:block
 set guicursor+=a:blinkon100
-" set cursorline
+set cursorline
+set signcolumn=yes
+set autoread
 
 syntax enable
 filetype indent plugin on
@@ -38,16 +41,15 @@ call plug#begin("~/.vim/plugged")
   Plug 'preservim/nerdcommenter'
   Plug 'scrooloose/nerdtree'
   Plug 'inkarkat/vim-CursorLineCurrentWindow', {'brach': 'stable'}
+  Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
-set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe	
+set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'	
 let g:ctrlp_working_path_mode = ''
 
 let g:coc_node_path = 'C:\Users\norfl\node\node'
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-pairs' ]
-
-set signcolumn=yes
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-pairs', 'coc-go' ]
 
 set hidden
 set updatetime=100
@@ -78,13 +80,17 @@ nmap <silent> gy :sp<CR><Plug>(coc-type-definition)
 
 set background=dark
 set termguicolors
-colors one 
-hi Normal guibg=NONE ctermbg=NONE
-hi SignColumn  guibg=NONE ctermbg=NONE
 
-hi! CocErrorSign guifg=#f03a17
-hi! CocInfoSign guifg=#ffffff
-hi! CocWarningSign guifg=#fce100
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
+
+" hi Normal guibg=NONE ctermbg=NONE
+" hi SignColumn  guibg=NONE ctermbg=NONE
+
+" hi! CocErrorSign guifg=#f03a17
+" hi! CocInfoSign guifg=#ffffff
+" hi! CocWarningSign guifg=#fce100
 
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -127,40 +133,4 @@ set statusline+=%=
 set statusline+=%f
 set laststatus=2
 
-let g:ctrlp_prompt_mappings = {
-  \ 'PrtBS()':              ['<bs>', '<c-]>'],
-  \ 'PrtDelete()':          ['<del>'],
-  \ 'PrtDeleteWord()':      ['<c-w>'],
-  \ 'PrtClear()':           ['<c-u>'],
-  \ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
-  \ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
-  \ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
-  \ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
-  \ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
-  \ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
-  \ 'PrtHistory(-1)':       ['<c-n>'],
-  \ 'PrtHistory(1)':        ['<c-p>'],
-  \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
-  \ 'AcceptSelection("h")': ['<c-i>'],
-  \ 'AcceptSelection("t")': ['<c-t>'],
-  \ 'AcceptSelection("v")': ['<c-s>'],
-  \ 'ToggleFocus()':        ['<s-tab>'],
-  \ 'ToggleRegex()':        ['<c-r>'],
-  \ 'ToggleByFname()':      ['<c-d>'],
-  \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
-  \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
-  \ 'PrtExpandDir()':       ['<tab>'],
-  \ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
-  \ 'PrtInsert()':          ['<c-\>'],
-  \ 'PrtCurStart()':        ['<c-a>'],
-  \ 'PrtCurEnd()':          ['<c-e>'],
-  \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
-  \ 'PrtCurRight()':        ['<c-l>', '<right>'],
-  \ 'PrtClearCache()':      ['<F5>'],
-  \ 'PrtDeleteEnt()':       ['<F7>'],
-  \ 'CreateNewFile()':      ['<c-y>'],
-  \ 'MarkToOpen()':         ['<c-z>'],
-  \ 'OpenMulti()':          ['<c-o>'],
-  \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
-  \ }
-
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-i>'], 'AcceptSelection("v")': ['<c-s>'] }
