@@ -90,7 +90,7 @@ nmap <silent> gy :sp<CR><Plug>(coc-type-definition)
 set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
-colors gruvbox
+colors codedark_2
 
 hi Normal guibg=NONE ctermbg=NONE
 
