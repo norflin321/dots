@@ -57,8 +57,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'preservim/nerdcommenter'
   Plug 'scrooloose/nerdtree'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'joshdick/onedark.vim'
-  Plug 'AndrewRadev/splitjoin.vim'
   " Plug 'inkarkat/vim-CursorLineCurrentWindow', {'brach': 'stable'}
 call plug#end()
 
@@ -90,22 +88,22 @@ map <C-c> <plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 
 " COC "
-nmap <silent> gd :sp<CR><Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy :sp<CR><Plug>(coc-type-definition)
+nnoremap <silent> gd :sp<CR><Plug>(coc-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gy :sp<CR><Plug>(coc-type-definition)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+inoremap <silent><expr> <C-a> pumvisible() ? "<C-e>" : coc#refresh()
+inoremap <silent><expr> <TAB> 
+  \ pumvisible() ? coc#_select_confirm() :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 
 let g:coc_node_path = 'C:\Users\norfl\node\node'
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go' ]
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -141,16 +139,16 @@ vnoremap d "_d
 nnoremap A I
 nnoremap I A
 nnoremap yw yiw
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
-nmap <C-z> <Nop>
+nnoremap <S-Enter> O<Esc>
+nnoremap <CR> o<Esc>
+nnoremap <C-z> <Nop>
 nnoremap ) 15j
 vnoremap ) 15j
 nnoremap ( 15k
 vnoremap ( 15k
-" nnoremap <C-h> :set hlsearch!<CR>
 nnoremap <C-h> gT
 nnoremap <C-l> gt
+" nnoremap <C-h> :set hlsearch!<CR>
 
 " CUSTOM TABLINE "
 function! MyTabLabel(n)
