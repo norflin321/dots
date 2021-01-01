@@ -1,6 +1,5 @@
-let mapleader = " "
-
 language en_US
+let mapleader = " "
 set noerrorbells
 set tabstop=2 softtabstop=2
 set shiftwidth=2
@@ -23,49 +22,95 @@ set clipboard=unnamed
 set shellslash
 set scrolloff=5
 set mouse=a
-set cursorline
 set autoread
-
-" set number
-set signcolumn=yes
-" set relativenumber
-
-" set list
-" set listchars+=trail:·
-let g:go_highlight_trailing_whitespace_error=0
-
-set guicursor=a:block
-" set guicursor+=a:blinkon100
-
 set showtabline=2
-
+set hidden
+set updatetime=50
+set shortmess+=c
+set completeopt=menuone,noinsert,noselect
+set noshowcmd
+set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe
+set statusline=
+set statusline+=%=
+set statusline+=%f
+set laststatus=2
 syntax enable
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
 
+" set number
+set signcolumn=yes
+" set relativenumber
+" set cursorline
+
+" set list
+" set listchars+=trail:·
+
+set guicursor=a:block
+" set guicursor+=a:blinkon100
+
+" PLUGINS "
 call plug#begin("~/.vim/plugged")
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'preservim/nerdcommenter'
   Plug 'scrooloose/nerdtree'
-  Plug 'inkarkat/vim-CursorLineCurrentWindow', {'brach': 'stable'}
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'joshdick/onedark.vim'
+  Plug 'AndrewRadev/splitjoin.vim'
+  " Plug 'inkarkat/vim-CursorLineCurrentWindow', {'brach': 'stable'}
 call plug#end()
 
-set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe
+let g:AutoPairsMultilineClose=0
+let g:go_highlight_trailing_whitespace_error=0
+
+" COLORS "
+set background=dark
+set termguicolors
+let g:gruvbox_contrast_dark = 'hard'
+colors spaceduck
+
+" CTRLP "
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
 let g:ctrlp_working_path_mode = ''
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-i>'], 'AcceptSelection("v")': ['<c-s>'] }
+
+" NERDTree & NERDCommenter "
+nmap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeShowHidden=1
+let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeStatusline=' '
+let NERDTreeMinimalUI=1
+let g:NERDTreeWinPos = 'left'
+
+map <C-c> <plug>NERDCommenterToggle
+let g:NERDSpaceDelims = 1
+
+" COC "
+nmap <silent> gd :sp<CR><Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy :sp<CR><Plug>(coc-type-definition)
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 let g:coc_node_path = 'C:\Users\norfl\node\node'
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-pairs', 'coc-go' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go' ]
 
-set hidden
-set updatetime=50
-set shortmess+=c
-set completeopt=menuone,noinsert,noselect
-set noshowcmd
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -75,42 +120,7 @@ function! s:show_documentation()
   endif
 endfunction
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<Tab>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-map <C-c> <plug>NERDCommenterToggle
-let g:NERDSpaceDelims = 1
-
-nmap <silent> gd :sp<CR><Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy :sp<CR><Plug>(coc-type-definition)
-
-set background=dark
-set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
-colors codedark_2
-
-hi Normal guibg=NONE ctermbg=NONE
-
-" highlight Cursor guifg=white guibg=black
-" highlight SignColumn guibg=#000000
-" hi! CocErrorSign guifg=#ff6969
-" highlight Error guifg=#ff6969
-" hi! CocInfoSign guifg=#ffffff
-" hi! CocWarningSign guifg=#fce100
-
-nmap <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['^node_modules$']
-" let g:NERDTreeMinimalMenu=1
-let g:NERDTreeStatusline=' '
-let NERDTreeMinimalUI=1
-let g:NERDTreeWinPos = 'left'
-
+" MAPPING "
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
@@ -142,15 +152,8 @@ vnoremap ( 15k
 nnoremap <C-h> gT
 nnoremap <C-l> gt
 
-set statusline=
-set statusline+=%=
-set statusline+=%f
-set laststatus=2
-
-let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-i>'], 'AcceptSelection("v")': ['<c-s>'] }
-
 " CUSTOM TABLINE "
-function MyTabLabel(n)
+function! MyTabLabel(n)
   let buflist = tabpagebuflist(a:n)
   let label = ''
   " Add '+' if one of the buffers in the tab page is modified
@@ -165,7 +168,7 @@ function MyTabLabel(n)
   return label . fnamemodify(name, ':p:h:t') . '/' . fnamemodify(name, ':t')
 endfunction
 
-function MyTabLine()
+function! MyTabLine()
   let s = ''
   for i in range(tabpagenr('$'))
     " select the highlighting

@@ -1,31 +1,30 @@
 window:
   dimensions:
     columns: 107
-    lines: 62
+    lines: 67
 font:
   normal:
     family: SF Mono
     style: Regular
   bold:
-    family: Fira Code
+    family: SF Mono
     style: Regular
   italic:
-    family: Fira Code
+    family: SF Mono 
     style: Regular
   bold_italic:
-    family: Fira Code
+    family: SF Mono
     style: Regular
   size: 10
 shell:
   program: '"C:\Program Files\git\usr\bin\bash.exe" -i -l'
 working_directory: 'C:\Users\norfl\main\code'
-
 # Colors (Gruvbox dark)
 colors:
   # Default colors
   primary:
     # hard contrast: background = '#1d2021'
-    background: '#1d2021'
+    background: '#010101'
     # soft contrast: background = '#32302f'
     foreground: '#ebdbb2'
 
