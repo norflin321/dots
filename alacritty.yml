@@ -5,16 +5,16 @@ window:
 font:
   normal:
     family: MonoLisa
-    style: Regular
+    style: Medium
   bold:
     family: MonoLisa
-    style: Regular
+    style: Medium
   italic:
     family: MonoLisa
-    style: Regular
+    style: Medium
   bold_italic:
     family: MonoLisa
-    style: Regular
+    style: Medium
   size: 10
 mouse:
   hide_when_typing: true
