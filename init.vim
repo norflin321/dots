@@ -30,18 +30,19 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set noshowcmd
 set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe
-set statusline=
-set statusline+=%=
-set statusline+=%f
+" set statusline=
+" set statusline+=%=
+" set statusline+=%f
 set laststatus=2
+" set noshowmode
 syntax enable
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
 
-" set number
-set signcolumn=yes
+set number
+set signcolumn=number
 " set relativenumber
-" set cursorline
+set cursorline
 
 " set list
 " set listchars+=trail:·
@@ -67,12 +68,13 @@ let g:go_highlight_trailing_whitespace_error=0
 set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
-colors spaceduck
+colors dogrun
 
 " CTRLP "
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-i>'], 'AcceptSelection("v")': ['<c-s>'] }
+
 
 " NERDTree & NERDCommenter "
 nmap <C-n> :NERDTreeToggle<CR>
@@ -88,11 +90,11 @@ map <C-c> <plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 
 " COC "
-nnoremap <silent> gd :sp<CR><Plug>(coc-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
-nnoremap <silent> gy :sp<CR><Plug>(coc-type-definition)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> gd :sp<CR><Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy :sp<CR><Plug>(coc-type-definition)
+nmap <silent> K :call <SID>show_documentation()<CR>
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
@@ -184,5 +186,28 @@ function! MyTabLine()
   let s .= '%#TabLineFill#%T'
   return s
 endfunction
-
 set tabline=%!MyTabLine()
+
+set statusline=
+" set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+" set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
+" set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
+" set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+" set statusline+=%#Cursor#%{(mode()=='c')?'\ \ COMMAND\ ':''}
+" set statusline+=\ %n\           " buffer number
+set statusline+=%#Visual#       " colour
+" set statusline+=%{&paste?'\ PASTE\ ':''}
+" set statusline+=%{&spell?'\ SPELL\ ':''}
+set statusline+=%#CursorIM#     " colour
+" set statusline+=%R                        " readonly flag
+" set statusline+=%M                        " modified [+] flag
+set statusline+=%#Cursor#               " colour
+set statusline+=%#CursorLine#     " colour
+" set statusline+=\ %t\                   " short file name
+set statusline+=%=                          " right align
+set statusline+=%#CursorLine#   " colour
+set statusline+=\ %Y\                   " file type
+set statusline+=%#CursorIM#     " colour
+set statusline+=\ %3l:%-2c\         " line + column
+set statusline+=%#Cursor#       " colour
+" set statusline+=\ %3p%%\             " percentage
