@@ -42,7 +42,7 @@ autocmd Filetype python setlocal ts=2 sts=2 sw=2
 set number
 set signcolumn=number
 " set relativenumber
-set cursorline
+" set cursorline
 
 " set list
 " set listchars+=trail:·
@@ -159,13 +159,13 @@ function! MyTabLabel(n)
   " Add '+' if one of the buffers in the tab page is modified
   for bufnr in buflist
     if getbufvar(bufnr, "&modified")
-      let label = '[+]'
+      let label = '*'
       break
     endif
   endfor
   let winnr = tabpagewinnr(a:n)
   let name = bufname(buflist[winnr - 1])
-  return label . fnamemodify(name, ':p:h:t') . '/' . fnamemodify(name, ':t')
+  return fnamemodify(name, ':p:h:t') . '/' . fnamemodify(name, ':t') . label
 endfunction
 
 function! MyTabLine()

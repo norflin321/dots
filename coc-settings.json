@@ -6,5 +6,6 @@
   "diagnostic.warningSign": "⚠ ",
   "suggest.autoTrigger": "none",
   "typescript.suggest.completeFunctionCalls": false,
-  "signature.target": "echo"
+  "signature.target": "echo",
+  "javascript.suggestionActions.enabled": false
 }

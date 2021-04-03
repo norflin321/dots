@@ -1,33 +1,33 @@
 window:
   dimensions:
-    columns: 115
-    lines: 59
+    columns: 112
+    lines: 60
 font:
   normal:
-    family: MonoLisa
-    style: Medium
+    family: Writer
+    style: Bold
   bold:
-    family: MonoLisa
-    style: Medium
+    family: Writer
+    style: Bold
   italic:
-    family: MonoLisa
-    style: Medium
+    family: Writer
+    style: Bold
   bold_italic:
-    family: MonoLisa
-    style: Medium
-  size: 10
+    family: Writer
+    style: Bold
+  size: 9.5
 mouse:
   hide_when_typing: true
 shell:
   program: '"C:\Program Files\git\usr\bin\bash.exe" -i -l'
 working_directory: 'C:\Users\norfl\main\code'
+
 # Colors (Gotham)
 colors:
   # Default colors
   primary:
     background: '0x0a0f14'
     foreground: '0x98d1ce'
-
   # Normal colors
   normal:
     black: '0x26a98b'
