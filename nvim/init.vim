@@ -1,4 +1,6 @@
-language en_US
+" language en_US
+scriptencoding utf-8
+set encoding=utf-8
 let mapleader = " "
 set noerrorbells
 set tabstop=2 softtabstop=2
@@ -18,7 +20,7 @@ set listchars=tab:··
 set list
 set ignorecase
 set hlsearch
-set clipboard=unnamed
+set clipboard=unnamedplus
 set shellslash
 set scrolloff=5
 set mouse=a
@@ -29,7 +31,7 @@ set updatetime=50
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set noshowcmd
-set wildignore+=*\\node_modules\\*,*.swp,*.zip,*.exe
+set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
 " set statusline=
 " set statusline+=%=
 " set statusline+=%f
@@ -52,12 +54,15 @@ set guicursor=a:block
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
-  Plug 'ctrlpvim/ctrlp.vim'
+  " Plug 'ctrlpvim/ctrlp.vim'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'preservim/nerdcommenter'
   Plug 'scrooloose/nerdtree'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'airblade/vim-rooter'
   " Plug 'inkarkat/vim-CursorLineCurrentWindow', {'brach': 'stable'}
 call plug#end()
 
@@ -104,7 +109,7 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
 
-let g:coc_node_path = 'C:\Users\norfl\node\node'
+let g:coc_node_path = '/usr/bin/nodejs'
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go' ]
 
 function! s:check_back_space() abort
@@ -188,26 +193,43 @@ function! MyTabLine()
 endfunction
 set tabline=%!MyTabLine()
 
-set statusline=
-" set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
-" set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
-" set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
-" set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
-" set statusline+=%#Cursor#%{(mode()=='c')?'\ \ COMMAND\ ':''}
-" set statusline+=\ %n\           " buffer number
-set statusline+=%#Visual#       " colour
-" set statusline+=%{&paste?'\ PASTE\ ':''}
-" set statusline+=%{&spell?'\ SPELL\ ':''}
-set statusline+=%#CursorIM#     " colour
-" set statusline+=%R                        " readonly flag
-" set statusline+=%M                        " modified [+] flag
-set statusline+=%#Cursor#               " colour
-set statusline+=%#CursorLine#     " colour
-" set statusline+=\ %t\                   " short file name
-set statusline+=%=                          " right align
-set statusline+=%#CursorLine#   " colour
-set statusline+=\ %Y\                   " file type
-set statusline+=%#CursorIM#     " colour
-set statusline+=\ %3l:%-2c\         " line + column
-set statusline+=%#Cursor#       " colour
-" set statusline+=\ %3p%%\             " percentage
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-s': 'vsplit' }
+
+map <C-p> :GFiles<CR>
+map <C-f> :Rg<CR>
+
+let g:fzf_tags_command = 'ctags -R'
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
+let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+
+"Get Files
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+" Get text in files with Rg
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+" Ripgrep advanced
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" Git grep
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
