@@ -20,7 +20,6 @@ mouse:
   hide_when_typing: true
 shell:
   program: /home/linuxbrew/.linuxbrew/bin/fish
-
 # Cyber Punk Neon
 # Source: https://github.com/Roboron3042/Cyberpunk-Neon
 colors:

@@ -7,5 +7,10 @@
   "suggest.autoTrigger": "none",
   "typescript.suggest.completeFunctionCalls": false,
   "signature.target": "echo",
-  "javascript.suggestionActions.enabled": false
+  "javascript.suggestionActions.enabled": false,
+  "git.addedSign.hlGroup": "CocDiffAdd",
+  "git.changedSign.hlGroup": "CocDiffChange",
+  "git.removedSign.hlGroup": "CocDiffDelete",
+  "git.topRemovedSign.hlGroup": "CocDiffDelete",
+  "git.changeRemovedSign.hlGroup": "CocDiffDelete"
 }

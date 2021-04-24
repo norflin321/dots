@@ -32,12 +32,9 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set noshowcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
-" set statusline=
-" set statusline+=%=
-" set statusline+=%f
 set laststatus=2
-" set noshowmode
-syntax enable
+set noshowmode
+
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
 
@@ -54,7 +51,6 @@ set guicursor=a:block
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
-  " Plug 'ctrlpvim/ctrlp.vim'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'preservim/nerdcommenter'
@@ -63,6 +59,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'airblade/vim-rooter'
+  Plug 'ulwlu/elly.vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   " Plug 'inkarkat/vim-CursorLineCurrentWindow', {'brach': 'stable'}
 call plug#end()
 
@@ -70,16 +69,28 @@ let g:AutoPairsMultilineClose=0
 let g:go_highlight_trailing_whitespace_error=0
 
 " COLORS "
-set background=dark
+syntax enable
+" set background=dark
 set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
-colors dogrun
+" let g:gruvbox_contrast_dark = 'hard'
+colors elly
+
+" AIRLINE "
+let g:airline_theme='elly'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#close_symbol = '×'
+let g:airline#extensions#tabline#show_close_button = 0
 
 " CTRLP "
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-i>'], 'AcceptSelection("v")': ['<c-s>'] }
-
 
 " NERDTree & NERDCommenter "
 nmap <C-n> :NERDTreeToggle<CR>
@@ -158,40 +169,40 @@ nnoremap <C-l> gt
 " nnoremap <C-h> :set hlsearch!<CR>
 
 " CUSTOM TABLINE "
-function! MyTabLabel(n)
-  let buflist = tabpagebuflist(a:n)
-  let label = ''
-  " Add '+' if one of the buffers in the tab page is modified
-  for bufnr in buflist
-    if getbufvar(bufnr, "&modified")
-      let label = '*'
-      break
-    endif
-  endfor
-  let winnr = tabpagewinnr(a:n)
-  let name = bufname(buflist[winnr - 1])
-  return fnamemodify(name, ':p:h:t') . '/' . fnamemodify(name, ':t') . label
-endfunction
+" function! MyTabLabel(n)
+  " let buflist = tabpagebuflist(a:n)
+  " let label = ''
+  " " Add '+' if one of the buffers in the tab page is modified
+  " for bufnr in buflist
+    " if getbufvar(bufnr, "&modified")
+      " let label = ''
+      " break
+    " endif
+  " endfor
+  " let winnr = tabpagewinnr(a:n)
+  " let name = bufname(buflist[winnr - 1])
+  " return fnamemodify(name, ':p:h:t') . '/' . fnamemodify(name, ':t') . label
+" endfunction
 
-function! MyTabLine()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    " select the highlighting
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . (i + 1) . 'T'
-    " the label is made by MyTabLabel()
-    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
-  endfor
-  " after the last tab fill with TabLineFill and reset tab page nr
-  let s .= '%#TabLineFill#%T'
-  return s
-endfunction
-set tabline=%!MyTabLine()
+" function! MyTabLine()
+  " let s = ''
+  " for i in range(tabpagenr('$'))
+    " " select the highlighting
+    " if i + 1 == tabpagenr()
+      " let s .= '%#TabLineSel#'
+    " else
+      " let s .= '%#TabLine#'
+    " endif
+    " " set the tab page number (for mouse clicks)
+    " let s .= '%' . (i + 1) . 'T'
+    " " the label is made by MyTabLabel()
+    " let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  " endfor
+  " " after the last tab fill with TabLineFill and reset tab page nr
+  " let s .= '%#TabLineFill#%T'
+  " return s
+" endfunction
+" set tabline=%!MyTabLine()
 
 " This is the default extra key bindings
 let g:fzf_action = {
