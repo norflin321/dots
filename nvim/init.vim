@@ -71,20 +71,6 @@ let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-i>'], 'AcceptSelect
 
 let g:AutoPairsMultilineClose=0
 
-nmap <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '?'
-let g:NERDTreeDirArrowCollapsible = '?'
-let NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['^node_modules$']
-let g:NERDTreeStatusline=' '
-let NERDTreeMinimalUI=1
-let g:NERDTreeWinPos = 'left'
-
-let g:SexyScroller_EasingStyle = 1
-let g:SexyScroller_ScrollTime = 15
-let g:SexyScroller_CursorTime = 0
-let g:SexyScroller_MaxTime = 320
-
 " MAPPING "
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
@@ -115,6 +101,7 @@ nnoremap ( 15k
 vnoremap ( 15k
 nnoremap <C-h> gT
 nnoremap <C-l> gt
+" nmap <C-n> :NERDTreeToggle<CR>
 
 " STATUSLINE "
 set statusline=
@@ -171,7 +158,6 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
 
-" let g:coc_node_path = '/usr/bin/nodejs'
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go' ]
 
 function! s:check_back_space() abort
@@ -186,3 +172,24 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" NERDTree "
+let NERDTreeShowHidden=1
+let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeStatusline=' '
+let NERDTreeMinimalUI=1
+let g:NERDTreeWinPos = 'left'
+
+function! VeryNerdNerdTree()
+  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
+    exe ':NERDTreeClose'
+  else
+    if &modifiable && strlen(expand('%')) > 0 && !&diff
+      exe ':NERDTreeFind'
+    else
+      exe ':NERDTreeToggle'
+    endif
+  endif
+endfunction
+
+nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
