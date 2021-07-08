@@ -47,8 +47,8 @@ let g:go_highlight_trailing_whitespace_error=0
 syntax enable
 set background=dark
 set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
-colors dogrun
+" let g:gruvbox_contrast_dark = 'hard'
+colors codedark
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -67,7 +67,7 @@ let g:NERDSpaceDelims = 1
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
 let g:ctrlp_working_path_mode = ''
-let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-i>'], 'AcceptSelection("v")': ['<c-s>'] }
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'] }
 
 let g:AutoPairsMultilineClose=0
 
@@ -76,10 +76,10 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
 nnoremap <Space> <NOP>
 nnoremap x "_x
 nnoremap dd "_dd
@@ -99,9 +99,8 @@ nnoremap ) 15j
 vnoremap ) 15j
 nnoremap ( 15k
 vnoremap ( 15k
-nnoremap <C-h> gT
-nnoremap <C-l> gt
-" nmap <C-n> :NERDTreeToggle<CR>
+" nnoremap <C-h> gT
+" nnoremap <C-l> gt
 
 " STATUSLINE "
 set statusline=
