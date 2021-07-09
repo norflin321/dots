@@ -62,6 +62,11 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 " PLUGINS SETTINGS "
+let g:NERDTreeMapActivateNode = 'go'
+let g:NERDTreeMapPreview = 'o'
+let g:NERDTreeMapOpenVSplit = 'v'
+let g:NERDTreeMapOpenSplit = 'h'
+
 map <C-c> <plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 
@@ -157,7 +162,7 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier' ]
 
 function! s:check_back_space() abort
   let col = col('.') - 1

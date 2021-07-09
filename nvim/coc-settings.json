@@ -1,11 +1,18 @@
 {
   "suggest.noselect": false,
-  "coc.preferences.formatOnSaveFiletypes": [],
   "tsserver.trace.server": "verbose",
   "diagnostic.errorSign": ">>",
   "diagnostic.warningSign": ">>",
   "suggest.autoTrigger": "none",
   "typescript.suggest.completeFunctionCalls": false,
   "signature.target": "echo",
-  "javascript.suggestionActions.enabled": false
+  "javascript.suggestionActions.enabled": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "css"
+  ]
 }
