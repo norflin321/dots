@@ -39,6 +39,7 @@ set guicursor=a:block
 set number
 set signcolumn=number
 let g:go_highlight_trailing_whitespace_error=0
+
 " set relativenumber
 " set cursorline
 " set list
@@ -59,14 +60,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'
   Plug 'joeytwiddle/sexy_scroller.vim'
+  Plug 'zivyangll/git-blame.vim'
 call plug#end()
 
 " PLUGINS SETTINGS "
-let g:NERDTreeMapActivateNode = 'go'
-let g:NERDTreeMapPreview = 'o'
-let g:NERDTreeMapOpenVSplit = 'v'
-let g:NERDTreeMapOpenSplit = 'h'
-
 map <C-c> <plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 
@@ -75,6 +72,31 @@ let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'] }
 
 let g:AutoPairsMultilineClose=0
+
+let g:NERDTreeMapActivateNode = 'o'
+let g:NERDTreeMapPreview = 'p'
+let g:NERDTreeMapOpenVSplit = 'v'
+let g:NERDTreeMapOpenSplit = 'h'
+
+let NERDTreeShowHidden=1
+let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeStatusline=' '
+let NERDTreeMinimalUI=1
+let g:NERDTreeWinPos = 'left'
+
+function! VeryNerdNerdTree()
+  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
+    exe ':NERDTreeClose'
+  else
+    if &modifiable && strlen(expand('%')) > 0 && !&diff
+      exe ':NERDTreeFind'
+    else
+      exe ':NERDTreeToggle'
+    endif
+  endif
+endfunction
+
+nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
 
 " MAPPING "
 tnoremap <C-h> <C-\><C-n><C-w>h
@@ -110,7 +132,6 @@ vnoremap ( 15k
 " STATUSLINE "
 set statusline=
 set statusline+=%{coc#status()}
-" set statusline+=%f
 set statusline+=%=
 set statusline+=%c:%l
 set statusline+=/   
@@ -162,7 +183,7 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint' ]
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -177,23 +198,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" NERDTree "
-let NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['^node_modules$']
-let g:NERDTreeStatusline=' '
-let NERDTreeMinimalUI=1
-let g:NERDTreeWinPos = 'left'
-
-function! VeryNerdNerdTree()
-  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
-    exe ':NERDTreeClose'
-  else
-    if &modifiable && strlen(expand('%')) > 0 && !&diff
-      exe ':NERDTreeFind'
-    else
-      exe ':NERDTreeToggle'
-    endif
-  endif
-endfunction
-
-nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
+" COMMANDS "
+command Eslintfix execute ":CocCommand eslint.executeAutofix"
+command Blame execute ":call gitblame#echo()"
