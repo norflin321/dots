@@ -201,3 +201,14 @@ endfunction
 " COMMANDS "
 command Eslintfix execute ":CocCommand eslint.executeAutofix"
 command Blame execute ":call gitblame#echo()"
+
+" react function component
+command RFC execute "r~/.config/nvim/snippets/RFC"
+" react material ui styles
+command RMS execute "r~/.config/nvim/snippets/RMS"
+" react useState
+command RS execute "r~/.config/nvim/snippets/RS"
+" react useEffect
+command RE execute "r~/.config/nvim/snippets/RE"
+" react useCallback
+command RC execute "r~/.config/nvim/snippets/RC"
