@@ -13,6 +13,7 @@
     "typescript",
     "typescriptreact",
     "json",
-    "css"
+    "css",
+    "markdown"
   ]
 }

@@ -21,6 +21,10 @@ font:
     y: 2
 mouse:
   hide_when_typing: true
+cursor:
+  style:
+    blinking: Always
+  blink_interval: 530
     
 # Colors (Gotham)
 colors:

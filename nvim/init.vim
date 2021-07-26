@@ -1,8 +1,6 @@
 " SETTINGS " 
-scriptencoding utf-8
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
-set encoding=utf-8
 let mapleader = " "
 set noerrorbells
 set tabstop=2 softtabstop=2
@@ -18,8 +16,8 @@ set undofile
 set incsearch
 set ruler
 set showmatch
-set listchars=tab:··
-set list
+" set listchars=tab:''
+set nolist
 set ignorecase
 set hlsearch
 set clipboard=unnamedplus
@@ -35,11 +33,13 @@ set completeopt=menuone,noinsert,noselect
 set noshowcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
 set laststatus=2
-set guicursor=a:block
+" set guicursor=a:block
 set number
 set signcolumn=number
 let g:go_highlight_trailing_whitespace_error=0
-
+set encoding=utf-8
+scriptencoding utf-8
+set fileencoding=utf-8
 " set relativenumber
 " set cursorline
 " set list
