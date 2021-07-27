@@ -212,3 +212,5 @@ command RS execute "r~/.config/nvim/snippets/RS"
 command RE execute "r~/.config/nvim/snippets/RE"
 " react useCallback
 command RC execute "r~/.config/nvim/snippets/RC"
+" react useMemo
+command RM execute "r~/.config/nvim/snippets/RM"
