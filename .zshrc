@@ -8,6 +8,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 cd ~/main
 ls -la
+pwd
 
 gd() {
   preview="git diff $@ --color=always -- {-1}"

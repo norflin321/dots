@@ -1,4 +1,7 @@
 " SETTINGS " 
+set encoding=UTF-8
+scriptencoding utf-8
+set fileencoding=utf-8
 filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
 let mapleader = " "
@@ -16,7 +19,6 @@ set undofile
 set incsearch
 set ruler
 set showmatch
-" set listchars=tab:''
 set nolist
 set ignorecase
 set hlsearch
@@ -33,23 +35,11 @@ set completeopt=menuone,noinsert,noselect
 set noshowcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
 set laststatus=2
-" set guicursor=a:block
 set number
 set signcolumn=number
 let g:go_highlight_trailing_whitespace_error=0
-set encoding=utf-8
-scriptencoding utf-8
-set fileencoding=utf-8
 " set relativenumber
 " set cursorline
-" set list
-" set listchars+=trail:·
-
-syntax enable
-set background=dark
-set termguicolors
-" let g:gruvbox_contrast_dark = 'hard'
-colors codedark
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -61,7 +51,14 @@ call plug#begin("~/.vim/plugged")
   Plug 'scrooloose/nerdtree'
   Plug 'joeytwiddle/sexy_scroller.vim'
   Plug 'zivyangll/git-blame.vim'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'glepnir/spaceline.vim'
 call plug#end()
+
+syntax enable
+set background=dark
+set termguicolors
+colors dogrun
 
 " PLUGINS SETTINGS "
 map <C-c> <plug>NERDCommenterToggle
@@ -77,12 +74,15 @@ let g:NERDTreeMapActivateNode = 'o'
 let g:NERDTreeMapPreview = 'p'
 let g:NERDTreeMapOpenVSplit = 'v'
 let g:NERDTreeMapOpenSplit = 'h'
-
 let NERDTreeShowHidden=1
 let g:NERDTreeIgnore = ['^node_modules$']
 let g:NERDTreeStatusline=' '
 let NERDTreeMinimalUI=1
 let g:NERDTreeWinPos = 'left'
+let NERDTreeDirArrowExpandable = "\u00a0"
+let NERDTreeDirArrowCollapsible = "\u00a0"
+
+let g:spaceline_seperate_style = 'none'
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
@@ -130,12 +130,12 @@ vnoremap ( 15k
 " nnoremap <C-l> gt
 
 " STATUSLINE "
-set statusline=
-set statusline+=%{coc#status()}
-set statusline+=%=
-set statusline+=%c:%l
-set statusline+=/   
-set statusline+=%-4L
+" set statusline=
+" set statusline+=%{coc#status()}
+" set statusline+=%=
+" set statusline+=%c:%l
+" set statusline+=/   
+" set statusline+=%-4L
 
 " TABLINE "
 function! MyTabLabel(n)
