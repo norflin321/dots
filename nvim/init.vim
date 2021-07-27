@@ -38,8 +38,7 @@ set laststatus=2
 set number
 set signcolumn=number
 let g:go_highlight_trailing_whitespace_error=0
-" set relativenumber
-" set cursorline
+set noshowmode
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -67,6 +66,7 @@ let g:NERDSpaceDelims = 1
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'] }
+let g:ctrlp_show_hidden = 1
 
 let g:AutoPairsMultilineClose=0
 
