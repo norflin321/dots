@@ -201,6 +201,8 @@ endfunction
 " COMMANDS "
 command Eslintfix execute ":CocCommand eslint.executeAutofix"
 command Blame execute ":call gitblame#echo()"
+" return to last edit position when opening files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " react function component
 command RFC execute "r~/.config/nvim/snippets/RFC"
