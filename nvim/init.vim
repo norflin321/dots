@@ -9,6 +9,7 @@ set noerrorbells
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
+set autoindent
 set smartindent
 set nowrap
 set smartcase
@@ -39,6 +40,9 @@ set number
 set signcolumn=number
 let g:go_highlight_trailing_whitespace_error=0
 set noshowmode
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -75,7 +79,7 @@ let g:NERDTreeMapPreview = 'p'
 let g:NERDTreeMapOpenVSplit = 'v'
 let g:NERDTreeMapOpenSplit = 'h'
 let NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeIgnore = ['^node_modules$', '\.git$', '.DS_Store']
 let g:NERDTreeStatusline=' '
 let NERDTreeMinimalUI=1
 let g:NERDTreeWinPos = 'left'
@@ -126,16 +130,13 @@ nnoremap ) 15j
 vnoremap ) 15j
 nnoremap ( 15k
 vnoremap ( 15k
-" nnoremap <C-h> gT
-" nnoremap <C-l> gt
-
-" STATUSLINE "
-" set statusline=
-" set statusline+=%{coc#status()}
-" set statusline+=%=
-" set statusline+=%c:%l
-" set statusline+=/   
-" set statusline+=%-4L
+map q: :q
+" Move to first non-blank or last non-blank character in current line
+nnoremap H ^
+nnoremap L g_
+" keep visual selection when indenting/outdenting
+vmap < <gv
+vmap > >gv
 
 " TABLINE "
 function! MyTabLabel(n)
@@ -167,6 +168,7 @@ function! MyTabLine()
   return s
 endfunction
 set tabline=%!MyTabLine()
+
 
 " COC "
 nmap <silent> gd :sp<CR><Plug>(coc-definition)
@@ -201,12 +203,22 @@ endfunction
 " COMMANDS "
 command Eslintfix execute ":CocCommand eslint.executeAutofix"
 command Blame execute ":call gitblame#echo()"
+command Ev execute ":vsplit $MYVIMRC"
 " return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " open help vertically
 command! -nargs=* -complete=help Help vertical belowright help <args>
 autocmd FileType help wincmd L
+" Close nerdtree and vim on close file
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" auto so % after init.vim safe
+autocmd! BufWritePost init.vim source %
+" Resize splits when the window is resized
+au VimResized * :wincmd =
 
+" SNIPPETS "
 " react function component
 command RFC execute "r~/.config/nvim/snippets/RFC"
 " react material ui styles
