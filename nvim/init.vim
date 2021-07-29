@@ -28,7 +28,7 @@ set shellslash
 set scrolloff=5
 set mouse=a
 set autoread
-set showtabline=2
+set showtabline=0
 set hidden
 set updatetime=50
 set shortmess+=c
