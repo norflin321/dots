@@ -85,6 +85,7 @@ let NERDTreeMinimalUI=1
 let g:NERDTreeWinPos = 'left'
 let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
+let g:NERDTreeHighlightCursorline = 1
 
 let g:spaceline_seperate_style = 'none'
 
@@ -101,6 +102,17 @@ function! VeryNerdNerdTree()
 endfunction
 
 nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
+
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+autocmd BufRead * call SyncTree()
 
 " MAPPING "
 tnoremap <C-h> <C-\><C-n><C-w>h
@@ -203,7 +215,7 @@ endfunction
 " COMMANDS "
 command Eslintfix execute ":CocCommand eslint.executeAutofix"
 command Blame execute ":call gitblame#echo()"
-command Ev execute ":vsplit $MYVIMRC"
+command Config execute ":vsplit $MYVIMRC"
 " return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " open help vertically
