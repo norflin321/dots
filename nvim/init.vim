@@ -61,7 +61,7 @@ call plug#end()
 syntax enable
 set background=dark
 set termguicolors
-colors dogrun
+colors deep-space
 
 " PLUGINS SETTINGS "
 map <C-c> <plug>NERDCommenterToggle
