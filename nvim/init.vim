@@ -1,4 +1,3 @@
-" SETTINGS " 
 set encoding=UTF-8
 scriptencoding utf-8
 set fileencoding=utf-8
@@ -57,7 +56,8 @@ call plug#begin("~/.vim/plugged")
   " Plug 'glepnir/spaceline.vim'
   Plug 'norflin321/spaceline.vim'
   Plug 'tpope/vim-commentary'
-  Plug 'dyng/ctrlsf.vim'
+  " Plug 'dyng/ctrlsf.vim'
+  Plug 'norflin321/ctrlsf.vim'
   Plug 'sunjon/shade.nvim'
 call plug#end()
 
@@ -83,6 +83,12 @@ let g:ctrlsf_ignore_dir = ['node_modules']
 let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_auto_preview = 1
+function! g:CtrlSFAfterMainWindowInit()
+  exe ':SexyScrollerToggle'
+endfunction
+function! g:CtrlSFAfterMainWindowClose()
+  exe ':SexyScrollerToggle'
+endfunction
 
 let g:AutoPairsMultilineClose=0
 
@@ -245,9 +251,6 @@ command Blame execute ":call gitblame#echo()"
 command Config execute ":vsplit $MYVIMRC"
 " return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" open help vertically
-command! -nargs=* -complete=help Help vertical belowright help <args>
-autocmd FileType help wincmd L
 " Close nerdtree and vim on close file
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Exit Vim if NERDTree is the only window remaining in the only tab.
