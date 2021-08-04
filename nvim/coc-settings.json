@@ -17,7 +17,6 @@
     "typescript",
     "typescriptreact",
     "json",
-    "css",
-    "markdown"
+    "css"
   ]
 }

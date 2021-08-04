@@ -54,8 +54,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'joeytwiddle/sexy_scroller.vim'
   Plug 'zivyangll/git-blame.vim'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'glepnir/spaceline.vim'
+  " Plug 'glepnir/spaceline.vim'
+  Plug 'norflin321/spaceline.vim'
   Plug 'tpope/vim-commentary'
+  Plug 'dyng/ctrlsf.vim'
 call plug#end()
 
 syntax enable
@@ -70,6 +72,16 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'] }
 let g:ctrlp_show_hidden = 1
+
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_auto_focus = {'at': 'start'}
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_auto_close = {'compact': 1}
+let g:ctrlsf_backend = 'rg'
+let g:ctrlsf_ignore_dir = ['node_modules']
+let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
+let g:ctrlsf_regex_pattern = 1
+let g:ctrlsf_auto_preview = 1
 
 let g:AutoPairsMultilineClose=0
 
@@ -87,6 +99,10 @@ let NERDTreeDirArrowCollapsible = "\u00a0"
 let g:NERDTreeHighlightCursorline = 1
 
 let g:spaceline_seperate_style = 'none'
+let g:spaceline_empty_inactive = 1
+let g:spaceline_colorscheme = 'nord'
+let g:spaceline_diagnostic_errorsign = '✖ '
+let g:spaceline_diagnostic_warnsign = '⚠ '
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
@@ -114,6 +130,9 @@ endfunction
 autocmd BufRead * call SyncTree()
 
 " MAPPING "
+map q: :q
+nnoremap <Space> <NOP>
+nmap q <NOP>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
@@ -122,7 +141,6 @@ nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
-nnoremap <Space> <NOP>
 nnoremap x "_x
 nnoremap dd "_dd
 nnoremap a i
@@ -141,7 +159,6 @@ nnoremap ) 15j
 vnoremap ) 15j
 nnoremap ( 15k
 vnoremap ( 15k
-map q: :q
 " Move to first non-blank or last non-blank character in current line
 nnoremap H ^
 nnoremap L g_
@@ -151,6 +168,9 @@ vmap > >gv
 " comments
 vmap <silent> <C-c> gc
 nmap <silent> <C-c> gcc
+" ctrlsf
+vmap <silent> <C-f> <Plug>CtrlSFVwordExec
+nmap <C-f> <Plug>CtrlSFPrompt
 
 " TABLINE "
 function! MyTabLabel(n)
