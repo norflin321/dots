@@ -58,6 +58,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'norflin321/spaceline.vim'
   Plug 'tpope/vim-commentary'
   Plug 'dyng/ctrlsf.vim'
+  Plug 'sunjon/shade.nvim'
 call plug#end()
 
 syntax enable
@@ -103,6 +104,10 @@ let g:spaceline_empty_inactive = 1
 let g:spaceline_colorscheme = 'nord'
 let g:spaceline_diagnostic_errorsign = '✖ '
 let g:spaceline_diagnostic_warnsign = '⚠ '
+
+lua << EOF
+require'shade'.setup({ overlay_opacity = 50 })
+EOF
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
