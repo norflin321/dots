@@ -46,7 +46,6 @@ set splitright
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
-  Plug 'preservim/nerdcommenter'
   Plug 'kien/ctrlp.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'maxmellon/vim-jsx-pretty'
@@ -56,6 +55,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'zivyangll/git-blame.vim'
   Plug 'ryanoasis/vim-devicons'
   Plug 'glepnir/spaceline.vim'
+  Plug 'tpope/vim-commentary'
 call plug#end()
 
 syntax enable
@@ -64,7 +64,6 @@ set termguicolors
 colors deep-space
 
 " PLUGINS SETTINGS "
-map <C-c> <plug>NERDCommenterToggle
 let g:NERDSpaceDelims = 1
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
@@ -149,6 +148,9 @@ nnoremap L g_
 " keep visual selection when indenting/outdenting
 vmap < <gv
 vmap > >gv
+" comments
+vmap <silent> <C-c> gc
+nmap <silent> <C-c> gcc
 
 " TABLINE "
 function! MyTabLabel(n)
