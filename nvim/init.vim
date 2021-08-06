@@ -43,7 +43,7 @@ set noshowmode
 set splitbelow
 set splitright
 
-" PLUGINS "
+" PLUGGINS "
 call plug#begin("~/.vim/plugged")
   Plug 'kien/ctrlp.vim'
   Plug 'jiangmiao/auto-pairs'
@@ -52,13 +52,13 @@ call plug#begin("~/.vim/plugged")
   Plug 'scrooloose/nerdtree'
   Plug 'joeytwiddle/sexy_scroller.vim'
   Plug 'zivyangll/git-blame.vim'
-  Plug 'ryanoasis/vim-devicons'
   " Plug 'glepnir/spaceline.vim'
   Plug 'norflin321/spaceline.vim'
   Plug 'tpope/vim-commentary'
   " Plug 'dyng/ctrlsf.vim'
   Plug 'norflin321/ctrlsf.vim'
-  Plug 'sunjon/shade.nvim'
+  " Plug 'sunjon/shade.nvim'
+  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 syntax enable
@@ -111,8 +111,8 @@ let g:spaceline_colorscheme = 'nord'
 let g:spaceline_diagnostic_errorsign = '✖ '
 let g:spaceline_diagnostic_warnsign = '⚠ '
 
+" require'shade'.setup({ overlay_opacity = 50 })
 lua << EOF
-require'shade'.setup({ overlay_opacity = 50 })
 EOF
 
 function! VeryNerdNerdTree()
@@ -182,38 +182,6 @@ nmap <silent> <C-c> gcc
 " ctrlsf
 vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
-
-" TABLINE "
-function! MyTabLabel(n)
-  let buflist = tabpagebuflist(a:n)
-  let label = ''
-  for bufnr in buflist
-    if getbufvar(bufnr, "&modified")
-      let label = '*'
-      break
-    endif
-  endfor
-  let winnr = tabpagewinnr(a:n)
-  let name = bufname(buflist[winnr - 1])
-  return fnamemodify(name, ':p:h:t') . '/' . fnamemodify(name, ':t') . label
-endfunction
-
-function! MyTabLine()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-    let s .= '%' . (i + 1) . 'T'
-    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
-  endfor
-  let s .= '%#TabLineFill#%T'
-  return s
-endfunction
-set tabline=%!MyTabLine()
-
 
 " COC "
 nmap <silent> gd :sp<CR><Plug>(coc-definition)
