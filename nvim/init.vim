@@ -29,7 +29,7 @@ set mouse=a
 set autoread
 set showtabline=0
 set hidden
-set updatetime=50
+set updatetime=10
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set noshowcmd
@@ -42,6 +42,7 @@ set noshowmode
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+set lazyredraw
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -52,13 +53,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'scrooloose/nerdtree'
   Plug 'joeytwiddle/sexy_scroller.vim'
   Plug 'zivyangll/git-blame.vim'
-  " Plug 'glepnir/spaceline.vim'
-  " Plug 'norflin321/spaceline.vim'
   Plug 'tpope/vim-commentary'
   Plug 'vim-airline/vim-airline'
-  " Plug 'dyng/ctrlsf.vim'
   Plug 'norflin321/ctrlsf.vim'
-  " Plug 'sunjon/shade.nvim'
   Plug 'whatyouhide/vim-gotham'
 
   " should be last
@@ -109,19 +106,9 @@ let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
 let g:NERDTreeHighlightCursorline = 1
 
-" let g:spaceline_seperate_style = 'arrow'
-" let g:spaceline_empty_inactive = 1
-" let g:spaceline_colorscheme = 'nord'
-" let g:spaceline_diagnostic_errorsign = '✖ '
-" let g:spaceline_diagnostic_warnsign = '⚠ '
-
 let g:airline_powerline_fonts = 1
 
 let g:gotham_airline_emphasised_insert = 0
-
-" require'shade'.setup({ overlay_opacity = 50 })
-lua << EOF
-EOF
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
