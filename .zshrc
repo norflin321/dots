@@ -39,3 +39,5 @@ gh() {
 
 alias ls="ls -la"
 alias rm="rm -rf"
+alias cp="cp -R"
+alias vi="nvim"
