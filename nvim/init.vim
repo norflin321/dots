@@ -21,7 +21,7 @@ set ruler
 set showmatch
 set nolist
 set ignorecase
-set nohlsearch
+set hlsearch
 set clipboard=unnamedplus
 set shellslash
 set scrolloff=5
@@ -35,8 +35,8 @@ set completeopt=menuone,noinsert,noselect
 set noshowcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
 set laststatus=2
-set number
-set signcolumn=number
+" set number
+set signcolumn=yes
 let g:go_highlight_trailing_whitespace_error=0
 set noshowmode
 " Open new split panes to right and bottom, which feels more natural
@@ -55,12 +55,13 @@ call plug#begin("~/.vim/plugged")
   Plug 'zivyangll/git-blame.vim'
   Plug 'tpope/vim-commentary'
   Plug 'vim-airline/vim-airline'
-  Plug 'norflin321/ctrlsf.vim'
-  Plug 'whatyouhide/vim-gotham'
   Plug 'inside/vim-search-pulse'
-  " Plug 'norflin321/spaceline.vim'
+  Plug 'dstein64/nvim-scrollview'
 
-  " should be last
+  " forks
+  Plug 'norflin321/ctrlsf.vim'
+  Plug 'norflin321/vim-gotham'
+  " icons
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -108,15 +109,14 @@ let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
 let g:NERDTreeHighlightCursorline = 1
 
-let g:spaceline_empty_inactive = 1
-let g:spaceline_diagnostic_errorsign = '✖ '
-let g:spaceline_diagnostic_warnsign = '⚠ '
-
 let g:vim_search_pulse_mode = 'pattern'
 let g:vim_search_pulse_duration = 100
 
 let g:airline_powerline_fonts = 1
-" let g:gotham_airline_emphasised_insert = 0
+let g:gotham_airline_emphasised_insert = 0
+
+let g:scrollview_column = 1
+let g:scrollview_refresh_time = -1
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
