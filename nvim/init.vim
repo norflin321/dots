@@ -57,6 +57,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'vim-airline/vim-airline'
   Plug 'norflin321/ctrlsf.vim'
   Plug 'whatyouhide/vim-gotham'
+  Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 
   " should be last
   Plug 'ryanoasis/vim-devicons'
@@ -166,8 +167,8 @@ vnoremap ) 15j
 nnoremap ( 15k
 vnoremap ( 15k
 " Move to first non-blank or last non-blank character in current line
-nnoremap H ^
-nnoremap L g_
+map H ^
+map L g_
 " keep visual selection when indenting/outdenting
 vmap < <gv
 vmap > >gv
