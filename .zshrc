@@ -36,3 +36,6 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 gh() {
   open `git remote -v | grep fetch | awk '{print $2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'`| head -n1
 }
+
+alias ls="ls -la"
+alias rm="rm -rf"
