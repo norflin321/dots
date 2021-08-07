@@ -36,7 +36,7 @@ set noshowcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
 set laststatus=2
 " set number
-set signcolumn=yes
+set signcolumn=yes:1
 let g:go_highlight_trailing_whitespace_error=0
 set noshowmode
 " Open new split panes to right and bottom, which feels more natural
@@ -117,6 +117,7 @@ let g:gotham_airline_emphasised_insert = 0
 
 let g:scrollview_column = 1
 let g:scrollview_refresh_time = -1
+let g:scrollview_winblend = 40
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1

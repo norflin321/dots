@@ -2,7 +2,7 @@
   "suggest.noselect": false,
   "tsserver.trace.server": "verbose",
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.maxWindowHeight": 20,
+  "diagnostic.maxWindowHeight": 30,
   "diagnostic.errorSign": "✖",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "●",
