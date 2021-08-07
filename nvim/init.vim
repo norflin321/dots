@@ -21,7 +21,7 @@ set ruler
 set showmatch
 set nolist
 set ignorecase
-set hlsearch
+set nohlsearch
 set clipboard=unnamedplus
 set shellslash
 set scrolloff=5
@@ -57,7 +57,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'vim-airline/vim-airline'
   Plug 'norflin321/ctrlsf.vim'
   Plug 'whatyouhide/vim-gotham'
-  Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+  Plug 'inside/vim-search-pulse'
+  " Plug 'norflin321/spaceline.vim'
 
   " should be last
   Plug 'ryanoasis/vim-devicons'
@@ -107,9 +108,15 @@ let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
 let g:NERDTreeHighlightCursorline = 1
 
-let g:airline_powerline_fonts = 1
+let g:spaceline_empty_inactive = 1
+let g:spaceline_diagnostic_errorsign = '✖ '
+let g:spaceline_diagnostic_warnsign = '⚠ '
 
-let g:gotham_airline_emphasised_insert = 0
+let g:vim_search_pulse_mode = 'pattern'
+let g:vim_search_pulse_duration = 100
+
+let g:airline_powerline_fonts = 1
+" let g:gotham_airline_emphasised_insert = 0
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
@@ -189,10 +196,7 @@ nmap <silent> K :call <SID>show_documentation()<CR>
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <silent><expr> <C-a> pumvisible() ? "<C-e>" : coc#refresh()
-inoremap <silent><expr> <TAB> 
-  \ pumvisible() ? coc#_select_confirm() :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
+inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint' ]
 
