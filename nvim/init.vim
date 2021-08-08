@@ -117,7 +117,8 @@ let g:gotham_airline_emphasised_insert = 0
 
 let g:scrollview_column = 1
 let g:scrollview_refresh_time = -1
-let g:scrollview_winblend = 40
+let g:scrollview_winblend = 30
+let g:scrollview_excluded_filetypes = ['nerdtree']
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1

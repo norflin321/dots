@@ -13,9 +13,6 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-cd ~/main
-ls -la
-
 gd() {
   git difftool --no-symlinks --dir-diff
 }
@@ -41,3 +38,4 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias vi="nvim"
+alias clear="printf '\033[2J\033[3J\033[1;1H'"
