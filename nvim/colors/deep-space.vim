@@ -27,6 +27,7 @@ let s:purple    = '#8f72bf'
 let s:cyan      = '#56adb7'
 let s:orange    = '#b3785d'
 let s:pink      = '#c47ebd'
+let s:search    = '#303646'
 
 function! s:HL(group, fg, bg, attr)
     let l:attr = a:attr
@@ -72,7 +73,7 @@ call s:HL('PmenuSel',                       s:gray2,    s:blue,     '')
 call s:HL('PmenuSbar',                      s:gray3,    s:gray4,    '')
 call s:HL('PmenuThumb',                     s:gray4,    s:gray5,    '')
 call s:HL('Question',                       s:green,    '',         '')
-call s:HL('Search',                         s:gray1,    s:yellow,   '')
+call s:HL('Search',                         'none',    s:search,   '')
 call s:HL('SpecialKey',                     s:gray4,    '',         '')
 call s:HL('SpellCap',                       s:blue,     '',         'undercurl')
 call s:HL('SpellBad',                       s:red,      '',         'undercurl')
