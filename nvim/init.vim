@@ -55,7 +55,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'joeytwiddle/sexy_scroller.vim'
   Plug 'zivyangll/git-blame.vim'
   Plug 'tpope/vim-commentary'
-  Plug 'inside/vim-search-pulse'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -68,7 +68,8 @@ call plug#end()
 syntax enable
 set background=dark
 set termguicolors
-colors deep-space
+let g:material_theme_style = 'darker-community'
+colors material
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
@@ -113,11 +114,13 @@ let g:NERDTreeHighlightCursorline = 1
 let g:vim_search_pulse_mode = 'pattern'
 let g:vim_search_pulse_duration = 100
 
-let g:spaceline_seperate_style = 'arrow'
+let g:spaceline_seperate_style = 'slant-cons'
 let g:spaceline_empty_inactive = 1
-let g:spaceline_colorscheme = 'space'
+let g:spaceline_colorscheme = 'one'
 let g:spaceline_diagnostic_errorsign = '✖ '
 let g:spaceline_diagnostic_warnsign = '⚠ '
+
+let g:SexyScroller_EasingStyle = 1
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
@@ -188,10 +191,10 @@ vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
 
 " COC "
-nmap <silent> gd :sp<CR><Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy :sp<CR><Plug>(coc-type-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> K :call <SID>show_documentation()<CR>
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
@@ -218,20 +221,13 @@ endfunction
 command Eslintfix execute ":CocCommand eslint.executeAutofix"
 command Blame execute ":call gitblame#echo()"
 command Config execute ":e $MYVIMRC"
-" return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" Close nerdtree and vim on close file
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" auto so % after init.vim safe
 autocmd! BufWritePost init.vim source %
-" Resize splits when the window is resized
 au VimResized * :wincmd =
 augroup CursorLineOnlyInActiveWindow
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
+  autocmd WinLeave * if &filetype != 'nerdtree' | setlocal nocursorline | endif
 augroup END
 
 " SNIPPETS "
