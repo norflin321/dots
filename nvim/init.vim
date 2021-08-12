@@ -56,11 +56,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'zivyangll/git-blame.vim'
   Plug 'tpope/vim-commentary'
   Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+  Plug 'itchyny/vim-gitbranch'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
-  Plug 'norflin321/vim-gotham'
-  Plug 'norflin321/spaceline.vim'
   " icons
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -68,7 +67,7 @@ call plug#end()
 syntax enable
 set background=dark
 set termguicolors
-let g:material_theme_style = 'darker-community'
+let g:material_theme_style = 'ocean-community'
 colors material
 
 " PLUGINS SETTINGS "
@@ -90,9 +89,11 @@ let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_auto_preview = 1
 function! g:CtrlSFAfterMainWindowInit()
   exe ':SexyScrollerToggle'
+  setlocal statusline=%=
 endfunction
 function! g:CtrlSFAfterMainWindowClose()
   exe ':SexyScrollerToggle'
+  setlocal statusline=
 endfunction
 let g:SexyScroller_CursorTime = 0
 
@@ -114,13 +115,10 @@ let g:NERDTreeHighlightCursorline = 1
 let g:vim_search_pulse_mode = 'pattern'
 let g:vim_search_pulse_duration = 100
 
-let g:spaceline_seperate_style = 'slant-cons'
-let g:spaceline_empty_inactive = 1
-let g:spaceline_colorscheme = 'one'
-let g:spaceline_diagnostic_errorsign = '✖ '
-let g:spaceline_diagnostic_warnsign = '⚠ '
+let g:SexyScroller_EasingStyle = 2
 
-let g:SexyScroller_EasingStyle = 1
+lua << EOF
+EOF
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
@@ -139,6 +137,7 @@ nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
 function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
+
 function! SyncTree()
   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
     NERDTreeFind
@@ -189,6 +188,10 @@ nmap <silent> <C-c> gcc
 " ctrlsf
 vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
+" keep it centered
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
+nnoremap J mzJ`z
 
 " COC "
 nmap <silent> gd <Plug>(coc-definition)
@@ -221,14 +224,84 @@ endfunction
 command Eslintfix execute ":CocCommand eslint.executeAutofix"
 command Blame execute ":call gitblame#echo()"
 command Config execute ":e $MYVIMRC"
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-autocmd! BufWritePost init.vim source %
-au VimResized * :wincmd =
+
+augroup ReturnToLastEditedPlace
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup END
+
+augroup SourceConfigAfterWrite
+  autocmd!
+  autocmd BufWritePost init.vim source %
+augroup END
+
 augroup CursorLineOnlyInActiveWindow
   autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * if &filetype != 'nerdtree' | setlocal nocursorline | endif
 augroup END
+
+" STATUSLINE "
+function! GetBranchName()
+  let branch = gitbranch#name()
+  if branch != ''
+    return ' ' . branch . ' bufname: '
+  endif
+  return ''
+endfunction
+
+function! GetNumberOfErrors() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  if get(info, 'error', 0)
+    return '[' . '✖' . info['error'] . ']'
+  endif
+  return ''
+endfunction
+
+function! CustomStatusLineForCtrlSf()
+  let buffer_name = bufname('%')
+  if buffer_name == '__CtrlSFPreview__'
+    setlocal statusline=\ \ Preview
+  elseif buffer_name == '__CtrlSF__'
+    setlocal statusline=\ \ Results:
+    setlocal statusline+=\ %{ctrlsf#utils#SectionX()}
+  elseif buffer_name == '[Plugins]'
+    setlocal statusline=%=
+  endif
+endfunction
+
+augroup CustomStatusLine
+  autocmd!
+  autocmd WinEnter * call CustomStatusLineForCtrlSf()
+augroup END
+
+let g:spaceline_scroll_bar_chars = ['⎺', '⎻', '─', '⎼', '⎽'] 
+
+function! GetScrollbar() abort
+  let l:current_line = line('.') - 1
+  let l:total_lines = line('$') - 1
+  if l:current_line == 0
+    let l:index = 0
+  elseif l:current_line == l:total_lines
+    let l:index = -1
+  else
+    let l:line_no_fraction = floor(l:current_line) / floor(l:total_lines)
+    let l:index = float2nr(l:line_no_fraction * len(g:spaceline_scroll_bar_chars))
+  endif
+  return g:spaceline_scroll_bar_chars[l:index]
+endfunction
+
+set statusline=
+set statusline+=\ %{GetBranchName()}
+set statusline+=\ %F " file path
+set statusline+=\ %m%r " flags
+set statusline+=%= " right align
+" set statusline+=%#Error#
+set statusline+=%{GetNumberOfErrors()}
+" set statusline+=%#StatusLine#
+set statusline+=\ %3l:%-2c\  " line + column
+set statusline+=%{GetScrollbar()}
 
 " SNIPPETS "
 " react function component
