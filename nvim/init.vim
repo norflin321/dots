@@ -245,7 +245,7 @@ augroup END
 function! GetBranchName()
   let branch = gitbranch#name()
   if branch != ''
-    return ' ' . branch . ' bufname: '
+    return ' ' . branch
   endif
   return ''
 endfunction
@@ -276,7 +276,7 @@ augroup CustomStatusLine
   autocmd WinEnter * call CustomStatusLineForCtrlSf()
 augroup END
 
-let g:spaceline_scroll_bar_chars = ['⎺', '⎻', '─', '⎼', '⎽'] 
+let g:spaceline_scroll_bar_chars =  ['█', '▇', '▆', '▅', '▄', '▃', '▂', '▁', ' ']
 
 function! GetScrollbar() abort
   let l:current_line = line('.') - 1
