@@ -57,6 +57,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-commentary'
   Plug 'kaicataldo/material.vim', { 'branch': 'main' }
   Plug 'itchyny/vim-gitbranch'
+  Plug 'gruvbox-community/gruvbox'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -68,7 +69,9 @@ syntax enable
 set background=dark
 set termguicolors
 let g:material_theme_style = 'ocean-community'
-colors material
+let g:gruvbox_contrast_dark = 'hard'
+colors gruvbox
+hi link markdownError Normal
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
@@ -116,9 +119,6 @@ let g:vim_search_pulse_mode = 'pattern'
 let g:vim_search_pulse_duration = 100
 
 let g:SexyScroller_EasingStyle = 2
-
-lua << EOF
-EOF
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
@@ -316,3 +316,5 @@ command RE execute "r~/.config/nvim/snippets/RE"
 command RC execute "r~/.config/nvim/snippets/RC"
 " react useMemo
 command RM execute "r~/.config/nvim/snippets/RM"
+
+lua require('main')

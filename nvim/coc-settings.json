@@ -1,6 +1,6 @@
 {
   "suggest.noselect": false,
-  "tsserver.trace.server": "verbose",
+  "tsserver.trace.server": "off",
   "diagnostic.checkCurrentLine": true,
   "diagnostic.maxWindowHeight": 30,
   "diagnostic.errorSign": "✖",
@@ -9,8 +9,8 @@
   "diagnostic.hintSign": "○",
   "suggest.autoTrigger": "none",
   "typescript.suggest.completeFunctionCalls": false,
-  "signature.target": "echo",
   "javascript.suggestionActions.enabled": false,
+  "coc.preferences.enableFloatHighlight": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
