@@ -5,7 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/nvim/bin/
+export LANG=en_US.UTF-8
+
+export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/nvim/bin/:~/neovide/
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -39,5 +41,5 @@ gh() {
 alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
-alias vi="nvim"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
+alias nvide="neovide --multigrid"

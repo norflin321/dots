@@ -17,7 +17,7 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-set ruler
+" set ruler
 set showmatch
 set nolist
 set ignorecase
@@ -29,21 +29,23 @@ set mouse=a
 set autoread
 set showtabline=0
 set hidden
-set updatetime=10
+set updatetime=300
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set noshowcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
 set laststatus=2
-" set number
 set signcolumn=yes:1
 let g:go_highlight_trailing_whitespace_error=0
 set noshowmode
-" Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-set lazyredraw
-set cursorline
+" set lazyredraw
+" set cursorline
+
+" for neovide
+set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h13
+let g:neovide_fullscreen=v:true
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -52,10 +54,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'
-  Plug 'joeytwiddle/sexy_scroller.vim'
+  " Plug 'joeytwiddle/sexy_scroller.vim'
   Plug 'zivyangll/git-blame.vim'
   Plug 'tpope/vim-commentary'
-  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
   Plug 'itchyny/vim-gitbranch'
   Plug 'gruvbox-community/gruvbox'
 
@@ -68,7 +69,6 @@ call plug#end()
 syntax enable
 set background=dark
 set termguicolors
-let g:material_theme_style = 'ocean-community'
 let g:gruvbox_contrast_dark = 'hard'
 colors gruvbox
 hi link markdownError Normal
@@ -97,8 +97,7 @@ endfunction
 function! g:CtrlSFAfterMainWindowClose()
   exe ':SexyScrollerToggle'
   setlocal statusline=
-endfunction
-let g:SexyScroller_CursorTime = 0
+endfunction let g:SexyScroller_CursorTime = 0
 
 let g:AutoPairsMultilineClose=0
 
@@ -188,9 +187,6 @@ nmap <silent> <C-c> gcc
 " ctrlsf
 vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
-" keep it centered
-" nnoremap n nzzzv
-" nnoremap N Nzzzv
 nnoremap J mzJ`z
 
 " COC "
@@ -235,11 +231,15 @@ augroup SourceConfigAfterWrite
   autocmd BufWritePost init.vim source %
 augroup END
 
-augroup CursorLineOnlyInActiveWindow
-  autocmd!
-  autocmd WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * if &filetype != 'nerdtree' | setlocal nocursorline | endif
-augroup END
+" augroup CursorLineOnlyInActiveWindow
+"   autocmd!
+"   autocmd WinEnter,BufWinEnter * setlocal cursorline
+"   autocmd WinLeave * if &filetype != 'nerdtree' | setlocal nocursorline | endif
+" augroup END
+
+" Replace the current buffer with the given new file. That means a new file
+" will be open in a buffer while the old one will be deleted
+com! -nargs=1 -complete=file Breplace edit <args>| bdelete #
 
 " STATUSLINE "
 function! GetBranchName()
@@ -316,5 +316,7 @@ command RE execute "r~/.config/nvim/snippets/RE"
 command RC execute "r~/.config/nvim/snippets/RC"
 " react useMemo
 command RM execute "r~/.config/nvim/snippets/RM"
+" react native styles
+command RNS execute "r~/.config/nvim/snippets/RNS"
 
 lua require('main')
