@@ -44,8 +44,9 @@ set splitright
 " set cursorline
 
 " for neovide
-set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h13
-let g:neovide_fullscreen=v:true
+set guifont=norflin:h13
+" let g:neovide_fullscreen=v:true
+let neovide_remember_window_size = v:true
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
