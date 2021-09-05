@@ -50,7 +50,7 @@ let neovide_remember_window_size = v:true
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
-  Plug 'kien/ctrlp.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -71,15 +71,15 @@ syntax enable
 set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
-colors gruvbox
+colorscheme gruvbox
 hi link markdownError Normal
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
 
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
 let g:ctrlp_working_path_mode = ''
-let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'] }
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
 let g:ctrlp_show_hidden = 1
 
 let g:ctrlsf_default_view_mode = 'compact'
@@ -188,6 +188,7 @@ nmap <silent> <C-c> gcc
 " ctrlsf
 vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
+nmap <silent> <c-m> :CtrlPMRU<CR>
 nnoremap J mzJ`z
 
 " COC "
@@ -308,6 +309,7 @@ set statusline+=%{GetScrollbar()}
 " react function component
 command RFC execute "r~/.config/nvim/snippets/RFC"
 " react material ui styles
+"
 command RMS execute "r~/.config/nvim/snippets/RMS"
 " react useState
 command RS execute "r~/.config/nvim/snippets/RS"
