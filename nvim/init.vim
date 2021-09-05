@@ -81,6 +81,7 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {'dir': '\android$\|\ios$\|\.git$'}
 
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_auto_focus = {'at': 'start'}
@@ -107,7 +108,7 @@ let g:NERDTreeMapPreview = 'p'
 let g:NERDTreeMapOpenVSplit = 'v'
 let g:NERDTreeMapOpenSplit = 'h'
 let NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['^node_modules$', '\.git$', '.DS_Store']
+let g:NERDTreeIgnore = ['\.git$', '.DS_Store']
 let g:NERDTreeStatusline=' '
 let NERDTreeMinimalUI=1
 let g:NERDTreeWinPos = 'left'
