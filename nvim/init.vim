@@ -41,7 +41,8 @@ set noshowmode
 set splitbelow
 set splitright
 " set lazyredraw
-" set cursorline
+set cursorline
+" set autochdir
 
 " for neovide
 set guifont=norflin:h13
@@ -60,6 +61,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
   Plug 'gruvbox-community/gruvbox'
+  Plug 'posva/vim-vue'
+  Plug 'alvan/vim-closetag'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+  Plug 'inkarkat/vim-CursorLineCurrentWindow'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -71,7 +76,8 @@ syntax enable
 set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+let g:material_theme_style = 'palenight-community'
+colorscheme material
 hi link markdownError Normal
 
 " PLUGINS SETTINGS "
@@ -92,14 +98,14 @@ let g:ctrlsf_ignore_dir = ['node_modules']
 let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_auto_preview = 1
-function! g:CtrlSFAfterMainWindowInit()
-  exe ':SexyScrollerToggle'
-  setlocal statusline=%=
-endfunction
-function! g:CtrlSFAfterMainWindowClose()
-  exe ':SexyScrollerToggle'
-  setlocal statusline=
-endfunction let g:SexyScroller_CursorTime = 0
+" function! g:CtrlSFAfterMainWindowInit()
+"   exe ':SexyScrollerToggle'
+"   setlocal statusline=%=
+" endfunction
+" function! g:CtrlSFAfterMainWindowClose()
+"   exe ':SexyScrollerToggle'
+"   setlocal statusline=
+" endfunction let g:SexyScroller_CursorTime = 0
 
 let g:AutoPairsMultilineClose=0
 
@@ -119,7 +125,9 @@ let g:NERDTreeHighlightCursorline = 1
 let g:vim_search_pulse_mode = 'pattern'
 let g:vim_search_pulse_duration = 100
 
-let g:SexyScroller_EasingStyle = 2
+let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
+
+" let g:SexyScroller_EasingStyle = 2
 
 function! VeryNerdNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
@@ -204,7 +212,9 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <silent><expr> <C-a> pumvisible() ? "<C-e>" : coc#refresh()
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint' ]
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint', 'coc-vetur' ]
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -310,7 +320,6 @@ set statusline+=%{GetScrollbar()}
 " react function component
 command RFC execute "r~/.config/nvim/snippets/RFC"
 " react material ui styles
-"
 command RMS execute "r~/.config/nvim/snippets/RMS"
 " react useState
 command RS execute "r~/.config/nvim/snippets/RS"
@@ -322,5 +331,7 @@ command RC execute "r~/.config/nvim/snippets/RC"
 command RM execute "r~/.config/nvim/snippets/RM"
 " react native styles
 command RNS execute "r~/.config/nvim/snippets/RNS"
+" vue component
+command VC execute "r~/.config/nvim/snippets/VC"
 
 lua require('main')

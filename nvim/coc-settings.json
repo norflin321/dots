@@ -12,11 +12,11 @@
   "javascript.suggestionActions.enabled": false,
   "coc.preferences.enableFloatHighlight": false,
   "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact",
     "json",
-    "css"
+    "css",
+    "vue"
   ]
 }
