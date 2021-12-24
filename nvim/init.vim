@@ -1,7 +1,6 @@
 set encoding=UTF-8
 scriptencoding utf-8
 set fileencoding=utf-8
-filetype indent plugin on
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
 let mapleader = " "
 set noerrorbells
@@ -29,25 +28,21 @@ set mouse=a
 set autoread
 set showtabline=0
 set hidden
-set updatetime=300
+set updatetime=100
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set noshowcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
 set laststatus=2
-set signcolumn=yes:1
+set signcolumn=number
 let g:go_highlight_trailing_whitespace_error=0
 set noshowmode
 set splitbelow
 set splitright
+set number
 " set lazyredraw
 set cursorline
 " set autochdir
-
-" for neovide
-set guifont=norflin:h13
-" let g:neovide_fullscreen=v:true
-let neovide_remember_window_size = v:true
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -65,6 +60,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'alvan/vim-closetag'
   Plug 'kaicataldo/material.vim', { 'branch': 'main' }
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
+  Plug 'glepnir/oceanic-material'
+  Plug 'antoinemadec/FixCursorHold.nvim'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -72,88 +69,14 @@ call plug#begin("~/.vim/plugged")
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
 let g:material_theme_style = 'palenight-community'
-colorscheme material
+colorscheme oceanic_material
 hi link markdownError Normal
-
-" PLUGINS SETTINGS "
-let g:NERDSpaceDelims = 1
-
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {'dir': '\android$\|\ios$\|\.git$'}
-
-let g:ctrlsf_default_view_mode = 'compact'
-let g:ctrlsf_auto_focus = {'at': 'start'}
-let g:ctrlsf_search_mode = 'async'
-let g:ctrlsf_auto_close = {'compact': 1}
-let g:ctrlsf_backend = 'rg'
-let g:ctrlsf_ignore_dir = ['node_modules']
-let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
-let g:ctrlsf_regex_pattern = 1
-let g:ctrlsf_auto_preview = 1
-" function! g:CtrlSFAfterMainWindowInit()
-"   exe ':SexyScrollerToggle'
-"   setlocal statusline=%=
-" endfunction
-" function! g:CtrlSFAfterMainWindowClose()
-"   exe ':SexyScrollerToggle'
-"   setlocal statusline=
-" endfunction let g:SexyScroller_CursorTime = 0
-
-let g:AutoPairsMultilineClose=0
-
-let g:NERDTreeMapActivateNode = 'o'
-let g:NERDTreeMapPreview = 'p'
-let g:NERDTreeMapOpenVSplit = 'v'
-let g:NERDTreeMapOpenSplit = 'h'
-let NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['\.git$', '.DS_Store']
-let g:NERDTreeStatusline=' '
-let NERDTreeMinimalUI=1
-let g:NERDTreeWinPos = 'left'
-let NERDTreeDirArrowExpandable = "\u00a0"
-let NERDTreeDirArrowCollapsible = "\u00a0"
-let g:NERDTreeHighlightCursorline = 1
-
-let g:vim_search_pulse_mode = 'pattern'
-let g:vim_search_pulse_duration = 100
-
-let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
-
-" let g:SexyScroller_EasingStyle = 2
-
-function! VeryNerdNerdTree()
-  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
-    exe ':NERDTreeClose'
-  else
-    if &modifiable && strlen(expand('%')) > 0 && !&diff
-      exe ':NERDTreeFind'
-    else
-      exe ':NERDTreeToggle'
-    endif
-  endif
-endfunction
-
-nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
-
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-autocmd BufRead * call SyncTree()
 
 " MAPPING "
 map q: :q
@@ -200,6 +123,87 @@ nmap <C-f> <Plug>CtrlSFPrompt
 nmap <silent> <c-m> :CtrlPMRU<CR>
 nnoremap J mzJ`z
 
+" PLUGINS SETTINGS "
+let g:NERDSpaceDelims = 1
+
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
+let g:ctrlp_working_path_mode = ''
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {'dir': '\android$\|\ios$\|\.git$'}
+
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_auto_focus = {'at': 'start'}
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_auto_close = {'compact': 1}
+let g:ctrlsf_backend = 'rg'
+let g:ctrlsf_ignore_dir = ['node_modules']
+let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
+let g:ctrlsf_regex_pattern = 1
+let g:ctrlsf_auto_preview = 1
+
+" function! g:CtrlSFAfterMainWindowInit()
+"   exe ':SexyScrollerToggle'
+"   setlocal statusline=%=
+" endfunction
+" function! g:CtrlSFAfterMainWindowClose()
+"   exe ':SexyScrollerToggle'
+"   setlocal statusline=
+" endfunction let g:SexyScroller_CursorTime = 0
+
+let g:AutoPairsMultilineClose=0
+
+let g:NERDTreeMapActivateNode = 'o'
+let g:NERDTreeMapPreview = 'p'
+let g:NERDTreeMapOpenVSplit = 'v'
+let g:NERDTreeMapOpenSplit = 'h'
+let NERDTreeShowHidden=1
+let g:NERDTreeIgnore = ['\.git$', '.DS_Store']
+let g:NERDTreeStatusline=' '
+let NERDTreeMinimalUI=1
+let g:NERDTreeWinPos = 'left'
+let NERDTreeDirArrowExpandable = "\u00a0"
+let NERDTreeDirArrowCollapsible = "\u00a0"
+let g:NERDTreeHighlightCursorline = 1
+
+let g:vim_search_pulse_mode = 'pattern'
+let g:vim_search_pulse_duration = 100
+
+let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
+
+" let g:SexyScroller_EasingStyle = 2
+" let g:SexyScroller_CursorTime = 0
+
+" in millisecond, used for both CursorHold and CursorHoldI,
+" use updatetime instead if not defined
+let g:cursorhold_updatetime = 100
+
+function! VeryNerdNerdTree()
+  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
+    exe ':NERDTreeClose'
+  else
+    if &modifiable && strlen(expand('%')) > 0 && !&diff
+      exe ':NERDTreeFind'
+    else
+      exe ':NERDTreeToggle'
+    endif
+  endif
+endfunction
+
+nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
+
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+autocmd BufRead * call SyncTree()
+
 " COC "
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -214,7 +218,7 @@ inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_
 
 nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint', 'coc-vetur' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8']
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -242,6 +246,11 @@ augroup END
 augroup SourceConfigAfterWrite
   autocmd!
   autocmd BufWritePost init.vim source %
+augroup END
+
+augroup CloseNERDTreeIfLast
+  autocmd!
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
 " augroup CursorLineOnlyInActiveWindow
@@ -314,7 +323,7 @@ set statusline+=%= " right align
 set statusline+=%{GetNumberOfErrors()}
 " set statusline+=%#StatusLine#
 set statusline+=\ %3l:%-2c\  " line + column
-set statusline+=%{GetScrollbar()}
+" set statusline+=%{GetScrollbar()}
 
 " SNIPPETS "
 " react function component
@@ -333,5 +342,9 @@ command RM execute "r~/.config/nvim/snippets/RM"
 command RNS execute "r~/.config/nvim/snippets/RNS"
 " vue component
 command VC execute "r~/.config/nvim/snippets/VC"
+
+" NEOVIDE "
+set guifont=norflin:h13
+let neovide_remember_window_size = v:true
 
 lua require('main')
