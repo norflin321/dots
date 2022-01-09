@@ -31,7 +31,7 @@ set hidden
 set updatetime=100
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
-set noshowcmd
+set showcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
 set laststatus=2
 set signcolumn=number
@@ -62,6 +62,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'glepnir/oceanic-material'
   Plug 'antoinemadec/FixCursorHold.nvim'
+  Plug 'sunjon/shade.nvim'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -81,7 +82,7 @@ hi link markdownError Normal
 " MAPPING "
 map q: :q
 nnoremap <Space> <NOP>
-nmap q <NOP>
+nmap Q <NOP>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
@@ -108,6 +109,7 @@ nnoremap ) 15j
 vnoremap ) 15j
 nnoremap ( 15k
 vnoremap ( 15k
+
 " Move to first non-blank or last non-blank character in current line
 map H ^
 map L g_
@@ -122,6 +124,7 @@ vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
 nmap <silent> <c-m> :CtrlPMRU<CR>
 nnoremap J mzJ`z
+noremap ? /\%<C-R>=line('.')<CR>l
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
@@ -204,13 +207,19 @@ function! SyncTree()
 endfunction
 autocmd BufRead * call SyncTree()
 
+
+lua << EOF
+require'shade'.setup()
+EOF
+
 " COC "
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> gn <Plug>(coc-rename)
+nmap <silent> gf <Plug>(coc-fix-current)
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
@@ -345,7 +354,7 @@ command RNS execute "r~/.config/nvim/snippets/RNS"
 command VC execute "r~/.config/nvim/snippets/VC"
 
 " NEOVIDE "
-set guifont=norflin:h13
-let neovide_remember_window_size = v:true
+" set guifont=norflin:h13
+" let neovide_remember_window_size = v:true
 
 lua require('main')

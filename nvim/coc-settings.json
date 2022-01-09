@@ -1,5 +1,6 @@
 {
   "suggest.noselect": false,
+  "suggest.defaultSortMethod": "alphabetical",
   "tsserver.trace.server": "off",
   "diagnostic.checkCurrentLine": true,
   "diagnostic.maxWindowHeight": 30,
