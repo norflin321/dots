@@ -51,18 +51,13 @@ call plug#begin("~/.vim/plugged")
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'
-  " Plug 'joeytwiddle/sexy_scroller.vim'
   Plug 'zivyangll/git-blame.vim'
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
-  Plug 'gruvbox-community/gruvbox'
-  Plug 'posva/vim-vue'
   Plug 'alvan/vim-closetag'
-  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'glepnir/oceanic-material'
   Plug 'antoinemadec/FixCursorHold.nvim'
-  Plug 'sunjon/shade.nvim'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -75,7 +70,7 @@ syntax enable
 set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
-let g:material_theme_style = 'palenight-community'
+let g:oceanic_material_background = 'ocean' " ocean, medium, deep, darker
 colorscheme oceanic_material
 hi link markdownError Normal
 
@@ -207,11 +202,6 @@ function! SyncTree()
 endfunction
 autocmd BufRead * call SyncTree()
 
-
-lua << EOF
-require'shade'.setup()
-EOF
-
 " COC "
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -247,6 +237,7 @@ endfunction
 command Eslintfix execute ":CocCommand eslint.executeAutofix"
 command Blame execute ":call gitblame#echo()"
 command Config execute ":e $MYVIMRC"
+command SF execute ":CtrlSFToggle"
 
 augroup ReturnToLastEditedPlace
   autocmd!
