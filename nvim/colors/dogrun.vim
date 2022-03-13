@@ -18,21 +18,21 @@ endif
 
 let g:colors_name = 'dogrun'
 
-hi Normal guifg=#9ea3c0 ctermfg=146 guibg=#222433 ctermbg=235
+hi Normal guifg=#9ea3c0 ctermfg=146 guibg=NONE ctermbg=235
 hi Delimiter guifg=#8085a6 ctermfg=103
 hi NonText guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE
 hi VertSplit guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi LineNr guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi EndOfBuffer guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Comment guifg=#545c8c ctermfg=60 gui=NONE cterm=NONE
-hi Cursor guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
-hi CursorIM guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
+hi Cursor guifg=NONE ctermfg=235 guibg=#9ea3c0 ctermbg=146
+hi CursorIM guifg=NONE ctermfg=235 guibg=#9ea3c0 ctermbg=146
 hi SignColumn guifg=#545c8c ctermfg=60 guibg=#2a2c3f ctermbg=NONE
 hi ColorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorLine guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorLineNr guifg=#535f98 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Conceal guifg=#ac8b83 ctermfg=138 guibg=#222433 ctermbg=235 gui=NONE cterm=NONE
+hi Conceal guifg=#ac8b83 ctermfg=138 guibg=NONE ctermbg=235 gui=underline cterm=underline
 hi NormalFloat guifg=#9ea3c0 ctermfg=146 guibg=#32364c ctermbg=237 gui=NONE cterm=NONE
 hi Folded guifg=#666c99 ctermfg=60 guibg=#32364c ctermbg=237 gui=NONE cterm=NONE
 hi FoldColumn guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -58,7 +58,7 @@ hi Special guifg=#b871b8 ctermfg=133
 hi SpecialKey guifg=#b871b8 ctermfg=133
 hi SpecialChar guifg=#b871b8 ctermfg=133
 hi SpecialComment guifg=#b871b8 ctermfg=133
-hi Error guifg=#dc6f79 ctermfg=167 guibg=#222433 ctermbg=235 gui=bold cterm=bold
+hi Error guifg=#dc6f79 ctermfg=167 guibg=NONE ctermbg=235 gui=bold cterm=bold
 hi ErrorMsg guifg=#dc6f79 ctermfg=167 guibg=NONE ctermbg=NONE gui=bold cterm=bold
 hi WarningMsg guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi MoreMsg guifg=#73c1a9 ctermfg=79
@@ -71,7 +71,7 @@ hi Visual guibg=#363e7f ctermbg=61 gui=NONE cterm=NONE
 hi Search guifg=#494f8b ctermfg=60 guibg=#5d6ad8 ctermbg=62
 hi IncSearch guifg=#494f8b ctermfg=60 guibg=#5d6ad8 ctermbg=62
 hi Question guifg=#73c1a9 ctermfg=79 gui=bold cterm=bold
-hi WildMenu guifg=#222433 ctermfg=235 guibg=#929be5 ctermbg=104
+hi WildMenu guifg=NONE ctermfg=235 guibg=#929be5 ctermbg=104
 hi SpellBad guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
 hi SpellCap gui=underline cterm=underline
 hi SpellLocal guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
@@ -87,7 +87,7 @@ hi StatusLineNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a ctermbg=235 gui=NONE cter
 hi StatusLineTermNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a ctermbg=235 gui=NONE cterm=NONE
 hi TabLine guifg=#757aa5 ctermfg=103 guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi TabLineFill guifg=#757aa5 ctermfg=103 guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
-hi TabLineSel guifg=#222433 ctermfg=235 guibg=#929be5 ctermbg=104 gui=bold cterm=bold
+hi TabLineSel guifg=NONE ctermfg=235 guibg=#929be5 ctermbg=104 gui=bold cterm=bold
 hi qfFileName guifg=#73c1a9 ctermfg=79
 hi qfLineNr guifg=#545c8c ctermfg=60
 hi TSConstBuiltin guifg=#73c1a9 ctermfg=79
@@ -201,8 +201,8 @@ hi ConflictMarkerTheirs guibg=#1c394b ctermbg=237 gui=NONE cterm=NONE
 hi ConflictMarkerEnd guibg=#417593 ctermbg=31 gui=bold cterm=bold
 hi ConflictMarkerSeparator guifg=#363859 ctermfg=60 gui=bold cterm=bold
 hi EasyMotionTarget guifg=#a8a384 ctermfg=144 gui=bold cterm=bold
-hi EasyMotionShade guifg=#545c8c ctermfg=60 guibg=#222433 ctermbg=235
-hi EasyMotionIncCursor guifg=#9ea3c0 ctermfg=146 guibg=#222433 ctermbg=235
+hi EasyMotionShade guifg=#545c8c ctermfg=60 guibg=NONE ctermbg=235
+hi EasyMotionIncCursor guifg=#9ea3c0 ctermfg=146 guibg=NONE ctermbg=235
 if has("nvim")
   let g:terminal_color_0 = '#111219'
   let g:terminal_color_1 = '#c2616b'

@@ -32,7 +32,7 @@ set updatetime=100
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set showcmd
-set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe
+set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 set signcolumn=number
 let g:go_highlight_trailing_whitespace_error=0
@@ -41,7 +41,7 @@ set splitbelow
 set splitright
 set number
 " set lazyredraw
-set cursorline
+" set cursorline
 " set autochdir
 
 " PLUGINS "
@@ -51,13 +51,16 @@ call plug#begin("~/.vim/plugged")
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'
-  Plug 'zivyangll/git-blame.vim'
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'glepnir/oceanic-material'
   Plug 'antoinemadec/FixCursorHold.nvim'
+  Plug 'drzel/vim-repo-edit' " :RepoEdit <link>
+  Plug 'f-person/git-blame.nvim'
+  Plug 'wakatime/vim-wakatime'
+  Plug 'tek256/simple-dark'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -69,15 +72,20 @@ filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
-let g:oceanic_material_background = 'ocean' " ocean, medium, deep, darker
-colorscheme oceanic_material
+" let g:gruvbox_contrast_dark = 'hard'
+" let g:oceanic_material_background = 'ocean' " ocean, medium, deep, darker
+" let g:oceanic_material_allow_underline = 1
+
+colorscheme simple-dark
 hi link markdownError Normal
+" hi Normal guibg=NONE
 
 " MAPPING "
 map q: :q
 nnoremap <Space> <NOP>
+nnoremap <silent> <Esc> :noh<CR>
 nmap Q <NOP>
+nmap # <NOP>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
@@ -104,10 +112,14 @@ nnoremap ) 15j
 vnoremap ) 15j
 nnoremap ( 15k
 vnoremap ( 15k
+nnoremap L 15l
+vnoremap L 15l
+nnoremap H 15h
+vnoremap H 15h
 
-" Move to first non-blank or last non-blank character in current line
-map H ^
-map L g_
+map 0 ^
+map $ g_
+
 " keep visual selection when indenting/outdenting
 vmap < <gv
 vmap > >gv
@@ -120,6 +132,8 @@ nmap <C-f> <Plug>CtrlSFPrompt
 nmap <silent> <c-m> :CtrlPMRU<CR>
 nnoremap J mzJ`z
 noremap ? /\%<C-R>=line('.')<CR>l
+" noremap <silent> <S-n> :noh<CR>
+" vnoremap <silent> <S-n> :noh<CR>
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
@@ -135,7 +149,7 @@ let g:ctrlsf_auto_focus = {'at': 'start'}
 let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_auto_close = {'compact': 1}
 let g:ctrlsf_backend = 'rg'
-let g:ctrlsf_ignore_dir = ['node_modules']
+let g:ctrlsf_ignore_dir = ['node_modules', 'dist']
 let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_auto_preview = 1
@@ -156,21 +170,17 @@ let g:NERDTreeMapPreview = 'p'
 let g:NERDTreeMapOpenVSplit = 'v'
 let g:NERDTreeMapOpenSplit = 'h'
 let NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['\.git$', '.DS_Store']
+let g:NERDTreeIgnore = ['\.git$', '.DS_Store', '\node_modules$']
 let g:NERDTreeStatusline=' '
 let NERDTreeMinimalUI=1
-let g:NERDTreeWinPos = 'left'
+let g:NERDTreeWinPos = 'right'
 let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
-let g:NERDTreeHighlightCursorline = 1
-
-let g:vim_search_pulse_mode = 'pattern'
-let g:vim_search_pulse_duration = 100
+let g:NERDTreeHighlightCursorline = 0
 
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 
-" let g:SexyScroller_EasingStyle = 2
-" let g:SexyScroller_CursorTime = 0
+let g:gitblame_enabled = 0
 
 " in millisecond, used for both CursorHold and CursorHoldI,
 " use updatetime instead if not defined
@@ -194,13 +204,13 @@ function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-autocmd BufRead * call SyncTree()
+" function! SyncTree()
+"   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+"     NERDTreeFind
+"     wincmd p
+"   endif
+" endfunction
+" autocmd BufRead * call SyncTree()
 
 " COC "
 nmap <silent> gd <Plug>(coc-definition)
@@ -235,9 +245,16 @@ endfunction
 
 " COMMANDS "
 command Eslintfix execute ":CocCommand eslint.executeAutofix"
-command Blame execute ":call gitblame#echo()"
 command Config execute ":e $MYVIMRC"
 command SF execute ":CtrlSFToggle"
+command Blame execute ":GitBlameToggle"
+command BlameCopy execute ":GitBlameCopySHA"
+
+function! OpenWakaDashboard()
+  let s:uri = "https://wakatime.com/dashboard"
+  silent exec "!open '".s:uri."'"
+endfunction
+command Waka execute ":call OpenWakaDashboard()"
 
 augroup ReturnToLastEditedPlace
   autocmd!
@@ -343,6 +360,8 @@ command RM execute "r~/.config/nvim/snippets/RM"
 command RNS execute "r~/.config/nvim/snippets/RNS"
 " vue component
 command VC execute "r~/.config/nvim/snippets/VC"
+" react native component with observer
+command RNCO execute "r~/.config/nvim/snippets/RNCO"
 
 " NEOVIDE "
 " set guifont=norflin:h13
