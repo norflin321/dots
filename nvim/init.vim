@@ -78,7 +78,7 @@ set termguicolors
 
 colorscheme simple-dark
 hi link markdownError Normal
-" hi Normal guibg=NONE
+hi Normal guibg=NONE
 
 " MAPPING "
 map q: :q
