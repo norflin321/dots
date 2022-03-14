@@ -31,11 +31,11 @@ set hidden
 set updatetime=100
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
-set showcmd
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 set signcolumn=number
 let g:go_highlight_trailing_whitespace_error=0
+set noshowcmd
 set noshowmode
 set splitbelow
 set splitright
@@ -55,12 +55,14 @@ call plug#begin("~/.vim/plugged")
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
-  Plug 'glepnir/oceanic-material'
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'drzel/vim-repo-edit' " :RepoEdit <link>
   Plug 'f-person/git-blame.nvim'
   Plug 'wakatime/vim-wakatime'
-  Plug 'tek256/simple-dark'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'ruifm/gitlinker.nvim'
+  Plug 'windwp/windline.nvim'
+  Plug 'lewis6991/gitsigns.nvim'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -76,7 +78,7 @@ set termguicolors
 " let g:oceanic_material_background = 'ocean' " ocean, medium, deep, darker
 " let g:oceanic_material_allow_underline = 1
 
-colorscheme simple-dark
+colorscheme dogrun
 hi link markdownError Normal
 hi Normal guibg=NONE
 
@@ -332,17 +334,6 @@ function! GetScrollbar() abort
   return g:spaceline_scroll_bar_chars[l:index]
 endfunction
 
-set statusline=
-set statusline+=\ %{GetBranchName()}
-set statusline+=\ %F " file path
-set statusline+=\ %m%r " flags
-set statusline+=%= " right align
-" set statusline+=%#Error#
-set statusline+=%{GetNumberOfErrors()}
-" set statusline+=%#StatusLine#
-set statusline+=\ %3l:%-2c\  " line + column
-" set statusline+=%{GetScrollbar()}
-
 " SNIPPETS "
 " react function component
 command RFC execute "r~/.config/nvim/snippets/RFC"
@@ -367,4 +358,17 @@ command RNCO execute "r~/.config/nvim/snippets/RNCO"
 " set guifont=norflin:h13
 " let neovide_remember_window_size = v:true
 
-lua require('main')
+lua << EOF
+require"gitlinker".setup({
+  mappings = nil,
+  print_url = false,
+  callbacks = {
+    ["gitlab.magic-egg.net"] = require"gitlinker.hosts".get_gitlab_type_url
+  }
+})
+vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
+vim.api.nvim_set_keymap('v', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
+
+require('gitsigns').setup({ signcolumn = false })
+require('wlsample.evil_line')
+EOF
