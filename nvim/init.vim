@@ -56,7 +56,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'alvan/vim-closetag'
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'antoinemadec/FixCursorHold.nvim'
-  Plug 'drzel/vim-repo-edit' " :RepoEdit <link>
+  Plug 'drzel/vim-repo-edit'
   Plug 'f-person/git-blame.nvim'
   Plug 'wakatime/vim-wakatime'
   Plug 'nvim-lua/plenary.nvim'
@@ -335,23 +335,14 @@ function! GetScrollbar() abort
 endfunction
 
 " SNIPPETS "
-" react function component
 command RFC execute "r~/.config/nvim/snippets/RFC"
-" react material ui styles
 command RMS execute "r~/.config/nvim/snippets/RMS"
-" react useState
 command RS execute "r~/.config/nvim/snippets/RS"
-" react useEffect
 command RE execute "r~/.config/nvim/snippets/RE"
-" react useCallback
 command RC execute "r~/.config/nvim/snippets/RC"
-" react useMemo
 command RM execute "r~/.config/nvim/snippets/RM"
-" react native styles
 command RNS execute "r~/.config/nvim/snippets/RNS"
-" vue component
 command VC execute "r~/.config/nvim/snippets/VC"
-" react native component with observer
 command RNCO execute "r~/.config/nvim/snippets/RNCO"
 
 " NEOVIDE "
@@ -372,3 +363,9 @@ vim.api.nvim_set_keymap('v', 'gl', '<cmd>lua require"gitlinker".get_buf_range_ur
 require('gitsigns').setup({ signcolumn = false })
 require('wlsample.evil_line')
 EOF
+
+" new features:
+" :RepoEdit <link>
+" press 'gl' to generate link to selected code to remote repo
+" new statusline
+" write 'github .' in terminal to open github client of the repo
