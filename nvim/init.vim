@@ -61,7 +61,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'wakatime/vim-wakatime'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'ruifm/gitlinker.nvim'
-  Plug 'windwp/windline.nvim'
   Plug 'lewis6991/gitsigns.nvim'
 
   " forks
@@ -230,7 +229,7 @@ inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_
 
 nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8']
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css']
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -361,11 +360,16 @@ vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua require"gitlinker".get_buf_range_ur
 vim.api.nvim_set_keymap('v', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
 
 require('gitsigns').setup({ signcolumn = false })
-require('wlsample.evil_line')
 EOF
 
-" new features:
-" :RepoEdit <link>
-" press 'gl' to generate link to selected code to remote repo
-" new statusline
-" write 'github .' in terminal to open github client of the repo
+set statusline=
+set statusline+=\ %{GetBranchName()}
+set statusline+=\ %F " file path
+set statusline+=\ %m%r " flags
+" set statusline+=%{get(b:,'gitsigns_status_dict.added','')} // TODO
+set statusline+=%= " right align
+" set statusline+=%#Error#
+set statusline+=%{GetNumberOfErrors()}
+" set statusline+=%#StatusLine#
+set statusline+=\ %3l:%-2c\  " line + column
+" set statusline+=%{GetScrollbar()}
