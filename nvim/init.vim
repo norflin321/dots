@@ -66,7 +66,7 @@ call plug#begin("~/.vim/plugged")
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
-  Plug 'norflin321/nvim-gps', {'branch': 'react-hooks'}
+  Plug 'norflin321/nvim-gps'
   " icons
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -253,6 +253,11 @@ command SF execute ":CtrlSFToggle"
 command Blame execute ":GitBlameToggle"
 command BlameCopy execute ":GitBlameCopySHA"
 
+function! Path()
+  echo expand('%:F') 
+endfunction
+command Path execute ":call Path()"
+
 function! OpenWakaDashboard()
   let s:uri = "https://wakatime.com/dashboard"
   silent exec "!open '".s:uri."'"
@@ -288,16 +293,28 @@ com! -nargs=1 -complete=file Breplace edit <args>| bdelete #
 function! GetBranchName()
   let branch = gitbranch#name()
   if branch != ''
-    return ' ' . branch
+    return ' ' . branch . '  '
   endif
   return ''
+endfunction
+
+function! FileName()
+  let name = expand('%:t')
+  if (strchars(name) == 0)
+    return ''
+  endif
+  return expand('%:t') . '  '
+endfunction
+
+function! GetDelimeter()
+  return ' '
 endfunction
 
 function! GetErrors() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'error', 0)
-    return ' E:' . info['error']  . ' '
+    return 'E:' . info['error']  . ' '
   endif
   return ''
 endfunction
@@ -306,7 +323,7 @@ function! GetWarnings() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'warning', 0)
-    return ' W:' . info['warning'] . ' '
+    return 'W:' . info['warning'] . ' '
   endif
   return ''
 endfunction
@@ -315,7 +332,7 @@ function! GetInformations() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'information', 0)
-    return ' I:' . info['information'] . ' '
+    return 'I:' . info['information'] . ' '
   endif
   return ''
 endfunction
@@ -324,9 +341,17 @@ function! GetHints() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'hint', 0)
-    return ' H:' . info['hint'] . ' '
+    return 'H:' . info['hint']
   endif
   return ''
+endfunction
+
+function! GetDiagnostics() abort
+  let info = GetErrors() . GetWarnings() . GetInformations() . GetHints()
+  if (strchars(info) == 0)
+    return ''
+  endif
+  return '  ' . info . ' '
 endfunction
 
 function! CustomStatusLineForCtrlSf()
@@ -412,17 +437,15 @@ EOF
 
 func! NvimGps() abort
 	return luaeval("require'nvim-gps'.is_available()") ?
-		\ luaeval("require'nvim-gps'.get_location()") : ''
+		\ luaeval("require'nvim-gps'.get_location()") . ' ' : ''
 endf
 
 set statusline=
-set statusline+=\ %{GetBranchName()}
-set statusline+=\ %F " file path
-set statusline+=\ %m%r " flags
-set statusline+=\ %{NvimGps()} " context
+set statusline+=%{GetBranchName()}
+set statusline+=%{&modified?'*':''}
+set statusline+=%{FileName()} " file path
+set statusline+=%{NvimGps()} " context
 set statusline+=%= " right align
-set statusline+=%{GetErrors()}
-set statusline+=%{GetWarnings()}
-set statusline+=%{GetInformations()}
-set statusline+=%{GetHints()}
-set statusline+=\ %3l:%-2c\  " cursor position
+set statusline+=%{GetDiagnostics()}
+set statusline+=%{GetDelimeter()}
+set statusline+=%3l:%-2c\  " cursor position
