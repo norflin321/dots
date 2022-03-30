@@ -61,10 +61,12 @@ call plug#begin("~/.vim/plugged")
   Plug 'wakatime/vim-wakatime'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'ruifm/gitlinker.nvim'
-  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/playground'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
+  Plug 'norflin321/nvim-gps', {'branch': 'react-hooks'}
   " icons
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -132,7 +134,7 @@ vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
 nmap <silent> <c-m> :CtrlPMRU<CR>
 nnoremap J mzJ`z
-noremap ? /\%<C-R>=line('.')<CR>l
+" noremap ? /\%<C-R>=line('.')<CR>l
 " noremap <silent> <S-n> :noh<CR>
 " vnoremap <silent> <S-n> :noh<CR>
 
@@ -291,11 +293,38 @@ function! GetBranchName()
   return ''
 endfunction
 
-function! GetNumberOfErrors() abort
+function! GetErrors() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'error', 0)
-    return '[' . '✖' . info['error'] . ']'
+    return ' E:' . info['error']  . ' '
+  endif
+  return ''
+endfunction
+
+function! GetWarnings() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  if get(info, 'warning', 0)
+    return ' W:' . info['warning'] . ' '
+  endif
+  return ''
+endfunction
+
+function! GetInformations() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  if get(info, 'information', 0)
+    return ' I:' . info['information'] . ' '
+  endif
+  return ''
+endfunction
+
+function! GetHints() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  if get(info, 'hint', 0)
+    return ' H:' . info['hint'] . ' '
   endif
   return ''
 endfunction
@@ -358,18 +387,42 @@ require"gitlinker".setup({
 })
 vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
 vim.api.nvim_set_keymap('v', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
-
-require('gitsigns').setup({ signcolumn = false })
+require("nvim-gps").setup({depth = 0})
+require "nvim-treesitter.configs".setup {
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+}
 EOF
+
+func! NvimGps() abort
+	return luaeval("require'nvim-gps'.is_available()") ?
+		\ luaeval("require'nvim-gps'.get_location()") : ''
+endf
 
 set statusline=
 set statusline+=\ %{GetBranchName()}
 set statusline+=\ %F " file path
 set statusline+=\ %m%r " flags
-" set statusline+=%{get(b:,'gitsigns_status_dict.added','')} // TODO
+set statusline+=\ %{NvimGps()} " context
 set statusline+=%= " right align
-" set statusline+=%#Error#
-set statusline+=%{GetNumberOfErrors()}
-" set statusline+=%#StatusLine#
-set statusline+=\ %3l:%-2c\  " line + column
-" set statusline+=%{GetScrollbar()}
+set statusline+=%{GetErrors()}
+set statusline+=%{GetWarnings()}
+set statusline+=%{GetInformations()}
+set statusline+=%{GetHints()}
+set statusline+=\ %3l:%-2c\  " cursor position
