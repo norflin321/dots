@@ -1,0 +1,9 @@
+import React from 'react';
+
+interface IProps {
+}
+
+export const Snippet: React.FC<IProps> = () => {
+  return (
+  );
+};

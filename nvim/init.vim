@@ -141,7 +141,7 @@ nnoremap J mzJ`z
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
 
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
 let g:ctrlp_show_hidden = 1
@@ -156,15 +156,6 @@ let g:ctrlsf_ignore_dir = ['node_modules', 'dist']
 let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_auto_preview = 1
-
-" function! g:CtrlSFAfterMainWindowInit()
-"   exe ':SexyScrollerToggle'
-"   setlocal statusline=%=
-" endfunction
-" function! g:CtrlSFAfterMainWindowClose()
-"   exe ':SexyScrollerToggle'
-"   setlocal statusline=
-" endfunction let g:SexyScroller_CursorTime = 0
 
 let g:AutoPairsMultilineClose=0
 
@@ -206,14 +197,6 @@ nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
 function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
-
-" function! SyncTree()
-"   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-"     NERDTreeFind
-"     wincmd p
-"   endif
-" endfunction
-" autocmd BufRead * call SyncTree()
 
 " COC "
 nmap <silent> gd <Plug>(coc-definition)
@@ -257,6 +240,21 @@ function! Path()
   echo expand('%:F') 
 endfunction
 command Path execute ":call Path()"
+
+function! StatuslinePath()
+  let path = expand('%:F') 
+  let pathSplit = split(path, '[/\\]')
+  let pathSplitLength = len(pathSplit)
+  if pathSplitLength == 0
+    return expand('%:t')
+  elseif pathSplitLength == 1
+    return expand('%:t')
+  elseif pathSplitLength > 1
+    let lastTwo = pathSplit[-2:-1]
+    return lastTwo[0] . '/' . lastTwo[1] . '  '
+  endif
+  return ''
+endfunction
 
 function! OpenWakaDashboard()
   let s:uri = "https://wakatime.com/dashboard"
@@ -371,33 +369,6 @@ augroup CustomStatusLine
   autocmd WinEnter * call CustomStatusLineForCtrlSf()
 augroup END
 
-let g:spaceline_scroll_bar_chars =  ['█', '▇', '▆', '▅', '▄', '▃', '▂', '▁', ' ']
-
-function! GetScrollbar() abort
-  let l:current_line = line('.') - 1
-  let l:total_lines = line('$') - 1
-  if l:current_line == 0
-    let l:index = 0
-  elseif l:current_line == l:total_lines
-    let l:index = -1
-  else
-    let l:line_no_fraction = floor(l:current_line) / floor(l:total_lines)
-    let l:index = float2nr(l:line_no_fraction * len(g:spaceline_scroll_bar_chars))
-  endif
-  return g:spaceline_scroll_bar_chars[l:index]
-endfunction
-
-" SNIPPETS "
-command RFC execute "r~/.config/nvim/snippets/RFC"
-command RMS execute "r~/.config/nvim/snippets/RMS"
-command RS execute "r~/.config/nvim/snippets/RS"
-command RE execute "r~/.config/nvim/snippets/RE"
-command RC execute "r~/.config/nvim/snippets/RC"
-command RM execute "r~/.config/nvim/snippets/RM"
-command RNS execute "r~/.config/nvim/snippets/RNS"
-command VC execute "r~/.config/nvim/snippets/VC"
-command RNCO execute "r~/.config/nvim/snippets/RNCO"
-
 " NEOVIDE "
 " set guifont=norflin:h13
 " let neovide_remember_window_size = v:true
@@ -443,9 +414,30 @@ endf
 set statusline=
 set statusline+=%{GetBranchName()}
 set statusline+=%{&modified?'*':''}
-set statusline+=%{FileName()} " file path
+set statusline+=%{StatuslinePath()} " file path
 set statusline+=%{NvimGps()} " context
 set statusline+=%= " right align
 set statusline+=%{GetDiagnostics()}
 set statusline+=%{GetDelimeter()}
 set statusline+=%3l:%-2c\  " cursor position
+
+" SNIPPETS "
+command ReactComponent execute "r~/.config/nvim/snippets/ReactComponent"
+command ReactComponentMobxObserver execute "r~/.config/nvim/snippets/ReactComponentMobxObserver"
+command ReactMaterialMakeStyles execute "r~/.config/nvim/snippets/ReactMaterialMakeStyles"
+command ReactUseCallback execute "r~/.config/nvim/snippets/ReactUseCallback"
+command ReactUseEffect execute "r~/.config/nvim/snippets/ReactUseEffect"
+command ReactUseMemo execute "r~/.config/nvim/snippets/ReactUseMemo"
+command ReactUseState execute "r~/.config/nvim/snippets/ReactUseState"
+
+command ReactNativeStyleSheet execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
+command ReactNativePlatformCondition execute "r~/.config/nvim/snippets/ReactNativePlatformCondition"
+command ReactNativeNavigateFromRoot execute "r~/.config/nvim/snippets/ReactNativeNavigateFromRoot"
+command ReactNativeNavigationAddListener execute "r~/.config/nvim/snippets/ReactNativeNavigationAddListener"
+
+command Function execute "r~/.config/nvim/snippets/Function"
+command FunctionAsync execute "r~/.config/nvim/snippets/FunctionAsync"
+command SetTimeout execute "r~/.config/nvim/snippets/SetTimeout"
+command Require execute "r~/.config/nvim/snippets/Require"
+command ReactNativeTouchableOpacity execute "r~/.config/nvim/snippets/ReactNativeTouchableOpacity"
+command Translations execute "r~/.config/nvim/snippets/Translations"

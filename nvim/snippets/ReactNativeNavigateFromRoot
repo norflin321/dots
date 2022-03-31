@@ -1,0 +1,7 @@
+navigation.navigate('Tabs', {
+  screen: 'TreeTab',
+  params: {
+    screen: 'SearchResult',
+    params: {selectUserMode, selectModeType},
+  },
+});
