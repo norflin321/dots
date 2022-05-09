@@ -7,6 +7,7 @@ fi
 
 export LANG=en_US.UTF-8
 
+export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/nvim/bin/:~/neovide/
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -21,14 +22,7 @@ gd() {
   git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
-# parse_git_branch() {
-  # git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-# }
-
-# setopt PROMPT_SUBST
-# PROMPT='%9c%{%F{green}%}$(parse_git_branch)%{%F{none}%} $ '
-
-source ~/zshplugins/powerlevel10k/powerlevel10k.zsh-theme
+# source ~/zshplugins/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -43,3 +37,5 @@ alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias nvide="neovide --multigrid"
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

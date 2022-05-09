@@ -51,6 +51,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'
+  Plug 'unkiwii/vim-nerdtree-sync'
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
@@ -63,6 +64,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'ruifm/gitlinker.nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
+  Plug 'pantharshit00/vim-prisma'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -75,13 +77,12 @@ filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
-" let g:gruvbox_contrast_dark = 'hard'
-" let g:oceanic_material_background = 'ocean' " ocean, medium, deep, darker
-" let g:oceanic_material_allow_underline = 1
-
 colorscheme dogrun
 hi link markdownError Normal
 hi Normal guibg=NONE
+hi Directory guifg=NONE ctermfg=NONE
+hi NERDTreeCWD guifg=NONE ctermfg=NONE
+hi CursorLine guifg=#494f8b guibg=NONE
 
 " MAPPING "
 map q: :q
@@ -119,24 +120,16 @@ nnoremap L 15l
 vnoremap L 15l
 nnoremap H 15h
 vnoremap H 15h
-
 map 0 ^
 map $ g_
-
-" keep visual selection when indenting/outdenting
 vmap < <gv
 vmap > >gv
-" comments
 vmap <silent> <C-c> gc
 nmap <silent> <C-c> gcc
-" ctrlsf
 vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
 nmap <silent> <c-m> :CtrlPMRU<CR>
 nnoremap J mzJ`z
-" noremap ? /\%<C-R>=line('.')<CR>l
-" noremap <silent> <S-n> :noh<CR>
-" vnoremap <silent> <S-n> :noh<CR>
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
@@ -170,7 +163,8 @@ let NERDTreeMinimalUI=1
 let g:NERDTreeWinPos = 'right'
 let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
-let g:NERDTreeHighlightCursorline = 0
+let g:NERDTreeHighlightCursorline = 1
+let g:nerdtree_sync_cursorline = 1
 
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 
@@ -180,23 +174,25 @@ let g:gitblame_enabled = 0
 " use updatetime instead if not defined
 let g:cursorhold_updatetime = 100
 
-function! VeryNerdNerdTree()
+function! ToggleNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
     exe ':NERDTreeClose'
   else
     if &modifiable && strlen(expand('%')) > 0 && !&diff
       exe ':NERDTreeFind'
+      hi NERDTreeCWD guifg=NONE ctermfg=NONE
     else
       exe ':NERDTreeToggle'
+      hi NERDTreeCWD guifg=NONE ctermfg=NONE
     endif
   endif
 endfunction
+nmap <silent> <C-n> :call ToggleNerdTree()<CR>
 
-nmap <silent> <C-n> :call VeryNerdNerdTree()<cr>
-
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
+augroup CloseNERDTreeIfLast
+  autocmd!
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 " COC "
 nmap <silent> gd <Plug>(coc-definition)
@@ -214,7 +210,7 @@ inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_
 
 nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css']
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma']
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -271,17 +267,6 @@ augroup SourceConfigAfterWrite
   autocmd!
   autocmd BufWritePost init.vim source %
 augroup END
-
-augroup CloseNERDTreeIfLast
-  autocmd!
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
-
-" augroup CursorLineOnlyInActiveWindow
-"   autocmd!
-"   autocmd WinEnter,BufWinEnter * setlocal cursorline
-"   autocmd WinLeave * if &filetype != 'nerdtree' | setlocal nocursorline | endif
-" augroup END
 
 " Replace the current buffer with the given new file. That means a new file
 " will be open in a buffer while the old one will be deleted

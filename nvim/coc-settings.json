@@ -18,6 +18,7 @@
     "typescriptreact",
     "json",
     "css",
-    "vue"
+    "vue",
+    "prisma"
   ]
 }
