@@ -65,6 +65,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'pantharshit00/vim-prisma'
+  Plug 'numToStr/FTerm.nvim'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -80,16 +81,29 @@ set termguicolors
 colorscheme dogrun
 hi link markdownError Normal
 hi Normal guibg=NONE
-hi Directory guifg=NONE ctermfg=NONE
-hi NERDTreeCWD guifg=NONE ctermfg=NONE
-hi CursorLine guifg=#494f8b guibg=NONE
+hi Search guibg=#343434 guifg=NONE 
+hi IncSearch guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE
 
 " MAPPING "
 map q: :q
 nnoremap <Space> <NOP>
 nnoremap <silent> <Esc> :noh<CR>
 nmap Q <NOP>
+vmap Q <NOP>
 nmap # <NOP>
+vmap # <NOP>
+nmap <c-;> <NOP>
+vmap <c-;> <NOP>
+nmap q <NOP>
+vmap q <NOP>
+nmap s <NOP>
+nmap s <NOP>
+nmap . <NOP>
+vmap . <NOP>
+nmap - <NOP>
+vmap - <NOP>
+nmap <c--> <NOP>
+vmap <c--> <NOP>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
@@ -130,11 +144,12 @@ vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
 nmap <silent> <c-m> :CtrlPMRU<CR>
 nnoremap J mzJ`z
+cnoremap <c-v> <c-r>+
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
 
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:150'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
 let g:ctrlp_show_hidden = 1
@@ -180,10 +195,8 @@ function! ToggleNerdTree()
   else
     if &modifiable && strlen(expand('%')) > 0 && !&diff
       exe ':NERDTreeFind'
-      hi NERDTreeCWD guifg=NONE ctermfg=NONE
     else
       exe ':NERDTreeToggle'
-      hi NERDTreeCWD guifg=NONE ctermfg=NONE
     endif
   endif
 endfunction
@@ -355,8 +368,17 @@ augroup CustomStatusLine
 augroup END
 
 " NEOVIDE "
-" set guifont=norflin:h13
-" let neovide_remember_window_size = v:true
+set guifont=norflin3:h12.5
+let g:neovide_transparency=0.9
+let g:neovide_profiler = v:false
+let g:neovide_cursor_animation_length=0.02
+
+" todo:
+" [x] disable ligatures
+" [x] increase font lineheight
+" [x] setup internal terminal
+" [x] change search hi to some sort of white/gray
+" [.] push new settings to github
 
 lua << EOF
 require"gitlinker".setup({
@@ -389,7 +411,19 @@ require "nvim-treesitter.configs".setup {
     },
   }
 }
+require'FTerm'.setup({
+  border = 'double',
+  dimensions  = {
+    height = 0.9,
+    width = 0.9,
+  },
+})
 EOF
+
+func! Terminal() abort
+  return luaeval("require'FTerm'.toggle()")
+endf
+nmap <silent> <C-;> :call Terminal()<CR>
 
 func! NvimGps() abort
 	return luaeval("require'nvim-gps'.is_available()") ?

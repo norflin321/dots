@@ -8,7 +8,7 @@ fi
 export LANG=en_US.UTF-8
 
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/nvim/bin/:~/neovide/
+export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/nvim/bin/:~/main/other/neovide/
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -36,6 +36,10 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias nvide="neovide --multigrid"
+alias nvide="neovide --multigrid --maximized --frame None"
+alias nvim="neovide --multigrid --maximized --frame None"
+alias vi="neovide --multigrid --maximized --frame None"
+alias vim="neovide --multigrid --maximized --frame None"
+
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
