@@ -65,7 +65,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'pantharshit00/vim-prisma'
-  Plug 'numToStr/FTerm.nvim'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -411,19 +410,7 @@ require "nvim-treesitter.configs".setup {
     },
   }
 }
-require'FTerm'.setup({
-  border = 'double',
-  dimensions  = {
-    height = 0.9,
-    width = 0.9,
-  },
-})
 EOF
-
-func! Terminal() abort
-  return luaeval("require'FTerm'.toggle()")
-endf
-nmap <silent> <C-;> :call Terminal()<CR>
 
 func! NvimGps() abort
 	return luaeval("require'nvim-gps'.is_available()") ?
