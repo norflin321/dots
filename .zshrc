@@ -36,10 +36,7 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias nvide="neovide --multigrid --maximized --frame None"
-alias nvim="neovide --multigrid --maximized --frame None"
-alias vi="neovide --multigrid --maximized --frame None"
-alias vim="neovide --multigrid --maximized --frame None"
+alias nvide="neovide --multigrid --geometry=183x37"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

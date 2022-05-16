@@ -34,37 +34,41 @@ set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 set signcolumn=number
-let g:go_highlight_trailing_whitespace_error=0
 set noshowcmd
 set noshowmode
 set splitbelow
 set splitright
 set number
+let g:go_highlight_trailing_whitespace_error=0
 " set lazyredraw
 " set cursorline
 " set autochdir
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
+  Plug 'nvim-lua/plenary.nvim'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'scrooloose/nerdtree'
-  Plug 'unkiwii/vim-nerdtree-sync'
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
-  Plug 'inkarkat/vim-CursorLineCurrentWindow'
+  Plug 'scrooloose/nerdtree'
+  Plug 'unkiwii/vim-nerdtree-sync'
+  " Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'antoinemadec/FixCursorHold.nvim'
-  Plug 'drzel/vim-repo-edit'
+  Plug 'drzel/vim-repo-edit' " :RepoEdit <url>
   Plug 'f-person/git-blame.nvim'
-  Plug 'wakatime/vim-wakatime'
-  Plug 'nvim-lua/plenary.nvim'
   Plug 'ruifm/gitlinker.nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'pantharshit00/vim-prisma'
+  Plug 'akinsho/toggleterm.nvim', {'tag': 'v1.*'}
+  Plug 'sainnhe/gruvbox-material'
+  Plug 'tomasiser/vim-code-dark'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+  Plug 'wadackel/vim-dogrun'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -77,11 +81,18 @@ filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
-colorscheme dogrun
+let g:gruvbox_material_background = 'hard'
+" let g:vscode_style = "dark"
+let g:codedark_conservative = 1
+" 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'
+let g:material_theme_style = 'palenight-community'
+colorscheme gruvbox
+" let g:gruvbox_contrast_dark = 'hard'
 hi link markdownError Normal
-hi Normal guibg=NONE
-hi Search guibg=#343434 guifg=NONE 
-hi IncSearch guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE
+" hi Search guibg=#343434 guifg=NONE 
+" hi IncSearch guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE
+" hi CursorLine guibg=#1d1e2c ctermbg=NONE gui=NONE cterm=NONE
 
 " MAPPING "
 map q: :q
@@ -93,6 +104,22 @@ nmap # <NOP>
 vmap # <NOP>
 nmap <c-;> <NOP>
 vmap <c-;> <NOP>
+nmap <c-.> <NOP>
+vmap <c-.> <NOP>
+nmap <c-b> <NOP>
+vmap <c-b> <NOP>
+nmap <c-e> <NOP>
+vmap <c-e> <NOP>
+nmap <c-t> <NOP>
+vmap <c-t> <NOP>
+nmap <c-u> <NOP>
+vmap <c-u> <NOP>
+nmap <c-]> <NOP>
+vmap <c-]> <NOP>
+nmap <c-'> <NOP>
+vmap <c-'> <NOP>
+nmap <c-v> <NOP>
+vmap <c-v> <NOP>
 nmap q <NOP>
 vmap q <NOP>
 nmap s <NOP>
@@ -103,6 +130,22 @@ nmap - <NOP>
 vmap - <NOP>
 nmap <c--> <NOP>
 vmap <c--> <NOP>
+nmap <c-1> <NOP>
+vmap <c-1> <NOP>
+nmap <c-2> <NOP>
+vmap <c-2> <NOP>
+nmap <c-3> <NOP>
+vmap <c-3> <NOP>
+nmap <c-4> <NOP>
+vmap <c-4> <NOP>
+nmap <c-5> <NOP>
+vmap <c-5> <NOP>
+nmap <c-6> <NOP>
+vmap <c-6> <NOP>
+nmap <c-7> <NOP>
+vmap <c-7> <NOP>
+nmap <c-8> <NOP>
+vmap <c-8> <NOP>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
@@ -123,7 +166,6 @@ nnoremap A I
 nnoremap I A
 nnoremap yw yiw
 nnoremap <S-Enter> O<Esc>
-nnoremap <CR> o<Esc>
 nnoremap <C-z> <Nop>
 nnoremap ) 15j
 vnoremap ) 15j
@@ -133,22 +175,32 @@ nnoremap L 15l
 vnoremap L 15l
 nnoremap H 15h
 vnoremap H 15h
-map 0 ^
-map $ g_
+map 8 <Nop>
+map 7 <Nop>
+map 6 <Nop>
+map 5 <Nop>
+map 4 <Nop>
+map 3 <Nop>
+map 2 <Nop>
+map 1 <Nop>
+" map 0 $
+map 9 $
 vmap < <gv
 vmap > >gv
 vmap <silent> <C-c> gc
 nmap <silent> <C-c> gcc
 vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
-nmap <silent> <c-m> :CtrlPMRU<CR>
+cmap <C-f> CtrlSF 
 nnoremap J mzJ`z
 cnoremap <c-v> <c-r>+
+nmap <silent> <c-;> <Cmd>exe "1ToggleTerm"<CR>
+nnoremap <silent> <c-m> :CtrlPMRU<CR>
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
 
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:150'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
 let g:ctrlp_show_hidden = 1
@@ -214,13 +266,21 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
+" nmap <silent> <c-s> :CocList outline<CR>
+
+" Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Add `:OR` command for organize imports of the current buffer.
+" command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-inoremap <silent><expr> <C-a> pumvisible() ? "<C-e>" : coc#refresh()
-inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
-nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma']
 
@@ -263,12 +323,6 @@ function! StatuslinePath()
   endif
   return ''
 endfunction
-
-function! OpenWakaDashboard()
-  let s:uri = "https://wakatime.com/dashboard"
-  silent exec "!open '".s:uri."'"
-endfunction
-command Waka execute ":call OpenWakaDashboard()"
 
 augroup ReturnToLastEditedPlace
   autocmd!
@@ -367,49 +421,23 @@ augroup CustomStatusLine
 augroup END
 
 " NEOVIDE "
-set guifont=norflin3:h12.5
-let g:neovide_transparency=0.9
+set guifont=norflin3:h12
+let g:neovide_transparency=0.96
 let g:neovide_profiler = v:false
 let g:neovide_cursor_animation_length=0.02
-
-" todo:
-" [x] disable ligatures
-" [x] increase font lineheight
-" [x] setup internal terminal
-" [x] change search hi to some sort of white/gray
-" [.] push new settings to github
+" let g:neovide_remember_window_size = v:true
 
 lua << EOF
 require"gitlinker".setup({
   mappings = nil,
   print_url = false,
-  callbacks = {
-    ["gitlab.magic-egg.net"] = require"gitlinker.hosts".get_gitlab_type_url
-  }
+  callbacks = { ["gitlab.magic-egg.net"] = require"gitlinker.hosts".get_gitlab_type_url }
 })
 vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
 vim.api.nvim_set_keymap('v', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
 require("nvim-gps").setup({depth = 0})
-require "nvim-treesitter.configs".setup {
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
-    },
-  }
-}
+require "nvim-treesitter.configs".setup{}
+require("toggleterm").setup{}
 EOF
 
 func! NvimGps() abort
@@ -435,15 +463,16 @@ command ReactUseCallback execute "r~/.config/nvim/snippets/ReactUseCallback"
 command ReactUseEffect execute "r~/.config/nvim/snippets/ReactUseEffect"
 command ReactUseMemo execute "r~/.config/nvim/snippets/ReactUseMemo"
 command ReactUseState execute "r~/.config/nvim/snippets/ReactUseState"
-
 command ReactNativeStyleSheet execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
 command ReactNativePlatformCondition execute "r~/.config/nvim/snippets/ReactNativePlatformCondition"
 command ReactNativeNavigateFromRoot execute "r~/.config/nvim/snippets/ReactNativeNavigateFromRoot"
 command ReactNativeNavigationAddListener execute "r~/.config/nvim/snippets/ReactNativeNavigationAddListener"
-
 command Function execute "r~/.config/nvim/snippets/Function"
 command FunctionAsync execute "r~/.config/nvim/snippets/FunctionAsync"
 command SetTimeout execute "r~/.config/nvim/snippets/SetTimeout"
 command Require execute "r~/.config/nvim/snippets/Require"
 command ReactNativeTouchableOpacity execute "r~/.config/nvim/snippets/ReactNativeTouchableOpacity"
 command Translations execute "r~/.config/nvim/snippets/Translations"
+
+" new
+" gr, gi, :Format, 9, 0, :e <path>, :RepoEdit
