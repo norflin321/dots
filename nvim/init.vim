@@ -432,13 +432,10 @@ let g:neovide_remember_window_size=v:false
 " let g:neovide_cursor_vfx_mode="ripple"
 " let g:neovide_cursor_vfx_opacity=40
 
-" set shortmess+=c
-
 lua << EOF
 require("nvim-gps").setup({depth = 0})
 require "nvim-treesitter.configs".setup{}
 EOF
-" require("toggleterm").setup{}
 
 func! NvimGps() abort
 	return luaeval("require'nvim-gps'.is_available()") ?
