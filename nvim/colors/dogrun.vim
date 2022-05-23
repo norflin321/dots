@@ -58,8 +58,8 @@ hi Special guifg=#b871b8 ctermfg=133
 hi SpecialKey guifg=#b871b8 ctermfg=133
 hi SpecialChar guifg=#b871b8 ctermfg=133
 hi SpecialComment guifg=#b871b8 ctermfg=133
-hi Error guifg=#dc6f79 ctermfg=167 guibg=NONE ctermbg=235 gui=bold cterm=bold
-hi ErrorMsg guifg=#dc6f79 ctermfg=167 guibg=NONE ctermbg=NONE gui=bold cterm=bold
+hi Error guifg=#dc6f79 ctermfg=167 guibg=underline ctermbg=235 gui=underline cterm=underline
+hi ErrorMsg guifg=#dc6f79 ctermfg=167 guibg=underline ctermbg=NONE gui=underline cterm=underline
 hi WarningMsg guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi MoreMsg guifg=#73c1a9 ctermfg=79
 hi Todo guifg=#a8a384 ctermfg=144 guibg=NONE ctermbg=NONE gui=bold cterm=bold

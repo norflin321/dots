@@ -23,6 +23,7 @@
     "json",
     "css",
     "vue",
-    "prisma"
+    "prisma",
+    "go"
   ]
 }

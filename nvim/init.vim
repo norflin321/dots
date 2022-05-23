@@ -24,7 +24,8 @@ set hlsearch
 set clipboard=unnamedplus
 set shellslash
 set scrolloff=5
-set mouse=a
+set sidescrolloff=10
+set mouse-=a
 set autoread
 set showtabline=0
 set hidden
@@ -33,15 +34,15 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-set signcolumn=number
+set signcolumn=yes:1
 set noshowcmd
 set noshowmode
 set splitbelow
 set splitright
 set number
 let g:go_highlight_trailing_whitespace_error=0
+set cursorline
 " set lazyredraw
-" set cursorline
 " set autochdir
 
 " PLUGINS "
@@ -56,23 +57,20 @@ call plug#begin("~/.vim/plugged")
   Plug 'alvan/vim-closetag'
   Plug 'scrooloose/nerdtree'
   Plug 'unkiwii/vim-nerdtree-sync'
-  " Plug 'inkarkat/vim-CursorLineCurrentWindow'
+  Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'drzel/vim-repo-edit' " :RepoEdit <url>
   Plug 'f-person/git-blame.nvim'
-  Plug 'ruifm/gitlinker.nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'pantharshit00/vim-prisma'
-  Plug 'akinsho/toggleterm.nvim', {'tag': 'v1.*'}
   Plug 'sainnhe/gruvbox-material'
-  Plug 'tomasiser/vim-code-dark'
-  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-  Plug 'wadackel/vim-dogrun'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
   Plug 'norflin321/nvim-gps'
+  Plug 'norflin321/vim-gotham'
+
   " icons
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -81,15 +79,15 @@ filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
-let g:gruvbox_material_background = 'hard'
-" let g:vscode_style = "dark"
-let g:codedark_conservative = 1
-" 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'
-let g:material_theme_style = 'palenight-community'
-colorscheme gruvbox
-" let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_material_background='hard'
+" let g:equinusocio_material_style='darker'
+" let g:equinusocio_material_hide_vertsplit=0
+" let g:equinusocio_material_less=70
+" colorscheme gotham
+colorscheme gruvbox-material
 hi link markdownError Normal
-" hi Normal guibg=NONE
+
+" hi Normal guibg=#111314
 " hi Search guibg=#343434 guifg=NONE 
 " hi IncSearch guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE
 " hi CursorLine guibg=#1d1e2c ctermbg=NONE gui=NONE cterm=NONE
@@ -183,7 +181,6 @@ map 4 <Nop>
 map 3 <Nop>
 map 2 <Nop>
 map 1 <Nop>
-" map 0 $
 map 9 $
 vmap < <gv
 vmap > >gv
@@ -194,8 +191,9 @@ nmap <C-f> <Plug>CtrlSFPrompt
 cmap <C-f> CtrlSF 
 nnoremap J mzJ`z
 cnoremap <c-v> <c-r>+
-nmap <silent> <c-;> <Cmd>exe "1ToggleTerm"<CR>
+" nmap <silent> <c-;> <Cmd>exe "1ToggleTerm"<CR>
 nnoremap <silent> <c-m> :CtrlPMRU<CR>
+nnoremap p ]p
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
@@ -226,7 +224,7 @@ let NERDTreeShowHidden=1
 let g:NERDTreeIgnore = ['\.git$', '.DS_Store', '\node_modules$']
 let g:NERDTreeStatusline=' '
 let NERDTreeMinimalUI=1
-let g:NERDTreeWinPos = 'right'
+let g:NERDTreeWinPos = 'left'
 let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
 let g:NERDTreeHighlightCursorline = 1
@@ -271,18 +269,15 @@ nmap <silent> gf <Plug>(coc-fix-current)
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Add `:OR` command for organize imports of the current buffer.
-" command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocActionAsync('format')
+command! -nargs=0 Format :call CocActionAsync('editor.action.organizeImport')
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma']
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma', 'coc-rls']
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -298,11 +293,16 @@ function! s:show_documentation()
 endfunction
 
 " COMMANDS "
-command Eslintfix execute ":CocCommand eslint.executeAutofix"
-command Config execute ":e $MYVIMRC"
+command CF execute ":e $MYVIMRC"
 command SF execute ":CtrlSFToggle"
-command Blame execute ":GitBlameToggle"
-command BlameCopy execute ":GitBlameCopySHA"
+command BL execute ":GitBlameToggle"
+command PI execute ":PlugInstall"
+command PC execute ":PlugClean"
+
+function! EditRepo(url)
+  exe ':RepoEdit ' . a:url
+endfunction
+command! -nargs=1 RP call EditRepo(<f-args>)
 
 function! Path()
   echo expand('%:F') 
@@ -422,23 +422,23 @@ augroup END
 
 " NEOVIDE "
 set guifont=norflin3:h12
-let g:neovide_transparency=0.96
-let g:neovide_profiler = v:false
+let g:neovide_transparency=0.98
+let g:neovide_profiler=v:false
 let g:neovide_cursor_animation_length=0.02
-" let g:neovide_remember_window_size = v:true
+" let g:neovide_cursor_trail_length=0.01
+let g:neovide_cursor_antialiasing=v:true
+let g:neovide_fullscreen=v:false
+let g:neovide_remember_window_size=v:false
+" let g:neovide_cursor_vfx_mode="ripple"
+" let g:neovide_cursor_vfx_opacity=40
+
+" set shortmess+=c
 
 lua << EOF
-require"gitlinker".setup({
-  mappings = nil,
-  print_url = false,
-  callbacks = { ["gitlab.magic-egg.net"] = require"gitlinker.hosts".get_gitlab_type_url }
-})
-vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
-vim.api.nvim_set_keymap('v', 'gl', '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
 require("nvim-gps").setup({depth = 0})
 require "nvim-treesitter.configs".setup{}
-require("toggleterm").setup{}
 EOF
+" require("toggleterm").setup{}
 
 func! NvimGps() abort
 	return luaeval("require'nvim-gps'.is_available()") ?
@@ -456,23 +456,11 @@ set statusline+=%{GetDelimeter()}
 set statusline+=%3l:%-2c\  " cursor position
 
 " SNIPPETS "
-command ReactComponent execute "r~/.config/nvim/snippets/ReactComponent"
-command ReactComponentMobxObserver execute "r~/.config/nvim/snippets/ReactComponentMobxObserver"
-command ReactMaterialMakeStyles execute "r~/.config/nvim/snippets/ReactMaterialMakeStyles"
-command ReactUseCallback execute "r~/.config/nvim/snippets/ReactUseCallback"
-command ReactUseEffect execute "r~/.config/nvim/snippets/ReactUseEffect"
-command ReactUseMemo execute "r~/.config/nvim/snippets/ReactUseMemo"
-command ReactUseState execute "r~/.config/nvim/snippets/ReactUseState"
-command ReactNativeStyleSheet execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
-command ReactNativePlatformCondition execute "r~/.config/nvim/snippets/ReactNativePlatformCondition"
-command ReactNativeNavigateFromRoot execute "r~/.config/nvim/snippets/ReactNativeNavigateFromRoot"
-command ReactNativeNavigationAddListener execute "r~/.config/nvim/snippets/ReactNativeNavigationAddListener"
-command Function execute "r~/.config/nvim/snippets/Function"
-command FunctionAsync execute "r~/.config/nvim/snippets/FunctionAsync"
-command SetTimeout execute "r~/.config/nvim/snippets/SetTimeout"
-command Require execute "r~/.config/nvim/snippets/Require"
-command ReactNativeTouchableOpacity execute "r~/.config/nvim/snippets/ReactNativeTouchableOpacity"
-command Translations execute "r~/.config/nvim/snippets/Translations"
-
-" new
-" gr, gi, :Format, 9, 0, :e <path>, :RepoEdit
+command RCO execute "r~/.config/nvim/snippets/ReactComponent"
+command RCMO execute "r~/.config/nvim/snippets/ReactComponentMobxObserver"
+command RMS execute "r~/.config/nvim/snippets/ReactMaterialMakeStyles"
+command RC execute "r~/.config/nvim/snippets/ReactUseCallback"
+command RE execute "r~/.config/nvim/snippets/ReactUseEffect"
+command RM execute "r~/.config/nvim/snippets/ReactUseMemo"
+command RS execute "r~/.config/nvim/snippets/ReactUseState"
+command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
