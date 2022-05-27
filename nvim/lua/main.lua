@@ -1,6 +1,5 @@
 -- local bnr = vim.fn.bufnr('%')
 -- local ns_id = vim.api.nvim_create_namespace('demo')
-
 -- local opts = {
 --   id = 1,
 --   virt_text = {{"|", "IncSearch"}},

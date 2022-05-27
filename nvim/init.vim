@@ -41,7 +41,7 @@ set splitbelow
 set splitright
 set number
 let g:go_highlight_trailing_whitespace_error=0
-set cursorline
+" set cursorline
 " set lazyredraw
 " set autochdir
 
@@ -65,6 +65,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-treesitter/playground'
   Plug 'pantharshit00/vim-prisma'
   Plug 'sainnhe/gruvbox-material'
+  Plug 'norcalli/nvim-colorizer.lua'
 
   " forks
   Plug 'norflin321/ctrlsf.vim'
@@ -83,14 +84,15 @@ let g:gruvbox_material_background='hard'
 " let g:equinusocio_material_style='darker'
 " let g:equinusocio_material_hide_vertsplit=0
 " let g:equinusocio_material_less=70
-" colorscheme gotham
-colorscheme gruvbox-material
+colorscheme dogrun
+" colorscheme gruvbox-material
 hi link markdownError Normal
 
-" hi Normal guibg=#111314
-" hi Search guibg=#343434 guifg=NONE 
-" hi IncSearch guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE
-" hi CursorLine guibg=#1d1e2c ctermbg=NONE gui=NONE cterm=NONE
+hi Normal guibg=#101115
+hi Search guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
+hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
+hi Visual guibg=#292c37 ctermbg=61 gui=NONE cterm=NONE
+" hi CursorLine guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
 " MAPPING "
 map q: :q
@@ -99,8 +101,7 @@ nnoremap <silent> <Esc> :noh<CR>
 nmap Q <NOP>
 vmap Q <NOP>
 nmap # <NOP>
-vmap # <NOP>
-nmap <c-;> <NOP>
+vmap # <NOP> nmap <c-;> <NOP>
 vmap <c-;> <NOP>
 nmap <c-.> <NOP>
 vmap <c-.> <NOP>
@@ -182,6 +183,7 @@ map 3 <Nop>
 map 2 <Nop>
 map 1 <Nop>
 map 9 $
+map 8 %
 vmap < <gv
 vmap > >gv
 vmap <silent> <C-c> gc
@@ -193,7 +195,8 @@ nnoremap J mzJ`z
 cnoremap <c-v> <c-r>+
 " nmap <silent> <c-;> <Cmd>exe "1ToggleTerm"<CR>
 nnoremap <silent> <c-m> :CtrlPMRU<CR>
-nnoremap p ]p
+map p ]p
+map ga <Nop>
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
@@ -257,13 +260,14 @@ augroup CloseNERDTreeIfLast
 augroup END
 
 " COC "
+nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
+" nmap <silent> ga <Plug>(coc-codeaction)
 " nmap <silent> <c-s> :CocList outline<CR>
 
 " Highlight the symbol and its references when holding the cursor.
@@ -277,7 +281,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma', 'coc-rls']
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma' ]
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -422,11 +426,11 @@ augroup END
 
 " NEOVIDE "
 set guifont=norflin3:h12
-let g:neovide_transparency=0.98
+let g:neovide_transparency=1
 let g:neovide_profiler=v:false
 let g:neovide_cursor_animation_length=0.02
 " let g:neovide_cursor_trail_length=0.01
-let g:neovide_cursor_antialiasing=v:true
+" let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
 let g:neovide_remember_window_size=v:false
 " let g:neovide_cursor_vfx_mode="ripple"
@@ -435,6 +439,7 @@ let g:neovide_remember_window_size=v:false
 lua << EOF
 require("nvim-gps").setup({depth = 0})
 require "nvim-treesitter.configs".setup{}
+require'colorizer'.setup()
 EOF
 
 func! NvimGps() abort
