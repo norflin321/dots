@@ -39,7 +39,7 @@ set noshowcmd
 set noshowmode
 set splitbelow
 set splitright
-set number
+set nonumber
 let g:go_highlight_trailing_whitespace_error=0
 " set cursorline
 " set lazyredraw
@@ -88,7 +88,7 @@ colorscheme dogrun
 " colorscheme gruvbox-material
 hi link markdownError Normal
 
-hi Normal guibg=#101115
+hi Normal guibg=#101116
 hi Search guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
 hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
 hi Visual guibg=#292c37 ctermbg=61 gui=NONE cterm=NONE
@@ -182,6 +182,8 @@ map 4 <Nop>
 map 3 <Nop>
 map 2 <Nop>
 map 1 <Nop>
+map z <Nop>
+map zz <Nop>
 map 9 $
 map 8 %
 vmap < <gv
@@ -253,6 +255,25 @@ function! ToggleNerdTree()
   endif
 endfunction
 nmap <silent> <C-n> :call ToggleNerdTree()<CR>
+
+function! CloseHiddenBuffers()
+  let visible = {}
+  for t in range(1, tabpagenr('$'))
+    for b in tabpagebuflist(t)
+      let visible[b] = 1
+    endfor
+  endfor
+  for b in range(1, bufnr('$'))
+    if bufloaded(b) && !has_key(visible, b)
+      exe 'bd ' . b
+    endif
+  endfor
+endfun
+
+" close all hidden buffers
+command BC execute ":call CloseHiddenBuffers()"
+" log number of oppended buffers
+command BN execute ":echo len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))"
 
 augroup CloseNERDTreeIfLast
   autocmd!
