@@ -70,7 +70,6 @@ call plug#begin("~/.vim/plugged")
   " forks
   Plug 'norflin321/ctrlsf.vim'
   Plug 'norflin321/nvim-gps'
-  Plug 'norflin321/vim-gotham'
 
   " icons
   Plug 'ryanoasis/vim-devicons'
@@ -80,19 +79,16 @@ filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
-let g:gruvbox_material_background='hard'
-" let g:equinusocio_material_style='darker'
-" let g:equinusocio_material_hide_vertsplit=0
-" let g:equinusocio_material_less=70
-colorscheme dogrun
-" colorscheme gruvbox-material
-hi link markdownError Normal
 
-hi Normal guibg=#101116
-hi Search guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
-hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
-hi Visual guibg=#292c37 ctermbg=61 gui=NONE cterm=NONE
-" hi CursorLine guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+let g:gruvbox_material_background='hard'
+colorscheme gruvbox-material
+
+" colorscheme dogrun
+" hi Normal guibg=#0c1014
+" hi Search guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
+" hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
+
+hi link markdownError Normal
 
 " MAPPING "
 map q: :q
