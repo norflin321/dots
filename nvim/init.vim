@@ -43,7 +43,8 @@ let g:go_highlight_trailing_whitespace_error=0
 " set lazyredraw
 " set autochdir
 " set cursorline
-set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
+" set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
+set guicursor=a:block
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")

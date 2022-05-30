@@ -26,9 +26,9 @@ hi SpellCap cterm=NONE ctermfg=255 ctermbg=124 gui=NONE guifg=#eeeeee guibg=#0a0
 hi SpellRare cterm=NONE ctermfg=240 ctermbg=16 gui=NONE guifg=#8a8a8a guibg=#0a0a0a
 hi WildMenu cterm=NONE ctermfg=240 ctermbg=255 gui=NONE guifg=#585858 guibg=#0a0a0a
 hi Pmenu cterm=NONE ctermfg=255 ctermbg=240 gui=NONE guifg=#eeeeee guibg=#0a0a0a
-hi PmenuThumb cterm=NONE ctermfg=232 ctermbg=240 gui=NONE guifg=#0a0a0a guibg=#0a0a0a
+hi PmenuThumb cterm=NONE ctermfg=232 ctermbg=240 gui=NONE guifg=NONE guibg=NONE
 hi SpecialKey cterm=NONE ctermfg=16 ctermbg=255 gui=NONE guifg=#eeeeee guibg=#0a0a0a
-hi MatchParen cterm=NONE ctermfg=white ctermbg=black gui=NONE guifg=#eeeeee guibg=#0a0a0a
+hi MatchParen cterm=NONE ctermfg=white ctermbg=black gui=underline guifg=NONE guibg=NONE
 hi CursorLine cterm=NONE ctermfg=NONE ctermbg=233 gui=NONE guifg=NONE guibg=#303030
 hi StatusLine cterm=bold,reverse ctermfg=245 ctermbg=black gui=bold,reverse guifg=#303030 guibg=#0a0a0a
 hi StatusLineNC cterm=reverse ctermfg=236 ctermbg=black gui=reverse guifg=#303030 guibg=#0a0a0a
@@ -90,7 +90,12 @@ highlight! link Cursor StatusLine
 highlight! link Underlined SpellRare
 highlight! link rstEmphasis SpellRare
 highlight! link diffChanged DiffChange
-highlight! CocUnusedHighlight ctermbg=NONE guibg=NONE
+
+hi CocUnusedHighlight gui=underline guibg=NONE
+hi CocWarningHighlight gui=underline guibg=NONE
+hi CocInfoHighlight gui=underline guibg=NONE
+hi CocHintHighlight gui=underline guibg=NONE
+hi CocErrorHighlight gui=underline guisp=red 
 
 hi CursorLine guibg=#303030 ctermbg=236 gui=NONE cterm=NONE
 hi CursorLineNr guifg=#303030 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
