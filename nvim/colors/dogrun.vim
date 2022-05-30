@@ -275,3 +275,7 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Title'],
   \ 'header':  ['fg', 'Comment'],
   \ }
+
+hi Normal guibg=#0c1014
+hi Search guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
+hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE

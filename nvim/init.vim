@@ -80,13 +80,10 @@ syntax enable
 set background=dark
 set termguicolors
 
-let g:gruvbox_material_background='hard'
-colorscheme gruvbox-material
+" let g:gruvbox_material_background='hard'
+" colorscheme gruvbox-material
 
-" colorscheme dogrun
-" hi Normal guibg=#0c1014
-" hi Search guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
-" hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
+colorscheme dark
 
 hi link markdownError Normal
 
@@ -298,7 +295,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma', 'coc-rls' ]
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -441,7 +438,7 @@ augroup CustomStatusLine
   autocmd WinEnter * call CustomStatusLineForCtrlSf()
 augroup END
 
-" NEOVIDE "
+" NEOVIDE
 set guifont=norflin3:h12
 let g:neovide_transparency=1
 let g:neovide_profiler=v:false
