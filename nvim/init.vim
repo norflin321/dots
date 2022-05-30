@@ -16,7 +16,6 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-" set ruler
 set showmatch
 set nolist
 set ignorecase
@@ -36,14 +35,15 @@ set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 set signcolumn=yes:1
 set noshowcmd
-set noshowmode
+set showmode
 set splitbelow
 set splitright
 set nonumber
 let g:go_highlight_trailing_whitespace_error=0
-" set cursorline
 " set lazyredraw
 " set autochdir
+" set cursorline
+set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")

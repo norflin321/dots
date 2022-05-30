@@ -26,7 +26,7 @@ hi SpellCap cterm=NONE ctermfg=255 ctermbg=124 gui=NONE guifg=#eeeeee guibg=#0a0
 hi SpellRare cterm=NONE ctermfg=240 ctermbg=16 gui=NONE guifg=#8a8a8a guibg=#0a0a0a
 hi WildMenu cterm=NONE ctermfg=240 ctermbg=255 gui=NONE guifg=#585858 guibg=#0a0a0a
 hi Pmenu cterm=NONE ctermfg=255 ctermbg=240 gui=NONE guifg=#eeeeee guibg=#0a0a0a
-hi PmenuThumb cterm=NONE ctermfg=232 ctermbg=240 gui=NONE guifg=#080808 guibg=#0a0a0a
+hi PmenuThumb cterm=NONE ctermfg=232 ctermbg=240 gui=NONE guifg=#0a0a0a guibg=#0a0a0a
 hi SpecialKey cterm=NONE ctermfg=16 ctermbg=255 gui=NONE guifg=#eeeeee guibg=#0a0a0a
 hi MatchParen cterm=NONE ctermfg=white ctermbg=black gui=NONE guifg=#eeeeee guibg=#0a0a0a
 hi CursorLine cterm=NONE ctermfg=NONE ctermbg=233 gui=NONE guifg=NONE guibg=#303030
@@ -82,7 +82,7 @@ highlight! link LineNr Comment
 highlight! link NonText NonText 
 highlight! link DiffDelete Comment
 highlight! link diffRemoved Comment
-highlight! link PmenuSbar Visual
+highlight! link PmenuSbar PmenuThumb
 highlight! link PmenuSel Visual
 highlight! link VisualNOS Visual
 highlight! link VertSplit VertSplit
