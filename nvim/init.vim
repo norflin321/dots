@@ -80,11 +80,11 @@ filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
+let g:gruvbox_material_background='hard'
 
-" let g:gruvbox_material_background='hard'
-" colorscheme gruvbox-material
-
-colorscheme dark
+colors gruvbox-material
+" colors dogrun
+" colors dark
 
 hi link markdownError Normal
 
