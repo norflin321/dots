@@ -1,10 +1,12 @@
--- local bnr = vim.fn.bufnr('%')
--- local ns_id = vim.api.nvim_create_namespace('demo')
--- local opts = {
---   id = 1,
---   virt_text = {{"|", "IncSearch"}},
---   virt_text_pos = 'overlay',
---   -- virt_text_win_col = 20,
--- }
+-- https://devhints.io/lua
+-- create function
+function MyCustomFunc()
+  local greet = "hello world!"
+  print(greet)
+end
 
--- local mark_id = vim.api.nvim_buf_set_extmark(0, ns_id, 1, 0, opts)
+-- create new vim command, work only in nvim version > 0.7.0
+-- vim.api.nvim_create_user_command('Custom', func, { nargs = 1 })
+
+-- call vim command
+-- vim.api.nvim_command('Custom')

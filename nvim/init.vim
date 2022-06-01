@@ -24,7 +24,7 @@ set clipboard=unnamedplus
 set shellslash
 set scrolloff=5
 set sidescrolloff=10
-set mouse-=a
+set mouse=a
 set autoread
 set showtabline=0
 set hidden
@@ -57,7 +57,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
   Plug 'scrooloose/nerdtree'
-  Plug 'unkiwii/vim-nerdtree-sync'
+  " Plug 'unkiwii/vim-nerdtree-sync'
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'drzel/vim-repo-edit' " :RepoEdit <url>
@@ -239,6 +239,8 @@ let g:cursorhold_updatetime = 100
 
 function! ToggleNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
+    exe ':0'
+    exe ':normal X'
     exe ':NERDTreeClose'
   else
     if &modifiable && strlen(expand('%')) > 0 && !&diff
@@ -455,6 +457,7 @@ lua << EOF
 require("nvim-gps").setup({depth = 0})
 require "nvim-treesitter.configs".setup{}
 require'colorizer'.setup()
+require('main')
 EOF
 
 func! NvimGps() abort
