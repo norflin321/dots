@@ -421,7 +421,7 @@ function! GetDiagnostics() abort
   if (strchars(info) == 0)
     return ''
   endif
-  return '  ' . info . ' '
+  return ' |' . info . ' '
 endfunction
 
 function! CustomStatusLineForCtrlSf()
@@ -442,8 +442,8 @@ augroup CustomStatusLine
 augroup END
 
 " NEOVIDE
-set guifont=norflin3:h12
-let g:neovide_transparency=1
+set guifont=NorflinJB:h12
+" let g:neovide_transparency=1
 let g:neovide_profiler=v:false
 let g:neovide_cursor_animation_length=0.02
 " let g:neovide_cursor_trail_length=0.01
