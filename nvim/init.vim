@@ -241,8 +241,12 @@ let g:cursorhold_updatetime = 100
 
 function! ToggleNerdTree()
   if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
-    exe ':0'
-    exe ':normal X'
+    let buffer_name = bufname('%')
+    let is_nerdtree_buffer = stridx(buffer_name, 'NERD') != -1
+    if (is_nerdtree_buffer)
+      exe ':0'
+      exe ':normal X'
+    endif
     exe ':NERDTreeClose'
   else
     if &modifiable && strlen(expand('%')) > 0 && !&diff
@@ -425,7 +429,7 @@ function! GetDiagnostics() abort
   if (strchars(info) == 0)
     return ''
   endif
-  return ' | ' . info . ' '
+  return '  ' . info
 endfunction
 
 function! CustomStatusLineForCtrlSf()
