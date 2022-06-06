@@ -82,8 +82,8 @@ set background=dark
 set termguicolors
 let g:gruvbox_material_background='hard'
 
-colors gruvbox-material
-" colors dogrun
+" colors gruvbox-material
+colors dogrun
 " colors dark
 
 hi link markdownError Normal
@@ -186,13 +186,15 @@ vmap <silent> <C-c> gc
 nmap <silent> <C-c> gcc
 vmap <silent> <C-f> <Plug>CtrlSFVwordExec
 nmap <C-f> <Plug>CtrlSFPrompt
-cmap <C-f> CtrlSF 
+cmap <C-f> CtrlSF
 nnoremap J mzJ`z
 cnoremap <c-v> <c-r>+
 " nmap <silent> <c-;> <Cmd>exe "1ToggleTerm"<CR>
 nnoremap <silent> <c-m> :CtrlPMRU<CR>
 map p ]p
 map ga <Nop>
+nnoremap D "_dd
+
 
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
@@ -284,6 +286,8 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
+nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
+" nmap <silent> <C-d> :call CocAction('diagnosticNext')<cr>
 " nmap <silent> ga <Plug>(coc-codeaction)
 " nmap <silent> <c-s> :CocList outline<CR>
 
@@ -323,15 +327,15 @@ command PC execute ":PlugClean"
 function! EditRepo(url)
   exe ':RepoEdit ' . a:url
 endfunction
-command! -nargs=1 RP call EditRepo(<f-args>)
+command! -nargs=1 ER call EditRepo(<f-args>)
 
 function! Path()
-  echo expand('%:F') 
+  echo expand('%:F')
 endfunction
 command Path execute ":call Path()"
 
 function! StatuslinePath()
-  let path = expand('%:F') 
+  let path = expand('%:F')
   let pathSplit = split(path, '[/\\]')
   let pathSplitLength = len(pathSplit)
   if pathSplitLength == 0
@@ -384,7 +388,7 @@ function! GetErrors() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'error', 0)
-    return 'E:' . info['error']  . ' '
+    return 'e:' . info['error']  . ' '
   endif
   return ''
 endfunction
@@ -393,7 +397,7 @@ function! GetWarnings() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'warning', 0)
-    return 'W:' . info['warning'] . ' '
+    return 'w:' . info['warning'] . ' '
   endif
   return ''
 endfunction
@@ -402,7 +406,7 @@ function! GetInformations() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'information', 0)
-    return 'I:' . info['information'] . ' '
+    return 'i:' . info['information'] . ' '
   endif
   return ''
 endfunction
@@ -411,7 +415,7 @@ function! GetHints() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'hint', 0)
-    return 'H:' . info['hint']
+    return 'h:' . info['hint']
   endif
   return ''
 endfunction
@@ -421,7 +425,7 @@ function! GetDiagnostics() abort
   if (strchars(info) == 0)
     return ''
   endif
-  return ' |' . info . ' '
+  return ' | ' . info . ' '
 endfunction
 
 function! CustomStatusLineForCtrlSf()
@@ -443,9 +447,9 @@ augroup END
 
 " NEOVIDE
 set guifont=NorflinJB:h12
-" let g:neovide_transparency=1
 let g:neovide_profiler=v:false
 let g:neovide_cursor_animation_length=0.02
+let g:neovide_transparency=0.99
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false

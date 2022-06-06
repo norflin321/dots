@@ -34,8 +34,8 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias nvide="neovide --multigrid --geometry=206x45 --frame None"
-alias vi="neovide --multigrid --geometry=206x45 --frame None"
+alias nvide="neovide --multigrid --geometry=206x42 --frame None"
+alias vi="neovide --multigrid --geometry=206x42 --frame None"
 alias oc="cd ~/main/oneclick/ && clear && ls"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme

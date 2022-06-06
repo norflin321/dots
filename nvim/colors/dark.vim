@@ -79,7 +79,7 @@ highlight! link WarningMsg Number
 highlight! link iCursor SpecialKey
 highlight! link SpellLocal SpellCap
 highlight! link LineNr Comment
-highlight! link NonText NonText 
+highlight! link NonText NonText
 highlight! link DiffDelete Comment
 highlight! link diffRemoved Comment
 highlight! link PmenuSbar PmenuThumb
@@ -95,7 +95,7 @@ hi CocUnusedHighlight gui=underline guibg=NONE
 hi CocWarningHighlight gui=underline guibg=NONE
 hi CocInfoHighlight gui=underline guibg=NONE
 hi CocHintHighlight gui=underline guibg=NONE
-hi CocErrorHighlight gui=underline guisp=red 
+hi CocErrorHighlight gui=underline guisp=#ff0000
 
 hi CursorLine guibg=#303030 ctermbg=236 gui=NONE cterm=NONE
 hi CursorLineNr guifg=#303030 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE

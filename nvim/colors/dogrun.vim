@@ -36,7 +36,7 @@ hi Conceal guifg=#ac8b83 ctermfg=138 guibg=NONE ctermbg=235 gui=underline cterm=
 hi NormalFloat guifg=#9ea3c0 ctermfg=146 guibg=#32364c ctermbg=237 gui=NONE cterm=NONE
 hi Folded guifg=#666c99 ctermfg=60 guibg=#32364c ctermbg=237 gui=NONE cterm=NONE
 hi FoldColumn guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi MatchParen guibg=#2f3147 ctermbg=236
+hi MatchParen cterm=NONE ctermfg=white ctermbg=black gui=underline guifg=NONE guibg=NONE
 hi Directory guifg=#a8a384 ctermfg=144
 hi Underlined gui=underline cterm=underline
 hi String guifg=#7cbe8c ctermfg=108
@@ -190,10 +190,10 @@ hi GitGutterChangeDelete guifg=#28795c ctermfg=29
 hi fugitiveHeader guifg=#73c1a9 ctermfg=79 gui=bold cterm=bold
 hi ALEWarningSign guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi ALEInfoSign guifg=#82dabf ctermfg=115 gui=NONE cterm=NONE
-hi CocErrorSign guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold
-hi CocWarningSign guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
-hi CocInfoSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
-hi CocHintSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
+hi CocErrorSign guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold guibg=#2a2c3f
+hi CocWarningSign guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold guibg=#2a2c3f
+hi CocInfoSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold guibg=#2a2c3f
+hi CocHintSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold guibg=#2a2c3f
 hi CleverFChar guifg=#494f8b ctermfg=60 guibg=#5d6ad8 ctermbg=62 gui=underline cterm=underline
 hi ConflictMarkerBegin guibg=#548e7c ctermbg=66 gui=bold cterm=bold
 hi ConflictMarkerOurs guibg=#26463b ctermbg=23 gui=NONE cterm=NONE
@@ -279,3 +279,4 @@ let g:fzf_colors = {
 hi Normal guibg=#0c1014
 hi Search guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
 hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
+hi CocErrorHighlight gui=underline guisp=#ff0000
