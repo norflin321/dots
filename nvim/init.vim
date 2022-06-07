@@ -1,7 +1,6 @@
 set encoding=UTF-8
 scriptencoding utf-8
 set fileencoding=utf-8
-autocmd Filetype python setlocal ts=2 sts=2 sw=2
 let mapleader = " "
 set noerrorbells
 set tabstop=2 softtabstop=2
@@ -39,6 +38,8 @@ set showmode
 set splitbelow
 set splitright
 set nonumber
+autocmd Filetype python setlocal ts=2 sts=2 sw=2
+autocmd Filetype go setlocal ts=4 sts=4 sw=4
 let g:go_highlight_trailing_whitespace_error=0
 " set lazyredraw
 " set autochdir
@@ -306,7 +307,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma', 'coc-rls' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma', 'coc-rust-analyzer' ]
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -475,7 +476,7 @@ endf
 
 set statusline=
 set statusline+=%{GetBranchName()}
-set statusline+=%{&modified?'*':''}
+set statusline+=%{&modified?'\[+]\ ':''}
 set statusline+=%{StatuslinePath()} " file path
 set statusline+=%{NvimGps()} " context
 set statusline+=%= " right align
