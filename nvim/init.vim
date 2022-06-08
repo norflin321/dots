@@ -431,7 +431,7 @@ endfunction
 
 " NEOVIDE
 " set guifont=NorflinJB:h12
-set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
+set guifont=NorflinCC:h12
 let g:neovide_profiler=v:false
 let g:neovide_cursor_animation_length=0.02
 let g:neovide_transparency=1
