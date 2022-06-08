@@ -205,6 +205,7 @@ let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {'dir': '\android$\|\ios$\|\.git$'}
+" :CtrlPClearAllCaches 
 
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_auto_focus = {'at': 'start'}
@@ -278,11 +279,6 @@ command BC execute ":call CloseHiddenBuffers()"
 " log number of oppended buffers
 command BN execute ":echo len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))"
 
-augroup CloseNERDTreeIfLast
-  autocmd!
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
-
 " COC "
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -354,10 +350,10 @@ function! StatuslinePath()
   return ''
 endfunction
 
-augroup ReturnToLastEditedPlace
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-augroup END
+" augroup ReturnToLastEditedPlace
+"   autocmd!
+"   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" augroup END
 
 augroup SourceConfigAfterWrite
   autocmd!
@@ -433,28 +429,12 @@ function! GetDiagnostics() abort
   return '  ' . info
 endfunction
 
-function! CustomStatusLineForCtrlSf()
-  let buffer_name = bufname('%')
-  if buffer_name == '__CtrlSFPreview__'
-    setlocal statusline=\ \ Preview
-  elseif buffer_name == '__CtrlSF__'
-    setlocal statusline=\ \ Results:
-    setlocal statusline+=\ %{ctrlsf#utils#SectionX()}
-  elseif buffer_name == '[Plugins]'
-    setlocal statusline=%=
-  endif
-endfunction
-
-augroup CustomStatusLine
-  autocmd!
-  autocmd WinEnter * call CustomStatusLineForCtrlSf()
-augroup END
-
 " NEOVIDE
-set guifont=NorflinJB:h12
+" set guifont=NorflinJB:h12
+set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
 let g:neovide_profiler=v:false
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.99
+let g:neovide_transparency=1
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
