@@ -95,7 +95,12 @@ hi CocUnusedHighlight gui=underline guibg=NONE
 hi CocWarningHighlight gui=underline guibg=NONE
 hi CocInfoHighlight gui=underline guibg=NONE
 hi CocHintHighlight gui=underline guibg=NONE
-hi CocErrorHighlight gui=underline guisp=#ff0000
+hi CocErrorHighlight gui=underline guisp=#dc6f79
+
+hi CocErrorSign guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold guibg=#303030
+hi CocWarningSign guifg=#8a8a8a ctermfg=138 gui=bold cterm=bold guibg=#303030
+hi CocInfoSign guifg=#8a8a8a ctermfg=115 gui=bold cterm=bold guibg=#303030
+hi CocHintSign guifg=#8a8a8a ctermfg=115 gui=bold cterm=bold guibg=#303030
 
 hi CursorLine guibg=#303030 ctermbg=236 gui=NONE cterm=NONE
 hi CursorLineNr guifg=#303030 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE

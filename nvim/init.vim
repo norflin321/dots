@@ -58,22 +58,17 @@ call plug#begin("~/.vim/plugged")
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
   Plug 'scrooloose/nerdtree'
-  " Plug 'unkiwii/vim-nerdtree-sync'
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'antoinemadec/FixCursorHold.nvim'
-  Plug 'drzel/vim-repo-edit' " :RepoEdit <url>
+  Plug 'drzel/vim-repo-edit'
   Plug 'f-person/git-blame.nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
+  Plug 'dyng/ctrlsf.vim'
+  Plug 'SmiteshP/nvim-gps'
   Plug 'pantharshit00/vim-prisma'
   Plug 'sainnhe/gruvbox-material'
   Plug 'norcalli/nvim-colorizer.lua'
-
-  " forks
-  Plug 'norflin321/ctrlsf.vim'
-  Plug 'norflin321/nvim-gps'
-
-  " icons
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -84,8 +79,8 @@ set termguicolors
 let g:gruvbox_material_background='hard'
 
 " colors gruvbox-material
-colors dogrun
-" colors dark
+" colors dogrun
+colors dark
 
 hi link markdownError Normal
 
@@ -324,6 +319,7 @@ command SF execute ":CtrlSFToggle"
 command BL execute ":GitBlameToggle"
 command PI execute ":PlugInstall"
 command PC execute ":PlugClean"
+command PU execute ":PlugUpdate"
 
 function! EditRepo(url)
   exe ':RepoEdit ' . a:url

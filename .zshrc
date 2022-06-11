@@ -16,11 +16,6 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-gd() {
-  preview="git diff $@ --color=always -- {-1}"
-  git diff $@ --name-only | fzf -m --ansi --preview $preview
-}
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
@@ -33,10 +28,14 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias nvide="neovide --multigrid --geometry=206x47 --frame None"
-alias vim="nvide" alias nvim="nvide" alias vi="nvide"
-alias oc="cd ~/main/oneclick/ && clear && ls"
+alias vi="neovide --multigrid --geometry=206x46 --frame None"
+alias nvide=""
+alias vim=""
+alias nvim="" 
+alias oc="cd ~/main/oneclick/frontend/ && clear && ls"
 alias other="cd ~/main/other/ && clear && ls"
+alias lg="lazygit"
+alias note="vi ~/main/other/note"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
