@@ -38,7 +38,7 @@ set showmode
 set splitbelow
 set splitright
 set nonumber
-autocmd Filetype python setlocal ts=2 sts=2 sw=2
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype go setlocal ts=4 sts=4 sw=4
 let g:go_highlight_trailing_whitespace_error=0
 " set lazyredraw
@@ -79,8 +79,8 @@ set termguicolors
 let g:gruvbox_material_background='hard'
 
 " colors gruvbox-material
-" colors dogrun
-colors dark
+colors dogrun
+" colors dark
 
 hi link markdownError Normal
 
@@ -355,6 +355,23 @@ augroup SourceConfigAfterWrite
   autocmd!
   autocmd BufWritePost init.vim source %
 augroup END
+
+function! CustomStatusLineForCtrlSf()
+  let buffer_name = bufname('%')
+  if buffer_name == '__CtrlSFPreview__'
+    setlocal statusline=\ \ Preview
+  elseif buffer_name == '__CtrlSF__'
+    setlocal statusline=\ \ Results:
+    setlocal statusline+=\ %{ctrlsf#utils#SectionX()}
+  elseif buffer_name == '[Plugins]'
+    setlocal statusline=%=
+  endif
+endfunction
+
+" augroup CustomStatusLine
+"   autocmd!
+"   autocmd WinEnter * call CustomStatusLineForCtrlSf()
+" augroup END
 
 " Replace the current buffer with the given new file. That means a new file
 " will be open in a buffer while the old one will be deleted
