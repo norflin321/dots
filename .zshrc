@@ -36,6 +36,7 @@ alias oc="cd ~/main/oneclick/frontend/ && clear && ls"
 alias other="cd ~/main/other/ && clear && ls"
 alias lg="lazygit"
 alias note="vi ~/main/other/note"
+alias ca="conda activate ~/main/other/ml/env"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

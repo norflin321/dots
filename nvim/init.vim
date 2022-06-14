@@ -69,6 +69,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'pantharshit00/vim-prisma'
   Plug 'sainnhe/gruvbox-material'
   Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'voldikss/vim-floaterm'
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -442,13 +443,22 @@ function! GetDiagnostics() abort
   return '  ' . info
 endfunction
 
+function! GetAnError() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  if get(info, 'error', 0)
+    return 'e '
+  endif
+  return ''
+endfunction
+
 " NEOVIDE
 " set guifont=NorflinJB:h12
 set guifont=NorflinCC:h12
 " set guifont=NorflinSF:h11.5
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=1
+let g:neovide_transparency=0.9
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
@@ -474,8 +484,10 @@ set statusline+=%{&modified?'\[+]\ ':''}
 set statusline+=%{StatuslinePath()} " file path
 set statusline+=%{NvimGps()} " context
 set statusline+=%= " right align
-set statusline+=%{GetDiagnostics()}
-set statusline+=%{GetDelimeter()}
+set statusline+=%#CocErrorSign#
+set statusline+=%{GetAnError()}
+set statusline+=%#StatusLine#
+" set statusline+=%{GetDelimeter()}
 set statusline+=%3l:%-2c\  " cursor position
 
 " SNIPPETS "
