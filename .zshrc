@@ -37,6 +37,7 @@ alias other="cd ~/main/other/ && clear && ls"
 alias lg="lazygit"
 alias note="vi ~/main/other/note"
 alias ca="conda activate ~/main/other/ml/env"
+alias jn="jupyter notebook"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
