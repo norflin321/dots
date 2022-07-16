@@ -43,7 +43,7 @@ autocmd Filetype go setlocal ts=4 sts=4 sw=4
 let g:go_highlight_trailing_whitespace_error=0
 " set lazyredraw
 " set autochdir
-" set cursorline
+set cursorline
 " set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set guicursor=a:block
 
@@ -69,8 +69,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'pantharshit00/vim-prisma'
   Plug 'sainnhe/gruvbox-material'
   Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'voldikss/vim-floaterm'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'ziglang/zig.vim'
 call plug#end()
 
 filetype indent plugin on
@@ -79,11 +79,12 @@ set background=dark
 set termguicolors
 let g:gruvbox_material_background='hard'
 
-" colors gruvbox-material
+colors gruvbox-material
 colors dogrun
 " colors dark
 
 hi link markdownError Normal
+hi Normal guibg=NONE
 
 " MAPPING "
 map q: :q
@@ -186,8 +187,7 @@ nmap <C-f> <Plug>CtrlSFPrompt
 cmap <C-f> CtrlSF
 nnoremap J mzJ`z
 cnoremap <c-v> <c-r>+
-" nmap <silent> <c-;> <Cmd>exe "1ToggleTerm"<CR>
-nnoremap <silent> <c-m> :CtrlPMRU<CR>
+map <CR> <Nop>
 map p ]p
 map ga <Nop>
 nnoremap D "_dd
@@ -196,12 +196,13 @@ nnoremap D "_dd
 " PLUGINS SETTINGS "
 let g:NERDSpaceDelims = 1
 
+let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_types = ['mru', 'fil']
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {'dir': '\android$\|\ios$\|\.git$'}
-" :CtrlPClearAllCaches 
 
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_auto_focus = {'at': 'start'}
@@ -228,6 +229,7 @@ let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
 let g:NERDTreeHighlightCursorline = 1
 let g:nerdtree_sync_cursorline = 1
+let g:NERDTreeWinSize=50
 
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 
@@ -299,7 +301,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma', 'coc-rust-analyzer' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma', 'coc-rust-analyzer', 'coc-deno' ]
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -321,6 +323,7 @@ command BL execute ":GitBlameToggle"
 command PI execute ":PlugInstall"
 command PC execute ":PlugClean"
 command PU execute ":PlugUpdate"
+command CC execute ":CtrlPClearAllCaches"
 
 function! EditRepo(url)
   exe ':RepoEdit ' . a:url
@@ -454,8 +457,8 @@ endfunction
 
 " NEOVIDE
 " set guifont=NorflinJB:h12
-set guifont=NorflinCC:h12
-" set guifont=NorflinSF:h11.5
+" set guifont=NorflinCC:h12
+set guifont=NorflinSF:h11.5
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
 let g:neovide_transparency=0.9
@@ -487,7 +490,7 @@ set statusline+=%= " right align
 set statusline+=%#CocErrorSign#
 set statusline+=%{GetAnError()}
 set statusline+=%#StatusLine#
-" set statusline+=%{GetDelimeter()}
+set statusline+=%{GetDelimeter()}
 set statusline+=%3l:%-2c\  " cursor position
 
 " SNIPPETS "

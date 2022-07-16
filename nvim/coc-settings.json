@@ -5,6 +5,7 @@
   "suggest.defaultSortMethod": "alphabetical",
   "suggest.autoTrigger": "none",
   "suggest.snippetsSupport": false,
+  "signature.preferShownAbove": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "e:",
   "diagnostic.warningSign": "w:",
@@ -14,7 +15,6 @@
   "tsserver.trace.server": "off",
   "typescript.suggest.completeFunctionCalls": false,
   "javascript.suggestionActions.enabled": false,
-  "coc.preferences.enableFloatHighlight": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascriptreact",
     "typescript",
@@ -26,5 +26,6 @@
     "go",
     "rust"
   ],
-  "rust-analyzer.inlayHints.enable": false
+  "rust-analyzer.inlayHints.enable": false,
+  "notification.disabledProgressSources": ["*"]
 }

@@ -28,16 +28,14 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias vi="neovide --multigrid --geometry=206x46 --frame None"
-alias nvide=""
-alias vim=""
-alias nvim="" 
 alias oc="cd ~/main/oneclick/frontend/ && clear && ls"
 alias other="cd ~/main/other/ && clear && ls"
 alias lg="lazygit"
 alias note="vi ~/main/other/note"
 alias ca="conda activate ~/main/other/ml/env"
 alias jn="jupyter notebook"
+# alias vi="neovide --multigrid --geometry=180x40"
+alias vi="nvim"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -57,3 +55,10 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+# bun completions
+[ -s "/Users/norflin/.bun/_bun" ] && source "/Users/norflin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="/Users/norflin/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
