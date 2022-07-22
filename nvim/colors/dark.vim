@@ -91,11 +91,11 @@ highlight! link Underlined SpellRare
 highlight! link rstEmphasis SpellRare
 highlight! link diffChanged DiffChange
 
-hi CocUnusedHighlight gui=underline guibg=NONE
-hi CocWarningHighlight gui=underline guibg=NONE
-hi CocInfoHighlight gui=underline guibg=NONE
-hi CocHintHighlight gui=underline guibg=NONE
-hi CocErrorHighlight gui=underline guisp=#dc6f79
+hi CocUnusedHighlight gui=undercurl guibg=NONE
+hi CocWarningHighlight gui=undercurl guibg=NONE
+hi CocInfoHighlight gui=undercurl guibg=NONE
+hi CocHintHighlight gui=undercurl guibg=NONE
+hi CocErrorHighlight gui=undercurl guisp=#dc6f79
 
 hi CocErrorSign guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold guibg=#303030
 hi CocWarningSign guifg=#8a8a8a ctermfg=138 gui=bold cterm=bold guibg=#303030

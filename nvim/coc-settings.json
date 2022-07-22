@@ -7,10 +7,10 @@
   "suggest.snippetsSupport": false,
   "signature.preferShownAbove": true,
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.errorSign": "e:",
-  "diagnostic.warningSign": "w:",
-  "diagnostic.infoSign": "i:",
-  "diagnostic.hintSign": "h:",
+  "diagnostic.errorSign": ">>",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "",
   "diagnostic.virtualText": false,
   "tsserver.trace.server": "off",
   "typescript.suggest.completeFunctionCalls": false,
@@ -26,6 +26,5 @@
     "go",
     "rust"
   ],
-  "rust-analyzer.inlayHints.enable": false,
-  "notification.disabledProgressSources": ["*"]
+  "rust-analyzer.inlayHints.enable": false
 }

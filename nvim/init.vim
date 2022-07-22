@@ -38,12 +38,13 @@ set showmode
 set splitbelow
 set splitright
 set nonumber
+set fillchars+=vert:\ 
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype go setlocal ts=4 sts=4 sw=4
 let g:go_highlight_trailing_whitespace_error=0
 " set lazyredraw
 " set autochdir
-set cursorline
+" set cursorline
 " set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set guicursor=a:block
 
@@ -67,24 +68,23 @@ call plug#begin("~/.vim/plugged")
   Plug 'dyng/ctrlsf.vim'
   Plug 'SmiteshP/nvim-gps'
   Plug 'pantharshit00/vim-prisma'
-  Plug 'sainnhe/gruvbox-material'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
+  Plug 'norflin321/gruvbox'
 call plug#end()
 
 filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
-let g:gruvbox_material_background='hard'
 
 colors gruvbox-material
-colors dogrun
 " colors dark
+" colors dogrun
 
 hi link markdownError Normal
-hi Normal guibg=NONE
+" hi Normal guibg=NONE
 
 " MAPPING "
 map q: :q
@@ -343,9 +343,18 @@ function! StatuslinePath()
     return expand('%:t')
   elseif pathSplitLength == 1
     return expand('%:t')
-  elseif pathSplitLength > 1
+  elseif pathSplitLength == 2
     let lastTwo = pathSplit[-2:-1]
-    return lastTwo[0] . '/' . lastTwo[1] . '  '
+    return lastTwo[0] . '/' . lastTwo[1] . ' '
+  elseif pathSplitLength == 3
+    let lastThree = pathSplit[-3:-1]
+    return lastThree[0] . '/' . lastThree[1] . '/' . lastThree[2] . ' '
+  elseif pathSplitLength == 4
+    let lastFour = pathSplit[-4:-1]
+    return lastFour[0] . '/' . lastFour[1] . '/' . lastFour[2] . '/' . lastFour[3] . ' '
+  elseif pathSplitLength > 4
+    let lastFive = pathSplit[-5:-1]
+    return lastFive[0] . '/' . lastFive[1] . '/' . lastFive[2] . '/' . lastFive[3] . '/' . lastFive[4] . ' '
   endif
   return ''
 endfunction
@@ -450,7 +459,7 @@ function! GetAnError() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info) | return '' | endif
   if get(info, 'error', 0)
-    return 'e '
+    return '[e] '
   endif
   return ''
 endfunction
@@ -481,17 +490,21 @@ func! NvimGps() abort
 		\ luaeval("require'nvim-gps'.get_location()") . ' ' : ''
 endf
 
+
 set statusline=
 set statusline+=%{GetBranchName()}
-set statusline+=%{&modified?'\[+]\ ':''}
 set statusline+=%{StatuslinePath()} " file path
-set statusline+=%{NvimGps()} " context
+set statusline+=%{&modified?'\[*]\ ':''}
 set statusline+=%= " right align
-set statusline+=%#CocErrorSign#
 set statusline+=%{GetAnError()}
-set statusline+=%#StatusLine#
 set statusline+=%{GetDelimeter()}
-set statusline+=%3l:%-2c\  " cursor position
+set statusline+=%l:%-c\  " cursor position
+set statusline+=%{GetDelimeter()}
+set statusline+=%L%*
+
+set winbar=
+set winbar+=%#StatusLine#
+" set winbar+=%{NvimGps()} " context
 
 " SNIPPETS "
 command RCO execute "r~/.config/nvim/snippets/ReactComponent"
