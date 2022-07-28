@@ -33,11 +33,11 @@ set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 set signcolumn=yes:1
-set noshowcmd
+" set noshowcmd
 set showmode
 set splitbelow
 set splitright
-set nonumber
+" set nonumber
 set fillchars+=vert:\ 
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype go setlocal ts=4 sts=4 sw=4
@@ -83,8 +83,15 @@ colors gruvbox-material
 " colors dark
 " colors dogrun
 
-hi link markdownError Normal
+hi! link markdownError Normal
+" hi! link SignColumn VertSplit
+" hi! link VertSplit Normal
+" hi! link CocUnusedHighlight Comment
 " hi Normal guibg=NONE
+" hi CocWarningHighlight gui=undercurl guibg=NONE
+" hi CocInfoHighlight gui=undercurl guibg=NONE
+" hi CocHintHighlight gui=undercurl guibg=NONE
+" hi! CocErrorHighlight gui=undercurl guisp=#dc6f79
 
 " MAPPING "
 map q: :q
@@ -502,8 +509,8 @@ set statusline+=%l:%-c\  " cursor position
 set statusline+=%{GetDelimeter()}
 set statusline+=%L%*
 
-set winbar=
-set winbar+=%#StatusLine#
+" set winbar=
+" set winbar+=%#StatusLine#
 " set winbar+=%{NvimGps()} " context
 
 " SNIPPETS "
