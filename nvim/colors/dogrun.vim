@@ -277,6 +277,11 @@ let g:fzf_colors = {
   \ }
 
 hi Normal guibg=#0c1014
-hi Search guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
+hi Search  guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
 hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
-hi CocErrorHighlight gui=underline guisp=#ff0000
+hi CocErrorHighlight gui=undercurl guisp=#ff0000
+
+hi Normal guibg=NONE
+hi CocWarningHighlight gui=undercurl guibg=NONE
+hi CocInfoHighlight gui=undercurl guibg=NONE
+hi CocHintHighlight gui=undercurl guibg=NONE

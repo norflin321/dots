@@ -72,6 +72,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
   Plug 'norflin321/gruvbox'
+  Plug 'folke/tokyonight.nvim'
 call plug#end()
 
 filetype indent plugin on
@@ -79,19 +80,19 @@ syntax enable
 set background=dark
 set termguicolors
 
-colors gruvbox-material
+" colors gruvbox-material
 " colors dark
-" colors dogrun
+colors dogrun
 
 hi! link markdownError Normal
-" hi! link SignColumn VertSplit
+" hi! link SignColumn StatusLine
+" hi! CocErrorHighlight gui=undercurl guisp=#dc6f79
 " hi! link VertSplit Normal
 " hi! link CocUnusedHighlight Comment
-" hi Normal guibg=NONE
-" hi CocWarningHighlight gui=undercurl guibg=NONE
-" hi CocInfoHighlight gui=undercurl guibg=NONE
-" hi CocHintHighlight gui=undercurl guibg=NONE
-" hi! CocErrorHighlight gui=undercurl guisp=#dc6f79
+hi Normal guibg=NONE
+hi CocWarningHighlight gui=undercurl guibg=NONE
+hi CocInfoHighlight gui=undercurl guibg=NONE
+hi CocHintHighlight gui=undercurl guibg=NONE
 
 " MAPPING "
 map q: :q
