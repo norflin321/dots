@@ -37,6 +37,7 @@ alias jn="jupyter notebook"
 # alias vi="neovide --multigrid --geometry=180x40"
 alias vi="nvim"
 alias count_lines="cloc --fullpath --vcs=git --not-match-d='(node_modules|ios|android|.next)' --not-match-f='(yarn.lock|package.json|package-lock.json)' ."
+alias g="go run ."
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

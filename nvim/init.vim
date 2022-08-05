@@ -71,8 +71,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
-  Plug 'norflin321/gruvbox'
-  Plug 'folke/tokyonight.nvim'
+  " Plug 'norflin321/gruvbox'
+  Plug 'sainnhe/gruvbox-material'
+  " Plug 'ayu-theme/ayu-vim'
+  " Plug 'joshdick/onedark.vim'
 call plug#end()
 
 filetype indent plugin on
@@ -80,19 +82,29 @@ syntax enable
 set background=dark
 set termguicolors
 
-" colors gruvbox-material
+" lua local c = require('vscode.colors')
+" lua require('vscode').setup({ transparent = true, italic_comments = true })
+
 " colors dark
-colors dogrun
+" let g:gruvbox_material_transparent_background = 1
+" colors gruvbox-material
+colors dogrun-custom
+" let ayucolor="dark"
+" colorscheme ayu
+" colors onedark
 
 hi! link markdownError Normal
-" hi! link SignColumn StatusLine
-" hi! CocErrorHighlight gui=undercurl guisp=#dc6f79
+hi! link LineNr StatusLine
+hi! link SignColumn StatusLine
+hi! link SignColumn StatusLine
+hi! CocErrorHighlight gui=undercurl
+
 " hi! link VertSplit Normal
 " hi! link CocUnusedHighlight Comment
 hi Normal guibg=NONE
-hi CocWarningHighlight gui=undercurl guibg=NONE
-hi CocInfoHighlight gui=undercurl guibg=NONE
-hi CocHintHighlight gui=undercurl guibg=NONE
+" hi CocWarningHighlight gui=undercurl guibg=NONE
+" hi CocInfoHighlight gui=undercurl guibg=NONE
+" hi CocHintHighlight gui=undercurl guibg=NONE
 
 " MAPPING "
 map q: :q
@@ -489,7 +501,7 @@ let g:neovide_remember_window_size=v:false
 lua << EOF
 require("nvim-gps").setup({depth = 0})
 require "nvim-treesitter.configs".setup{}
-require'colorizer'.setup()
+-- require'colorizer'.setup()
 require('main')
 EOF
 
