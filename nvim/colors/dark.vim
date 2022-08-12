@@ -7,7 +7,7 @@ if version > 580
 endif
 let g:colors_name = "dark"
 
-hi NonText cterm=NONE ctermfg=black ctermbg=black gui=NONE guifg=#303030 guibg=#0a0a0a
+hi NonText cterm=NONE ctermfg=black ctermbg=black gui=NONE guifg=NONE guibg=NONE
 hi Normal cterm=NONE ctermfg=250 ctermbg=black gui=NONE guifg=#bcbcbc guibg=#0a0a0a
 hi Keyword cterm=NONE ctermfg=255 ctermbg=black gui=NONE guifg=#eeeeee guibg=#0a0a0a
 hi Constant cterm=NONE ctermfg=252 ctermbg=black gui=NONE guifg=#d0d0d0 guibg=#0a0a0a
@@ -25,7 +25,7 @@ hi SpellBad cterm=undercurl ctermfg=255 ctermbg=245 gui=undercurl guifg=#eeeeee 
 hi SpellCap cterm=NONE ctermfg=255 ctermbg=124 gui=NONE guifg=#eeeeee guibg=#0a0a0a
 hi SpellRare cterm=NONE ctermfg=240 ctermbg=16 gui=NONE guifg=#8a8a8a guibg=#0a0a0a
 hi WildMenu cterm=NONE ctermfg=240 ctermbg=255 gui=NONE guifg=#585858 guibg=#0a0a0a
-hi Pmenu cterm=NONE ctermfg=255 ctermbg=240 gui=NONE guifg=#eeeeee guibg=#0a0a0a
+hi Pmenu cterm=NONE ctermfg=255 ctermbg=240 gui=NONE guifg=#eeeeee guibg=#1a1a1a
 hi PmenuThumb cterm=NONE ctermfg=232 ctermbg=240 gui=NONE guifg=NONE guibg=NONE
 hi SpecialKey cterm=NONE ctermfg=16 ctermbg=255 gui=NONE guifg=#eeeeee guibg=#0a0a0a
 hi MatchParen cterm=NONE ctermfg=white ctermbg=black gui=underline guifg=NONE guibg=NONE

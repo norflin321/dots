@@ -58,7 +58,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
-  Plug 'scrooloose/nerdtree'
   Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'drzel/vim-repo-edit'
@@ -73,8 +72,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'ziglang/zig.vim'
   " Plug 'norflin321/gruvbox'
   Plug 'sainnhe/gruvbox-material'
-  " Plug 'ayu-theme/ayu-vim'
-  " Plug 'joshdick/onedark.vim'
+  Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 filetype indent plugin on
@@ -82,21 +80,15 @@ syntax enable
 set background=dark
 set termguicolors
 
-" lua local c = require('vscode.colors')
-" lua require('vscode').setup({ transparent = true, italic_comments = true })
-
 " colors dark
 " let g:gruvbox_material_transparent_background = 1
 " colors gruvbox-material
 colors dogrun-custom
-" let ayucolor="dark"
-" colorscheme ayu
-" colors onedark
 
 hi! link markdownError Normal
 hi! link LineNr StatusLine
 hi! link SignColumn StatusLine
-hi! link SignColumn StatusLine
+" hi! link SignColumn StatusLine
 hi! CocErrorHighlight gui=undercurl
 
 " hi! link VertSplit Normal
@@ -211,13 +203,14 @@ map <CR> <Nop>
 map p ]p
 map ga <Nop>
 nnoremap D "_dd
+nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
+nnoremap <silent> <c-n> ::NvimTreeFindFileToggle<CR>
 
 
 " PLUGINS SETTINGS "
-let g:NERDSpaceDelims = 1
 
-let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_types = ['mru', 'fil']
+" let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_types = ['mru', 'fil']
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
@@ -236,21 +229,6 @@ let g:ctrlsf_auto_preview = 1
 
 let g:AutoPairsMultilineClose=0
 
-let g:NERDTreeMapActivateNode = 'o'
-let g:NERDTreeMapPreview = 'p'
-let g:NERDTreeMapOpenVSplit = 'v'
-let g:NERDTreeMapOpenSplit = 'h'
-let NERDTreeShowHidden=1
-let g:NERDTreeIgnore = ['\.git$', '.DS_Store', '\node_modules$']
-let g:NERDTreeStatusline=' '
-let NERDTreeMinimalUI=1
-let g:NERDTreeWinPos = 'left'
-let NERDTreeDirArrowExpandable = "\u00a0"
-let NERDTreeDirArrowCollapsible = "\u00a0"
-let g:NERDTreeHighlightCursorline = 1
-let g:nerdtree_sync_cursorline = 1
-let g:NERDTreeWinSize=50
-
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 
 let g:gitblame_enabled = 0
@@ -258,25 +236,6 @@ let g:gitblame_enabled = 0
 " in millisecond, used for both CursorHold and CursorHoldI,
 " use updatetime instead if not defined
 let g:cursorhold_updatetime = 100
-
-function! ToggleNerdTree()
-  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
-    let buffer_name = bufname('%')
-    let is_nerdtree_buffer = stridx(buffer_name, 'NERD') != -1
-    if (is_nerdtree_buffer)
-      exe ':0'
-      exe ':normal X'
-    endif
-    exe ':NERDTreeClose'
-  else
-    if &modifiable && strlen(expand('%')) > 0 && !&diff
-      exe ':NERDTreeFind'
-    else
-      exe ':NERDTreeToggle'
-    endif
-  endif
-endfunction
-nmap <silent> <C-n> :call ToggleNerdTree()<CR>
 
 function! CloseHiddenBuffers()
   let visible = {}
@@ -485,12 +444,12 @@ function! GetAnError() abort
 endfunction
 
 " NEOVIDE
-" set guifont=NorflinJB:h12
-" set guifont=NorflinCC:h12
-set guifont=NorflinSF:h11.5
+" set guifont=NorflinJB:h10
+" set guifont=NorflinCC:h10.5
+set guifont=NorflinSF:h10
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.9
+let g:neovide_transparency=0.7
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
@@ -501,7 +460,26 @@ let g:neovide_remember_window_size=v:false
 lua << EOF
 require("nvim-gps").setup({depth = 0})
 require "nvim-treesitter.configs".setup{}
--- require'colorizer'.setup()
+require'colorizer'.setup()
+require("nvim-tree").setup({
+  git = {
+    enable = false
+  },
+  view = {
+    adaptive_size = true,
+    float = {
+      enable = true,
+      open_win_config = {
+        relative = "editor",
+        border = "rounded",
+        width = 100,
+        height = 42,
+        row = 0,
+        col = 1,
+      }
+    }
+  }
+})
 require('main')
 EOF
 
