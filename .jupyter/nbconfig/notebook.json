@@ -1,6 +1,7 @@
 {
   "Notebook": {
-    "Header": true
+    "Header": true,
+    "Toolbar": true
   },
   "Cell": {
     "cm_config": {

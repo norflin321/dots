@@ -1,28 +1,10 @@
-@font-face {
- font-family: "Fira Mono";
- font-weight: normal;
- font-style: normal;
- src: local('"Fira Mono"'), url('fonts/fira.ttf') format('truetype');
-}
-@font-face {
- font-family: "PT Sans";
- font-weight: normal;
- font-style: normal;
- src: local('"PT Sans"'), url('fonts/pt-sans-regular.ttf') format('truetype');
-}
+/*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
 
-<script>
-    MathJax.Hub.Config({
-        "HTML-CSS": {
-            /*preferredFont: "TeX",*/
-            /*availableFonts: ["TeX", "STIX"],*/
-            styles: {
-                scale: 100,
-                ".MathJax_Display": {
-                    "font-size": "100%",
-                }
-            }
-        }
-    });
-</script>
-    
+#ipython-main-app {
+    position: relative;
+}
+#jupyter-main-app {
+    position: relative;
+}
