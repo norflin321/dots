@@ -73,6 +73,7 @@ call plug#begin("~/.vim/plugged")
   " Plug 'norflin321/gruvbox'
   Plug 'sainnhe/gruvbox-material'
   Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'tomlion/vim-solidity'
 call plug#end()
 
 filetype indent plugin on
@@ -93,7 +94,7 @@ hi! CocErrorHighlight gui=undercurl
 
 " hi! link VertSplit Normal
 " hi! link CocUnusedHighlight Comment
-hi Normal guibg=NONE
+" hi Normal guibg=NONE
 " hi CocWarningHighlight gui=undercurl guibg=NONE
 " hi CocInfoHighlight gui=undercurl guibg=NONE
 " hi CocHintHighlight gui=undercurl guibg=NONE
@@ -449,7 +450,7 @@ endfunction
 set guifont=NorflinSF:h11
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.8
+let g:neovide_transparency=0.85
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
