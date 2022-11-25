@@ -32,19 +32,19 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-set signcolumn=yes:1
+set signcolumn=number
 " set noshowcmd
 set showmode
 set splitbelow
 set splitright
-" set nonumber
+set number
 set fillchars+=vert:\ 
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype go setlocal ts=4 sts=4 sw=4
 let g:go_highlight_trailing_whitespace_error=0
-" set lazyredraw
+set lazyredraw
 " set autochdir
-" set cursorline
+set cursorline
 " set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set guicursor=a:block
 
@@ -87,8 +87,8 @@ set termguicolors
 colors dogrun-custom
 
 hi! link markdownError Normal
-hi! link LineNr StatusLine
-hi! link SignColumn StatusLine
+" hi! link LineNr StatusLine
+" hi! link SignColumn StatusLine
 " hi! link SignColumn StatusLine
 hi! CocErrorHighlight gui=undercurl
 
@@ -98,6 +98,10 @@ hi! CocErrorHighlight gui=undercurl
 " hi CocWarningHighlight gui=undercurl guibg=NONE
 " hi CocInfoHighlight gui=undercurl guibg=NONE
 " hi CocHintHighlight gui=undercurl guibg=NONE
+
+" hi! link CocInfoSign LineNr
+" hi! link CocWarningSign LineNr
+" hi! link CocHintSign LineNr
 
 " MAPPING "
 map q: :q
@@ -474,7 +478,7 @@ require("nvim-tree").setup({
         relative = "editor",
         border = "rounded",
         width = 100,
-        height = 42,
+        height = 55,
         row = 0,
         col = 1,
       }

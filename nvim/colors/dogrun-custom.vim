@@ -282,3 +282,7 @@ hi CocHintHighlight gui=undercurl guibg=NONE
 
 hi Search cterm=reverse ctermfg=255 ctermbg=245 gui=reverse guifg=#929be5 guibg=#0a0a0a
 hi IncSearch cterm=reverse ctermfg=255 ctermbg=245 gui=reverse guifg=#929be5 guibg=#0a0a0a
+
+hi CocWarningSign guifg=NONE ctermfg=NONE gui=bold cterm=bold guibg=NONE
+hi CocInfoSign guifg=NONE ctermfg=NONE gui=bold cterm=bold guibg=NONE
+hi CocHintSign guifg=NONE ctermfg=NONE gui=bold cterm=bold guibg=NONE
