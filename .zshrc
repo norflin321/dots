@@ -8,7 +8,7 @@ fi
 export LANG=en_US.UTF-8
 
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/nvim/bin/:~/main/other/neovide/
+export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/main/other/neovide/
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -34,8 +34,9 @@ alias lg="lazygit"
 alias note="vi ~/main/other/note"
 alias ca="conda activate ~/main/other/ml/env"
 alias jn="jupyter notebook"
-alias nvide="neovide --multigrid --geometry=225x51"
-alias vi="nvim"
+alias nvide="neovide --multigrid --geometry=240x49"
+# NorflinSF --geometry=226x52
+alias vi="nvide"
 alias count_lines="cloc --fullpath --vcs=git --not-match-d='(node_modules|ios|android|.next)' --not-match-f='(yarn.lock|package.json|package-lock.json)' ."
 alias g="go run ."
 
@@ -57,10 +58,10 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
 # bun completions
 [ -s "/Users/norflin/.bun/_bun" ] && source "/Users/norflin/.bun/_bun"
 
 # bun
 export BUN_INSTALL="/Users/norflin/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"

@@ -5,7 +5,7 @@ let mapleader = " "
 set noerrorbells
 set tabstop=2 softtabstop=2
 set shiftwidth=2
-set expandtab
+" set expandtab " commend it out only for rockstone code base ^_^
 set autoindent
 set smartindent
 set nowrap
@@ -32,21 +32,24 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-set signcolumn=number
+" set signcolumn=number
+set signcolumn=yes:1
 " set noshowcmd
 set showmode
 set splitbelow
 set splitright
-set number
+" set number
 set fillchars+=vert:\ 
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 autocmd Filetype go setlocal ts=4 sts=4 sw=4
 let g:go_highlight_trailing_whitespace_error=0
 set lazyredraw
 " set autochdir
-set cursorline
+" set cursorline
 " set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set guicursor=a:block
+set autoindent
+set noexpandtab
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -70,10 +73,11 @@ call plug#begin("~/.vim/plugged")
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
-  " Plug 'norflin321/gruvbox'
-  Plug 'sainnhe/gruvbox-material'
+  Plug 'norflin321/gruvbox'
+  " Plug 'sainnhe/gruvbox-material'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'tomlion/vim-solidity'
+	Plug 'aktersnurra/no-clown-fiesta.nvim'
 call plug#end()
 
 filetype indent plugin on
@@ -81,9 +85,6 @@ syntax enable
 set background=dark
 set termguicolors
 
-" colors dark
-" let g:gruvbox_material_transparent_background = 1
-" colors gruvbox-material
 colors dogrun-custom
 
 hi! link markdownError Normal
@@ -94,7 +95,7 @@ hi! CocErrorHighlight gui=undercurl
 
 " hi! link VertSplit Normal
 " hi! link CocUnusedHighlight Comment
-" hi Normal guibg=NONE
+hi Normal guibg=#181c27
 " hi CocWarningHighlight gui=undercurl guibg=NONE
 " hi CocInfoHighlight gui=undercurl guibg=NONE
 " hi CocHintHighlight gui=undercurl guibg=NONE
@@ -102,6 +103,10 @@ hi! CocErrorHighlight gui=undercurl
 " hi! link CocInfoSign LineNr
 " hi! link CocWarningSign LineNr
 " hi! link CocHintSign LineNr
+
+" colors gruvbox-material
+" colors dark
+" colorscheme no-clown-fiesta
 
 " MAPPING "
 map q: :q
@@ -285,7 +290,8 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-eslint8', 'coc-css', 'coc-prisma', 'coc-rust-analyzer', 'coc-deno' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-prisma', 'coc-rust-analyzer', 'coc-deno' ]
+" coc-eslint8
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -449,12 +455,12 @@ function! GetAnError() abort
 endfunction
 
 " NEOVIDE
-" set guifont=NorflinJB:h10
-" set guifont=NorflinCC:h10.5
-set guifont=NorflinSF:h11
+set guifont=NorflinJB:h11
+" set guifont=NorflinCC:h11
+" set guifont=NorflinSF:h11
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.85
+let g:neovide_transparency=0.9
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
@@ -478,14 +484,12 @@ require("nvim-tree").setup({
         relative = "editor",
         border = "rounded",
         width = 100,
-        height = 55,
         row = 0,
         col = 1,
       }
     }
   }
 })
-require('main')
 EOF
 
 func! NvimGps() abort
@@ -518,3 +522,7 @@ command RE execute "r~/.config/nvim/snippets/ReactUseEffect"
 command RM execute "r~/.config/nvim/snippets/ReactUseMemo"
 command RS execute "r~/.config/nvim/snippets/ReactUseState"
 command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
+
+
+" removed it from CocConfig only for rockstone code base
+"coc.preferences.formatOnSaveFiletypes": [ javascriptreact", typescript", typescriptreact", json", css", vue", prisma", go", rust" ],
