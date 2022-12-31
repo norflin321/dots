@@ -283,18 +283,16 @@ nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('editor.action.organizeImport')
 
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-prisma', 'coc-rust-analyzer', 'coc-deno' ]
 " coc-eslint8
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
