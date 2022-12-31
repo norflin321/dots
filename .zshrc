@@ -37,7 +37,7 @@ alias jn="jupyter notebook"
 alias nvide="neovide --multigrid --geometry=240x49"
 # NorflinSF --geometry=226x52
 alias vi="nvide"
-alias count_lines="cloc --fullpath --vcs=git --not-match-d='(node_modules|ios|android|.next)' --not-match-f='(yarn.lock|package.json|package-lock.json)' ."
+alias count_lines="cloc --fullpath --vcs=git --not-match-d='(node_modules|ios|android|.next|.tmp|)' --not-match-f='(yarn.lock|package.json|package-lock.json)' ."
 alias g="go run ."
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme

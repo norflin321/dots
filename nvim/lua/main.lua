@@ -10,3 +10,25 @@ end
 
 -- call vim command
 -- vim.api.nvim_command('Custom')
+
+require("nvim-gps").setup({depth = 0})
+require "nvim-treesitter.configs".setup{}
+require'colorizer'.setup()
+require("nvim-tree").setup({
+	git = {
+		enable = false
+	},
+	view = {
+		adaptive_size = true,
+		float = {
+			enable = true,
+			open_win_config = {
+				relative = "editor",
+				border = "rounded",
+				width = 100,
+				row = 0,
+				col = 1,
+			}
+		}
+	}
+})

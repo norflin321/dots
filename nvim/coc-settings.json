@@ -15,6 +15,6 @@
   "tsserver.trace.server": "off",
   "typescript.suggest.completeFunctionCalls": false,
   "javascript.suggestionActions.enabled": false,
-  "coc.preferences.formatOnSaveFiletypes": ["vue", "prisma", "go", "rust"],
-  "rust-analyzer.inlayHints.enable": false
+  "rust-analyzer.inlayHints.enable": false,
+	"coc.preferences.formatOnSaveFiletypes": [ "javascriptreact", "typescript", "typescriptreact", "json", "css", "vue", "prisma", "go", "rust" ]
 }

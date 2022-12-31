@@ -74,10 +74,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
   Plug 'norflin321/gruvbox'
-  " Plug 'sainnhe/gruvbox-material'
+  Plug 'sainnhe/gruvbox-material'
   Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'tomlion/vim-solidity'
-	Plug 'aktersnurra/no-clown-fiesta.nvim'
 call plug#end()
 
 filetype indent plugin on
@@ -312,7 +310,6 @@ command SF execute ":CtrlSFToggle"
 command BL execute ":GitBlameToggle"
 command PI execute ":PlugInstall"
 command PC execute ":PlugClean"
-command PU execute ":PlugUpdate"
 command CC execute ":CtrlPClearAllCaches"
 
 function! EditRepo(url)
@@ -468,35 +465,12 @@ let g:neovide_remember_window_size=v:false
 " let g:neovide_cursor_vfx_mode="ripple"
 " let g:neovide_cursor_vfx_opacity=40
 
-lua << EOF
-require("nvim-gps").setup({depth = 0})
-require "nvim-treesitter.configs".setup{}
-require'colorizer'.setup()
-require("nvim-tree").setup({
-  git = {
-    enable = false
-  },
-  view = {
-    adaptive_size = true,
-    float = {
-      enable = true,
-      open_win_config = {
-        relative = "editor",
-        border = "rounded",
-        width = 100,
-        row = 0,
-        col = 1,
-      }
-    }
-  }
-})
-EOF
+lua require('main')
 
 func! NvimGps() abort
 	return luaeval("require'nvim-gps'.is_available()") ?
 		\ luaeval("require'nvim-gps'.get_location()") . ' ' : ''
 endf
-
 
 set statusline=
 set statusline+=%{GetBranchName()}
@@ -522,7 +496,6 @@ command RE execute "r~/.config/nvim/snippets/ReactUseEffect"
 command RM execute "r~/.config/nvim/snippets/ReactUseMemo"
 command RS execute "r~/.config/nvim/snippets/ReactUseState"
 command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
-
 
 " removed it from CocConfig only for rockstone code base
 "coc.preferences.formatOnSaveFiletypes": [ javascriptreact", typescript", typescriptreact", json", css", vue", prisma", go", rust" ],
