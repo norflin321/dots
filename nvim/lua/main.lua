@@ -45,17 +45,24 @@ require('nvim-tree').setup({
 		width = function()
 			return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
 		end,
+		mappings = {
+			list = {
+				{ key = { "<ESC>", "q" }, action = "close" },
+			}
+		}
 	},
 })
 
 require('aerial').setup({
+	close_on_select = true,
+	close_automatic_events = { unfocus, switch_buffer, unsupported },
+	highlight_on_hover = true,
 	layout = {
 		width = 100,
 		min_width = 100,
 		default_direction = "float",
 		placement = "edge",
 	},
-	close_on_select = true,
 	float = {
 		width = 100,
 		min_width = 100,
@@ -65,7 +72,10 @@ require('aerial').setup({
 		["<CR>"] = "actions.jump",
 		["o"] = "actions.jump",
 		["p"] = "actions.scroll",
-		["<C-j>"] = "actions.down_and_scroll",
-		["<C-k>"] = "actions.up_and_scroll",
-	}
+		["j"] = "actions.down_and_scroll",
+		["k"] = "actions.up_and_scroll",
+		["<ESC>"] = "actions.close",
+		["<c-h>"] = "actions.close",
+		["<c-l>"] = "actions.close",
+	},
 })
