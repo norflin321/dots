@@ -34,7 +34,7 @@ alias lg="lazygit"
 alias note="vi ~/main/other/note"
 alias ca="conda activate ~/main/other/ml/env"
 alias jn="jupyter notebook"
-alias nvide="neovide --multigrid --geometry=240x48"
+alias nvide="neovide --multigrid --geometry=240x50"
 # NorflinSF --geometry=226x52
 alias vi="nvide"
 alias count_lines="cloc --fullpath --vcs=git --not-match-d='(node_modules|ios|android|.next|.tmp|)' --not-match-f='(yarn.lock|package.json|package-lock.json)' ."

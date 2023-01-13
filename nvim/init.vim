@@ -77,6 +77,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'sainnhe/gruvbox-material'
   Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'Mofiqul/vscode.nvim'
+	Plug 'stevearc/aerial.nvim'
 call plug#end()
 
 filetype indent plugin on
@@ -217,13 +218,12 @@ map <CR> <Nop>
 map p ]p
 map ga <Nop>
 nnoremap D "_dd
+nnoremap * *N
 nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> ::NvimTreeFindFileToggle<CR>
-nnoremap * *N
-
+nmap <silent> <c-t> :AerialToggle<CR>
 
 " PLUGINS SETTINGS "
-
 " let g:ctrlp_cmd = 'CtrlP'
 " let g:ctrlp_types = ['mru', 'fil']
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
