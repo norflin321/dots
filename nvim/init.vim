@@ -219,6 +219,7 @@ map ga <Nop>
 nnoremap D "_dd
 nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> ::NvimTreeFindFileToggle<CR>
+nnoremap * *N
 
 
 " PLUGINS SETTINGS "
