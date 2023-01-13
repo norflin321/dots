@@ -85,5 +85,6 @@ require('aerial').setup({
 		["<ESC>"] = "actions.close",
 		["<c-h>"] = "actions.close",
 		["<c-l>"] = "actions.close",
+		["<c-n>"] = "actions.close",
 	},
 })

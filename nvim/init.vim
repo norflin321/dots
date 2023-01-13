@@ -477,7 +477,7 @@ command RS execute "r~/.config/nvim/snippets/ReactUseState"
 command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
 
 " COLORS THEMES "
-" colors dogrun-custom
+colors dogrun-custom
 hi Normal guibg=#181c27
 
 " colors gruvbox-material
@@ -486,8 +486,9 @@ hi Normal guibg=#181c27
 " colors superman
 " colors paramount
 
-hi! link markdownError Normal
 hi! CocErrorHighlight gui=undercurl
+hi! link AerialLineNC Normal
+hi! link markdownError Normal
 hi! link VertSplit Normal
 hi! link SignColumn StatusLine
 " hi! link LineNr StatusLine
