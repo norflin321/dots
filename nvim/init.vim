@@ -50,6 +50,10 @@ set lazyredraw
 set guicursor=a:block
 set autoindent
 set noexpandtab
+filetype indent plugin on
+syntax enable
+set background=dark
+set termguicolors
 
 " PLUGINS "
 call plug#begin("~/.vim/plugged")
@@ -79,39 +83,6 @@ call plug#begin("~/.vim/plugged")
 	Plug 'Mofiqul/vscode.nvim'
 	Plug 'stevearc/aerial.nvim'
 call plug#end()
-
-filetype indent plugin on
-syntax enable
-set background=dark
-set termguicolors
-
-" --- dogrun theme
-" colors dogrun-custom
-" hi Normal guibg=#181c27
-
-" --- vscode theme
-colors vscode
-hi Normal guibg=#181c27
-hi! link VertSplit Normal
-hi! link SignColumn StatusLine
-
-" --- other themes
-" colors gruvbox-material
-" colors gotham
-" colors dark
-" colors superman
-" colors paramount
-
-hi! link markdownError Normal
-hi! CocErrorHighlight gui=undercurl
-" hi! link LineNr StatusLine
-" hi! link CocUnusedHighlight Comment
-" hi CocWarningHighlight gui=undercurl guibg=NONE
-" hi CocInfoHighlight gui=undercurl guibg=NONE
-" hi CocHintHighlight gui=undercurl guibg=NONE
-" hi! link CocInfoSign LineNr
-" hi! link CocWarningSign LineNr
-" hi! link CocHintSign LineNr
 
 " MAPPING "
 map q: :q
@@ -477,6 +448,9 @@ func! NvimGps() abort
 		\ luaeval("require'nvim-gps'.get_location()") . ' ' : ''
 endf
 
+hi! link VertSplit Normal
+hi! link SignColumn StatusLine
+
 set statusline=
 set statusline+=%{GetBranchName()}
 set statusline+=%{StatuslinePath()} " file path
@@ -501,6 +475,29 @@ command RE execute "r~/.config/nvim/snippets/ReactUseEffect"
 command RM execute "r~/.config/nvim/snippets/ReactUseMemo"
 command RS execute "r~/.config/nvim/snippets/ReactUseState"
 command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
+
+" COLORS THEMES "
+" colors dogrun-custom
+hi Normal guibg=#181c27
+
+" colors gruvbox-material
+" colors gotham
+" colors dark
+" colors superman
+" colors paramount
+
+hi! link markdownError Normal
+hi! CocErrorHighlight gui=undercurl
+hi! link VertSplit Normal
+hi! link SignColumn StatusLine
+" hi! link LineNr StatusLine
+" hi! link CocUnusedHighlight Comment
+" hi CocWarningHighlight gui=undercurl guibg=NONE
+" hi CocInfoHighlight gui=undercurl guibg=NONE
+" hi CocHintHighlight gui=undercurl guibg=NONE
+" hi! link CocInfoSign LineNr
+" hi! link CocWarningSign LineNr
+" hi! link CocHintSign LineNr
 
 " removed it from CocConfig only for rockstone code base
 "coc.preferences.formatOnSaveFiletypes": [ javascriptreact", typescript", typescriptreact", json", css", vue", prisma", go", rust" ],

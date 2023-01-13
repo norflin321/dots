@@ -16,6 +16,14 @@ require "nvim-treesitter.configs".setup{}
 require("nvim-gps").setup({depth = 0})
 require'colorizer'.setup()
 
+require('vscode').setup({
+		italic_comments = true,
+		-- Override colors (see ./lua/vscode/colors.lua)
+		color_overrides = {
+			vscLightBlue = '#c3c3c3',
+		},
+})
+
 local HEIGHT_RATIO = 0.8  -- You can change this
 local WIDTH_RATIO = 0.5   -- You can change this too
 require('nvim-tree').setup({
