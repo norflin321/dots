@@ -16,5 +16,12 @@
   "typescript.suggest.completeFunctionCalls": false,
   "javascript.suggestionActions.enabled": false,
   "rust-analyzer.inlayHints.enable": false,
-	"coc.preferences.formatOnSaveFiletypes": [ "javascriptreact", "typescript", "typescriptreact", "json", "css", "vue", "prisma", "go", "rust" ]
+	"rust-analyzer.inlayHints.bindingModeHints.enable": false,
+	"rust-analyzer.inlayHints.chainingHints.enable": false,
+	"rust-analyzer.inlayHints.closingBraceHints.enable": false,
+	"rust-analyzer.inlayHints.closureReturnTypeHints.enable": false,
+	"rust-analyzer.inlayHints.lifetimeElisionHints.enable": false,
+	"rust-analyzer.inlayHints.typeHints.enable": false,
+	"rust-analyzer.inlayHints.parameterHints.enable": false,
+	"coc.preferences.formatOnSaveFiletypes": ["vue", "prisma", "go", "rust"]
 }

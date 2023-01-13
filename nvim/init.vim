@@ -76,6 +76,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'norflin321/gruvbox'
   Plug 'sainnhe/gruvbox-material'
   Plug 'kyazdani42/nvim-tree.lua'
+	Plug 'Mofiqul/vscode.nvim'
 call plug#end()
 
 filetype indent plugin on
@@ -83,28 +84,33 @@ syntax enable
 set background=dark
 set termguicolors
 
-colors dogrun-custom
+" --- dogrun theme
+" colors dogrun-custom
+" hi Normal guibg=#181c27
+
+" --- vscode theme
+colors vscode
+hi Normal guibg=#181c27
+hi! link VertSplit Normal
+hi! link SignColumn StatusLine
+
+" --- other themes
+" colors gruvbox-material
+" colors gotham
+" colors dark
+" colors superman
+" colors paramount
 
 hi! link markdownError Normal
-" hi! link LineNr StatusLine
-" hi! link SignColumn StatusLine
-" hi! link SignColumn StatusLine
 hi! CocErrorHighlight gui=undercurl
-
-" hi! link VertSplit Normal
+" hi! link LineNr StatusLine
 " hi! link CocUnusedHighlight Comment
-hi Normal guibg=#181c27
 " hi CocWarningHighlight gui=undercurl guibg=NONE
 " hi CocInfoHighlight gui=undercurl guibg=NONE
 " hi CocHintHighlight gui=undercurl guibg=NONE
-
 " hi! link CocInfoSign LineNr
 " hi! link CocWarningSign LineNr
 " hi! link CocHintSign LineNr
-
-" colors gruvbox-material
-" colors dark
-" colorscheme no-clown-fiesta
 
 " MAPPING "
 map q: :q
@@ -135,8 +141,8 @@ nmap q <NOP>
 vmap q <NOP>
 nmap s <NOP>
 nmap s <NOP>
-nmap . <NOP>
-vmap . <NOP>
+" nmap . <NOP>
+" vmap . <NOP>
 nmap - <NOP>
 vmap - <NOP>
 nmap <c--> <NOP>
@@ -455,7 +461,7 @@ set guifont=NorflinJB:h11
 " set guifont=NorflinSF:h11
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.9
+let g:neovide_transparency=0.95
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
