@@ -23,5 +23,7 @@
 	"rust-analyzer.inlayHints.lifetimeElisionHints.enable": false,
 	"rust-analyzer.inlayHints.typeHints.enable": false,
 	"rust-analyzer.inlayHints.parameterHints.enable": false,
-	"coc.preferences.formatOnSaveFiletypes": ["vue", "prisma", "go", "rust"]
+	"coc.preferences.formatOnSaveFiletypes": ["vue", "prisma", "go", "rust"],
+	"pyright.inlayHints.functionReturnTypes": false,
+	"pyright.inlayHints.variableTypes": false
 }

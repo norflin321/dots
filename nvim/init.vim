@@ -77,10 +77,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
-  Plug 'norflin321/gruvbox'
-  Plug 'sainnhe/gruvbox-material'
   Plug 'kyazdani42/nvim-tree.lua'
-	Plug 'Mofiqul/vscode.nvim'
 	Plug 'stevearc/aerial.nvim'
 call plug#end()
 
@@ -191,7 +188,7 @@ map ga <Nop>
 nnoremap D "_dd
 nnoremap * *N
 nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
-nnoremap <silent> <c-n> ::NvimTreeFindFileToggle<CR>
+nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 nmap <silent> <c-t> :AerialToggle<CR>
 
 " PLUGINS SETTINGS "
@@ -261,7 +258,7 @@ nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('editor.action.organizeImport')
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-prisma', 'coc-rust-analyzer', 'coc-deno' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-prisma', 'coc-rust-analyzer', 'coc-deno', 'coc-pyright' ]
 " coc-eslint8
 
 function! s:check_back_space() abort
@@ -269,6 +266,7 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+" coc#pum#insert()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
@@ -433,7 +431,7 @@ set guifont=NorflinJB:h11
 " set guifont=NorflinSF:h11
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.95
+let g:neovide_transparency=0.96
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
@@ -477,20 +475,23 @@ command RS execute "r~/.config/nvim/snippets/ReactUseState"
 command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
 
 " COLORS THEMES "
+
+" colorscheme kimbox
+" colorscheme eva01
+
 colors dogrun-custom
 hi Normal guibg=#181c27
+hi! link SignColumn StatusLine
 
-" colors gruvbox-material
-" colors gotham
-" colors dark
-" colors superman
-" colors paramount
+" colors mies
+" hi! link StatusLine SignColumn
+" hi! link StatusLineNC Comment
 
 hi! CocErrorHighlight gui=undercurl
 hi! link AerialLineNC Normal
 hi! link markdownError Normal
 hi! link VertSplit Normal
-hi! link SignColumn StatusLine
+
 " hi! link LineNr StatusLine
 " hi! link CocUnusedHighlight Comment
 " hi CocWarningHighlight gui=undercurl guibg=NONE
