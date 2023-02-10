@@ -476,9 +476,6 @@ command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
 
 " COLORS THEMES "
 
-" colorscheme kimbox
-" colorscheme eva01
-
 colors dogrun-custom
 hi Normal guibg=#181c27
 hi! link SignColumn StatusLine

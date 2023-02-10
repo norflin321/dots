@@ -8,7 +8,7 @@ fi
 export LANG=en_US.UTF-8
 
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/main/other/neovide/
+export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/main/side/neovide/
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
