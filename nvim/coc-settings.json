@@ -12,9 +12,19 @@
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
   "diagnostic.virtualText": false,
+
+  "javascript.suggestionActions.enabled": false,
   "tsserver.trace.server": "off",
   "typescript.suggest.completeFunctionCalls": false,
-  "javascript.suggestionActions.enabled": false,
+	"typescript.preferences.quoteStyle": "double",
+	"typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+	"typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+	"typescript.format.semicolons": "insert",
+	"typescript.workspaceSymbols.scope": "currentProject",
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+
   "rust-analyzer.inlayHints.enable": false,
 	"rust-analyzer.inlayHints.bindingModeHints.enable": false,
 	"rust-analyzer.inlayHints.chainingHints.enable": false,
@@ -23,6 +33,7 @@
 	"rust-analyzer.inlayHints.lifetimeElisionHints.enable": false,
 	"rust-analyzer.inlayHints.typeHints.enable": false,
 	"rust-analyzer.inlayHints.parameterHints.enable": false,
+
 	"coc.preferences.formatOnSaveFiletypes": ["vue", "prisma", "go", "rust"],
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pyright.inlayHints.variableTypes": false

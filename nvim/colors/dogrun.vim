@@ -1,9 +1,3 @@
-" dogrun: Take a sweet dog with you.
-"
-" Author: wadackel
-" License: MIT
-"   Copyright (c) 2020 wadackel
-
 if &background !=# 'dark'
   set background=dark
 endif
@@ -276,7 +270,7 @@ let g:fzf_colors = {
   \ 'header':  ['fg', 'Comment'],
   \ }
 
-hi Normal guibg=#0c1014
+" hi Normal guibg=#0c1014
 hi Search  guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
 hi IncSearch guifg=NONE ctermfg=NONE guibg=#292c37 ctermbg=NONE
 hi CocErrorHighlight gui=undercurl guisp=#ff0000
@@ -285,3 +279,13 @@ hi Normal guibg=NONE
 hi CocWarningHighlight gui=undercurl guibg=NONE
 hi CocInfoHighlight gui=undercurl guibg=NONE
 hi CocHintHighlight gui=undercurl guibg=NONE
+
+hi Search cterm=reverse ctermfg=255 ctermbg=245 gui=reverse guifg=#929be5 guibg=#0a0a0a
+hi IncSearch cterm=reverse ctermfg=255 ctermbg=245 gui=reverse guifg=#929be5 guibg=#0a0a0a
+
+hi CocWarningSign guifg=NONE ctermfg=NONE gui=bold cterm=bold guibg=NONE
+hi CocInfoSign guifg=NONE ctermfg=NONE gui=bold cterm=bold guibg=NONE
+hi CocHintSign guifg=NONE ctermfg=NONE gui=bold cterm=bold guibg=NONE
+
+hi Normal guibg=#181c27
+hi! link SignColumn StatusLine

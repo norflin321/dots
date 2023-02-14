@@ -17,6 +17,7 @@ set undofile
 set incsearch
 set showmatch
 set nolist
+" set lcs=tab:>-,trail:+
 set ignorecase
 set hlsearch
 set clipboard=unnamedplus
@@ -40,15 +41,14 @@ set splitbelow
 set splitright
 " set number
 set fillchars+=vert:\ 
-autocmd Filetype python setlocal ts=4 sts=4 sw=4
-autocmd Filetype go setlocal ts=4 sts=4 sw=4
+" autocmd Filetype python setlocal ts=4 sts=4 sw=4
+" autocmd Filetype go setlocal ts=4 sts=4 sw=4
 let g:go_highlight_trailing_whitespace_error=0
 set lazyredraw
 " set autochdir
-" set cursorline
+set cursorline
 " set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set guicursor=a:block
-set autoindent
 set noexpandtab
 filetype indent plugin on
 syntax enable
@@ -73,7 +73,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-treesitter/playground'
   Plug 'dyng/ctrlsf.vim'
   Plug 'SmiteshP/nvim-gps'
-  Plug 'pantharshit00/vim-prisma'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
@@ -175,6 +174,8 @@ map 9 $
 map 8 %
 vmap < <gv
 vmap > >gv
+vmap <silent> H :left<CR>gv
+vmap <silent> L :right<CR>gv
 vmap <silent> <C-c> gc
 nmap <silent> <C-c> gcc
 vmap <silent> <C-f> <Plug>CtrlSFVwordExec
@@ -249,8 +250,8 @@ nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 " nmap <silent> <C-d> :call CocAction('diagnosticNext')<cr>
-" nmap <silent> ga <Plug>(coc-codeaction)
-" nmap <silent> <c-s> :CocList outline<CR>
+vmap <silent> ga <Plug>(coc-codeaction)
+nmap <silent> <c-s> :CocList outline<CR>
 
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -258,8 +259,7 @@ nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('editor.action.organizeImport')
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-prisma', 'coc-rust-analyzer', 'coc-deno', 'coc-pyright' ]
-" coc-eslint8
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
@@ -320,11 +320,6 @@ function! StatuslinePath()
   return ''
 endfunction
 
-" augroup ReturnToLastEditedPlace
-"   autocmd!
-"   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" augroup END
-
 augroup SourceConfigAfterWrite
   autocmd!
   autocmd BufWritePost init.vim source %
@@ -341,11 +336,6 @@ function! CustomStatusLineForCtrlSf()
     setlocal statusline=%=
   endif
 endfunction
-
-" augroup CustomStatusLine
-"   autocmd!
-"   autocmd WinEnter * call CustomStatusLineForCtrlSf()
-" augroup END
 
 " Replace the current buffer with the given new file. That means a new file
 " will be open in a buffer while the old one will be deleted
@@ -431,13 +421,16 @@ set guifont=NorflinJB:h11
 " set guifont=NorflinSF:h11
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.96
+let g:neovide_transparency=0.95
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
 let g:neovide_remember_window_size=v:false
 " let g:neovide_cursor_vfx_mode="ripple"
 " let g:neovide_cursor_vfx_opacity=40
+" let g:neovide_cursor_animate_in_insert_mode = v:true
+set winblend=0
+set pumblend=0
 
 lua require('main')
 
@@ -474,29 +467,16 @@ command RM execute "r~/.config/nvim/snippets/ReactUseMemo"
 command RS execute "r~/.config/nvim/snippets/ReactUseState"
 command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
 
-" COLORS THEMES "
+" colors dogrun
+colors mies
 
-colors dogrun-custom
-hi Normal guibg=#181c27
-hi! link SignColumn StatusLine
+" USE TO SAVE TIME (at least on missing hook deps): nmap <silent> gf <Plug>(coc-fix-current)
 
-" colors mies
-" hi! link StatusLine SignColumn
-" hi! link StatusLineNC Comment
-
-hi! CocErrorHighlight gui=undercurl
+hi! link VertSplit Normal
 hi! link AerialLineNC Normal
 hi! link markdownError Normal
-hi! link VertSplit Normal
-
-" hi! link LineNr StatusLine
-" hi! link CocUnusedHighlight Comment
-" hi CocWarningHighlight gui=undercurl guibg=NONE
-" hi CocInfoHighlight gui=undercurl guibg=NONE
-" hi CocHintHighlight gui=undercurl guibg=NONE
-" hi! link CocInfoSign LineNr
-" hi! link CocWarningSign LineNr
-" hi! link CocHintSign LineNr
+hi! link WinBar StatusLine
+hi! link WinBarNC StatusLineNC
 
 " removed it from CocConfig only for rockstone code base
 "coc.preferences.formatOnSaveFiletypes": [ javascriptreact", typescript", typescriptreact", json", css", vue", prisma", go", rust" ],

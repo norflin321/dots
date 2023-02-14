@@ -1,28 +1,22 @@
--- https://devhints.io/lua
--- create function
-function MyCustomFunc()
-  local greet = "hello world!"
-  print(greet)
+-- Allow clipboard copy paste in neovim
+if vim.g.neovide then
+	vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
+	vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+	vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+	vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+	vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+	vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
+vim.g.neovide_input_use_logo = 1
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 
--- create new vim command, work only in nvim version > 0.7.0
--- vim.api.nvim_create_user_command('Custom', func, { nargs = 1 })
--- call vim command
--- vim.api.nvim_command('Custom')
-
--- treesitter
 require "nvim-treesitter.configs".setup{}
-
 require("nvim-gps").setup({depth = 0})
 require'colorizer'.setup()
-
--- require('vscode').setup({
--- 		italic_comments = true,
--- 		-- Override colors (see ./lua/vscode/colors.lua)
--- 		color_overrides = {
--- 			-- vscLightBlue = '#c3c3c3',
--- 		},
--- })
 
 local HEIGHT_RATIO = 0.8  -- You can change this
 local WIDTH_RATIO = 0.5   -- You can change this too
