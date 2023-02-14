@@ -76,7 +76,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
-  Plug 'kyazdani42/nvim-tree.lua'
+	Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457e07d279976a9baac6bbff5aa036afdc5f'}
 	Plug 'stevearc/aerial.nvim'
 call plug#end()
 
@@ -109,8 +109,11 @@ nmap q <NOP>
 vmap q <NOP>
 nmap s <NOP>
 nmap s <NOP>
-" nmap . <NOP>
-" vmap . <NOP>
+nmap S <NOP>
+nmap . <NOP>
+vmap . <NOP>
+nmap , <NOP>
+vmap , <NOP>
 nmap - <NOP>
 vmap - <NOP>
 nmap <c--> <NOP>
@@ -172,6 +175,8 @@ map z <Nop>
 map zz <Nop>
 map 9 $
 map 8 %
+" nmap < <Nop>
+" nmap > <Nop>
 vmap < <gv
 vmap > >gv
 vmap <silent> H :left<CR>gv
@@ -187,7 +192,7 @@ map <CR> <Nop>
 map p ]p
 map ga <Nop>
 nnoremap D "_dd
-nnoremap * *N
+nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
 nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 nmap <silent> <c-t> :AerialToggle<CR>
@@ -214,7 +219,6 @@ let g:ctrlsf_auto_preview = 1
 let g:AutoPairsMultilineClose=0
 
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
-
 let g:gitblame_enabled = 0
 
 " in millisecond, used for both CursorHold and CursorHoldI,
@@ -251,7 +255,7 @@ nmap <silent> gf <Plug>(coc-fix-current)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 " nmap <silent> <C-d> :call CocAction('diagnosticNext')<cr>
 vmap <silent> ga <Plug>(coc-codeaction)
-nmap <silent> <c-s> :CocList outline<CR>
+" nmap <silent> <c-s> :CocList outline<CR>
 
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -284,6 +288,7 @@ command SF execute ":CtrlSFToggle"
 command BL execute ":GitBlameToggle"
 command PI execute ":PlugInstall"
 command PC execute ":PlugClean"
+command PU execute ":PlugUpdate"
 command CC execute ":CtrlPClearAllCaches"
 
 function! EditRepo(url)
@@ -428,7 +433,7 @@ let g:neovide_fullscreen=v:false
 let g:neovide_remember_window_size=v:false
 " let g:neovide_cursor_vfx_mode="ripple"
 " let g:neovide_cursor_vfx_opacity=40
-" let g:neovide_cursor_animate_in_insert_mode = v:true
+let g:neovide_cursor_animate_in_insert_mode = v:true
 set winblend=0
 set pumblend=0
 
