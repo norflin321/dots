@@ -65,7 +65,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
-  Plug 'inkarkat/vim-CursorLineCurrentWindow'
+  " Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'drzel/vim-repo-edit'
   Plug 'f-person/git-blame.nvim'
@@ -76,8 +76,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
-	Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457e07d279976a9baac6bbff5aa036afdc5f'}
+	Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457'}
 	Plug 'stevearc/aerial.nvim'
+	Plug 'mizlan/iswap.nvim'
 call plug#end()
 
 " MAPPING "
@@ -196,6 +197,7 @@ nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
 nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 nmap <silent> <c-t> :AerialToggle<CR>
+nmap <silent> S :ISwap<CR>
 
 " PLUGINS SETTINGS "
 " let g:ctrlp_cmd = 'CtrlP'
@@ -330,6 +332,12 @@ augroup SourceConfigAfterWrite
   autocmd BufWritePost init.vim source %
 augroup END
 
+augroup CursorLine
+	au!
+	au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+	au WinLeave * setlocal nocursorline
+augroup END
+
 function! CustomStatusLineForCtrlSf()
   let buffer_name = bufname('%')
   if buffer_name == '__CtrlSFPreview__'
@@ -421,9 +429,11 @@ function! GetAnError() abort
 endfunction
 
 " NEOVIDE
-set guifont=NorflinJB:h11
+" set guifont=NorflinJB:h11
 " set guifont=NorflinCC:h11
 " set guifont=NorflinSF:h11
+set guifont=Hack:h11
+set linespace=10
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
 let g:neovide_transparency=0.95
@@ -462,18 +472,9 @@ set statusline+=%L%*
 " set winbar+=%#StatusLine#
 " set winbar+=%{NvimGps()} " context
 
-" SNIPPETS "
-command RCO execute "r~/.config/nvim/snippets/ReactComponent"
-command RCMO execute "r~/.config/nvim/snippets/ReactComponentMobxObserver"
-command RMS execute "r~/.config/nvim/snippets/ReactMaterialMakeStyles"
-command RC execute "r~/.config/nvim/snippets/ReactUseCallback"
-command RE execute "r~/.config/nvim/snippets/ReactUseEffect"
-command RM execute "r~/.config/nvim/snippets/ReactUseMemo"
-command RS execute "r~/.config/nvim/snippets/ReactUseState"
-command RNS execute "r~/.config/nvim/snippets/ReactNativeStyleSheet"
-
 " colors dogrun
-colors dark
+" colors dark
+colors rain
 
 " USE TO SAVE TIME (at least on missing hook deps): nmap <silent> gf <Plug>(coc-fix-current)
 

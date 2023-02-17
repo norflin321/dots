@@ -13,9 +13,16 @@ vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+
 require "nvim-treesitter.configs".setup{}
 require("nvim-gps").setup({depth = 0})
 require'colorizer'.setup()
+require("iswap").setup{
+	autoswap = true,
+	flash_style = false,
+	grey = 'disable',
+	keys = '123456789',
+}
 
 local HEIGHT_RATIO = 0.8  -- You can change this
 local WIDTH_RATIO = 0.5   -- You can change this too
