@@ -1,5 +1,0 @@
-if (Platform.OS === 'ios') {
-
-} else {
-
-}

@@ -1,7 +1,0 @@
-interface IProps {
-}
-
-export const Component: React.FC<IProps> = () => {
-  return (
-  );
-};

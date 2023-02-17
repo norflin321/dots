@@ -1,8 +1,0 @@
-import React from 'react';
-import {observer} from 'mobx-react';
-
-type TProps = {};
-
-export const ChannelsRefreshControl: React.FC<TProps> = observer(({}) => {
-  return <></>;
-});

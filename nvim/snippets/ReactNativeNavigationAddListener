@@ -1,5 +1,0 @@
-useEffect(() => {
-  const unsub = navigation.addListener('focus', () => {
-  });
-  return unsub;
-}, []);
