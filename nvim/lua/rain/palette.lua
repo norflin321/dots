@@ -4,8 +4,8 @@ local white = "#D0D0D0"
 
 M.get_base_colors = function()
   return {
-		bg0 = "#121212",
-		bg1 = "#262626",
+		bg0 = "#050014",
+		bg1 = "#231c31",
 		bg2 = "#1a1a1a",
 		bg3 = "#49483E",
 		bg4 = white,

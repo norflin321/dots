@@ -29,7 +29,7 @@ alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias count_lines="cloc --fullpath --vcs=git --not-match-d='(node_modules|ios|android|.next|.tmp|)' --not-match-f='(yarn.lock|package.json|package-lock.json)' ."
-alias vi="neovide --multigrid --geometry=122x55"
+alias vi="neovide --multigrid --geometry=125x52"
 # alias vi="neovide --multigrid --geometry=220x52"
 # alias vi="neovide --multigrid --geometry=220x53"
 

@@ -431,12 +431,12 @@ endfunction
 " NEOVIDE
 " set guifont=NorflinJB:h11
 " set guifont=NorflinCC:h11
-" set guifont=NorflinSF:h11
-set guifont=Hack:h11
-set linespace=10
+set guifont=NorflinSF:h11
+" set guifont=Hack:h11
+set linespace=1
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.95
+let g:neovide_transparency=0.92
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
@@ -454,9 +454,6 @@ func! NvimGps() abort
 		\ luaeval("require'nvim-gps'.get_location()") . ' ' : ''
 endf
 
-hi! link VertSplit Normal
-hi! link SignColumn StatusLine
-
 set statusline=
 set statusline+=%{GetBranchName()}
 set statusline+=%{StatuslinePath()} " file path
@@ -473,7 +470,6 @@ set statusline+=%L%*
 " set winbar+=%{NvimGps()} " context
 
 " colors dogrun
-" colors dark
 colors rain
 
 " USE TO SAVE TIME (at least on missing hook deps): nmap <silent> gf <Plug>(coc-fix-current)
