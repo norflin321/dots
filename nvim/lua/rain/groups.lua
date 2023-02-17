@@ -89,7 +89,7 @@ M.setup = function()
     SpecialKey = { link = "rainFg4" },
     Visual = { bg = "#36323b", reverse = false },
     VisualNOS = { link = "Visual" },
-    Search = { fg = "#121212", bg = "#a675df", reverse = false },
+    Search = { fg = "#121212", bg = "#e0c286", reverse = false },
     IncSearch = { link = "Search" },
     CurSearch = { link = "Search" },
     QuickFixLine = { fg = colors.bg0, bg = colors.yellow, bold = config.bold },
