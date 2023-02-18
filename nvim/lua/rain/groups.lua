@@ -20,9 +20,36 @@ local function set_terminal_colors(colors)
   vim.g.terminal_color_15 = colors.fg1
 end
 
+local white = "#cbcbcb"
+local colors = {
+	bg0 = "#212121", -- background
+	bg1 = "#292929", -- cursorline
+	bg2 = "#36323b", -- float/menu bg (normalized)
+	bg3 = "#212121",
+	bg4 = white,
+	fg0 = white,
+	fg1 = white,
+	fg2 = white,
+	fg3 = white,
+	fg4 = white,
+	red = white,
+	green = white,
+	yellow = white,
+	blue = white,
+	purple = white,
+	aqua = white,
+	orange = white,
+	neutral_red = white,
+	neutral_green = white,
+	neutral_yellow = white,
+	neutral_blue = white,
+	neutral_purple = white,
+	neutral_aqua = white,
+	gray = "#767676",
+}
+
 M.setup = function()
   local config = require("rain").config
-  local colors = require("rain.palette").get_base_colors()
 
   set_terminal_colors(colors)
 
@@ -89,7 +116,7 @@ M.setup = function()
     SpecialKey = { link = "rainFg4" },
     Visual = { bg = "#36323b", reverse = false },
     VisualNOS = { link = "Visual" },
-    Search = { fg = "#050014", bg = "#e0c286", reverse = false },
+    Search = { bg = "#434b56", reverse = false },
     IncSearch = { link = "Search" },
     CurSearch = { link = "Search" },
     QuickFixLine = { fg = colors.bg0, bg = colors.yellow, bold = config.bold },
@@ -253,11 +280,11 @@ M.setup = function()
     NvimTreeGitDeleted = { fg = colors.neutral_red },
     NvimTreeWindowPicker = { bg = colors.faded_aqua },
     -- coc.nvim
-    CocErrorSign = { fg = "#f19d7e", bg = "#1c1c1c" },
+    CocErrorSign = { fg = "#f19d7e", bg = colors.bg0 },
     CocWarningSign = { link = "rainOrangeSign" },
     CocInfoSign = { link = "rainBlueSign" },
     CocHintSign = { link = "rainAquaSign" },
-    CocErrorFloat = { fg = "#f19d7e", bg = "#121212" },
+    CocErrorFloat = { fg = "#f19d7e", bg = "#252526" },
     CocWarningFloat = { link = "rainOrange" },
     CocInfoFloat = { link = "rainBlue" },
     CocHintFloat = { link = "rainAqua" },
