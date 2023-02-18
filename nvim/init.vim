@@ -433,9 +433,8 @@ endfunction
 " set guifont=NorflinCC:h11
 " set guifont=Hack:h11
 " set guifont=NorflinSF:h11
-" set linespace=1
 set guifont=Berkeley\ Mono:h11.5
-set linespace=9
+set linespace=5
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
 let g:neovide_transparency=0.92
