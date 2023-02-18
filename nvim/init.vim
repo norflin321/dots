@@ -241,10 +241,19 @@ function! CloseHiddenBuffers()
   endfor
 endfun
 
+function! SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 " close all hidden buffers
 command BC execute ":call CloseHiddenBuffers()"
 " log number of oppended buffers
 command BN execute ":echo len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))"
+" get higlight group of element under cursor
+command H execute ":call SynStack()"
 
 " COC "
 nmap <silent> K :call <SID>show_documentation()<CR>
@@ -432,7 +441,9 @@ endfunction
 " set guifont=NorflinJB:h11
 " set guifont=NorflinCC:h11
 " set guifont=Hack:h11
-set guifont=NorflinSF:h11
+" set guifont=NorflinSF:h11
+set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
+set linespace=5
 " set guifont=Berkeley\ Mono:h11.5
 " set linespace=5
 " let g:neovide_profiler=v:true
@@ -472,6 +483,7 @@ set statusline+=%L%*
 
 " colors dogrun
 colors dark
+" colors vscode
 
 " USE TO SAVE TIME (at least on missing hook deps): nmap <silent> gf <Plug>(coc-fix-current)
 
