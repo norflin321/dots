@@ -480,8 +480,7 @@ set statusline+=%L%*
 " set winbar+=%{NvimGps()} " context
 
 " colors dogrun
-" colors stan
-colors vscode
+colors stan
 
 " USE TO SAVE TIME (at least on missing hook deps): nmap <silent> gf <Plug>(coc-fix-current)
 

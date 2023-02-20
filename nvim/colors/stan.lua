@@ -32,7 +32,7 @@ local groups = {
 	SpecialKey = { link = "white" },
 	Visual = { bg = colors.bg2, reverse = false },
 	VisualNOS = { link = "Visual" },
-	Search = { bg = "#434b56", reverse = false },
+	Search = { bg = "#8E700B", fg = colors.bg0 },
 	IncSearch = { link = "Search" },
 	CurSearch = { link = "Search" },
 	QuickFixLine = { fg = colors.bg0, bg = colors.white, bold = config.bold },
