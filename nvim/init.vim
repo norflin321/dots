@@ -70,7 +70,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'dyng/ctrlsf.vim'
-  Plug 'SmiteshP/nvim-gps'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
@@ -440,13 +439,14 @@ endfunction
 " set guifont=NorflinCC:h11
 " set guifont=Hack:h11
 set guifont=NorflinSF:h11
+set linespace=-3
 " set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
 " set linespace=5
 " set guifont=Berkeley\ Mono:h11.5
 " set linespace=5
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.95
+let g:neovide_transparency=1
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false

@@ -24,7 +24,7 @@ local groups = {
 	TabLineFill = { fg = colors.white, bg = colors.bg1, reverse = false },
 	TabLineSel = { fg = colors.white, bg = colors.bg1, reverse = false },
 	TabLine = { link = "TabLineFill" },
-	MatchParen = { underline = true, bold = config.bold },
+	MatchParen = { bg = "#4d4d4d", underline = false, bold = config.bold },
 	ColorColumn = { bg = colors.bg1 },
 	Conceal = { fg = colors.white },
 	CursorLineNr = { fg = colors.white, bg = colors.bg1 },
