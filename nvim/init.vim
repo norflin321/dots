@@ -60,12 +60,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
   Plug 'alvan/vim-closetag'
-  " Plug 'inkarkat/vim-CursorLineCurrentWindow'
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'drzel/vim-repo-edit'
   Plug 'f-person/git-blame.nvim'
@@ -441,9 +439,9 @@ endfunction
 " set guifont=NorflinJB:h11
 " set guifont=NorflinCC:h11
 " set guifont=Hack:h11
-" set guifont=NorflinSF:h11
-set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
-set linespace=5
+set guifont=NorflinSF:h11
+" set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
+" set linespace=5
 " set guifont=Berkeley\ Mono:h11.5
 " set linespace=5
 " let g:neovide_profiler=v:true
@@ -482,7 +480,7 @@ set statusline+=%L%*
 " set winbar+=%{NvimGps()} " context
 
 " colors dogrun
-colors dark
+colors stan
 " colors vscode
 
 " USE TO SAVE TIME (at least on missing hook deps): nmap <silent> gf <Plug>(coc-fix-current)
