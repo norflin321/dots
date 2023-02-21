@@ -31,23 +31,20 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-set signcolumn=number
 set signcolumn=yes:1
-set noshowcmd
 set showmode
 set splitbelow
 set splitright
 set fillchars+=vert:\ 
 let g:go_highlight_trailing_whitespace_error=0
 set lazyredraw
-set autochdir
 set cursorline
 set guicursor=a:block
 set noexpandtab
-filetype indent plugin on
 syntax enable
 set background=dark
 set termguicolors
+filetype indent plugin on
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -69,6 +66,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457'}
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
+	Plug 'rebelot/kanagawa.nvim'
 call plug#end()
 
 map q: :q
@@ -185,6 +183,7 @@ nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 nmap <silent> <c-t> :AerialToggle<CR>
 nmap <silent> S :ISwap<CR>
+vmap K <Nop>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
@@ -246,7 +245,6 @@ nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> ga <Plug>(coc-codeaction)
-nmap <silent> <c-s> :CocList outline<CR>
 
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -420,15 +418,18 @@ endfunction
 " set guifont=NorflinJB:h11
 " set guifont=NorflinCC:h12
 " set guifont=Hack:h11
-set guifont=NorflinSF:h11
-set linespace=-3
+" set guifont=NorflinSF:h11
+" set linespace=-3
 " set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
 " set linespace=4
-" set guifont=Berkeley\ Mono:h11.5
-" set linespace=5
+" set guifont=Berkeley\ Mono:h12
+" set guifont=Menlo:h12
+" set guifont=MonoLisa:h11
+set guifont=Iosevka\ Nerd\ Font\ Mono:h13
+set linespace=5
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.98
+let g:neovide_transparency=0.94
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
@@ -436,6 +437,7 @@ let g:neovide_remember_window_size=v:false
 " let g:neovide_cursor_vfx_mode="ripple"
 " let g:neovide_cursor_vfx_opacity=40
 let g:neovide_cursor_animate_in_insert_mode = v:true
+let g:neovide_hide_mouse_when_typing = v:true
 set winblend=0
 set pumblend=0
 
@@ -461,11 +463,11 @@ set statusline+=%L%*
 " set winbar+=%#StatusLine#
 " set winbar+=%{NvimGps()} " context
 
-" colors dogrun
 colors stan
 
 " USE TO SAVE TIME (at least on missing hook deps): nmap <silent> gf <Plug>(coc-fix-current)
 
+hi! link SignColumn StatusLine
 hi! link VertSplit Normal
 hi! link AerialLineNC Normal
 hi! link markdownError Normal
