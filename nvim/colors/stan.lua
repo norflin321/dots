@@ -10,7 +10,7 @@ local colors = {
 	bg1 = "#292929", -- cursorline
 	bg2 = "#36323b", -- float/menu bg (normalized)
 	grey = "#767676", -- comments
-	white = "#cbcbcb", -- most of foreground
+	white = "#c1bcb3", -- most of foreground
 	err = "#f19d7e" -- errors
 }
 

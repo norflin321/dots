@@ -5,7 +5,6 @@ let mapleader = " "
 set noerrorbells
 set tabstop=2 softtabstop=2
 set shiftwidth=2
-" set expandtab " commend it out only for rockstone code base ^_^
 set autoindent
 set smartindent
 set nowrap
@@ -17,7 +16,6 @@ set undofile
 set incsearch
 set showmatch
 set nolist
-" set lcs=tab:>-,trail:+
 set ignorecase
 set hlsearch
 set clipboard=unnamedplus
@@ -33,21 +31,17 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-" set signcolumn=number
+set signcolumn=number
 set signcolumn=yes:1
-" set noshowcmd
+set noshowcmd
 set showmode
 set splitbelow
 set splitright
-" set number
 set fillchars+=vert:\ 
-" autocmd Filetype python setlocal ts=4 sts=4 sw=4
-" autocmd Filetype go setlocal ts=4 sts=4 sw=4
 let g:go_highlight_trailing_whitespace_error=0
 set lazyredraw
-" set autochdir
+set autochdir
 set cursorline
-" set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set guicursor=a:block
 set noexpandtab
 filetype indent plugin on
@@ -55,7 +49,6 @@ syntax enable
 set background=dark
 set termguicolors
 
-" PLUGINS "
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
   Plug 'ctrlpvim/ctrlp.vim'
@@ -73,12 +66,11 @@ call plug#begin("~/.vim/plugged")
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'ziglang/zig.vim'
-	Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457'}
-	Plug 'stevearc/aerial.nvim'
-	Plug 'mizlan/iswap.nvim'
+  Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457'}
+  Plug 'stevearc/aerial.nvim'
+  Plug 'mizlan/iswap.nvim'
 call plug#end()
 
-" MAPPING "
 map q: :q
 nnoremap <Space> <NOP>
 nnoremap <silent> <Esc> :noh<CR>
@@ -173,8 +165,6 @@ map z <Nop>
 map zz <Nop>
 map 9 $
 map 8 %
-" nmap < <Nop>
-" nmap > <Nop>
 vmap < <gv
 vmap > >gv
 vmap <silent> H :left<CR>gv
@@ -196,9 +186,6 @@ nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 nmap <silent> <c-t> :AerialToggle<CR>
 nmap <silent> S :ISwap<CR>
 
-" PLUGINS SETTINGS "
-" let g:ctrlp_cmd = 'CtrlP'
-" let g:ctrlp_types = ['mru', 'fil']
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
@@ -220,8 +207,6 @@ let g:AutoPairsMultilineClose=0
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 let g:gitblame_enabled = 0
 
-" in millisecond, used for both CursorHold and CursorHoldI,
-" use updatetime instead if not defined
 let g:cursorhold_updatetime = 100
 
 function! CloseHiddenBuffers()
@@ -239,13 +224,12 @@ function! CloseHiddenBuffers()
 endfun
 
 function! SynStack()
-	if !exists("*synstack")
-		return
-	endif
-	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" close all hidden buffers
 command BC execute ":call CloseHiddenBuffers()"
 " log number of oppended buffers
 command BN execute ":echo len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))"
@@ -261,9 +245,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
-" nmap <silent> <C-d> :call CocAction('diagnosticNext')<cr>
 vmap <silent> ga <Plug>(coc-codeaction)
-" nmap <silent> <c-s> :CocList outline<CR>
+nmap <silent> <c-s> :CocList outline<CR>
 
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -290,7 +273,7 @@ function! s:show_documentation()
   endif
 endfunction
 
-" COMMANDS "
+" " COMMANDS "
 command CF execute ":e $MYVIMRC"
 command SF execute ":CtrlSFToggle"
 command BL execute ":GitBlameToggle"
@@ -373,7 +356,6 @@ function! FileName()
   let name = expand('%:t')
   if (strchars(name) == 0)
     return ''
-  endif
   return expand('%:t') . '  '
 endfunction
 
@@ -436,17 +418,17 @@ endfunction
 
 " NEOVIDE
 " set guifont=NorflinJB:h11
-" set guifont=NorflinCC:h11
+" set guifont=NorflinCC:h12
 " set guifont=Hack:h11
 set guifont=NorflinSF:h11
 set linespace=-3
 " set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
-" set linespace=5
+" set linespace=4
 " set guifont=Berkeley\ Mono:h11.5
 " set linespace=5
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=1
+let g:neovide_transparency=0.98
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
