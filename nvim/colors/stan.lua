@@ -217,6 +217,7 @@ local groups = {
 	CocWarningHighlight = { undercurl = true, sp = colors.white },
 	CocInfoHighlight = { undercurl = true, sp = colors.white },
 	CocHintHighlight = { undercurl = true, sp = colors.white },
+	CocHighlightText = { bg = "#3b3b3b" },
 
 	-- html
 	htmlTag = { link = "white" },

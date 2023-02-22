@@ -37,9 +37,8 @@ set splitbelow
 set splitright
 set fillchars+=vert:\ 
 let g:go_highlight_trailing_whitespace_error=0
-set lazyredraw
-set cursorline
-set guicursor=a:block
+" set cursorline
+set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set noexpandtab
 syntax enable
 set background=dark
@@ -66,7 +65,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457'}
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
-	Plug 'rebelot/kanagawa.nvim'
+	Plug 'Mofiqul/vscode.nvim'
 call plug#end()
 
 map q: :q
@@ -258,8 +257,7 @@ function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-" coc#pum#insert()
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#insert() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
@@ -319,11 +317,11 @@ augroup SourceConfigAfterWrite
   autocmd BufWritePost init.vim source %
 augroup END
 
-augroup CursorLine
-	au!
-	au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-	au WinLeave * setlocal nocursorline
-augroup END
+" augroup CursorLine
+" 	au!
+" 	au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+" 	au WinLeave * setlocal nocursorline
+" augroup END
 
 function! CustomStatusLineForCtrlSf()
   let buffer_name = bufname('%')
@@ -419,17 +417,17 @@ endfunction
 " set guifont=NorflinCC:h12
 " set guifont=Hack:h11
 " set guifont=NorflinSF:h11
-" set linespace=-3
-" set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h12
+" set linespace=0
+set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
 " set linespace=4
 " set guifont=Berkeley\ Mono:h12
 " set guifont=Menlo:h12
 " set guifont=MonoLisa:h11
-set guifont=Iosevka\ Nerd\ Font\ Mono:h13
+" set guifont=Iosevka\ Nerd\ Font\ Mono:h12
 set linespace=5
 " let g:neovide_profiler=v:true
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.94
+let g:neovide_transparency=0.95
 " let g:neovide_cursor_trail_length=0.01
 " let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
@@ -461,6 +459,7 @@ set statusline+=%L%*
 
 " set winbar=
 " set winbar+=%#StatusLine#
+" set winbar+=%{StatuslinePath()}
 " set winbar+=%{NvimGps()} " context
 
 colors stan

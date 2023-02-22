@@ -37,5 +37,6 @@
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pyright.inlayHints.variableTypes": false,
 
-	"coc.preferences.formatOnSaveFiletypes": ["vue", "prisma", "go", "rust"]
+	"coc.preferences.formatOnSaveFiletypes": ["vue", "prisma", "go", "rust"],
+	"languageserver.disableSnippetCompletion": true,
 }
