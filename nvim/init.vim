@@ -1,7 +1,8 @@
-set encoding=UTF-8
+syntax enable
+filetype indent plugin on
 scriptencoding utf-8
+set encoding=UTF-8
 set fileencoding=utf-8
-set noerrorbells
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 set autoindent
@@ -25,7 +26,6 @@ set mouse=a
 set autoread
 set showtabline=2
 set hidden
-set updatetime=100
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
@@ -35,13 +35,10 @@ set showmode
 set splitbelow
 set splitright
 set fillchars+=vert:\ 
-let g:go_highlight_trailing_whitespace_error=0
 set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set noexpandtab
-syntax enable
 set background=dark
 set termguicolors
-filetype indent plugin on
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -63,7 +60,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457'}
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
-	Plug 'Mofiqul/vscode.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
@@ -183,6 +179,8 @@ nmap <silent> <c-t> :AerialToggle<CR>
 nmap <silent> S :ISwap<CR>
 vmap K <Nop>
 
+let g:go_highlight_trailing_whitespace_error=0
+
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelection("v")': ['<c-v>'], 'AcceptSelection("e")': ['<c-o>', '<cr>'] }
@@ -276,6 +274,7 @@ augroup SourceConfigAfterWrite
   autocmd BufWritePost init.vim source %
 augroup END
 
+" set cursorline
 " augroup CursorLine
 " 	au!
 " 	au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
