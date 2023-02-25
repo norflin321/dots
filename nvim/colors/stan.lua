@@ -1,17 +1,11 @@
-local config = {
-	undercurl = true,
-	underline = true,
-	bold = false,
-	italic = false,
-}
-
 local colors = {
-	bg0 = "#1f1f1f", -- background
+	bg0 = "#181818", -- background
 	bg1 = "#292929", -- cursorline
 	bg2 = "#36323b", -- float/menu bg (normalized)
 	grey = "#767676", -- comments
-	white = "#c1bcb3", -- most of foreground
-	err = "#f19d7e" -- errors
+	white = "#bab5ab", -- most of foreground
+	err = "#f19d7e", -- errors
+	border = "#344d31", -- statusline, tabline, signcolumn
 }
 
 local groups = {
@@ -21,10 +15,10 @@ local groups = {
 	NormalNC = { link = "Normal" },
 	CursorLine = { bg = colors.bg1 },
 	CursorColumn = { link = "CursorLine" },
-	TabLineFill = { fg = colors.white, bg = colors.bg1, reverse = false },
-	TabLineSel = { fg = colors.white, bg = colors.bg1, reverse = false },
+	TabLineFill = { fg = colors.white, bg = colors.border },
+	TabLineSel = { fg = colors.white, bg = colors.border },
 	TabLine = { link = "TabLineFill" },
-	MatchParen = { bg = "#4d4d4d", underline = false, bold = config.bold },
+	MatchParen = { bg = "#4d4d4d", underline = false, bold = false },
 	ColorColumn = { bg = colors.bg1 },
 	Conceal = { fg = colors.white },
 	CursorLineNr = { fg = colors.white, bg = colors.bg1 },
@@ -35,40 +29,40 @@ local groups = {
 	Search = { bg = "#8E700B", fg = colors.bg0 },
 	IncSearch = { link = "Search" },
 	CurSearch = { link = "Search" },
-	QuickFixLine = { fg = colors.bg0, bg = colors.white, bold = config.bold },
-	Underlined = { fg = colors.white, underline = config.underline },
-	StatusLine = { fg = "#B0B0B0", bg = "#353536" },
-	StatusLineNC = { fg = "#949494", bg = "#353536" },
+	QuickFixLine = { fg = colors.bg0, bg = colors.white, bold = false },
+	Underlined = { fg = colors.white, underline = true },
+	StatusLine = { fg = "#B0B0B0", bg = colors.border },
+	StatusLineNC = { fg = "#949494", bg = colors.border },
 	WinBar = { fg = colors.white, bg = colors.bg0 },
 	WinBarNC = { fg = colors.white, bg = colors.bg1 },
 	VertSplit = { fg = colors.bg0, bg = colors.bg0 },
-	WildMenu = { fg = colors.white, bg = colors.bg2, bold = config.bold },
+	WildMenu = { fg = colors.white, bg = colors.bg2, bold = false },
 	Directory = { link = "white" },
 	Title = { link = "white" },
-	ErrorMsg = { fg = colors.err, bg = "none", bold = config.bold },
+	ErrorMsg = { fg = colors.err, bg = "none", bold = false },
 	MoreMsg = { link = "white" },
 	ModeMsg = { link = "white" },
 	Question = { link = "white" },
 	WarningMsg = { link = "white" },
 	LineNr = { fg = colors.white },
 	SignColumn = { link = "StatusLine" },
-	Folded = { fg = colors.grey, bg = colors.bg1, italic = config.italic },
+	Folded = { fg = colors.grey, bg = colors.bg1, italic = false },
 	FoldColumn = { fg = colors.grey, bg = colors.bg1 },
 	Cursor = { reverse = false },
 	vCursor = { link = "Cursor" },
 	iCursor = { link = "Cursor" },
 	lCursor = { link = "Cursor" },
 	Special = { link = "white" },
-	Comment = { fg = colors.grey, italic = config.italic },
-	Todo = { fg = colors.white, bold = config.bold, italic = config.italic },
-	Done = { fg = colors.white, bold = config.bold, italic = config.italic },
-	Error = { fg = colors.err, bold = config.bold, reverse = false },
+	Comment = { fg = colors.grey, italic = false },
+	Todo = { fg = colors.white, bold = false, italic = false },
+	Done = { fg = colors.white, bold = false, italic = false },
+	Error = { fg = colors.err, bold = false, reverse = false },
 	Statement = { link = "white" },
 	Conditional = { link = "white" },
 	Repeat = { link = "white" },
 	Label = { link = "white" },
 	Exception = { link = "white" },
-	Operator = { fg = colors.white, italic = config.italic },
+	Operator = { fg = colors.white, italic = false },
 	Keyword = { link = "white" },
 	Identifier = { link = "white" },
 	Function = { link = "white" },
@@ -79,7 +73,7 @@ local groups = {
 	PreCondit = { link = "white" },
 	Constant = { link = "white" },
 	Character = { link = "white" },
-	String = { fg = colors.white, italic = config.italic },
+	String = { fg = colors.white, italic = false },
 	Boolean = { link = "white" },
 	Number = { link = "white" },
 	Float = { link = "white" },
@@ -88,7 +82,7 @@ local groups = {
 	Structure = { link = "white" },
 	Typedef = { link = "white" },
 	Pmenu = { bg = colors.bg2 },
-	PmenuSel = { bg = colors.bg1, bold = config.bold },
+	PmenuSel = { bg = colors.bg1, bold = false },
 	PmenuSbar = { bg = colors.bg1 },
 	PmenuThumb = { bg = colors.white },
 	DiffDelete = { fg = colors.white, bg = colors.bg0, reverse = false },
@@ -173,10 +167,10 @@ local groups = {
 	["@tag.delimiter"] = { link = "Delimiter" },
 
 	-- nvim-treesitter (0.8 overrides)
-	["@text.strong"] = { bold = config.bold },
+	["@text.strong"] = { bold = false },
 	["@text.strike"] = { strikethrough = true },
-	["@text.emphasis"] = { italic = config.italic },
-	["@text.underline"] = { underline = config.underline },
+	["@text.emphasis"] = { italic = false },
+	["@text.underline"] = { underline = true },
 	["@keyword.operator"] = { link = "white" },
 
 	-- nvim-tree
@@ -226,26 +220,26 @@ local groups = {
 	htmlArg = { link = "white" },
 	htmlTagN = { link = "white" },
 	htmlSpecialTagName = { link = "white" },
-	htmlLink = { fg = colors.white, underline = config.underline },
+	htmlLink = { fg = colors.white, underline = true },
 	htmlSpecialChar = { link = "white" },
-	htmlBold = { fg = colors.white, bg = colors.bg0, bold = config.bold },
-	htmlBoldUnderline = { fg = colors.white, bg = colors.bg0, bold = config.bold, underline = config.underline },
-	htmlBoldItalic = { fg = colors.white, bg = colors.bg0, bold = config.bold, italic = config.italic },
+	htmlBold = { fg = colors.white, bg = colors.bg0, bold = false },
+	htmlBoldUnderline = { fg = colors.white, bg = colors.bg0, bold = false, underline = true },
+	htmlBoldItalic = { fg = colors.white, bg = colors.bg0, bold = false, italic = false },
 	htmlBoldUnderlineItalic = {
 		fg = colors.white,
 		bg = colors.bg0,
-		bold = config.bold,
-		italic = config.italic,
-		underline = config.underline,
+		bold = false,
+		italic = false,
+		underline = true,
 	},
-	htmlUnderline = { fg = colors.white, bg = colors.bg0, underline = config.underline },
+	htmlUnderline = { fg = colors.white, bg = colors.bg0, underline = true },
 	htmlUnderlineItalic = {
 		fg = colors.white,
 		bg = colors.bg0,
-		italic = config.italic,
-		underline = config.underline,
+		italic = false,
+		underline = true,
 	},
-	htmlItalic = { fg = colors.white, bg = colors.bg0, bold = config.italic },
+	htmlItalic = { fg = colors.white, bg = colors.bg0, bold = false },
 
 	-- xml
 	xmlTag = { link = "white" },
@@ -369,9 +363,9 @@ local groups = {
 	luaTable = { link = "white" },
 
 	-- markdown
-	markdownItalic = { fg = colors.white, italic = config.italic },
-	markdownBold = { fg = colors.white, bold = config.bold },
-	markdownBoldItalic = { fg = colors.white, bold = config.bold, italic = config.italic },
+	markdownItalic = { fg = colors.white, italic = false },
+	markdownBold = { fg = colors.white, bold = false },
+	markdownBoldItalic = { fg = colors.white, bold = false, italic = false },
 	markdownH1 = { link = "white" },
 	markdownH2 = { link = "white" },
 	markdownH3 = { link = "white" },
@@ -392,7 +386,7 @@ local groups = {
 	markdownHeadingDelimiter = { link = "white" },
 	markdownUrl = { link = "white" },
 	markdownUrlTitleDelimiter = { link = "white" },
-	markdownLinkText = { fg = colors.grey, underline = config.underline },
+	markdownLinkText = { fg = colors.grey, underline = true },
 	markdownIdDeclaration = { link = "markdownLinkText" },
 
 	-- json
