@@ -1,7 +1,6 @@
 set encoding=UTF-8
 scriptencoding utf-8
 set fileencoding=utf-8
-let mapleader = " "
 set noerrorbells
 set tabstop=2 softtabstop=2
 set shiftwidth=2
@@ -24,7 +23,7 @@ set scrolloff=5
 set sidescrolloff=10
 set mouse=a
 set autoread
-set showtabline=0
+set showtabline=2
 set hidden
 set updatetime=100
 set shortmess+=c
@@ -37,7 +36,6 @@ set splitbelow
 set splitright
 set fillchars+=vert:\ 
 let g:go_highlight_trailing_whitespace_error=0
-" set cursorline
 set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set noexpandtab
 syntax enable
@@ -66,6 +64,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
 	Plug 'Mofiqul/vscode.nvim'
+	Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 map q: :q
@@ -207,33 +206,6 @@ let g:gitblame_enabled = 0
 
 let g:cursorhold_updatetime = 100
 
-function! CloseHiddenBuffers()
-  let visible = {}
-  for t in range(1, tabpagenr('$'))
-    for b in tabpagebuflist(t)
-      let visible[b] = 1
-    endfor
-  endfor
-  for b in range(1, bufnr('$'))
-    if bufloaded(b) && !has_key(visible, b)
-      exe 'bd ' . b
-    endif
-  endfor
-endfun
-
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-command BC execute ":call CloseHiddenBuffers()"
-" log number of oppended buffers
-command BN execute ":echo len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))"
-" get higlight group of element under cursor
-command H execute ":call SynStack()"
-
 " COC "
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -248,18 +220,16 @@ vmap <silent> ga <Plug>(coc-codeaction)
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocActionAsync('editor.action.organizeImport')
-
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#insert() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#insert() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -269,7 +239,30 @@ function! s:show_documentation()
   endif
 endfunction
 
-" " COMMANDS "
+" COMMANDS "
+function! CloseHiddenBuffers()
+	let visible = {}
+	for t in range(1, tabpagenr('$'))
+		for b in tabpagebuflist(t)
+			let visible[b] = 1
+		endfor
+	endfor
+	for b in range(1, bufnr('$'))
+		if bufloaded(b) && !has_key(visible, b)
+			exe 'bd ' . b
+		endif
+	endfor
+endfun
+
+function! SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+command BC execute ":call CloseHiddenBuffers()"
+command H execute ":call SynStack()"
 command CF execute ":e $MYVIMRC"
 command SF execute ":CtrlSFToggle"
 command BL execute ":GitBlameToggle"
@@ -277,40 +270,6 @@ command PI execute ":PlugInstall"
 command PC execute ":PlugClean"
 command PU execute ":PlugUpdate"
 command CC execute ":CtrlPClearAllCaches"
-
-function! EditRepo(url)
-  exe ':RepoEdit ' . a:url
-endfunction
-command! -nargs=1 ER call EditRepo(<f-args>)
-
-function! Path()
-  echo expand('%:F')
-endfunction
-command Path execute ":call Path()"
-
-function! StatuslinePath()
-  let path = expand('%:F')
-  let pathSplit = split(path, '[/\\]')
-  let pathSplitLength = len(pathSplit)
-  if pathSplitLength == 0
-    return expand('%:t')
-  elseif pathSplitLength == 1
-    return expand('%:t')
-  elseif pathSplitLength == 2
-    let lastTwo = pathSplit[-2:-1]
-    return lastTwo[0] . '/' . lastTwo[1] . ' '
-  elseif pathSplitLength == 3
-    let lastThree = pathSplit[-3:-1]
-    return lastThree[0] . '/' . lastThree[1] . '/' . lastThree[2] . ' '
-  elseif pathSplitLength == 4
-    let lastFour = pathSplit[-4:-1]
-    return lastFour[0] . '/' . lastFour[1] . '/' . lastFour[2] . '/' . lastFour[3] . ' '
-  elseif pathSplitLength > 4
-    let lastFive = pathSplit[-5:-1]
-    return lastFive[0] . '/' . lastFive[1] . '/' . lastFive[2] . '/' . lastFive[3] . '/' . lastFive[4] . ' '
-  endif
-  return ''
-endfunction
 
 augroup SourceConfigAfterWrite
   autocmd!
@@ -323,122 +282,7 @@ augroup END
 " 	au WinLeave * setlocal nocursorline
 " augroup END
 
-function! CustomStatusLineForCtrlSf()
-  let buffer_name = bufname('%')
-  if buffer_name == '__CtrlSFPreview__'
-    setlocal statusline=\ \ Preview
-  elseif buffer_name == '__CtrlSF__'
-    setlocal statusline=\ \ Results:
-    setlocal statusline+=\ %{ctrlsf#utils#SectionX()}
-  elseif buffer_name == '[Plugins]'
-    setlocal statusline=%=
-  endif
-endfunction
-
-" Replace the current buffer with the given new file. That means a new file
-" will be open in a buffer while the old one will be deleted
-com! -nargs=1 -complete=file Breplace edit <args>| bdelete #
-
-" STATUSLINE "
-function! GetBranchName()
-  let branch = gitbranch#name()
-  if branch != ''
-    return ' ' . branch . '  '
-  endif
-  return ''
-endfunction
-
-function! FileName()
-  let name = expand('%:t')
-  if (strchars(name) == 0)
-    return ''
-  return expand('%:t') . '  '
-endfunction
-
-function! GetDelimeter()
-  return ' '
-endfunction
-
-function! GetErrors() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  if get(info, 'error', 0)
-    return 'e:' . info['error']  . ' '
-  endif
-  return ''
-endfunction
-
-function! GetWarnings() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  if get(info, 'warning', 0)
-    return 'w:' . info['warning'] . ' '
-  endif
-  return ''
-endfunction
-
-function! GetInformations() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  if get(info, 'information', 0)
-    return 'i:' . info['information'] . ' '
-  endif
-  return ''
-endfunction
-
-function! GetHints() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  if get(info, 'hint', 0)
-    return 'h:' . info['hint']
-  endif
-  return ''
-endfunction
-
-function! GetDiagnostics() abort
-  let info = GetErrors() . GetWarnings() . GetInformations() . GetHints()
-  if (strchars(info) == 0)
-    return ''
-  endif
-  return '  ' . info
-endfunction
-
-function! GetAnError() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  if get(info, 'error', 0)
-    return '[e] '
-  endif
-  return ''
-endfunction
-
-" NEOVIDE
-" set guifont=NorflinJB:h11
-" set guifont=NorflinCC:h12
-" set guifont=Hack:h11
-" set guifont=NorflinSF:h11
-" set linespace=0
-set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
-" set linespace=4
-" set guifont=Berkeley\ Mono:h12
-" set guifont=Menlo:h12
-" set guifont=MonoLisa:h11
-" set guifont=Iosevka\ Nerd\ Font\ Mono:h12
-set linespace=5
-" let g:neovide_profiler=v:true
-let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.95
-" let g:neovide_cursor_trail_length=0.01
-" let g:neovide_cursor_antialiasing=v:true
-let g:neovide_fullscreen=v:false
-let g:neovide_remember_window_size=v:false
-" let g:neovide_cursor_vfx_mode="ripple"
-" let g:neovide_cursor_vfx_opacity=40
-let g:neovide_cursor_animate_in_insert_mode = v:true
-let g:neovide_hide_mouse_when_typing = v:true
-set winblend=0
-set pumblend=0
-
+" LUA
 lua require('main')
 
 func! NvimGps() abort
@@ -446,32 +290,35 @@ func! NvimGps() abort
 		\ luaeval("require'nvim-gps'.get_location()") . ' ' : ''
 endf
 
-set statusline=
-set statusline+=%{GetBranchName()}
-set statusline+=%{StatuslinePath()} " file path
-set statusline+=%{&modified?'\[*]\ ':''}
-set statusline+=%= " right align
-set statusline+=%{GetAnError()}
-set statusline+=%{GetDelimeter()}
-set statusline+=%l:%-c\  " cursor position
-set statusline+=%{GetDelimeter()}
-set statusline+=%L%*
+" STATUSLINE
+set statusline=%=
+set statusline+=%l:%-c
+set statusline+=\ %L%*
 
-" set winbar=
-" set winbar+=%#StatusLine#
-" set winbar+=%{StatuslinePath()}
-" set winbar+=%{NvimGps()} " context
+" TABLINE
+set tabline=
+set tabline+=%f%h\ %m
 
+" COLORS
 colors stan
-
-" USE TO SAVE TIME (at least on missing hook deps): nmap <silent> gf <Plug>(coc-fix-current)
-
 hi! link SignColumn StatusLine
+hi! link TabLine StatusLine
+hi! link TabLineFill StatusLine
+hi! link TabLineSell StatusLine
 hi! link VertSplit Normal
 hi! link AerialLineNC Normal
 hi! link markdownError Normal
 hi! link WinBar StatusLine
 hi! link WinBarNC StatusLineNC
 
-" removed it from CocConfig only for rockstone code base
-"coc.preferences.formatOnSaveFiletypes": [ javascriptreact", typescript", typescriptreact", json", css", vue", prisma", go", rust" ],
+" NEOVIDE
+set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
+set linespace=5
+let g:neovide_cursor_animation_length=0.02
+let g:neovide_transparency=0.95
+let g:neovide_fullscreen=v:false
+let g:neovide_remember_window_size=v:false
+let g:neovide_cursor_animate_in_insert_mode = v:true
+let g:neovide_hide_mouse_when_typing = v:true
+set winblend=0
+set pumblend=0
