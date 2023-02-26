@@ -1,5 +1,5 @@
 local colors = {
-	bg0 = "#181818", -- background
+	bg0 = "#0b0b0b", -- background
 	bg1 = "#292929", -- cursorline
 	bg2 = "#36323b", -- float/menu bg (normalized)
 	grey = "#767676", -- comments
@@ -26,7 +26,7 @@ local groups = {
 	SpecialKey = { link = "white" },
 	Visual = { bg = colors.bg2, reverse = false },
 	VisualNOS = { link = "Visual" },
-	Search = { bg = "#8E700B", fg = colors.bg0 },
+	Search = { bg = "#6d8fa0", fg = colors.bg0 },
 	IncSearch = { link = "Search" },
 	CurSearch = { link = "Search" },
 	QuickFixLine = { fg = colors.bg0, bg = colors.white, bold = false },
