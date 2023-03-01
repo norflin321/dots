@@ -299,16 +299,7 @@ set tabline=
 set tabline+=%f%h\ %m
 
 " COLORS
-colors stan
-hi! link SignColumn StatusLine
-hi! link TabLine StatusLine
-hi! link TabLineFill StatusLine
-hi! link TabLineSell StatusLine
-hi! link VertSplit Normal
-hi! link AerialLineNC Normal
-hi! link markdownError Normal
-hi! link WinBar StatusLine
-hi! link WinBarNC StatusLineNC
+colors bipalettes
 
 " NEOVIDE
 set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
