@@ -39,6 +39,7 @@ set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set noexpandtab
 set background=dark
 set termguicolors
+set cursorline
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -61,6 +62,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
+	Plug 'EdenEast/nightfox.nvim'
 call plug#end()
 
 map q: :q
@@ -299,7 +301,7 @@ set tabline=
 set tabline+=%f%h\ %m
 
 " COLORS
-colors bipalettes
+colors nightfox
 
 " NEOVIDE
 set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
@@ -312,3 +314,5 @@ let g:neovide_cursor_animate_in_insert_mode = v:true
 let g:neovide_hide_mouse_when_typing = v:true
 set winblend=0
 set pumblend=0
+
+hi typescriptParens guifg=NONE guibg=NONE
