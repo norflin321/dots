@@ -39,7 +39,6 @@ set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set noexpandtab
 set background=dark
 set termguicolors
-set cursorline
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -62,7 +61,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'EdenEast/nightfox.nvim'
 call plug#end()
 
 map q: :q
@@ -229,7 +227,8 @@ endfunction
 
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#insert() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+" coc#pum#insert()
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -301,7 +300,7 @@ set tabline=
 set tabline+=%f%h\ %m
 
 " COLORS
-colors nightfox
+colors bicolors
 
 " NEOVIDE
 set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
