@@ -18,7 +18,7 @@ require("nvim-treesitter.configs").setup{
 	auto_install = true,
 	highlight = { enable = true }
 }
-require'colorizer'.setup()
+require("colorizer").setup()
 require("iswap").setup{
 	autoswap = true,
 	flash_style = false,
@@ -28,7 +28,7 @@ require("iswap").setup{
 
 local HEIGHT_RATIO = 0.8  -- You can change this
 local WIDTH_RATIO = 0.5   -- You can change this too
-require('nvim-tree').setup({
+require("nvim-tree").setup({
 	git = { enable = false },
 	view = {
 		float = {
@@ -64,7 +64,7 @@ require('nvim-tree').setup({
 	},
 })
 
-require('aerial').setup({
+require("aerial").setup({
 	close_on_select = true,
 	close_automatic_events = { unfocus, switch_buffer, unsupported },
 	highlight_on_hover = true,

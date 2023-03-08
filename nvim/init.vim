@@ -285,19 +285,15 @@ augroup END
 " LUA
 lua require('main')
 
-func! NvimGps() abort
-	return luaeval("require'nvim-gps'.is_available()") ?
-		\ luaeval("require'nvim-gps'.get_location()") . ' ' : ''
-endf
-
 " STATUSLINE
-set statusline=%=
-set statusline+=%l:%-c
+set statusline=
+set statusline+=%=%l:%-c
 set statusline+=\ %L%*
 
 " TABLINE
 set tabline=
-set tabline+=%f%h\ %m
+set tabline+=%f%h
+set tabline+=\ %m
 
 " COLORS
 colors bicolors
@@ -313,5 +309,3 @@ let g:neovide_cursor_animate_in_insert_mode = v:true
 let g:neovide_hide_mouse_when_typing = v:true
 set winblend=0
 set pumblend=0
-
-hi typescriptParens guifg=NONE guibg=NONE
