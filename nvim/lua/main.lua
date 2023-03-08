@@ -16,11 +16,8 @@ vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true}
 
 require("nvim-treesitter.configs").setup{
 	auto_install = true,
-	highlight = {
-		enable = true
-	}
+	highlight = { enable = true }
 }
-
 require'colorizer'.setup()
 require("iswap").setup{
 	autoswap = true,

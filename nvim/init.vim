@@ -306,7 +306,7 @@ colors bicolors
 set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
 set linespace=5
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.94
+let g:neovide_transparency=0.95
 let g:neovide_fullscreen=v:false
 let g:neovide_remember_window_size=v:false
 let g:neovide_cursor_animate_in_insert_mode = v:true
