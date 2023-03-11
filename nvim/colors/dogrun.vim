@@ -289,6 +289,3 @@ hi CocHintSign guifg=NONE ctermfg=NONE gui=bold cterm=bold guibg=NONE
 
 hi Normal guibg=#181c27
 hi! link SignColumn StatusLine
-
-hi typescriptParens guifg=NONE guibg=NONE
-" hi typescriptParens guifg=NONE ctermfg=NONE gui=NONE cterm=NONE guibg=NONE

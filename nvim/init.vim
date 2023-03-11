@@ -296,7 +296,10 @@ set tabline+=%f%h
 set tabline+=\ %m
 
 " COLORS
-colors bicolors
+" colors bicolors
+colorscheme codedark
+
+hi! link SignColumn StatusLineNC
 
 " NEOVIDE
 set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
