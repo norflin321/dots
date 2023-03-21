@@ -31,8 +31,6 @@ set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 set signcolumn=yes:1
-" set number
-" set signcolumn=number
 set showmode
 set splitbelow
 set splitright
@@ -187,7 +185,7 @@ nmap <silent> <c-t> :AerialToggle<CR>
 nmap <silent> S :ISwap<CR>
 vmap K <Nop>
 
-let g:go_highlight_trailing_whitespace_error=0
+" let g:go_highlight_trailing_whitespace_error=0
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
@@ -210,9 +208,27 @@ let g:AutoPairsMultilineClose=0
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 let g:gitblame_enabled = 0
 
-let g:cursorhold_updatetime = 100
+let g:cursorhold_updatetime = 200
 
 " COC "
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -223,28 +239,9 @@ nmap <silent> gf <Plug>(coc-fix-current)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> ga <Plug>(coc-codeaction)
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
-
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-" coc#pum#insert()
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
 " COMMANDS "
 function! CloseHiddenBuffers()
@@ -261,15 +258,8 @@ function! CloseHiddenBuffers()
 	endfor
 endfun
 
-function! SynStack()
-	if !exists("*synstack")
-		return
-	endif
-	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
 command BC execute ":call CloseHiddenBuffers()"
-command H execute ":call SynStack()"
+command H execute ":TSHighlightCapturesUnderCursor"
 command CF execute ":e $MYVIMRC"
 command SF execute ":CtrlSFToggle"
 command BL execute ":GitBlameToggle"
@@ -290,7 +280,7 @@ augroup END
 " 	au WinLeave * setlocal nocursorline
 " augroup END
 
-" LUA
+" LUA CONFIG
 lua require('main')
 
 " STATUSLINE
@@ -304,13 +294,11 @@ set tabline+=%f%h
 set tabline+=\ %m
 
 " COLORS
-" colors bicolors
 colors codedark
 
 hi! link SignColumn StatusLineNC
 
 " NEOVIDE
-" set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
 set guifont=JetbrainsMonoNL\ Nerd\ Font\ Mono:h11
 set linespace=5
 let g:neovide_cursor_animation_length=0.02
