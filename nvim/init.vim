@@ -159,8 +159,6 @@ map 4 <Nop>
 map 3 <Nop>
 map 2 <Nop>
 map 1 <Nop>
-map z <Nop>
-map zz <Nop>
 map 9 $
 map 8 %
 vmap < <gv
