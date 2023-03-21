@@ -31,6 +31,8 @@ set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 set signcolumn=yes:1
+" set number
+" set signcolumn=number
 set showmode
 set splitbelow
 set splitright
@@ -116,6 +118,12 @@ nmap <c-7> <NOP>
 vmap <c-7> <NOP>
 nmap <c-8> <NOP>
 vmap <c-8> <NOP>
+nnoremap <expr> n  'Nn'[v:searchforward]
+xnoremap <expr> n  'Nn'[v:searchforward]
+onoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
+xnoremap <expr> N  'nN'[v:searchforward]
+onoremap <expr> N  'nN'[v:searchforward]
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
@@ -216,7 +224,7 @@ nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> ga <Plug>(coc-codeaction)
 
 " Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
 
@@ -297,18 +305,19 @@ set tabline+=\ %m
 
 " COLORS
 " colors bicolors
-colorscheme codedark
+colors codedark
 
 hi! link SignColumn StatusLineNC
 
 " NEOVIDE
-set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
+" set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
+set guifont=JetbrainsMonoNL\ Nerd\ Font\ Mono:h11
 set linespace=5
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.95
+let g:neovide_transparency=0.92
 let g:neovide_fullscreen=v:false
 let g:neovide_remember_window_size=v:false
 let g:neovide_cursor_animate_in_insert_mode = v:true
-let g:neovide_hide_mouse_when_typing = v:true
+let g:neovide_hide_mouse_when_typing = v:false
 set winblend=0
 set pumblend=0

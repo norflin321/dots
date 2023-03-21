@@ -16,6 +16,8 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+export PATH=$PATH:/Applications/CocosCreator/Creator/3.5.2/CocosCreator.app/Contents/MacOS/
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
@@ -28,7 +30,7 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias vi="neovide --multigrid --geometry=125x64"
+alias vi="neovide --multigrid --geometry=130x58"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
