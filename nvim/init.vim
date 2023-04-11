@@ -35,7 +35,7 @@ set showmode
 set splitbelow
 set splitright
 set fillchars+=vert:\ 
-set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
+" set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set noexpandtab
 set background=dark
 set termguicolors
