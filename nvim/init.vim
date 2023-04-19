@@ -61,6 +61,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
+	Plug 'EdenEast/nightfox.nvim'
 call plug#end()
 
 map q: :q
@@ -294,7 +295,7 @@ set tabline+=%f%h
 set tabline+=\ %m
 
 " COLORS
-colors codedark
+colors nightfox
 
 hi! link SignColumn StatusLineNC
 
