@@ -281,12 +281,14 @@ augroup END
 " LUA CONFIG
 lua require('main')
 
-" STATUSLINE
+set tabline=
+set tabline+=%f%h
+set tabline+=\ %m
+
 set statusline=
 set statusline+=%=%l:%-c
 set statusline+=\ %L%*
 
-" TABLINE
 set tabline=
 set tabline+=%f%h
 set tabline+=\ %m

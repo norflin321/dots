@@ -42,14 +42,14 @@ local function changeLightness(hex, light)
 end
 
 -- palettes
-palette = { "#080808", "#1A1A1B" } -- black magic
+-- palette = { "#080808", "#1A1A1B" } -- black magic
 -- local palette = { "#18122B", "#393053" } -- "purpelin"
 -- local palette = { "#222831", "#393E46" } -- "feeling peace"
 -- local palette = { "#282828", "#3c3836" } -- "goovybox"
 -- local palette = { "#311D3F", "#88304E" } -- "pinc madness"
 -- local palette = { "#000000", "#282A3A" } -- "dark toronto"
 -- local palette = { "#040303", "#461111" } -- "bloody wolves fight"
--- local palette = { "#171717", "#444444" } -- "green fiesta"
+local palette = { "#171717", "#444444" } -- "green fiesta"
 -- local palette = { "#363062", "#4D4C7D" } -- "heaven"
 
 -- colors
