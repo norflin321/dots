@@ -285,7 +285,7 @@ set statusline=\ \ %f%h%{&modified?'\ *\':''}%=%-c:%l/\%L
 
 " COLORS
 colors codedark
-hi StatusLine guifg=#D4D4D4 guibg=#373737 cterm=bold
+hi StatusLine guifg=#D4D4D4 guibg=#373737 gui=bold cterm=bold
 hi StatusLineNC guifg=#D4D4D4 guibg=#373737 cterm=italic
 hi! link SignColumn StatusLine
 
@@ -297,7 +297,7 @@ let g:neovide_cursor_animation_length=0.02
 let g:neovide_transparency=0.94
 let g:neovide_fullscreen=v:false
 let g:neovide_remember_window_size=v:false
-let g:neovide_cursor_animate_in_insert_mode = v:true
-let g:neovide_hide_mouse_when_typing = v:false
+let g:neovide_cursor_animate_in_insert_mode=v:true
+let g:neovide_hide_mouse_when_typing=v:false
 set winblend=0
 set pumblend=0
