@@ -24,7 +24,7 @@ set scrolloff=5
 set sidescrolloff=10
 set mouse=a
 set autoread
-set showtabline=2
+set showtabline=0
 set hidden
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
@@ -61,7 +61,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'EdenEast/nightfox.nvim'
 call plug#end()
 
 map q: :q
@@ -282,28 +281,20 @@ augroup END
 " LUA CONFIG
 lua require('main')
 
-set tabline=
-set tabline+=%f%h
-set tabline+=\ %m
-
-set statusline=
-set statusline+=%=%l:%-c
-set statusline+=\ %L%*
-
-set tabline=
-set tabline+=%f%h
-set tabline+=\ %m
+set statusline=\ \ %f%h%{&modified?'\ *\':''}%=%-c:%l/\%L
 
 " COLORS
-colors nightfox
-
-hi! link SignColumn StatusLineNC
+colors codedark
+hi StatusLine guifg=#D4D4D4 guibg=#373737 cterm=bold
+hi StatusLineNC guifg=#D4D4D4 guibg=#373737 cterm=italic
+hi! link SignColumn StatusLine
 
 " NEOVIDE
-set guifont=JetbrainsMonoNL\ Nerd\ Font\ Mono:h11
+" set guifont=JetbrainsMonoNL\ Nerd\ Font\ Mono:h11
+set guifont=SFMono\ Nerd\ Font:h11
 set linespace=5
 let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.92
+let g:neovide_transparency=0.94
 let g:neovide_fullscreen=v:false
 let g:neovide_remember_window_size=v:false
 let g:neovide_cursor_animate_in_insert_mode = v:true
