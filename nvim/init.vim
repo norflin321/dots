@@ -61,6 +61,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'mizlan/iswap.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
+	Plug 'tiagovla/tokyodark.nvim'
+	Plug 'titanzero/zephyrium'
+	Plug 'lewis6991/gitsigns.nvim'
+	Plug 'windwp/windline.nvim'
 call plug#end()
 
 map q: :q
@@ -281,17 +285,22 @@ augroup END
 " LUA CONFIG
 lua require('main')
 
-set statusline=\ \ %f%h%{&modified?'\ *\':''}%=%-c:%l/\%L
 
-" COLORS
-colors codedark
-hi StatusLine guifg=#D4D4D4 guibg=#373737 gui=bold cterm=bold
-hi StatusLineNC guifg=#D4D4D4 guibg=#373737 cterm=italic
-hi! link SignColumn StatusLine
+" COLORS FUN
+colors zephyrium
+lua require('gitsigns').setup()
+lua require('wlsample.airline') 
+
+" COLORS FOCUS
+" colors codedark
+" set statusline=\ \ %f%h%{&modified?'\ *\':''}%=%-c:%l/\%L
+" hi StatusLine guifg=#D4D4D4 guibg=#373737 gui=bold cterm=bold
+" hi StatusLineNC guifg=#D4D4D4 guibg=#373737 cterm=italic
+" hi! link SignColumn StatusLine
 
 " NEOVIDE
-" set guifont=JetbrainsMonoNL\ Nerd\ Font\ Mono:h11
-set guifont=SFMono\ Nerd\ Font:h11
+set guifont=JetbrainsMonoNL\ Nerd\ Font\ Mono:h11
+" set guifont=SFMono\ Nerd\ Font:h11
 set linespace=5
 let g:neovide_cursor_animation_length=0.02
 let g:neovide_transparency=0.94
