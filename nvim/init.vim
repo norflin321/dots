@@ -285,7 +285,6 @@ augroup END
 " LUA CONFIG
 lua require('main')
 
-
 " COLORS FUN
 colors zephyrium
 lua require('gitsigns').setup()
