@@ -19,12 +19,6 @@ require("nvim-treesitter.configs").setup{
 	highlight = { enable = true }
 }
 require("colorizer").setup()
-require("iswap").setup{
-	autoswap = true,
-	flash_style = false,
-	grey = 'disable',
-	keys = '123456789',
-}
 
 local HEIGHT_RATIO = 0.8  -- You can change this
 local WIDTH_RATIO = 0.5   -- You can change this too
@@ -83,3 +77,5 @@ require("aerial").setup({
 		["<c-n>"] = "actions.close",
 	},
 })
+require('gitsigns').setup()
+require('wlsample.airline')

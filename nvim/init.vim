@@ -56,14 +56,12 @@ call plug#begin("~/.vim/plugged")
   Plug 'dyng/ctrlsf.vim'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'ziglang/zig.vim'
   Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457'}
   Plug 'stevearc/aerial.nvim'
-  Plug 'mizlan/iswap.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'tiagovla/tokyodark.nvim'
-	Plug 'titanzero/zephyrium'
 	Plug 'lewis6991/gitsigns.nvim'
+	Plug 'titanzero/zephyrium'
+	Plug 'lmburns/kimbox'
 	Plug 'windwp/windline.nvim'
 call plug#end()
 
@@ -184,7 +182,6 @@ nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
 nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 nmap <silent> <c-t> :AerialToggle<CR>
-nmap <silent> S :ISwap<CR>
 vmap K <Nop>
 
 " let g:go_highlight_trailing_whitespace_error=0
@@ -285,21 +282,20 @@ augroup END
 " LUA CONFIG
 lua require('main')
 
-" COLORS FUN
 colors zephyrium
-lua require('gitsigns').setup()
-lua require('wlsample.airline') 
-
-" COLORS FOCUS
+" colors kimbox
 " colors codedark
-" set statusline=\ \ %f%h%{&modified?'\ *\':''}%=%-c:%l/\%L
+
+" set statusline=%f%h%{&modified?'\ *\':''}%=%-c:%l/\%L
 " hi StatusLine guifg=#D4D4D4 guibg=#373737 gui=bold cterm=bold
 " hi StatusLineNC guifg=#D4D4D4 guibg=#373737 cterm=italic
-" hi! link SignColumn StatusLine
+" hi SignColumn guifg=None guibg=None
 
 " NEOVIDE
 set guifont=JetbrainsMonoNL\ Nerd\ Font\ Mono:h11
-" set guifont=SFMono\ Nerd\ Font:h11
+" set guifont=Berkeley\ Mono:h11
+" set guifont=PT\ Mono:h11
+" set guifont=Menlo:h11
 set linespace=5
 let g:neovide_cursor_animation_length=0.02
 let g:neovide_transparency=0.94
