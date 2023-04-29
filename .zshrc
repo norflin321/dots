@@ -32,7 +32,7 @@ alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias vi="neovide --multigrid --geometry=130x58"
 alias py="python"
-alias ca="conda activate ~/main/python-ml/env"
+alias ca="conda activate ~/main/ml/env"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
