@@ -77,5 +77,3 @@ require("aerial").setup({
 		["<c-n>"] = "actions.close",
 	},
 })
-require('gitsigns').setup()
-require('wlsample.airline')

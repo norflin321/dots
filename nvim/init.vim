@@ -14,14 +14,15 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-set showmatch
+set nosm
+set nosc
 set nolist
 set ignorecase
 set hlsearch
 set clipboard=unnamedplus
 set shellslash
 set scrolloff=5
-set sidescrolloff=10
+set sidescrolloff=5
 set mouse=a
 set autoread
 set showtabline=0
@@ -36,9 +37,12 @@ set splitbelow
 set splitright
 set fillchars+=vert:\ 
 " set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
+set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20
 set noexpandtab
 set background=dark
 set termguicolors
+set cmdheight=1
+set mousescroll=ver:1,hor:0
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -59,10 +63,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'kyazdani42/nvim-tree.lua', {'commit': '8b8d457'}
   Plug 'stevearc/aerial.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'lewis6991/gitsigns.nvim'
 	Plug 'titanzero/zephyrium'
-	Plug 'lmburns/kimbox'
-	Plug 'windwp/windline.nvim'
 call plug#end()
 
 map q: :q
@@ -282,26 +283,27 @@ augroup END
 " LUA CONFIG
 lua require('main')
 
-colors zephyrium
-" colors kimbox
-" colors codedark
+colors codedark
 
-" set statusline=%f%h%{&modified?'\ *\':''}%=%-c:%l/\%L
-" hi StatusLine guifg=#D4D4D4 guibg=#373737 gui=bold cterm=bold
-" hi StatusLineNC guifg=#D4D4D4 guibg=#373737 cterm=italic
+set statusline=%y%=%f\ %r%m%=%l\/%L
+hi StatusLine guifg=#D4D4D4 guibg=#373737 gui=bold cterm=bold
+hi StatusLineNC guifg=#D4D4D4 guibg=#373737 cterm=italic
 " hi SignColumn guifg=None guibg=None
+hi! link SignColumn StatusLine
 
 " NEOVIDE
-set guifont=JetbrainsMonoNL\ Nerd\ Font\ Mono:h11
-" set guifont=Berkeley\ Mono:h11
-" set guifont=PT\ Mono:h11
-" set guifont=Menlo:h11
-set linespace=5
+set guifont=JetBrains\ Mono:h11
+set linespace=4
+let g:neovide_scale_factor=1
 let g:neovide_cursor_animation_length=0.02
 let g:neovide_transparency=0.94
 let g:neovide_fullscreen=v:false
 let g:neovide_remember_window_size=v:false
 let g:neovide_cursor_animate_in_insert_mode=v:true
 let g:neovide_hide_mouse_when_typing=v:false
+let g:neovide_profiler=v:false
+let g:neovide_cursor_trail_size=0.6
+let g:neovide_cursor_antialiasing=v:false
+let g:neovide_cursor_animate_command_line=v:true
 set winblend=0
 set pumblend=0

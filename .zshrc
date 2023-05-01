@@ -30,7 +30,7 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias vi="neovide --multigrid --geometry=130x58"
+alias vi="neovide --multigrid --geometry=130x60"
 alias py="python"
 alias ca="conda activate ~/main/ml/env"
 
