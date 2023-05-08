@@ -33,6 +33,7 @@ alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias vi="neovide --multigrid --geometry=130x60"
 alias py="python"
 alias ca="conda activate ~/main/ml/env"
+alias notebook="jupyter-notebook --port 1234"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
