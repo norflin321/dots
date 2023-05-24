@@ -16,7 +16,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-export PATH=$PATH:/Applications/CocosCreator/Creator/3.5.2/CocosCreator.app/Contents/MacOS/
+export PATH=$PATH:/Applications/CocosCreator/Creator/3.6.3/CocosCreator.app/Contents/MacOS/
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -30,7 +30,7 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias vi="neovide --multigrid --geometry=130x60"
+alias vi="neovide --multigrid --geometry=130x65"
 alias py="python"
 alias ca="conda activate ~/main/ml/env"
 alias notebook="jupyter-notebook --port 1234"

@@ -64,7 +64,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
 	Plug 'maxmellon/vim-jsx-pretty'
 	Plug 'lewis6991/gitsigns.nvim'
-	Plug 'ThePrimeagen/harpoon'
 	Plug 'p00f/nvim-ts-rainbow'
 call plug#end()
 
@@ -239,7 +238,6 @@ nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> ga <Plug>(coc-codeaction)
-nmap <silent> <C-b> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
@@ -269,7 +267,7 @@ command PI execute ":PlugInstall"
 command PC execute ":PlugClean"
 command PU execute ":PlugUpdate"
 command CC execute ":CtrlPClearAllCaches"
-command B execute ":lua require('harpoon.mark').add_file()"
+command R execute ":edit!"
 
 augroup SourceConfigAfterWrite
   autocmd!
@@ -391,7 +389,9 @@ hi rainbowcol6 guifg=#CC76D1
 hi rainbowcol7 guifg=#F9D849
 
 " NEOVIDE
-set guifont=JetBrains\ Mono:h11
+" set guifont=JetBrains\ Mono:h11
+" set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
+set guifont=Input\ Mono:h10
 set linespace=5
 let g:neovide_scale_factor=1
 let g:neovide_cursor_animation_length=0.02
