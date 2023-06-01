@@ -7,16 +7,18 @@ fi
 
 export LANG=en_US.UTF-8
 
+export ANDROID_HOME=$HOME/Library/Android/sdk
+
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/main/neovide/
 
-export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:/Applications/CocosCreator/Creator/3.6.3/CocosCreator.app/Contents/MacOS/
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -30,10 +32,7 @@ alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
-alias vi="neovide --multigrid --geometry=130x65"
-alias py="python"
-alias ca="conda activate ~/main/ml/env"
-alias notebook="jupyter-notebook --port 1234"
+alias vi="nvim"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -53,10 +52,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# bun completions
-[ -s "/Users/norflin/.bun/_bun" ] && source "/Users/norflin/.bun/_bun"
-
-# bun
-export BUN_INSTALL="/Users/norflin/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"

@@ -32,7 +32,9 @@ set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 " set relativenumber
-set signcolumn=yes:1
+" set signcolumn=yes:1
+set number
+set signcolumn=number
 set showmode
 set splitbelow
 set splitright
@@ -281,7 +283,6 @@ augroup END
 " 	au WinLeave * setlocal nocursorline
 " augroup END
 
-" ---------------- Lua Config Start
 lua << EOF
 -- Allow clipboard copy paste in neovim
 if vim.g.neovide then
@@ -320,10 +321,10 @@ require("nvim-tree").setup({
 				return {
 					relative = 'editor',
 					border = 'rounded',
-					row = 6,
+					row = 3,
 					col = 40,
 					width = 50,
-					height = 35,
+					height = 45,
 				}
 			end,
 		},
@@ -366,11 +367,14 @@ require("aerial").setup({
 		["<c-n>"] = "actions.close",
 	},
 })
-require('gitsigns').setup()
+-- require('gitsigns').setup()
 EOF
-" ---------------- Lua Config End
 
 colors codedark
+
+hi Normal guibg=None
+hi SignColumn guibg=None
+hi LineNr guibg=None
 
 set statusline=%y%=%f\ %r%m%=%l\/%L
 hi StatusLine guifg=#D4D4D4 guibg=#373737 gui=bold cterm=bold
