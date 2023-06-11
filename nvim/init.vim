@@ -31,8 +31,6 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-" set relativenumber
-" set signcolumn=yes:1
 set number
 set signcolumn=number
 set showmode
@@ -376,11 +374,11 @@ hi Normal guibg=None
 hi SignColumn guibg=None
 hi LineNr guibg=None
 
-set statusline=%y%=%f\ %r%m%=%l\/%L
-hi StatusLine guifg=#D4D4D4 guibg=#373737 gui=bold cterm=bold
-hi StatusLineNC guifg=#D4D4D4 guibg=#373737 cterm=italic
+set statusline=%y%=%f\ %r%m%=%l:%c\/%L
+hi StatusLine guifg=#181c27 guibg=#D4BE9B gui=bold cterm=bold
+hi StatusLineNC guifg=#181c27 guibg=#D4BE9B cterm=italic
 hi SignColumn guifg=None guibg=None
-" hi! link SignColumn StatusLine
+hi! link SignColumn StatusLine
 hi GitGutterAdd guifg=#58a6ff guibg=None
 hi GitGutterChange guifg=#58a6ff guibg=None
 hi GitGutterDelete guifg=#da3633 guibg=None
