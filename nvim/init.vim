@@ -32,7 +32,7 @@ set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
 set number
-set signcolumn=number
+set signcolumn=yes:1
 set showmode
 set splitbelow
 set splitright
@@ -43,6 +43,7 @@ set background=dark
 set termguicolors
 set cmdheight=1
 set mousescroll=ver:1,hor:0
+" set cursorline
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -57,9 +58,12 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'dyng/ctrlsf.vim'
-  Plug 'ryanoasis/vim-devicons'
+	Plug 'nvim-tree/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
 	Plug 'zivyangll/git-blame.vim'
+	Plug 'lukas-reineke/indent-blankline.nvim'
+	Plug 'echasnovski/mini.indentscope'
+	Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 map q: :q
@@ -226,8 +230,8 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
-nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> ga <Plug>(coc-codeaction)
+nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
@@ -266,11 +270,12 @@ augroup END
 
 lua require('main')
 
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%)\ %P
+set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%)\ %P
 
 colors horizon
 hi LineNr guibg=None
 hi VertSplit guibg=None guifg=#818596
+" hi! link GitGutterChange GitGutterAdd
 " hi StatusLine guifg=#181c27 guibg=#D4BE9B gui=bold cterm=bold
 " hi StatusLineNC guifg=#181c27 guibg=#CCCCCC cterm=italic
 " hi! link SignColumn StatusLineNC

@@ -1,45 +1,70 @@
--- Allow clipboard copy paste in neovim
-if vim.g.neovide then
-	vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
-	vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-	vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-	vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-	vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-	vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
-end
-vim.g.neovide_input_use_logo = 1
-vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+-- require("nvim-treesitter.configs").setup({
+-- 	auto_install = true,
+-- 	highlight = {
+-- 		enable = true
+-- 	}
+-- })
 
--- require("colorizer").setup()
-
-require("nvim-tree").setup({
+local HEIGHT_RATIO = 0.9
+local WIDTH_RATIO = 0.5
+require('nvim-tree').setup({
 	git = { enable = false },
 	view = {
 		float = {
 			enable = true,
 			open_win_config = function()
+				local screen_w = vim.opt.columns:get()
+				local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+				local window_w = screen_w * WIDTH_RATIO
+				local window_h = screen_h * HEIGHT_RATIO
+				local window_w_int = math.floor(window_w)
+				local window_h_int = math.floor(window_h)
+				local center_x = (screen_w - window_w) / 2
+				local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
 				return {
-					relative = 'editor',
 					border = 'rounded',
-					row = 3,
-					col = 35,
-					width = 50,
-					height = 45,
+					relative = 'editor',
+					row = center_y,
+					col = center_x,
+					width = window_w_int,
+					height = window_h_int,
 				}
 			end,
 		},
 		width = function()
-			return math.floor(vim.opt.columns:get() * 0.5)
+			return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
 		end,
 		mappings = {
 			list = {
 				{ key = { "<ESC>", "q" }, action = "close" },
-				{ key = { "<c-h>"}, action = "split" },
 			}
 		}
 	},
 })
+
+require("indent_blankline").setup({
+	char = "▏",
+	filetype_exclude = {
+		"help",
+		"alpha",
+		"dashboard",
+		"neo-tree",
+		"Trouble",
+		"lazy",
+		"mason",
+		"notify",
+		"toggleterm",
+		"lazyterm",
+	},
+	show_trailing_blankline_indent = false,
+	show_current_context = false,
+})
+
+require('mini.indentscope').setup({
+	symbol = "▏",
+	options = {
+		try_as_border = true,
+	},
+})
+
+require('gitsigns').setup()
