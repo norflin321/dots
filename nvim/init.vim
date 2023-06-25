@@ -223,7 +223,7 @@ endfunction
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -275,7 +275,7 @@ lua require('main')
 colors horizon
 
 hi LineNr guibg=None
-hi VertSplit guibg=None
+hi VertSplit guibg=None guifg=#818596
 " hi StatusLine guifg=#181c27 guibg=#D4BE9B gui=bold cterm=bold
 " hi StatusLineNC guifg=#181c27 guibg=#CCCCCC cterm=italic
 " hi! link SignColumn StatusLineNC

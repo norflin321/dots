@@ -58,7 +58,7 @@ hi! PmenuThumb cterm=NONE gui=NONE ctermbg=233 guibg=#1c1e26
 hi! PreProc cterm=NONE gui=NONE ctermfg=150 guifg=#09f7a0
 hi! Question cterm=NONE gui=NONE ctermfg=150 guifg=#09f7a0
 hi! QuickFixLine cterm=NONE gui=NONE ctermbg=233 ctermfg=252 guibg=#272c42 guifg=#1c1e26
-hi! Search cterm=NONE gui=NONE ctermbg=216 ctermfg=234 guibg=#e4aa80 guifg=#392313
+hi! Search cterm=NONE gui=NONE ctermbg=216 ctermfg=234 guibg=#818596 guifg=#392313
 hi! SignColumn cterm=NONE gui=NONE ctermbg=233 ctermfg=242 guibg=#1c1e26 guifg=#6c6f93
 hi! Special cterm=NONE gui=NONE ctermfg=203 guifg=#e95678
 hi! SpellBad cterm=undercurl gui=undercurl ctermbg=95 ctermfg=252 guisp=#eC6a88
