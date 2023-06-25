@@ -31,7 +31,6 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-" set signcolumn=yes:1
 set number
 set signcolumn=number
 set showmode
@@ -55,13 +54,12 @@ call plug#begin("~/.vim/plugged")
 	Plug 'maxmellon/vim-jsx-pretty'
   Plug 'alvan/vim-closetag'
   Plug 'antoinemadec/FixCursorHold.nvim'
-  Plug 'drzel/vim-repo-edit'
-  Plug 'f-person/git-blame.nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'dyng/ctrlsf.vim'
   Plug 'ryanoasis/vim-devicons'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
+	Plug 'zivyangll/git-blame.vim'
 call plug#end()
 
 map q: :q
@@ -202,7 +200,6 @@ let g:ctrlsf_auto_preview = 1
 let g:AutoPairsMultilineClose=0
 
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
-let g:gitblame_enabled = 0
 
 let g:cursorhold_updatetime = 200
 
@@ -221,9 +218,6 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
-
-" Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -258,7 +252,7 @@ command BC execute ":call CloseHiddenBuffers()"
 command H execute ":TSHighlightCapturesUnderCursor"
 command CF execute ":e $MYVIMRC"
 command SF execute ":CtrlSFToggle"
-command BL execute ":GitBlameToggle"
+command BL execute ":call gitblame#echo()"
 command PI execute ":PlugInstall"
 command PC execute ":PlugClean"
 command PU execute ":PlugUpdate"
@@ -272,29 +266,11 @@ augroup END
 
 lua require('main')
 
-colors horizon
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%)\ %P
 
+colors horizon
 hi LineNr guibg=None
 hi VertSplit guibg=None guifg=#818596
 " hi StatusLine guifg=#181c27 guibg=#D4BE9B gui=bold cterm=bold
 " hi StatusLineNC guifg=#181c27 guibg=#CCCCCC cterm=italic
 " hi! link SignColumn StatusLineNC
-
-set statusline=%y%=%f\ %r%m%=%l:%c\/%L
-
-" NEOVIDE
-set guifont=JetBrains\ Mono:h11
-set linespace=5
-let g:neovide_scale_factor=1
-let g:neovide_cursor_animation_length=0.02
-let g:neovide_transparency=0.94
-let g:neovide_fullscreen=v:false
-let g:neovide_remember_window_size=v:false
-let g:neovide_cursor_animate_in_insert_mode=v:true
-let g:neovide_hide_mouse_when_typing=v:false
-let g:neovide_profiler=v:false
-let g:neovide_cursor_trail_size=0.6
-let g:neovide_cursor_antialiasing=v:true
-let g:neovide_cursor_animate_command_line=v:true
-set winblend=0
-set pumblend=0
