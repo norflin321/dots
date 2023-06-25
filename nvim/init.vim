@@ -31,6 +31,7 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
+" set signcolumn=yes:1
 set number
 set signcolumn=number
 set showmode
@@ -51,6 +52,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'tpope/vim-commentary'
   Plug 'itchyny/vim-gitbranch'
+	Plug 'maxmellon/vim-jsx-pretty'
   Plug 'alvan/vim-closetag'
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'drzel/vim-repo-edit'
@@ -58,13 +60,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
   Plug 'dyng/ctrlsf.vim'
-  Plug 'norcalli/nvim-colorizer.lua'
   Plug 'ryanoasis/vim-devicons'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
-  Plug 'stevearc/aerial.nvim'
-	Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'lewis6991/gitsigns.nvim'
-	Plug 'p00f/nvim-ts-rainbow'
 call plug#end()
 
 map q: :q
@@ -183,7 +180,6 @@ nnoremap D "_dd
 nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
 nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
-nmap <silent> <c-t> :AerialToggle<CR>
 vmap K <Nop>
 map p pV=
 
@@ -274,126 +270,20 @@ augroup SourceConfigAfterWrite
   autocmd BufWritePost init.vim source %
 augroup END
 
-" set cursorline
-" augroup CursorLine
-" 	au!
-" 	au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-" 	au WinLeave * setlocal nocursorline
-" augroup END
+lua require('main')
 
-lua << EOF
--- Allow clipboard copy paste in neovim
-if vim.g.neovide then
-	vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
-	vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-	vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-	vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-	vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-	vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
-end
-vim.g.neovide_input_use_logo = 1
-vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+colors horizon
 
-require("nvim-treesitter.configs").setup{
-	auto_install = true,
-	highlight = { enable = true },
-	rainbow = {
-    enable = true,
-    extended_mode = true
-  }
-}
-require("colorizer").setup()
-
-local HEIGHT_RATIO = 0.8  -- You can change this
-local WIDTH_RATIO = 0.5   -- You can change this too
-require("nvim-tree").setup({
-	git = { enable = false },
-	view = {
-		float = {
-			enable = true,
-			open_win_config = function()
-				return {
-					relative = 'editor',
-					border = 'rounded',
-					row = 3,
-					col = 40,
-					width = 50,
-					height = 45,
-				}
-			end,
-		},
-		width = function()
-			return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-		end,
-		mappings = {
-			list = {
-				{ key = { "<ESC>", "q" }, action = "close" },
-				{ key = { "<c-h>"}, action = "split" },
-			}
-		}
-	},
-})
-
-require("aerial").setup({
-	close_on_select = true,
-	close_automatic_events = { unfocus, switch_buffer, unsupported },
-	highlight_on_hover = true,
-	layout = {
-		width = 100,
-		min_width = 100,
-		default_direction = "float",
-		placement = "edge",
-	},
-	float = {
-		width = 100,
-		min_width = 100,
-		relative = "editor"
-	},
-	keymaps = {
-		["<CR>"] = "actions.jump",
-		["o"] = "actions.jump",
-		["p"] = "actions.scroll",
-		["j"] = "actions.down_and_scroll",
-		["k"] = "actions.up_and_scroll",
-		["<ESC>"] = "actions.close",
-		["<c-h>"] = "actions.close",
-		["<c-l>"] = "actions.close",
-		["<c-n>"] = "actions.close",
-	},
-})
--- require('gitsigns').setup()
-EOF
-
-colors codedark
-
-hi Normal guibg=None
-hi SignColumn guibg=None
 hi LineNr guibg=None
+hi VertSplit guibg=None
+" hi StatusLine guifg=#181c27 guibg=#D4BE9B gui=bold cterm=bold
+" hi StatusLineNC guifg=#181c27 guibg=#CCCCCC cterm=italic
+" hi! link SignColumn StatusLineNC
 
 set statusline=%y%=%f\ %r%m%=%l:%c\/%L
-hi StatusLine guifg=#181c27 guibg=#D4BE9B gui=bold cterm=bold
-hi StatusLineNC guifg=#181c27 guibg=#D4BE9B cterm=italic
-hi SignColumn guifg=None guibg=None
-hi! link SignColumn StatusLine
-hi GitGutterAdd guifg=#58a6ff guibg=None
-hi GitGutterChange guifg=#58a6ff guibg=None
-hi GitGutterDelete guifg=#da3633 guibg=None
-hi rainbowcol1 guifg=#F9D849
-hi rainbowcol2 guifg=#4A9DF8
-hi rainbowcol3 guifg=#CC76D1
-hi rainbowcol4 guifg=#F9D849
-hi rainbowcol5 guifg=#4A9DF8
-hi rainbowcol6 guifg=#CC76D1
-hi rainbowcol7 guifg=#F9D849
 
 " NEOVIDE
-" set guifont=JetBrains\ Mono:h11
-" set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
-set guifont=Input\ Mono:h10
+set guifont=JetBrains\ Mono:h11
 set linespace=5
 let g:neovide_scale_factor=1
 let g:neovide_cursor_animation_length=0.02
