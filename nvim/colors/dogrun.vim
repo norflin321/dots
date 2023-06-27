@@ -27,7 +27,7 @@ hi EndOfBuffer guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE gui=NONE cterm=N
 hi Comment guifg=#545c8c ctermfg=60 gui=NONE cterm=NONE
 hi Cursor guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
 hi CursorIM guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
-hi SignColumn guifg=#545c8c ctermfg=60 guibg=NONE ctermbg=NONE
+hi SignColumn guifg=#2a2c3f guibg=#2a2c3f
 hi ColorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorLine guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
@@ -210,7 +210,7 @@ hi fugitiveHeader guifg=#73c1a9 ctermfg=79 gui=bold cterm=bold
 hi ALEWarningSign guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi ALEInfoSign guifg=#82dabf ctermfg=115 gui=NONE cterm=NONE
 hi NullLsInfoBorder guifg=#545c8c ctermfg=60 guibg=#222433 ctermbg=235 gui=NONE cterm=NONE
-hi CocErrorSign guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold
+hi CocErrorSign guibg=#2a2c3f guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold
 hi CocWarningSign guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi CocInfoSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
 hi CocHintSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold

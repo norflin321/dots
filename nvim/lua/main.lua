@@ -58,30 +58,4 @@ require('nvim-tree').setup({
 	}
 })
 
-require("indent_blankline").setup({
-	char = "▏",
-	filetype_exclude = {
-		"help",
-		"alpha",
-		"dashboard",
-		"neo-tree",
-		"Trouble",
-		"lazy",
-		"mason",
-		"notify",
-		"toggleterm",
-		"lazyterm",
-	},
-	show_trailing_blankline_indent = false,
-	show_current_context = false,
-})
-
-require('mini.indentscope').setup({
-	symbol = "▏",
-	options = {
-		try_as_border = true,
-	},
-})
-
-require('gitsigns').setup()
 require'colorizer'.setup()

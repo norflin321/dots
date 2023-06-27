@@ -41,7 +41,6 @@ set background=dark
 set termguicolors
 set cmdheight=1
 set mousescroll=ver:1,hor:0
-set number
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -59,10 +58,7 @@ call plug#begin("~/.vim/plugged")
 	Plug 'nvim-tree/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
 	Plug 'zivyangll/git-blame.vim'
-	Plug 'lukas-reineke/indent-blankline.nvim'
-	Plug 'echasnovski/mini.indentscope'
 	Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
-	Plug 'lewis6991/gitsigns.nvim'
 	Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
@@ -276,6 +272,6 @@ augroup END
 
 lua require('main')
 
-set statusline=%<%F\ %h%m%r%=%l,%c
+set statusline=%<%F\ %h%m%r%=%-8.(%l,%c%)\ %L
 
 colors dogrun
