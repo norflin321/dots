@@ -31,19 +31,17 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-set number
+set nonumber
 set signcolumn=yes:1
 set showmode
 set splitbelow
 set splitright
-set fillchars+=vert:\ " set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
-set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20
 set noexpandtab
 set background=dark
 set termguicolors
 set cmdheight=1
 set mousescroll=ver:1,hor:0
-" set cursorline
+set number
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -63,7 +61,9 @@ call plug#begin("~/.vim/plugged")
 	Plug 'zivyangll/git-blame.vim'
 	Plug 'lukas-reineke/indent-blankline.nvim'
 	Plug 'echasnovski/mini.indentscope'
+	Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 	Plug 'lewis6991/gitsigns.nvim'
+	Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 map q: :q
@@ -207,6 +207,12 @@ let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 
 let g:cursorhold_updatetime = 200
 
+let g:scrollview_column = 1
+let g:scrollview_winblend = 50
+let g:scrollview_signs_on_startup = ['']
+let g:scrollview_search_symbol = '='
+let g:scrollview_signs_column = 0
+
 " COC "
 function! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
@@ -270,12 +276,6 @@ augroup END
 
 lua require('main')
 
-set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%)\ %P
+set statusline=%<%F\ %h%m%r%=%l,%c
 
-colors horizon
-hi LineNr guibg=None
-hi VertSplit guibg=None guifg=#818596
-" hi! link GitGutterChange GitGutterAdd
-" hi StatusLine guifg=#181c27 guibg=#D4BE9B gui=bold cterm=bold
-" hi StatusLineNC guifg=#181c27 guibg=#CCCCCC cterm=italic
-" hi! link SignColumn StatusLineNC
+colors dogrun

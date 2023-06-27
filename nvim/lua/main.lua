@@ -1,14 +1,14 @@
--- require("nvim-treesitter.configs").setup({
--- 	auto_install = true,
--- 	highlight = {
--- 		enable = true
--- 	}
--- })
+require("nvim-treesitter.configs").setup({
+	auto_install = true,
+	highlight = {
+		enable = true
+	}
+})
 
 local HEIGHT_RATIO = 0.9
 local WIDTH_RATIO = 0.5
 require('nvim-tree').setup({
-	git = { enable = false },
+	git = { enable = true },
 	view = {
 		float = {
 			enable = true,
@@ -40,6 +40,22 @@ require('nvim-tree').setup({
 			}
 		}
 	},
+	renderer = {
+		icons = {
+			git_placement = "after",
+			glyphs = {
+				git = {
+					unstaged = "M",
+					staged = "M",
+					renamed = "U",
+					unmerged = "?",
+					untracked = "U",
+					deleted = "D",
+					ignored = "I",
+				},
+			}
+		}
+	}
 })
 
 require("indent_blankline").setup({
@@ -68,3 +84,4 @@ require('mini.indentscope').setup({
 })
 
 require('gitsigns').setup()
+require'colorizer'.setup()

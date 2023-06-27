@@ -23,11 +23,11 @@ let g:colors_name = 'horizon'
 
 hi! ColorColumn cterm=NONE gui=NONE ctermbg=235 guibg=#2e303e
 hi! CursorColumn cterm=NONE gui=NONE ctermbg=235 guibg=#2e303e
-hi! CursorLine cterm=NONE gui=NONE ctermbg=235 guibg=#2e303e
+hi! CursorLine cterm=NONE gui=NONE ctermbg=235 guibg=#2e303e guifg=NONE
+hi! CursorLineNr cterm=NONE gui=NONE ctermbg=235 ctermfg=251 guibg=NONE guifg=NONE
 hi! Comment cterm=italic gui=italic ctermfg=242 guifg=#6c6f93
 hi! Constant cterm=NONE gui=NONE ctermfg=209 guifg=#f09483
 hi! Cursor cterm=NONE gui=NONE ctermbg=242 ctermfg=242 guibg=#6c6f93 guifg=#6c6f93
-hi! CursorLineNr cterm=NONE gui=NONE ctermbg=235 ctermfg=251 guibg=#2a3158 guifg=#cdd1e6
 hi! Delimiter cterm=NONE gui=NONE ctermfg=44 guifg=#21bfc2
 hi! DiffAdd cterm=NONE gui=NONE ctermbg=238 ctermfg=7 guibg=#45493e guifg=#c0c5b9
 hi! DiffChange cterm=NONE gui=NONE ctermbg=23 ctermfg=241 guibg=#384851 guifg=#b3c3cc
