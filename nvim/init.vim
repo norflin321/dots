@@ -31,8 +31,8 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-set nonumber
-set signcolumn=yes:1
+set number
+set signcolumn=number
 set showmode
 set splitbelow
 set splitright
@@ -58,8 +58,10 @@ call plug#begin("~/.vim/plugged")
 	Plug 'nvim-tree/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
 	Plug 'zivyangll/git-blame.vim'
-	Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 	Plug 'norcalli/nvim-colorizer.lua'
+	Plug 'lewis6991/satellite.nvim'
+	Plug 'norflin321/nvim-gps'
+	Plug 'norflin321/aerial.nvim'
 call plug#end()
 
 map q: :q
@@ -180,6 +182,7 @@ nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 vmap K <Nop>
 map p pV=
+nmap <silent> <c-t> :AerialToggle<CR>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
@@ -203,25 +206,19 @@ let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 
 let g:cursorhold_updatetime = 200
 
-let g:scrollview_column = 1
-let g:scrollview_winblend = 50
-let g:scrollview_signs_on_startup = ['']
-let g:scrollview_search_symbol = '='
-let g:scrollview_signs_column = 0
-
 " COC "
-function! s:show_documentation()
+func! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
 		execute 'h '.expand('<cword>')
 	else
 		call CocAction('doHover')
 	endif
-endfunction
+endfunc
 
-function! s:check_back_space() abort
+func! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+endfunc
 
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
 
@@ -239,8 +236,8 @@ inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>c
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
-" COMMANDS "
-function! CloseHiddenBuffers()
+" CLEAR HIDDEN BUFFERS "
+func! CloseHiddenBuffers()
 	let visible = {}
 	for t in range(1, tabpagenr('$'))
 		for b in tabpagebuflist(t)
@@ -254,6 +251,28 @@ function! CloseHiddenBuffers()
 	endfor
 endfun
 
+" FILE PATH "
+func! FilePath()
+  let path = expand('%:F')
+  let pathSplit = split(path, '[/\\]')
+	let length = len(pathSplit) - 1
+	let before = length > 3 ? ".../" : ""
+	if length < 0
+		return path
+	endif
+	let ret = length < 3 ? path : join(pathSplit[length-2:length], "/")
+	return before . ret . " "
+endfunc
+
+" FILE CONTEXT "
+lua require("nvim-gps").setup({ depth = 0 })
+func! GetContext() abort
+	return luaeval("require'nvim-gps'.is_available()") ? "> " . luaeval("require'nvim-gps'.get_location()") : ""
+endf
+
+lua require('main')
+
+" COMMANDS "
 command BC execute ":call CloseHiddenBuffers()"
 command H execute ":TSHighlightCapturesUnderCursor"
 command CF execute ":e $MYVIMRC"
@@ -270,8 +289,6 @@ augroup SourceConfigAfterWrite
   autocmd BufWritePost init.vim source %
 augroup END
 
-lua require('main')
-
-set statusline=%<%F\ %h%m%r%=%-8.(%l,%c%)\ %L
+set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-8.(%l,%c%)\ %L
 
 colors dogrun

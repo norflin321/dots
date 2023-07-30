@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export LANG=en_US.UTF-8
+export GIT_EDITOR=nvim
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 
@@ -33,6 +34,7 @@ alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias vi="nvim"
+alias studio="open -a /Applications/Android\ Studio.app"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
