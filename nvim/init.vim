@@ -31,8 +31,6 @@ set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
 set laststatus=2
-set number
-set signcolumn=number
 set showmode
 set splitbelow
 set splitright
@@ -62,6 +60,8 @@ call plug#begin("~/.vim/plugged")
 	Plug 'lewis6991/satellite.nvim'
 	Plug 'norflin321/nvim-gps'
 	Plug 'norflin321/aerial.nvim'
+	Plug 'HiPhish/rainbow-delimiters.nvim'
+	Plug 'kvrohit/substrata.nvim'
 call plug#end()
 
 map q: :q
@@ -206,6 +206,12 @@ let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 
 let g:cursorhold_updatetime = 200
 
+let g:rainbow_delimiters = {
+    \ 'strategy': { '': rainbow_delimiters#strategy.global, 'vim': rainbow_delimiters#strategy.local },
+    \ 'query': { '': 'rainbow-delimiters', 'lua': 'rainbow-blocks' },
+		\ 'highlight': ['RainbowDelimiterYellow', 'RainbowDelimiterBlue', 'RainbowDelimiterGreen'],
+\ }
+
 " COC "
 func! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
@@ -291,4 +297,7 @@ augroup END
 
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-8.(%l,%c%)\ %L
 
-colors dogrun
+colors substrata
+set nonumber
+set signcolumn=yes:1
+hi! link SignColumn StatusLine
