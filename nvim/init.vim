@@ -297,7 +297,7 @@ augroup END
 
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-8.(%l,%c%)\ %L
 
-colors substrata
+colors dogrun
 set nonumber
 set signcolumn=yes:1
 hi! link SignColumn StatusLine
