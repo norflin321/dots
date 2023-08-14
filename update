@@ -3,6 +3,8 @@
 cp -R ~/.zshrc .
 cp -R ~/.config/kitty .
 cp -R ~/.config/nvim .
+rm -R ./nvim/usage-data.json
+
 git add .
 git commit -m "update"
 git push
