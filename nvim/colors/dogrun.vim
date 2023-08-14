@@ -22,7 +22,7 @@ hi Normal guifg=#9ea3c0 ctermfg=146 guibg=#222433 ctermbg=235
 hi Delimiter guifg=#8085a6 ctermfg=103
 hi NonText guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE
 hi VertSplit guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi LineNr guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi LineNr guifg=#4b4e6d ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi EndOfBuffer guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Comment guifg=#545c8c ctermfg=60 gui=NONE cterm=NONE
 hi Cursor guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
