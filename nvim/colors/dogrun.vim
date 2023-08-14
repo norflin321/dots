@@ -83,12 +83,12 @@ hi DiffChange guibg=#26463b ctermbg=23 gui=bold cterm=bold
 hi DiffDelete guifg=#d2d9ff ctermfg=189 guibg=#5e3e5e ctermbg=96 gui=bold cterm=bold
 hi DiffText guibg=#28795c ctermbg=29 gui=NONE cterm=NONE
 hi QuickFixLine guifg=#9ea3c0 ctermfg=146 guibg=#363e7f ctermbg=61
-hi StatusLine guifg=#757aa5 ctermfg=103 guibg=#2a2c3f ctermbg=236 gui=bold cterm=bold
-hi StatusLineTerm guifg=#757aa5 ctermfg=103 guibg=#2a2c3f ctermbg=236 gui=bold cterm=bold
+hi StatusLine guifg=#757aa5 ctermfg=103 guibg=#33364d ctermbg=236 gui=bold cterm=bold
+hi StatusLineTerm guifg=#757aa5 ctermfg=103 guibg=#33364d ctermbg=236 gui=bold cterm=bold
 hi StatusLineNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a ctermbg=235 gui=NONE cterm=NONE
 hi StatusLineTermNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a ctermbg=235 gui=NONE cterm=NONE
-hi TabLine guifg=#757aa5 ctermfg=103 guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
-hi TabLineFill guifg=#757aa5 ctermfg=103 guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
+hi TabLine guifg=#757aa5 ctermfg=103 guibg=#33364d ctermbg=236 gui=NONE cterm=NONE
+hi TabLineFill guifg=#757aa5 ctermfg=103 guibg=#33364d ctermbg=236 gui=NONE cterm=NONE
 hi TabLineSel guifg=#222433 ctermfg=235 guibg=#929be5 ctermbg=104 gui=bold cterm=bold
 hi qfFileName guifg=#73c1a9 ctermfg=79
 hi qfLineNr guifg=#545c8c ctermfg=60

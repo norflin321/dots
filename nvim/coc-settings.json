@@ -1,6 +1,17 @@
 {
-  "list.height": 30,
-  "list.maxPreviewHeight": 25,
+  "list.height": 5,
+  "list.maxPreviewHeight": 37,
+	"list.floatPreview": true,
+	"list.alignColumns": true,
+
+	"coc.preferences.enableMessageDialog": true,
+	"coc.preferences.renameFillCurrent": false,
+	"coc.preferences.maxFileSize": "100MB",
+	"diagnostic.floatConfig": {},
+	"diagnostic.refreshOnInsertMode": true,
+	"suggest.floatConfig": {},
+	"notification.timeout": 1000,
+
   "suggest.noselect": false,
   "suggest.defaultSortMethod": "alphabetical",
   "suggest.autoTrigger": "none",
@@ -25,12 +36,9 @@
 	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
 	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
 
-  "rust-analyzer.inlayHints.enable": false,
 	"rust-analyzer.inlayHints.bindingModeHints.enable": false,
 	"rust-analyzer.inlayHints.chainingHints.enable": false,
 	"rust-analyzer.inlayHints.closingBraceHints.enable": false,
-	"rust-analyzer.inlayHints.closureReturnTypeHints.enable": false,
-	"rust-analyzer.inlayHints.lifetimeElisionHints.enable": false,
 	"rust-analyzer.inlayHints.typeHints.enable": false,
 	"rust-analyzer.inlayHints.parameterHints.enable": false,
 
@@ -38,8 +46,6 @@
 	"pyright.inlayHints.variableTypes": false,
 	"python.analysis.typeCheckingMode": "off",
 
-	"coc.preferences.formatOnSaveFiletypes": ["vue", "prisma", "go", "rust"],
-	"languageserver.disableSnippetCompletion": true,
 	"dialog.floatBorderHighlight": "CocFloatingBorder",
 	"typescript.preferences.importModuleSpecifier": "non-relative"
 }

@@ -61,7 +61,6 @@ call plug#begin("~/.vim/plugged")
 	Plug 'norflin321/nvim-gps'
 	Plug 'norflin321/aerial.nvim'
 	Plug 'HiPhish/rainbow-delimiters.nvim'
-	Plug 'kvrohit/substrata.nvim'
 call plug#end()
 
 map q: :q
@@ -117,12 +116,12 @@ nmap <c-7> <NOP>
 vmap <c-7> <NOP>
 nmap <c-8> <NOP>
 vmap <c-8> <NOP>
-nnoremap <expr> n  'Nn'[v:searchforward]
-xnoremap <expr> n  'Nn'[v:searchforward]
-onoremap <expr> n  'Nn'[v:searchforward]
-nnoremap <expr> N  'nN'[v:searchforward]
-xnoremap <expr> N  'nN'[v:searchforward]
-onoremap <expr> N  'nN'[v:searchforward]
+nnoremap <expr> n 'Nn'[v:searchforward]
+xnoremap <expr> n 'Nn'[v:searchforward]
+onoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
+xnoremap <expr> N 'nN'[v:searchforward]
+onoremap <expr> N 'nN'[v:searchforward]
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
@@ -168,9 +167,6 @@ vmap <silent> H :left<CR>gv
 vmap <silent> L :right<CR>gv
 vmap <silent> <C-c> gc
 nmap <silent> <C-c> gcc
-vmap <silent> <C-f> <Plug>CtrlSFVwordExec
-nmap <C-f> <Plug>CtrlSFPrompt
-cmap <C-f> CtrlSF
 nnoremap J mzJ`z
 cnoremap <c-v> <c-r>+
 map <CR> <Nop>
@@ -197,8 +193,9 @@ let g:ctrlsf_auto_close = {'compact': 1}
 let g:ctrlsf_backend = 'rg'
 let g:ctrlsf_ignore_dir = ['node_modules', 'dist']
 let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
-let g:ctrlsf_regex_pattern = 1
+let g:ctrlsf_regex_pattern = 0
 let g:ctrlsf_auto_preview = 1
+let g:ctrlsf_compact_winsize = '05'
 
 let g:AutoPairsMultilineClose=0
 
@@ -212,10 +209,9 @@ let g:rainbow_delimiters = {
 		\ 'highlight': ['RainbowDelimiterYellow', 'RainbowDelimiterBlue', 'RainbowDelimiterGreen'],
 \ }
 
-" COC "
 func! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
+		exe 'h '.expand('<cword>')
 	else
 		call CocAction('doHover')
 	endif
@@ -224,6 +220,17 @@ endfunc
 func! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
+endfunc
+
+func! s:search()
+  " let curline = getline('.')
+  call inputsave()
+	let pattern = input('CtrlSF: ')
+  call inputrestore()
+	redraw
+	if pattern != ''
+		exe 'CtrlSF ' . string(pattern)
+	endif
 endfunc
 
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
@@ -237,12 +244,14 @@ nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
 vmap <silent> ga <Plug>(coc-codeaction)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
+vmap <silent> f <Plug>(coc-format-selected)
+vmap <silent> <C-f> <Plug>CtrlSFVwordExec
+nmap <C-f> :call <SID>search()<CR>
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
-" CLEAR HIDDEN BUFFERS "
 func! CloseHiddenBuffers()
 	let visible = {}
 	for t in range(1, tabpagenr('$'))
@@ -257,7 +266,6 @@ func! CloseHiddenBuffers()
 	endfor
 endfun
 
-" FILE PATH "
 func! FilePath()
   let path = expand('%:F')
   let pathSplit = split(path, '[/\\]')
@@ -270,7 +278,6 @@ func! FilePath()
 	return before . ret . " "
 endfunc
 
-" FILE CONTEXT "
 lua require("nvim-gps").setup({ depth = 0 })
 func! GetContext() abort
 	return luaeval("require'nvim-gps'.is_available()") ? "> " . luaeval("require'nvim-gps'.get_location()") : ""
@@ -278,21 +285,20 @@ endf
 
 lua require('main')
 
-" COMMANDS "
-command BC execute ":call CloseHiddenBuffers()"
-command H execute ":TSHighlightCapturesUnderCursor"
-command CF execute ":e $MYVIMRC"
-command SF execute ":CtrlSFToggle"
-command BL execute ":call gitblame#echo()"
-command PI execute ":PlugInstall"
-command PC execute ":PlugClean"
-command PU execute ":PlugUpdate"
-command CC execute ":CtrlPClearAllCaches"
-command R execute ":edit!"
+command BC exe ":call CloseHiddenBuffers()"
+command H exe ":TSHighlightCapturesUnderCursor"
+command CF exe ":e $MYVIMRC"
+command SF exe ":CtrlSFToggle"
+command BL exe ":call gitblame#echo()"
+command PI exe ":PlugInstall"
+command PC exe ":PlugClean"
+command PU exe ":PlugUpdate"
+command CC exe ":CtrlPClearAllCaches"
+command R exe ":edit!"
 
 augroup SourceConfigAfterWrite
-  autocmd!
-  autocmd BufWritePost init.vim source %
+	autocmd!
+	autocmd BufWritePost init.vim source %
 augroup END
 
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-8.(%l,%c%)\ %L
