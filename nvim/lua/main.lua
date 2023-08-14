@@ -109,3 +109,12 @@ require('aerial').setup({
 		["<c-n>"] = "actions.close",
 	},
 })
+
+require('usage-tracker').setup({
+	keep_eventlog_days = 14,
+	cleanup_freq_days = 14,
+	event_wait_period_in_sec = 5,
+	inactivity_threshold_in_min = 10,
+	inactivity_check_freq_in_sec = 60,
+	verbose = 0,
+})

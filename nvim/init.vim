@@ -61,6 +61,7 @@ call plug#begin("~/.vim/plugged")
 	Plug 'norflin321/nvim-gps'
 	Plug 'norflin321/aerial.nvim'
 	Plug 'HiPhish/rainbow-delimiters.nvim'
+	Plug 'gaborvecsei/usage-tracker.nvim'
 call plug#end()
 
 map q: :q
