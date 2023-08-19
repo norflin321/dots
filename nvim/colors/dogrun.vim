@@ -1,9 +1,3 @@
-" dogrun: Take a sweet dog with you.
-"
-" Author: wadackel
-" License: MIT
-"   Copyright (c) 2020 wadackel
-
 if &background !=# 'dark'
   set background=dark
 endif

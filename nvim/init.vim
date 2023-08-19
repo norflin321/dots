@@ -29,7 +29,7 @@ set showtabline=0
 set hidden
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
-set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**
+set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**,.DS_Store
 set laststatus=2
 set showmode
 set splitbelow
@@ -60,7 +60,6 @@ call plug#begin("~/.vim/plugged")
 	Plug 'lewis6991/satellite.nvim'
 	Plug 'norflin321/nvim-gps'
 	Plug 'norflin321/aerial.nvim'
-	Plug 'HiPhish/rainbow-delimiters.nvim'
 	Plug 'gaborvecsei/usage-tracker.nvim'
 call plug#end()
 
@@ -204,12 +203,6 @@ let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 
 let g:cursorhold_updatetime = 200
 
-let g:rainbow_delimiters = {
-    \ 'strategy': { '': rainbow_delimiters#strategy.global, 'vim': rainbow_delimiters#strategy.local },
-    \ 'query': { '': 'rainbow-delimiters', 'lua': 'rainbow-blocks' },
-		\ 'highlight': ['RainbowDelimiterYellow', 'RainbowDelimiterBlue', 'RainbowDelimiterGreen'],
-\ }
-
 func! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
 		exe 'h '.expand('<cword>')
@@ -308,3 +301,19 @@ colors dogrun
 set nonumber
 set signcolumn=yes:1
 hi! link SignColumn StatusLine
+
+" NEOVIDE
+set guifont=JetBrains\ Mono:h12.5:#e-subpixelantialias
+set linespace=8
+let g:neovide_scale_factor=1
+let g:neovide_cursor_animation_length=0.02
+" let g:neovide_transparency=0.94
+let g:neovide_cursor_animate_in_insert_mode=v:true
+let g:neovide_hide_mouse_when_typing=v:true
+let g:neovide_profiler=v:false
+let g:neovide_cursor_trail_size=0.6
+let g:neovide_cursor_antialiasing=v:true
+let g:neovide_cursor_animate_command_line=v:false
+let g:neovide_scroll_animation_length = 0.4
+set winblend=0
+set pumblend=0

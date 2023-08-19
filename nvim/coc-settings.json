@@ -1,6 +1,6 @@
 {
   "list.height": 5,
-  "list.maxPreviewHeight": 37,
+  "list.maxPreviewHeight": 35,
 	"list.floatPreview": true,
 	"list.alignColumns": true,
 
@@ -47,5 +47,6 @@
 	"python.analysis.typeCheckingMode": "off",
 
 	"dialog.floatBorderHighlight": "CocFloatingBorder",
-	"typescript.preferences.importModuleSpecifier": "non-relative"
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"prettier.printWidth": 180,
 }

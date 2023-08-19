@@ -27,6 +27,7 @@ function floatWinConfig(width_ration, height_ration)
 	end
 end
 
+-- @todo: how to ignore .DS_Store files from showing?
 require('nvim-tree').setup({
 	git = { enable = false },
 	view = {

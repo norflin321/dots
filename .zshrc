@@ -11,7 +11,7 @@ export GIT_EDITOR=nvim
 export ANDROID_HOME=$HOME/Library/Android/sdk
 
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/main/neovide/
+export PATH=$PATH:/Applications/love.app/Contents/MacOS/
 
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -34,6 +34,7 @@ alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias vi="nvim"
+# alias vi="/Users/norflin/main/neovide/bin/neovide --geometry=142x48 --multigrid"
 alias studio="open -a /Applications/Android\ Studio.app"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
