@@ -307,7 +307,6 @@ set guifont=JetBrains\ Mono:h12.5:#e-subpixelantialias
 set linespace=8
 let g:neovide_scale_factor=1
 let g:neovide_cursor_animation_length=0.02
-" let g:neovide_transparency=0.94
 let g:neovide_cursor_animate_in_insert_mode=v:true
 let g:neovide_hide_mouse_when_typing=v:true
 let g:neovide_profiler=v:false
