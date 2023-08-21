@@ -65,13 +65,14 @@ require('nvim-tree').setup({
 require'colorizer'.setup()
 require('satellite').setup({
 	current_only = false,
-	winblend = 50,
+	winblend = 0,
 	handlers = {
 		cursor = { enable = false },
 		marks = { enable = false },
 		diagnostic = { enable = false },
-		gitsigns = { enable = false }
-	}
+		gitsigns = { enable = false },
+		search = { enable = true },
+	},
 })
 
 require('aerial').setup({
@@ -109,13 +110,4 @@ require('aerial').setup({
 		["<c-l>"] = "actions.close",
 		["<c-n>"] = "actions.close",
 	},
-})
-
-require('usage-tracker').setup({
-	keep_eventlog_days = 14,
-	cleanup_freq_days = 14,
-	event_wait_period_in_sec = 5,
-	inactivity_threshold_in_min = 10,
-	inactivity_check_freq_in_sec = 60,
-	verbose = 0,
 })

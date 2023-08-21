@@ -34,7 +34,6 @@ alias rm="rm -rf"
 alias cp="cp -R"
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias vi="nvim"
-# alias vi="/Users/norflin/main/neovide/bin/neovide --geometry=142x48 --multigrid"
 alias studio="open -a /Applications/Android\ Studio.app"
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme

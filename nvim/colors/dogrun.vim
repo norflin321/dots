@@ -259,6 +259,7 @@ hi EasyMotionIncCursor guifg=#9ea3c0 ctermfg=146 guibg=#222433 ctermbg=235
 hi FidgetTitle guifg=#73c1a9 ctermfg=79 gui=bold cterm=bold
 hi FidgetTask guifg=#545c8c ctermfg=60
 hi AerialLine guifg=NONE guibg=#2a2c3f
+highlight SatelliteBar guibg=#33364d
 
 if has("nvim")
   let g:terminal_color_0 = '#111219'

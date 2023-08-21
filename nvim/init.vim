@@ -60,7 +60,6 @@ call plug#begin("~/.vim/plugged")
 	Plug 'lewis6991/satellite.nvim'
 	Plug 'norflin321/nvim-gps'
 	Plug 'norflin321/aerial.nvim'
-	Plug 'gaborvecsei/usage-tracker.nvim'
 call plug#end()
 
 map q: :q
@@ -301,18 +300,3 @@ colors dogrun
 set nonumber
 set signcolumn=yes:1
 hi! link SignColumn StatusLine
-
-" NEOVIDE
-set guifont=JetBrains\ Mono:h12.5:#e-subpixelantialias
-set linespace=8
-let g:neovide_scale_factor=1
-let g:neovide_cursor_animation_length=0.02
-let g:neovide_cursor_animate_in_insert_mode=v:true
-let g:neovide_hide_mouse_when_typing=v:true
-let g:neovide_profiler=v:false
-let g:neovide_cursor_trail_size=0.6
-let g:neovide_cursor_antialiasing=v:true
-let g:neovide_cursor_animate_command_line=v:false
-let g:neovide_scroll_animation_length = 0.4
-set winblend=0
-set pumblend=0
