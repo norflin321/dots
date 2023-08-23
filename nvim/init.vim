@@ -294,7 +294,7 @@ augroup SourceConfigAfterWrite
 	autocmd BufWritePost init.vim source %
 augroup END
 
-set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-8.(%l,%c%)\ %L
+set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
 
 colors dogrun
 set nonumber

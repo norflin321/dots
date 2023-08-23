@@ -11,7 +11,7 @@ export GIT_EDITOR=nvim
 export ANDROID_HOME=$HOME/Library/Android/sdk
 
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:/Applications/love.app/Contents/MacOS/
+export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/main/bin/
 
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
