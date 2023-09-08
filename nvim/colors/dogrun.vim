@@ -260,6 +260,8 @@ hi FidgetTitle guifg=#73c1a9 ctermfg=79 gui=bold cterm=bold
 hi FidgetTask guifg=#545c8c ctermfg=60
 hi AerialLine guifg=NONE guibg=#2a2c3f
 highlight SatelliteBar guibg=#33364d
+hi link CocCodeLens Comment
+hi CocFadeOut guifg=NONE guibg=#545c8c
 
 if has("nvim")
   let g:terminal_color_0 = '#111219'

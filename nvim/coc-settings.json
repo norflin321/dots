@@ -22,7 +22,6 @@
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
-  "diagnostic.virtualText": false,
 
   "javascript.suggestionActions.enabled": false,
   "tsserver.trace.server": "off",
@@ -49,4 +48,12 @@
 	"dialog.floatBorderHighlight": "CocFloatingBorder",
 	"typescript.preferences.importModuleSpecifier": "non-relative",
 	"prettier.printWidth": 180,
+
+	"diagnostic.virtualText": false,
+	"codeLens.enable": false,
+	"typescript.referencesCodeLens.enabled": true,
+	"javascript.referencesCodeLens.enabled": true,
+	"typescript.implementationsCodeLens.enabled": true,
+	"javascript.implementationsCodeLens.enabled": true,
+	"codeLens.position": "eol",
 }

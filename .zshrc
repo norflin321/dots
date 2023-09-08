@@ -11,14 +11,13 @@ export GIT_EDITOR=nvim
 export ANDROID_HOME=$HOME/Library/Android/sdk
 
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:/Applications/love.app/Contents/MacOS/:~/main/bin/
+export PATH=$PATH:/Applications/love.app/Contents/MacOS/
 
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-export PATH=$PATH:/Applications/CocosCreator/Creator/3.6.3/CocosCreator.app/Contents/MacOS/
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

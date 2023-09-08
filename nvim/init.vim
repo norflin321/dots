@@ -39,6 +39,9 @@ set background=dark
 set termguicolors
 set cmdheight=1
 set mousescroll=ver:1,hor:0
+set smoothscroll
+set nonumber
+set signcolumn=yes:1
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -297,6 +300,3 @@ augroup END
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
 
 colors dogrun
-set nonumber
-set signcolumn=yes:1
-hi! link SignColumn StatusLine
