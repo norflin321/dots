@@ -65,17 +65,6 @@ require('nvim-tree').setup({
 })
 
 require'colorizer'.setup()
-require('satellite').setup({
-	current_only = false,
-	winblend = 0,
-	handlers = {
-		cursor = { enable = false },
-		marks = { enable = false },
-		diagnostic = { enable = false },
-		gitsigns = { enable = false },
-		search = { enable = true },
-	},
-})
 
 require('aerial').setup({
 	backends = { "treesitter" },
@@ -113,3 +102,32 @@ require('aerial').setup({
 		["<c-n>"] = "actions.close",
 	},
 })
+
+require('satellite').setup({
+	current_only = false,
+	winblend = 0,
+	handlers = {
+		cursor = { enable = false },
+		marks = { enable = false },
+		diagnostic = { enable = false },
+		gitsigns = { enable = false },
+		search = { enable = true },
+	},
+})
+
+-- Finad And Replace In Selection (copy word to clipboard, select text, press r, input word for replacement, done)
+function escape_string(str)
+	return str:gsub('"', '\\"'):gsub("\n", "\\n"):gsub("'", "\\'"):gsub("`", "\\`"):gsub(" ", "\\ "):gsub("\\", "\\\\")
+end
+function FARIS()
+	local clipboard = escape_string(vim.api.nvim_exec([[echo getreg("*")]], true))
+	vim.ui.input({ prompt = clipboard .. " => "}, function(input)
+		if input ~= nil then
+			vim.api.nvim_exec(":'<,'>s/" .. clipboard .. "/" .. escape_string(input) .. "/gi", false)
+			vim.api.nvim_feedkeys("<CR>", "n", false)
+			vim.api.nvim_exec(":nohl", false)
+		end
+		vim.defer_fn(function() vim.cmd("echom ''") end, 0)
+	end)
+end
+vim.api.nvim_set_keymap("v", "r", [[:<C-u>lua FARIS()<CR>]], { noremap = true, silent = true })

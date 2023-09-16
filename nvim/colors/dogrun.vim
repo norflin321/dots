@@ -21,7 +21,7 @@ hi EndOfBuffer guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE gui=NONE cterm=N
 hi Comment guifg=#545c8c ctermfg=60 gui=NONE cterm=NONE
 hi Cursor guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
 hi CursorIM guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
-hi SignColumn guifg=#2a2c3f guibg=#2a2c3f
+hi SignColumn guifg=#2a2c3f guibg=#33364d
 hi ColorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorLine guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
@@ -262,6 +262,7 @@ hi AerialLine guifg=NONE guibg=#2a2c3f
 highlight SatelliteBar guibg=#33364d
 hi link CocCodeLens Comment
 hi CocFadeOut guifg=NONE guibg=#545c8c
+hi TreesitterContext guibg=#33364d
 
 if has("nvim")
   let g:terminal_color_0 = '#111219'

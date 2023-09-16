@@ -41,7 +41,7 @@ set cmdheight=1
 set mousescroll=ver:1,hor:0
 set smoothscroll
 set nonumber
-set signcolumn=yes:1
+set signcolumn=yes
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -134,14 +134,10 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 nnoremap x "_x
 nnoremap dd "_dd
-nnoremap a i
-nnoremap i a
 nnoremap dw "_diw
 nnoremap D "_D
 nnoremap cw ciw
 vnoremap d "_d
-nnoremap A I
-nnoremap I A
 nnoremap yw yiw
 nnoremap <S-Enter> O<Esc>
 nnoremap <C-z> <Nop>
@@ -181,6 +177,8 @@ nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 vmap K <Nop>
 map p pV=
 nmap <silent> <c-t> :AerialToggle<CR>
+nnoremap z <NOP>
+nnoremap z zz
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
@@ -219,7 +217,6 @@ func! s:check_back_space() abort
 endfunc
 
 func! s:search()
-  " let curline = getline('.')
   call inputsave()
 	let pattern = input('CtrlSF: ')
   call inputrestore()
@@ -274,11 +271,6 @@ func! FilePath()
 	return before . ret . " "
 endfunc
 
-lua require("nvim-gps").setup({ depth = 0 })
-func! GetContext() abort
-	return luaeval("require'nvim-gps'.is_available()") ? "> " . luaeval("require'nvim-gps'.get_location()") : ""
-endf
-
 lua require('main')
 
 command BC exe ":call CloseHiddenBuffers()"
@@ -297,21 +289,10 @@ augroup SourceConfigAfterWrite
 	autocmd BufWritePost init.vim source %
 augroup END
 
+lua require("nvim-gps").setup({ depth = 0 })
+func! GetContext() abort
+	return luaeval("require'nvim-gps'.is_available()") ? "> " . luaeval("require'nvim-gps'.get_location()") : ""
+endf
+
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
-
 colors dogrun
-
-" NEOVIDE
-set guifont=JetBrains\ Mono:h12.5:#e-subpixelantialias
-set linespace=8
-let g:neovide_scale_factor=1
-let g:neovide_cursor_animation_length=0.02
-let g:neovide_cursor_animate_in_insert_mode=v:true
-let g:neovide_hide_mouse_when_typing=v:true
-let g:neovide_profiler=v:false
-let g:neovide_cursor_trail_size=0.6
-let g:neovide_cursor_antialiasing=v:true
-let g:neovide_cursor_animate_command_line=v:false
-let g:neovide_scroll_animation_length = 0.4
-set winblend=0
-set pumblend=0
