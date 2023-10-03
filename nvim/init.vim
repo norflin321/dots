@@ -63,6 +63,7 @@ call plug#begin("~/.vim/plugged")
 	Plug 'lewis6991/satellite.nvim'
 	Plug 'norflin321/nvim-gps'
 	Plug 'norflin321/aerial.nvim'
+	" https://github.com/cshuaimin/ssr.nvim
 call plug#end()
 
 map q: :q
@@ -295,4 +296,4 @@ func! GetContext() abort
 endf
 
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
-colors dogrun
+colors dogrun 
