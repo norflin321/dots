@@ -32,7 +32,7 @@ require('nvim-tree').setup({
 	view = {
 		float = {
 			enable = true,
-			open_win_config = floatWinConfig(0.35, 0.7)
+			open_win_config = floatWinConfig(0.5, 0.9)
 		},
 		width = function()
 			return math.floor(vim.opt.columns:get() * 0.5)
