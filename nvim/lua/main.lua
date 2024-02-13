@@ -16,8 +16,8 @@ function floatWinConfig(width_ration, height_ration)
 		local center_x = (screen_w - window_w) / 2
 		local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
 		return {
-			border = 'rounded',
-			relative = 'editor',
+			border = "rounded",
+			relative = "editor",
 			row = center_y,
 			col = center_x,
 			width = window_w_int,
@@ -27,12 +27,12 @@ function floatWinConfig(width_ration, height_ration)
 	end
 end
 
-require('nvim-tree').setup({
+require("nvim-tree").setup({
 	git = { enable = false },
 	view = {
 		float = {
 			enable = true,
-			open_win_config = floatWinConfig(0.5, 0.9)
+			open_win_config = floatWinConfig(0.3, 0.8)
 		},
 		width = function()
 			return math.floor(vim.opt.columns:get() * 0.5)
@@ -64,9 +64,9 @@ require('nvim-tree').setup({
 	}
 })
 
-require'colorizer'.setup()
+require("colorizer").setup()
 
-require('aerial').setup({
+require("aerial").setup({
 	backends = { "treesitter" },
 	close_on_select = true,
 	close_automatic_events = { unfocus, switch_buffer, unsupported },
@@ -74,14 +74,14 @@ require('aerial').setup({
 	attach_mode = "global",
 	show_guides = true,
 	layout = {
-		width = 50,
-		min_width = 50,
-		max_width = 50,
-		default_direction = "float",
+		-- width = 50,
+		min_width = 30,
+		-- max_width = 50,
+		-- default_direction = "float",
 		placement = "edge",
 	},
 	float = {
-		override = floatWinConfig(0.25, 0.4),
+		-- override = floatWinConfig(0.25, 0.4),
 	},
 	guides = {
     mid_item = "├─ ",
@@ -103,7 +103,7 @@ require('aerial').setup({
 	},
 })
 
-require('satellite').setup({
+require("satellite").setup({
 	current_only = false,
 	winblend = 0,
 	handlers = {
@@ -115,7 +115,7 @@ require('satellite').setup({
 	},
 })
 
--- Finad And Replace In Selection (copy word to clipboard, select text, press r, input word for replacement, done)
+-- Find And Replace In Selection (copy word to clipboard, select text, press r, input word for replacement, done)
 function escape_string(str)
 	return str:gsub('"', '\\"'):gsub("\n", "\\n"):gsub("'", "\\'"):gsub("`", "\\`"):gsub(" ", "\\ "):gsub("\\", "\\\\")
 end
@@ -131,3 +131,159 @@ function FARIS()
 	end)
 end
 vim.api.nvim_set_keymap("v", "r", [[:<C-u>lua FARIS()<CR>]], { noremap = true, silent = true })
+
+require("hbac").setup({
+  autoclose = true, -- set autoclose to false if you want to close manually
+  threshold = 10, -- hbac will start closing unedited buffers once that number is reached
+  close_command = function(bufnr)
+    vim.api.nvim_buf_delete(bufnr, {})
+  end,
+  close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
+  telescope = {
+    -- See #telescope-configuration below
+  },
+})
+
+require("dropbar").setup({
+  general = {},
+  icons = {
+    ui = { bar = { separator = " 〉", extends = "…", } },
+    kinds = {
+      use_devicons = false,
+      symbols = {
+        Array = "󰅪 ",
+        Boolean = " ",
+        BreakStatement = "󰙧 ",
+        Call = "󰃷 ",
+        CaseStatement = "󱃙 ",
+        Class = " ",
+        Color = "󰏘 ",
+        Constant = "󰏿 ",
+        Constructor = " ",
+        ContinueStatement = "→ ",
+        Copilot = " ",
+        Declaration = "󰙠 ",
+        Delete = "󰩺 ",
+        DoStatement = "󰑖 ",
+        Enum = " ",
+        EnumMember = ' ',
+        Event = ' ',
+        Field = ' ',
+        File = '󰈔 ',
+        Folder = '󰉋 ',
+        ForStatement = '󰑖 ',
+        Function = '󰊕 ',
+        H1Marker = '󰉫 ',
+        H2Marker = '󰉬 ',
+        H3Marker = '󰉭 ',
+        H4Marker = '󰉮 ',
+        H5Marker = '󰉯 ',
+        H6Marker = '󰉰 ',
+        Identifier = "󰀫 ",
+        IfStatement = "󰇉 ",
+        Interface = " ",
+        Keyword = "󰌋 ",
+        List = "󰅪 ",
+        Log = "󰦪 ",
+        Lsp = " ",
+        Macro = "󰁌 ",
+        MarkdownH1 = "󰉫 ",
+        MarkdownH2 = "󰉬 ",
+        MarkdownH3 = "󰉭 ",
+        MarkdownH4 = "󰉮 ",
+        MarkdownH5 = "󰉯 ",
+        MarkdownH6 = "󰉰 ",
+        Method = "󰆧 ",
+        Module = "󰏗 ",
+        Namespace = "󰅩 ",
+        Null = "󰢤 ",
+        Number = "󰎠 ",
+        Object = "󰅩 ",
+        Operator = "󰆕 ",
+        Package = "󰆦 ",
+        Pair = "󰅪 ",
+        Property = " ",
+        Reference = "󰦾 ",
+        Regex = " ",
+        Repeat = "󰑖 ",
+        Scope = "󰅩 ",
+        Snippet = "󰩫 ",
+        Specifier = "󰦪 ",
+        Statement = "󰅩 ",
+        String = "󰉾 ",
+        Struct = " ",
+        SwitchStatement = "󰺟 ",
+        Terminal = " ",
+        Text = " ",
+        Type = " ",
+        TypeParameter = "󰆩 ",
+        Unit = " ",
+        Value = "󰎠 ",
+        Variable = "󰀫 ",
+        WhileStatement = "󰑖 ",
+      }
+    }
+  },
+  sources = {
+    treesitter = {
+      valid_types = {
+        -- "array",
+        -- "boolean",
+        -- "break_statement",
+        -- "call",
+        -- "case_statement",
+        "class",
+        -- "constant",
+        -- "constructor",
+        -- "continue_statement",
+        -- "delete",
+        -- "do_statement",
+        -- "enum",
+        -- "enum_member",
+        -- "event",
+        -- "for_statement",
+        "function",
+        "h1_marker",
+        "h2_marker",
+        "h3_marker",
+        "h4_marker",
+        "h5_marker",
+        "h6_marker",
+        -- "if_statement",
+        "interface",
+        -- "keyword",
+        -- "list",
+        -- "macro",
+        "method",
+        -- "module",
+        -- "namespace",
+        -- "null",
+        -- "number",
+        -- "operator",
+        -- "package",
+        -- "pair",
+        -- "property",
+        -- "reference",
+        -- "repeat",
+        -- "scope",
+        -- "specifier",
+        -- "string",
+        "struct",
+        -- "switch_statement",
+        -- "type",
+        -- "type_parameter",
+        -- "unit",
+        -- "value",
+        -- "variable",
+        -- "while_statement",
+        -- "declaration",
+        -- "field",
+        -- "identifier",
+        -- "object",
+        -- "statement",
+        -- "text",
+      }
+    }
+  },
+  menu = {}
+})

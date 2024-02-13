@@ -3,8 +3,10 @@ filetype indent plugin on
 scriptencoding utf-8
 set encoding=UTF-8
 set fileencoding=utf-8
-set tabstop=2 softtabstop=2
-set shiftwidth=2
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd Filetype python setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype json setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
 set autoindent
 set smartindent
 set nowrap
@@ -30,11 +32,10 @@ set hidden
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**,.DS_Store
-set laststatus=2
+set laststatus=3
 set showmode
 set splitbelow
 set splitright
-set noexpandtab
 set background=dark
 set termguicolors
 set cmdheight=1
@@ -42,6 +43,7 @@ set mousescroll=ver:1,hor:0
 set smoothscroll
 set nonumber
 set signcolumn=yes
+set mousemoveevent
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -61,10 +63,11 @@ call plug#begin("~/.vim/plugged")
 	Plug 'zivyangll/git-blame.vim'
 	Plug 'norcalli/nvim-colorizer.lua'
 	Plug 'lewis6991/satellite.nvim'
-	Plug 'norflin321/nvim-gps'
-	Plug 'norflin321/aerial.nvim'
-	Plug 'navarasu/onedark.nvim'
-	" https://github.com/cshuaimin/ssr.nvim
+  Plug 'stevearc/aerial.nvim'
+	Plug 'rust-lang/rust.vim'
+  Plug 'brooth/far.vim'
+  Plug 'axkirillov/hbac.nvim'
+  Plug 'Bekaboo/dropbar.nvim'
 call plug#end()
 
 map q: :q
@@ -228,7 +231,7 @@ func! s:search()
 	endif
 endfunc
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint8' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-pyright', 'coc-eslint8', 'coc-clangd', 'coc-rust-analyzer' ]
 
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -238,44 +241,17 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
 vmap <silent> ga <Plug>(coc-codeaction)
-nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
+nmap <silent> <c-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> f <Plug>(coc-format-selected)
-vmap <silent> <C-f> <Plug>CtrlSFVwordExec
-nmap <C-f> :call <SID>search()<CR>
+vmap <silent> <c-f> <Plug>CtrlSFVwordExec
+nmap <silent> <c-b> :lua require("dropbar.api").pick()<CR>
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
-func! CloseHiddenBuffers()
-	let visible = {}
-	for t in range(1, tabpagenr('$'))
-		for b in tabpagebuflist(t)
-			let visible[b] = 1
-		endfor
-	endfor
-	for b in range(1, bufnr('$'))
-		if bufloaded(b) && !has_key(visible, b)
-			exe 'bd ' . b
-		endif
-	endfor
-endfun
-
-func! FilePath()
-  let path = expand('%:F')
-  let pathSplit = split(path, '[/\\]')
-	let length = len(pathSplit) - 1
-	let before = length > 3 ? ".../" : ""
-	if length < 0
-		return path
-	endif
-	let ret = length < 3 ? path : join(pathSplit[length-2:length], "/")
-	return before . ret . " "
-endfunc
-
 lua require('main')
 
-command BC exe ":call CloseHiddenBuffers()"
 command H exe ":TSHighlightCapturesUnderCursor"
 command CF exe ":e $MYVIMRC"
 command SF exe ":CtrlSFToggle"
@@ -291,28 +267,6 @@ augroup SourceConfigAfterWrite
 	autocmd BufWritePost init.vim source %
 augroup END
 
-lua require("nvim-gps").setup({ depth = 0 })
-func! GetContext() abort
-	return luaeval("require'nvim-gps'.is_available()") ? "> " . luaeval("require'nvim-gps'.get_location()") : ""
-endf
-
-set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
-let g:onedark_config = {'style': 'cool'}
-colors dogrun 
-hi! link SignColumn StatusLineNC
-
-" NEOVIDE
-set guifont=JetBrains\ Mono:h12.5:#e-subpixelantialias
-set linespace=8
-let g:neovide_scale_factor=1
-let g:neovide_cursor_animation_length=0.02
-let g:neovide_cursor_animate_in_insert_mode=v:true
-let g:neovide_hide_mouse_when_typing=v:true
-let g:neovide_profiler=v:false
-let g:neovide_cursor_trail_size=0.6
-let g:neovide_cursor_antialiasing=v:true
-let g:neovide_cursor_animate_command_line=v:false
-let g:neovide_scroll_animation_length = 0.4
-let g:neovide_remember_window_size = v:true
-set winblend=0
-set pumblend=0
+" set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
+set statusline=%=%-5.(%l,%c%)\ %L
+colors dogrun_custom

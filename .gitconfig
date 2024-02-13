@@ -1,26 +1,8 @@
 [filter "lfs"]
+	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
 [user]
 	name = Anton Kurtin
 	email = norflin321@gmail.com
-[init]
-	defaultBranch = main
-[pull]
-	rebase = false
-[core]
-	ignorecase = false
-	excludesfile = /Users/norflin/.gitignore_global
-	pager = delta --line-numbers --dark
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /private/var/folders/1w/svwmpqr10n19sjnc4h6jj73h0000gn/T/AppTranslocation/5F51CDC1-9060-4E59-BD61-52233D18C473/d/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[delta]
-	line-numbers = true
-	side-by-side = true
-	navigate = true
