@@ -115,7 +115,7 @@ require("satellite").setup({
 	},
 })
 
--- Find And Replace In Selection (copy word to clipboard, select text, press r, input word for replacement, done)
+-- Finad And Replace In Selection (copy word to clipboard, select text, press r, input word for replacement, done)
 function escape_string(str)
 	return str:gsub('"', '\\"'):gsub("\n", "\\n"):gsub("'", "\\'"):gsub("`", "\\`"):gsub(" ", "\\ "):gsub("\\", "\\\\")
 end
@@ -134,156 +134,9 @@ vim.api.nvim_set_keymap("v", "r", [[:<C-u>lua FARIS()<CR>]], { noremap = true, s
 
 require("hbac").setup({
   autoclose = true, -- set autoclose to false if you want to close manually
-  threshold = 10, -- hbac will start closing unedited buffers once that number is reached
+  threshold = 5, -- hbac will start closing unedited buffers once that number is reached
   close_command = function(bufnr)
     vim.api.nvim_buf_delete(bufnr, {})
   end,
   close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
-  telescope = {
-    -- See #telescope-configuration below
-  },
-})
-
-require("dropbar").setup({
-  general = {},
-  icons = {
-    ui = { bar = { separator = " 〉", extends = "…", } },
-    kinds = {
-      use_devicons = false,
-      symbols = {
-        Array = "󰅪 ",
-        Boolean = " ",
-        BreakStatement = "󰙧 ",
-        Call = "󰃷 ",
-        CaseStatement = "󱃙 ",
-        Class = " ",
-        Color = "󰏘 ",
-        Constant = "󰏿 ",
-        Constructor = " ",
-        ContinueStatement = "→ ",
-        Copilot = " ",
-        Declaration = "󰙠 ",
-        Delete = "󰩺 ",
-        DoStatement = "󰑖 ",
-        Enum = " ",
-        EnumMember = ' ',
-        Event = ' ',
-        Field = ' ',
-        File = '󰈔 ',
-        Folder = '󰉋 ',
-        ForStatement = '󰑖 ',
-        Function = '󰊕 ',
-        H1Marker = '󰉫 ',
-        H2Marker = '󰉬 ',
-        H3Marker = '󰉭 ',
-        H4Marker = '󰉮 ',
-        H5Marker = '󰉯 ',
-        H6Marker = '󰉰 ',
-        Identifier = "󰀫 ",
-        IfStatement = "󰇉 ",
-        Interface = " ",
-        Keyword = "󰌋 ",
-        List = "󰅪 ",
-        Log = "󰦪 ",
-        Lsp = " ",
-        Macro = "󰁌 ",
-        MarkdownH1 = "󰉫 ",
-        MarkdownH2 = "󰉬 ",
-        MarkdownH3 = "󰉭 ",
-        MarkdownH4 = "󰉮 ",
-        MarkdownH5 = "󰉯 ",
-        MarkdownH6 = "󰉰 ",
-        Method = "󰆧 ",
-        Module = "󰏗 ",
-        Namespace = "󰅩 ",
-        Null = "󰢤 ",
-        Number = "󰎠 ",
-        Object = "󰅩 ",
-        Operator = "󰆕 ",
-        Package = "󰆦 ",
-        Pair = "󰅪 ",
-        Property = " ",
-        Reference = "󰦾 ",
-        Regex = " ",
-        Repeat = "󰑖 ",
-        Scope = "󰅩 ",
-        Snippet = "󰩫 ",
-        Specifier = "󰦪 ",
-        Statement = "󰅩 ",
-        String = "󰉾 ",
-        Struct = " ",
-        SwitchStatement = "󰺟 ",
-        Terminal = " ",
-        Text = " ",
-        Type = " ",
-        TypeParameter = "󰆩 ",
-        Unit = " ",
-        Value = "󰎠 ",
-        Variable = "󰀫 ",
-        WhileStatement = "󰑖 ",
-      }
-    }
-  },
-  sources = {
-    treesitter = {
-      valid_types = {
-        -- "array",
-        -- "boolean",
-        -- "break_statement",
-        -- "call",
-        -- "case_statement",
-        "class",
-        -- "constant",
-        -- "constructor",
-        -- "continue_statement",
-        -- "delete",
-        -- "do_statement",
-        -- "enum",
-        -- "enum_member",
-        -- "event",
-        -- "for_statement",
-        "function",
-        "h1_marker",
-        "h2_marker",
-        "h3_marker",
-        "h4_marker",
-        "h5_marker",
-        "h6_marker",
-        -- "if_statement",
-        "interface",
-        -- "keyword",
-        -- "list",
-        -- "macro",
-        "method",
-        -- "module",
-        -- "namespace",
-        -- "null",
-        -- "number",
-        -- "operator",
-        -- "package",
-        -- "pair",
-        -- "property",
-        -- "reference",
-        -- "repeat",
-        -- "scope",
-        -- "specifier",
-        -- "string",
-        "struct",
-        -- "switch_statement",
-        -- "type",
-        -- "type_parameter",
-        -- "unit",
-        -- "value",
-        -- "variable",
-        -- "while_statement",
-        -- "declaration",
-        -- "field",
-        -- "identifier",
-        -- "object",
-        -- "statement",
-        -- "text",
-      }
-    }
-  },
-  menu = {}
 })

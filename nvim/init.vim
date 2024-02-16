@@ -32,7 +32,7 @@ set hidden
 set shortmess+=c
 set completeopt=menuone,noinsert,noselect
 set wildignore+=**/node_modules/**,*.swp,*.zip,*.exe,**/dist/**,.DS_Store
-set laststatus=3
+set laststatus=2
 set showmode
 set splitbelow
 set splitright
@@ -43,7 +43,6 @@ set mousescroll=ver:1,hor:0
 set smoothscroll
 set nonumber
 set signcolumn=yes
-set mousemoveevent
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -63,11 +62,10 @@ call plug#begin("~/.vim/plugged")
 	Plug 'zivyangll/git-blame.vim'
 	Plug 'norcalli/nvim-colorizer.lua'
 	Plug 'lewis6991/satellite.nvim'
-  Plug 'stevearc/aerial.nvim'
 	Plug 'rust-lang/rust.vim'
+  Plug 'stevearc/aerial.nvim'
   Plug 'brooth/far.vim'
   Plug 'axkirillov/hbac.nvim'
-  Plug 'Bekaboo/dropbar.nvim'
 call plug#end()
 
 map q: :q
@@ -241,17 +239,44 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
 vmap <silent> ga <Plug>(coc-codeaction)
-nmap <silent> <c-d> <Plug>(coc-diagnostic-next-error)
+nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> f <Plug>(coc-format-selected)
-vmap <silent> <c-f> <Plug>CtrlSFVwordExec
-nmap <silent> <c-b> :lua require("dropbar.api").pick()<CR>
+vmap <silent> <C-f> <Plug>CtrlSFVwordExec
+nmap <C-f> :call <SID>search()<CR>
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
+func! CloseHiddenBuffers()
+	let visible = {}
+	for t in range(1, tabpagenr('$'))
+		for b in tabpagebuflist(t)
+			let visible[b] = 1
+		endfor
+	endfor
+	for b in range(1, bufnr('$'))
+		if bufloaded(b) && !has_key(visible, b)
+			exe 'bd ' . b
+		endif
+	endfor
+endfun
+
+func! FilePath()
+  let path = expand('%:F')
+  let pathSplit = split(path, '[/\\]')
+	let length = len(pathSplit) - 1
+	let before = length > 3 ? ".../" : ""
+	if length < 0
+		return path
+	endif
+	let ret = length < 3 ? path : join(pathSplit[length-2:length], "/")
+	return before . ret . " "
+endfunc
+
 lua require('main')
 
+command BC exe ":call CloseHiddenBuffers()"
 command H exe ":TSHighlightCapturesUnderCursor"
 command CF exe ":e $MYVIMRC"
 command SF exe ":CtrlSFToggle"
@@ -267,6 +292,6 @@ augroup SourceConfigAfterWrite
 	autocmd BufWritePost init.vim source %
 augroup END
 
-" set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
-set statusline=%=%-5.(%l,%c%)\ %L
+set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
 colors dogrun_custom
+hi! link SignColumn StatusLineNC
