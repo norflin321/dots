@@ -3,6 +3,10 @@
   "list.maxPreviewHeight": 35,
 	"list.floatPreview": true,
 	"list.alignColumns": true,
+  "suggest.labelMaxLength": 50,
+  "outline.previewBorder": true,
+  "outline.previewBorderRounded": true,
+  "notification.border": true,
 
 	"coc.preferences.enableMessageDialog": true,
 	"coc.preferences.renameFillCurrent": false,
@@ -40,6 +44,7 @@
 	"rust-analyzer.inlayHints.closingBraceHints.enable": false,
 	"rust-analyzer.inlayHints.typeHints.enable": false,
 	"rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rust-analyzer.server.path": "~/.cargo/bin/rust-analyzer",
 
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pyright.inlayHints.variableTypes": false,

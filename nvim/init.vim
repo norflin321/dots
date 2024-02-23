@@ -66,6 +66,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'brooth/far.vim'
   Plug 'axkirillov/hbac.nvim'
+  Plug 'folke/tokyonight.nvim'
 call plug#end()
 
 map q: :q
@@ -275,6 +276,7 @@ func! FilePath()
 endfunc
 
 lua require('main')
+lua require("tokyonight").setup({ transparent = true })
 
 command BC exe ":call CloseHiddenBuffers()"
 command H exe ":TSHighlightCapturesUnderCursor"
@@ -293,5 +295,6 @@ augroup SourceConfigAfterWrite
 augroup END
 
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
+" colors tokyonight-storm
 colors dogrun_custom
 hi! link SignColumn StatusLineNC
