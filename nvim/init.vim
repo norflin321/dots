@@ -66,7 +66,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'brooth/far.vim'
   Plug 'axkirillov/hbac.nvim'
-  Plug 'folke/tokyonight.nvim'
 call plug#end()
 
 map q: :q
@@ -263,20 +262,7 @@ func! CloseHiddenBuffers()
 	endfor
 endfun
 
-func! FilePath()
-  let path = expand('%:F')
-  let pathSplit = split(path, '[/\\]')
-	let length = len(pathSplit) - 1
-	let before = length > 3 ? ".../" : ""
-	if length < 0
-		return path
-	endif
-	let ret = length < 3 ? path : join(pathSplit[length-2:length], "/")
-	return before . ret . " "
-endfunc
-
 lua require('main')
-lua require("tokyonight").setup({ transparent = true })
 
 command BC exe ":call CloseHiddenBuffers()"
 command H exe ":TSHighlightCapturesUnderCursor"
@@ -295,6 +281,5 @@ augroup SourceConfigAfterWrite
 augroup END
 
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
-" colors tokyonight-storm
-colors dogrun_custom
+colors dogrun_custom 
 hi! link SignColumn StatusLineNC

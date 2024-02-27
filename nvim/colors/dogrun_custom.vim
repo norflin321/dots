@@ -1,22 +1,22 @@
 let g:colors_name = "dogrun_custom"
 
-hi Normal guifg=#9ea3c0 ctermfg=146 guibg=#292b3d ctermbg=235
+hi Normal guifg=#9ea3c0 ctermfg=146 guibg=#222433 ctermbg=235
 hi Delimiter guifg=#8085a6 ctermfg=103
 hi NonText guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE
 hi VertSplit guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi LineNr guifg=#4b4e6d ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi EndOfBuffer guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Comment guifg=#545c8c ctermfg=60 gui=NONE cterm=NONE
-hi Cursor guifg=#292b3d ctermfg=235 guibg=#9ea3c0 ctermbg=146
-hi CursorIM guifg=#292b3d ctermfg=235 guibg=#9ea3c0 ctermbg=146
-hi SignColumn guifg=#33364d guibg=#292b3d
-hi ColorColumn guibg=#33364d ctermbg=236 gui=NONE cterm=NONE
-hi CursorColumn guibg=#33364d ctermbg=236 gui=NONE cterm=NONE
-hi CursorLine guibg=#33364d ctermbg=236 gui=NONE cterm=NONE
+hi Cursor guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
+hi CursorIM guifg=#222433 ctermfg=235 guibg=#9ea3c0 ctermbg=146
+hi SignColumn guifg=#2a2c3f guibg=#292b3d
+hi ColorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
+hi CursorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
+hi CursorLine guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorLineNr guifg=#535f98 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Conceal guifg=#ac8b83 ctermfg=138 guibg=#292b3d ctermbg=235 gui=NONE cterm=NONE
+hi Conceal guifg=#ac8b83 ctermfg=138 guibg=#222433 ctermbg=235 gui=NONE cterm=NONE
 hi NormalFloat guifg=#8085a6 ctermfg=103 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi FloatBorder guifg=#545c8c ctermfg=60 guibg=#292b3d ctermbg=235 gui=NONE cterm=NONE
+hi FloatBorder guifg=#545c8c ctermfg=60 guibg=#222433 ctermbg=235 gui=NONE cterm=NONE
 hi Folded guifg=#666c99 ctermfg=60 guibg=#32364c ctermbg=237 gui=NONE cterm=NONE
 hi FoldColumn guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi MatchParen guibg=#2f3147 ctermbg=236
@@ -41,7 +41,7 @@ hi Special guifg=#b871b8 ctermfg=133
 hi SpecialKey guifg=#b871b8 ctermfg=133
 hi SpecialChar guifg=#b871b8 ctermfg=133
 hi SpecialComment guifg=#b871b8 ctermfg=133
-hi Error guifg=#dc6f79 ctermfg=167 guibg=#292b3d ctermbg=235 gui=bold cterm=bold
+hi Error guifg=#dc6f79 ctermfg=167 guibg=#222433 ctermbg=235 gui=bold cterm=bold
 hi ErrorMsg guifg=#dc6f79 ctermfg=167 guibg=NONE ctermbg=NONE gui=bold cterm=bold
 hi WarningMsg guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi MoreMsg guifg=#73c1a9 ctermfg=79
@@ -55,7 +55,7 @@ hi Visual guibg=#33364d ctermbg=61 gui=NONE cterm=NONE
 hi Search guifg=#a6afff ctermfg=147 guibg=#6471e5 ctermbg=63
 hi IncSearch guifg=#a4b2ff ctermfg=147 guibg=#4754cb ctermbg=62 gui=NONE cterm=NONE
 hi Question guifg=#73c1a9 ctermfg=79 gui=bold cterm=bold
-hi WildMenu guifg=#292b3d ctermfg=235 guibg=#929be5 ctermbg=104
+hi WildMenu guifg=#222433 ctermfg=235 guibg=#929be5 ctermbg=104
 hi SpellBad guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
 hi SpellCap gui=underline cterm=underline
 hi SpellLocal guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
@@ -116,7 +116,7 @@ hi NvimTreeGitMerge guifg=#a8a384 ctermfg=144 gui=NONE cterm=NONE
 hi NvimTreeGitRenamed guifg=#a8a384 ctermfg=144 gui=NONE cterm=NONE
 hi NvimTreeGitNew guifg=#73c1a9 ctermfg=79 gui=NONE cterm=NONE
 hi NvimTreeGitDeleted guifg=#28795c ctermfg=29 gui=NONE cterm=NONE
-hi NvimTreeWindowPicker guifg=#292b3d ctermfg=235 guibg=#929be5 ctermbg=104 gui=bold cterm=bold
+hi NvimTreeWindowPicker guifg=#222433 ctermfg=235 guibg=#929be5 ctermbg=104 gui=bold cterm=bold
 hi NvimTreeNormal guifg=#8085a6 ctermfg=103 gui=NONE cterm=NONE
 hi NvimTreeLiveFilterPrefix guifg=#548e7c ctermfg=66 gui=NONE cterm=NONE
 hi NvimTreeLiveFilterValue guifg=#73c1a9 ctermfg=79 gui=NONE cterm=NONE
@@ -125,13 +125,13 @@ hi GitGutterAdd guifg=#7cbe8c ctermfg=108
 hi GitGutterChange guifg=#a8a384 ctermfg=144
 hi GitGutterDelete guifg=#b871b8 ctermfg=133
 hi GitGutterChangeDelete guifg=#28795c ctermfg=29
-hi NullLsInfoBorder guifg=#545c8c ctermfg=60 guibg=#292b3d ctermbg=235 gui=NONE cterm=NONE
-hi CocErrorSign guibg=#33364d guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold
+hi NullLsInfoBorder guifg=#545c8c ctermfg=60 guibg=#222433 ctermbg=235 gui=NONE cterm=NONE
+hi CocErrorSign guibg=#2a2c3f guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold
 hi CocWarningSign guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi CocInfoSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
 hi CocHintSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
-hi FloatTitle guifg=#929be5 ctermfg=104 guibg=#292b3d ctermbg=235 gui=NONE cterm=NONE
-hi AerialLine guifg=NONE guibg=#33364d
+hi FloatTitle guifg=#929be5 ctermfg=104 guibg=#222433 ctermbg=235 gui=NONE cterm=NONE
+hi AerialLine guifg=NONE guibg=#2a2c3f
 hi SatelliteBar guibg=#34354c
 hi link CocCodeLens Comment
 hi CocFadeOut guifg=NONE guibg=#545c8c
