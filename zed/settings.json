@@ -9,20 +9,28 @@
 {
   "vim_mode": true,
   "theme": "Catppuccin Macchiato",
+  "experimental.theme_overrides": {
+    "editor.active_line.background": "#2b2e46",
+    "syntax": {
+      "comment": { "color": "#6e738d", "font_style": "normal" },
+      "comment.doc": { "color": "#6e738d", "font_style": "normal" },
+      "emphasis": { "color": "#ed8796", "font_style": "normal" },
+      "function": { "color": "#8aadf4", "font_style": "normal" },
+      "type": { "color": "#eed49f", "font_style": "normal" },
+      "variable": { "color": "#cad3f5", "font_style": "normal" },
+      "variable.special": { "color": "#ed8796", "font_style": "normal" }
+    }
+  },
   "ui_font_size": 14,
   "buffer_font_size": 12,
   "buffer_font_family": "JetBrains Mono",
   "ui_font_family": "JetBrains Mono",
   "show_completions_on_input": false,
   "show_whitespaces": "none",
-  "buffer_line_height": {
-    "custom": 1.8
-  },
+  "buffer_line_height": { "custom": 1.8 },
   "tab_size": 2,
-  "features": {
-    // Show Copilot icon in status bar
-    "copilot": false
-  },
+  "show_wrap_guides": false,
+  "features": { "copilot": false },
   "toolbar": {
     // Whether to show breadcrumbs.
     "breadcrumbs": false,
@@ -91,14 +99,7 @@
     // Gitignored entries are never auto revealed.
     "auto_reveal_entries": true
   },
-  "git": {
-    // Control whether the git gutter is shown. May take 2 values:
-    // 1. Show the gutter
-    //      "git_gutter": "tracked_files"
-    // 2. Hide the gutter
-    //      "git_gutter": "hide"
-    "git_gutter": "hide"
-  },
+  "git": { "git_gutter": "hide" },
   "buffer_font_features": {
     // Disable ligatures:
     "calt": false

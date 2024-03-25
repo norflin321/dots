@@ -10,12 +10,6 @@
     }
   },
   {
-    "context": "Workspace",
-    "bindings": {
-      "ctrl-n": "workspace::ToggleRightDock"
-    }
-  },
-  {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
       "up": "editor::ContextMenuPrev",
