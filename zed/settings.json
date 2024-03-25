@@ -1,0 +1,107 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "vim_mode": true,
+  "theme": "Catppuccin Macchiato",
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "buffer_font_family": "JetBrains Mono",
+  "ui_font_family": "JetBrains Mono",
+  "show_completions_on_input": false,
+  "show_whitespaces": "none",
+  "buffer_line_height": {
+    "custom": 1.8
+  },
+  "tab_size": 2,
+  "features": {
+    // Show Copilot icon in status bar
+    "copilot": false
+  },
+  "toolbar": {
+    // Whether to show breadcrumbs.
+    "breadcrumbs": false,
+    // Whether to show quick action buttons.
+    "quick_actions": false
+  },
+  "gutter": {
+    // Whether to show line numbers in the gutter.
+    "line_numbers": false,
+    // Whether to show code action buttons in the gutter.
+    "code_actions": false,
+    // Whether to show fold buttons in the gutter.
+    "folds": false
+  },
+  "collaboration_panel": {
+    // Whether to show the collaboration panel button in the status bar.
+    "button": false,
+    // Where to dock the collaboration panel. Can be 'left' or 'right'.
+    "dock": "left",
+    // Default width of the collaboration panel.
+    "default_width": 240
+  },
+  "chat_panel": {
+    // Whether to show the chat panel button in the status bar.
+    "button": false,
+    // Where to the chat panel. Can be 'left' or 'right'.
+    "dock": "right",
+    // Default width of the chat panel.
+    "default_width": 240
+  },
+  "assistant": {
+    // Version of this setting.
+    "version": "1",
+    // Whether to show the assistant panel button in the status bar.
+    "button": false
+  },
+  "show_call_status_icon": false,
+  "ensure_final_newline_on_save": false,
+  "format_on_save": "off",
+  "scrollbar": {
+    "show": "auto",
+    // Whether to show git diff indicators in the scrollbar.
+    "git_diff": false,
+    // Whether to show selections in the scrollbar.
+    "selections": true,
+    // Whether to show symbols selections in the scrollbar.
+    "symbols_selections": true,
+    // Whether to show diagnostic indicators in the scrollbar.
+    "diagnostics": true
+  },
+  "project_panel": {
+    // Default width of the project panel.
+    "default_width": 240,
+    // Where to dock the project panel. Can be 'left' or 'right'.
+    "dock": "right",
+    // Whether to show file icons in the project panel.
+    "file_icons": true,
+    // Whether to show folder icons or chevrons for directories in the project panel.
+    "folder_icons": true,
+    // Whether to show the git status in the project panel.
+    "git_status": false,
+    // Amount of indentation for nested items.
+    "indent_size": 20,
+    // Whether to reveal it in the project panel automatically,
+    // when a corresponding project entry becomes active.
+    // Gitignored entries are never auto revealed.
+    "auto_reveal_entries": true
+  },
+  "git": {
+    // Control whether the git gutter is shown. May take 2 values:
+    // 1. Show the gutter
+    //      "git_gutter": "tracked_files"
+    // 2. Hide the gutter
+    //      "git_gutter": "hide"
+    "git_gutter": "hide"
+  },
+  "buffer_font_features": {
+    // Disable ligatures:
+    "calt": false
+  },
+  "vertical_scroll_margin": 5
+}
