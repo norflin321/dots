@@ -65,10 +65,10 @@ hi DiffChange guibg=#26463b ctermbg=23 gui=bold cterm=bold
 hi DiffDelete guifg=#d2d9ff ctermfg=189 guibg=#5e3e5e ctermbg=96 gui=bold cterm=bold
 hi DiffText guibg=#28795c ctermbg=29 gui=NONE cterm=NONE
 hi QuickFixLine guifg=#9ea3c0 ctermfg=146 guibg=#363e7f ctermbg=61
-hi StatusLine guifg=#15151e ctermfg=103 guibg=#676b98
-hi StatusLineTerm guifg=#757aa5 ctermfg=103 guibg=#33364d
-hi StatusLineNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a
-hi StatusLineTermNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a
+hi StatusLine guifg=#15151e ctermfg=103 guibg=#676b98 gui=bold cterm=bold
+hi StatusLineTerm guifg=#757aa5 ctermfg=103 guibg=#33364d gui=bold cterm=bold
+hi StatusLineNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a gui=bold cterm=bold
+hi StatusLineTermNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a gui=bold cterm=bold
 hi DiagnosticError guifg=#dc6f79 ctermfg=167
 hi DiagnosticVirtualTextError guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold
 hi DiagnosticUnderlineError guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
@@ -136,6 +136,7 @@ hi SatelliteBar guibg=#34354c
 hi link CocCodeLens Comment
 hi CocFadeOut guifg=NONE guibg=#545c8c
 hi TreesitterContext guibg=#33364d
+hi link esearchFilename CursorLine
 
 " treesitter
 hi @string guifg=#73c1a9

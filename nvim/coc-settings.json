@@ -22,7 +22,7 @@
   "suggest.snippetsSupport": false,
   "signature.preferShownAbove": true,
   "diagnostic.checkCurrentLine": true,
-	"diagnostic.errorSign": ">>",
+  "diagnostic.errorSign": "❌",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",

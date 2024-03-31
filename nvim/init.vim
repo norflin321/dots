@@ -6,6 +6,7 @@ set fileencoding=utf-8
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd Filetype python setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype json setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype rust setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 set autoindent
 set smartindent
@@ -41,8 +42,9 @@ set termguicolors
 set cmdheight=1
 set mousescroll=ver:1,hor:0
 set smoothscroll
-set nonumber
-set signcolumn=yes
+set signcolumn=no
+set number
+set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -56,7 +58,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
-  Plug 'dyng/ctrlsf.vim'
+  " Plug 'dyng/ctrlsf.vim'
 	Plug 'nvim-tree/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
 	Plug 'zivyangll/git-blame.vim'
@@ -66,6 +68,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'brooth/far.vim'
   Plug 'axkirillov/hbac.nvim'
+  Plug 'eugen0329/vim-esearch'
+  Plug 'MunifTanjim/nui.nvim'
+  Plug 'EdenEast/nightfox.nvim'
 call plug#end()
 
 map q: :q
@@ -171,17 +176,19 @@ nmap <silent> <C-c> gcc
 nnoremap J mzJ`z
 cnoremap <c-v> <c-r>+
 map <CR> <Nop>
-map p ]p
 map ga <Nop>
 nnoremap D "_dd
 nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
 nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
 nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 vmap K <Nop>
-map p pV=
+map p ]p
+map P pV=
 nmap <silent> <c-t> :AerialToggle<CR>
 nnoremap z <NOP>
 nnoremap z zz
+nmap <c-f> <plug>(esearch)
+vmap <c-f> <plug>(operator-esearch-prefill)
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
@@ -189,44 +196,51 @@ let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-h>'], 'AcceptSelect
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {'dir': '\android$\|\ios$\|\.git$'}
 
-let g:ctrlsf_default_view_mode = 'compact'
-let g:ctrlsf_auto_focus = {'at': 'start'}
-let g:ctrlsf_search_mode = 'async'
-let g:ctrlsf_auto_close = {'compact': 1}
-let g:ctrlsf_backend = 'rg'
-let g:ctrlsf_ignore_dir = ['node_modules', 'dist']
-let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
-let g:ctrlsf_regex_pattern = 0
-let g:ctrlsf_auto_preview = 1
-let g:ctrlsf_compact_winsize = '05'
-
 let g:AutoPairsMultilineClose=0
-
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
+let g:cursorhold_updatetime=50
 
-let g:cursorhold_updatetime = 200
+" let g:ctrlsf_default_view_mode = 'compact'
+" let g:ctrlsf_auto_focus = {'at': 'start'}
+" let g:ctrlsf_search_mode = 'async'
+" let g:ctrlsf_auto_close = {'compact': 1}
+" let g:ctrlsf_backend = 'rg'
+" let g:ctrlsf_ignore_dir = ['node_modules', 'dist']
+" let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
+" let g:ctrlsf_regex_pattern = 0
+" let g:ctrlsf_auto_preview = 1
+" let g:ctrlsf_compact_winsize = '05'
+
+let g:esearch = {}
+let g:esearch.prefill = ['last']
+let g:esearch.regex = 1
+let g:esearch.textobj = 0
+let g:esearch.case = 'smart'
+let g:esearch.default_mappings = 0
+let g:esearch.name = '[esearch]'
+let g:esearch.win_map = [ ['n', 'o', '<plug>(esearch-win-open)'] ]
+
+" func! s:search()
+"   call inputsave()
+" 	let pattern = input('CtrlSF: ')
+"   call inputrestore()
+" 	redraw
+" 	if pattern != ''
+" 		exe 'CtrlSF ' . string(pattern)
+" 	endif
+" endfunc
 
 func! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		exe 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
+  if (index(['vim','help'], &filetype) >= 0)
+    exe 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunc
 
 func! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunc
-
-func! s:search()
-  call inputsave()
-	let pattern = input('CtrlSF: ')
-  call inputrestore()
-	redraw
-	if pattern != ''
-		exe 'CtrlSF ' . string(pattern)
-	endif
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunc
 
 let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-pyright', 'coc-eslint8', 'coc-clangd', 'coc-rust-analyzer' ]
@@ -241,12 +255,13 @@ nmap <silent> gf <Plug>(coc-fix-current)
 vmap <silent> ga <Plug>(coc-codeaction)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> f <Plug>(coc-format-selected)
-vmap <silent> <C-f> <Plug>CtrlSFVwordExec
-nmap <C-f> :call <SID>search()<CR>
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 func! CloseHiddenBuffers()
 	let visible = {}
@@ -267,7 +282,7 @@ lua require('main')
 command BC exe ":call CloseHiddenBuffers()"
 command H exe ":TSHighlightCapturesUnderCursor"
 command CF exe ":e $MYVIMRC"
-command SF exe ":CtrlSFToggle"
+" command SF exe ":CtrlSFToggle"
 command BL exe ":call gitblame#echo()"
 command PI exe ":PlugInstall"
 command PC exe ":PlugClean"
@@ -280,6 +295,11 @@ augroup SourceConfigAfterWrite
 	autocmd BufWritePost init.vim source %
 augroup END
 
-set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
-colors dogrun_custom 
+func! GetContext() abort
+  return ""
+endf
+
+set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
+colors dogrun_custom
+colors nightfox
 hi! link SignColumn StatusLineNC

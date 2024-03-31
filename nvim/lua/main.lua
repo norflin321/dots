@@ -32,7 +32,7 @@ require("nvim-tree").setup({
 	view = {
 		float = {
 			enable = true,
-			open_win_config = floatWinConfig(0.3, 0.8)
+			open_win_config = floatWinConfig(0.4, 0.8)
 		},
 		width = function()
 			return math.floor(vim.opt.columns:get() * 0.5)
@@ -68,20 +68,23 @@ require("colorizer").setup()
 
 require("aerial").setup({
 	backends = { "treesitter" },
+  lsp = {
+    diagnostics_trigger_update = false
+  },
 	close_on_select = true,
 	close_automatic_events = { unfocus, switch_buffer, unsupported },
 	highlight_on_hover = true,
 	attach_mode = "global",
 	show_guides = true,
 	layout = {
-		-- width = 50,
+		width = 50,
 		min_width = 30,
-		-- max_width = 50,
-		-- default_direction = "float",
-		placement = "edge",
+		max_width = 50,
+		default_direction = "float",
+		-- placement = "edge",
 	},
 	float = {
-		-- override = floatWinConfig(0.25, 0.4),
+		override = floatWinConfig(0.25, 0.4),
 	},
 	guides = {
     mid_item = "├─ ",
@@ -89,7 +92,23 @@ require("aerial").setup({
     nested_top = "│ ",
     whitespace = "  ",
   },
-	filter_kind = { "Array", "Class", "Constructor", "Enum", "EnumMember", "Event", "Field", "Function", "Interface", "Method", "Module", "Object", "Package", "Property", "Collapsed" },
+	filter_kind = {
+    "Array",
+    "Class",
+    "Constructor",
+    "Enum",
+    "EnumMember",
+    "Event",
+    "Field",
+    "Function",
+    "Interface",
+    "Method",
+    "Module",
+    "Object",
+    "Package",
+    "Property",
+    "Collapsed"
+  },
 	keymaps = {
 		["<CR>"] = "actions.jump",
 		["o"] = "actions.jump",
@@ -103,6 +122,13 @@ require("aerial").setup({
 	},
 })
 
+-- Workaround for https://github.com/stevearc/aerial.nvim/issues/331
+vim.keymap.set("n", "<c-t>", function()
+  require('aerial').refetch_symbols()
+  vim.cmd.AerialOpen 'float'
+  vim.cmd.doautocmd 'BufWinEnter'
+end)
+
 require("satellite").setup({
 	current_only = false,
 	winblend = 0,
@@ -114,23 +140,6 @@ require("satellite").setup({
 		search = { enable = true },
 	},
 })
-
--- Finad And Replace In Selection (copy word to clipboard, select text, press r, input word for replacement, done)
-function escape_string(str)
-	return str:gsub('"', '\\"'):gsub("\n", "\\n"):gsub("'", "\\'"):gsub("`", "\\`"):gsub(" ", "\\ "):gsub("\\", "\\\\")
-end
-function FARIS()
-	local clipboard = escape_string(vim.api.nvim_exec([[echo getreg("*")]], true))
-	vim.ui.input({ prompt = clipboard .. " => "}, function(input)
-		if input ~= nil then
-			vim.api.nvim_exec(":'<,'>s/" .. clipboard .. "/" .. escape_string(input) .. "/gi", false)
-			vim.api.nvim_feedkeys("<CR>", "n", false)
-			vim.api.nvim_exec(":nohl", false)
-		end
-		vim.defer_fn(function() vim.cmd("echom ''") end, 0)
-	end)
-end
-vim.api.nvim_set_keymap("v", "r", [[:<C-u>lua FARIS()<CR>]], { noremap = true, silent = true })
 
 require("hbac").setup({
   autoclose = true, -- set autoclose to false if you want to close manually
