@@ -274,6 +274,6 @@ func! GetContext() abort
   return ""
 endf
 
-set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
+set statusline=%f\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
 colors dogrun_custom
 hi! link SignColumn StatusLineNC
