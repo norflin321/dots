@@ -58,7 +58,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
-  " Plug 'dyng/ctrlsf.vim'
 	Plug 'nvim-tree/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
 	Plug 'zivyangll/git-blame.vim'
@@ -66,11 +65,8 @@ call plug#begin("~/.vim/plugged")
 	Plug 'lewis6991/satellite.nvim'
 	Plug 'rust-lang/rust.vim'
   Plug 'stevearc/aerial.nvim'
-  Plug 'brooth/far.vim'
   Plug 'axkirillov/hbac.nvim'
   Plug 'eugen0329/vim-esearch'
-  Plug 'MunifTanjim/nui.nvim'
-  Plug 'EdenEast/nightfox.nvim'
 call plug#end()
 
 map q: :q
@@ -200,17 +196,6 @@ let g:AutoPairsMultilineClose=0
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
 let g:cursorhold_updatetime=50
 
-" let g:ctrlsf_default_view_mode = 'compact'
-" let g:ctrlsf_auto_focus = {'at': 'start'}
-" let g:ctrlsf_search_mode = 'async'
-" let g:ctrlsf_auto_close = {'compact': 1}
-" let g:ctrlsf_backend = 'rg'
-" let g:ctrlsf_ignore_dir = ['node_modules', 'dist']
-" let g:ctrlsf_mapping = {'quit': '<Esc>', 'next': 'j', 'prev': 'k'}
-" let g:ctrlsf_regex_pattern = 0
-" let g:ctrlsf_auto_preview = 1
-" let g:ctrlsf_compact_winsize = '05'
-
 let g:esearch = {}
 let g:esearch.prefill = ['last']
 let g:esearch.regex = 1
@@ -219,16 +204,6 @@ let g:esearch.case = 'smart'
 let g:esearch.default_mappings = 0
 let g:esearch.name = '[esearch]'
 let g:esearch.win_map = [ ['n', 'o', '<plug>(esearch-win-open)'] ]
-
-" func! s:search()
-"   call inputsave()
-" 	let pattern = input('CtrlSF: ')
-"   call inputrestore()
-" 	redraw
-" 	if pattern != ''
-" 		exe 'CtrlSF ' . string(pattern)
-" 	endif
-" endfunc
 
 func! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -301,5 +276,4 @@ endf
 
 set statusline=%F\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
 colors dogrun_custom
-colors nightfox
 hi! link SignColumn StatusLineNC
