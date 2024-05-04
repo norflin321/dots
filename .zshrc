@@ -7,6 +7,7 @@ export PATH=$PATH:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/us
 export PATH=$PATH:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
 export PATH=$PATH:/Users/norflin/nvim/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/Users/norflin/go/bin
 export PATH=$PATH:/opt/homebrew/opt/llvm/bin
 export PATH=$PATH:/Users/norflin/.jsvu/bin
 export PATH=$PATH:/Users/norflin/.cargo/bin
@@ -14,6 +15,8 @@ export PATH=$PATH:/Users/norflin/.cargo/bin
 # For compilers to find llvm you may need to set:
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export CC=/opt/homebrew/opt/llvm/bin/clang
+export CXX=/opt/homebrew/opt/llvm/bin/clang++
 
 # Android SDK
 export ANDROID_HOME="/Users/norflin/Library/Android/sdk"
@@ -60,5 +63,5 @@ alias vi="nvim"
 alias python="python3"
 alias py="python3"
 alias studio="open -a /Applications/Android\ Studio.app"
-alias CC="rm ~/.cache/ctrlp"
-# alias nvim="neovide --multigrid --frame none"
+alias clang++="/opt/homebrew/opt/llvm/bin/clang++"
+alias clangd="/opt/homebrew/opt/llvm/bin/clangd"

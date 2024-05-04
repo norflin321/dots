@@ -42,9 +42,10 @@ set termguicolors
 set cmdheight=1
 set mousescroll=ver:1,hor:0
 set smoothscroll
-set signcolumn=no
-set number
+set signcolumn=yes
+set nonumber
 set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
+set colorcolumn=120
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -67,6 +68,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'axkirillov/hbac.nvim'
   Plug 'eugen0329/vim-esearch'
+  Plug 'chipsenkbeil/distant.nvim'
+  Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 call plug#end()
 
 map q: :q
@@ -218,7 +221,7 @@ func! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunc
 
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-json', 'coc-go', 'coc-prettier', 'coc-css', 'coc-pyright', 'coc-eslint8', 'coc-clangd', 'coc-rust-analyzer' ]
+let g:coc_global_extensions = [ "coc-tsserver", "coc-json", "coc-go", "coc-prettier", "coc-css", "coc-pyright", "coc-eslint8", "coc-clangd", "coc-rust-analyzer", "coc-lua" ]
 
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -257,7 +260,6 @@ lua require('main')
 command BC exe ":call CloseHiddenBuffers()"
 command H exe ":TSHighlightCapturesUnderCursor"
 command CF exe ":e $MYVIMRC"
-" command SF exe ":CtrlSFToggle"
 command BL exe ":call gitblame#echo()"
 command PI exe ":PlugInstall"
 command PC exe ":PlugClean"
@@ -275,5 +277,8 @@ func! GetContext() abort
 endf
 
 set statusline=%f\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
+
 colors dogrun_custom
+" colors catppuccin-macchiato
+" hi CocHighlightText guibg=#363a4f
 hi! link SignColumn StatusLineNC

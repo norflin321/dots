@@ -5,11 +5,11 @@ require("nvim-treesitter.configs").setup({
 	}
 })
 
-function floatWinConfig(width_ration, height_ration)
+local function floatWinConfig(width_ration, height_ration)
 	return function()
 		local screen_w = vim.opt.columns:get()
 		local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-		local window_w = screen_w * width_ration 
+		local window_w = screen_w * width_ration
 		local window_h = screen_h * height_ration
 		local window_w_int = math.floor(window_w)
 		local window_h_int = math.floor(window_h)
@@ -72,7 +72,7 @@ require("aerial").setup({
     diagnostics_trigger_update = false
   },
 	close_on_select = true,
-	close_automatic_events = { unfocus, switch_buffer, unsupported },
+	close_automatic_events = { "unfocus", "switch_buffer", "unsupported" },
 	highlight_on_hover = true,
 	attach_mode = "global",
 	show_guides = true,
@@ -149,3 +149,5 @@ require("hbac").setup({
   end,
   close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
 })
+
+require("gps").setup()

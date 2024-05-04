@@ -4,9 +4,7 @@
       "ctrl-k": "menu::SelectPrev",
       "ctrl-j": "menu::SelectNext",
       "ctrl-t": "outline::Toggle",
-      "cmd-n": "workspace::ToggleRightDock",
-      "(": ["workspace::SendKeystrokes", "up up up up up up up up up up up up up up up"],
-      ")": ["workspace::SendKeystrokes", "down down down down down down down down down down down down down down down"]
+      "cmd-n": "workspace::ToggleRightDock"
     }
   },
   {
@@ -19,27 +17,38 @@
     }
   },
   {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-1": null,
+      "cmd-2": null
+    }
+  },
+  {
     "context": "Editor || Terminal",
     "bindings": {
       "cmd-1": "pane::ActivatePrevItem",
-      "cmd-2": "pane::ActivateNextItem",
-      "g n": "editor::Rename",
-      "ctrl-d": "editor::GoToDiagnostic",
-      "g f": "editor::ToggleCodeActions",
-      "ctrl-c": "editor::ToggleComments",
-      "K": "editor::Hover"
+      "cmd-2": "pane::ActivateNextItem"
     }
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
+      "g n": "editor::Rename",
+      "ctrl-d": "editor::GoToDiagnostic",
+      "g f": "editor::ToggleCodeActions",
+      "ctrl-c": "editor::ToggleComments",
+      "K": "editor::Hover",
       "g r": "editor::FindAllReferences",
       "D": "editor::DeleteLine",
       "d d": "editor::DeleteLine",
       "9": "editor::MoveToEndOfLine",
       "8": "editor::MoveToEnclosingBracket",
       "x": "editor::Delete",
-      "g y": "editor::GoToTypeDefinition"
+      "g y": "editor::GoToTypeDefinition",
+      "(": ["workspace::SendKeystrokes", "up up up up up up up up up up up up up up up"],
+      ")": ["workspace::SendKeystrokes", "down down down down down down down down down down down down down down down"],
+      "<": "editor::Outdent",
+      ">": "editor::Indent"
     }
   },
   {
@@ -50,7 +59,8 @@
       "9": "editor::SelectToEndOfLine",
       "8": "editor::SelectToBeginningOfLine",
       "<": "editor::Outdent",
-      ">": "editor::Indent"
+      ">": "editor::Indent",
+      "ctrl-c": "editor::ToggleComments",
     }
   },
   {
