@@ -6,7 +6,6 @@ cp -R ~/.config/nvim .
 rm -rf ./nvim/usage_data.json
 cp ~/.gitconfig .
 cp ~/.jupyter .
-cp -R ~/.config/zed .
 
 git add .
 git commit -m "update"
