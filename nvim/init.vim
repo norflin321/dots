@@ -49,27 +49,19 @@ set colorcolumn=120
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'nvim-tree/nvim-web-devicons'
   Plug 'tpope/vim-commentary'
-  Plug 'itchyny/vim-gitbranch'
-	Plug 'maxmellon/vim-jsx-pretty'
   Plug 'alvan/vim-closetag'
-  Plug 'antoinemadec/FixCursorHold.nvim'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'axkirillov/hbac.nvim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'nvim-treesitter/playground'
-	Plug 'nvim-tree/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
-	Plug 'zivyangll/git-blame.vim'
-	Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'eugen0329/vim-esearch'
+  Plug 'stevearc/aerial.nvim'
 	Plug 'lewis6991/satellite.nvim'
 	Plug 'rust-lang/rust.vim'
-  Plug 'stevearc/aerial.nvim'
-  Plug 'axkirillov/hbac.nvim'
-  Plug 'eugen0329/vim-esearch'
-  Plug 'chipsenkbeil/distant.nvim'
-  Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 call plug#end()
 
 map q: :q
@@ -237,27 +229,10 @@ vmap <silent> f <Plug>(coc-format-selected)
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-
-" Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-func! CloseHiddenBuffers()
-	let visible = {}
-	for t in range(1, tabpagenr('$'))
-		for b in tabpagebuflist(t)
-			let visible[b] = 1
-		endfor
-	endfor
-	for b in range(1, bufnr('$'))
-		if bufloaded(b) && !has_key(visible, b)
-			exe 'bd ' . b
-		endif
-	endfor
-endfun
 
 lua require('main')
 
-command BC exe ":call CloseHiddenBuffers()"
 command H exe ":TSHighlightCapturesUnderCursor"
 command CF exe ":e $MYVIMRC"
 command BL exe ":call gitblame#echo()"
@@ -272,13 +247,7 @@ augroup SourceConfigAfterWrite
 	autocmd BufWritePost init.vim source %
 augroup END
 
-func! GetContext() abort
-  return ""
-endf
-
-set statusline=%f\ %h%r%{&modified?'\[+]\ ':''}%{GetContext()}%=%-5.(%l,%c%)\ %L
+set statusline=%f\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
 
 colors dogrun_custom
-" colors catppuccin-macchiato
-" hi CocHighlightText guibg=#363a4f
 hi! link SignColumn StatusLineNC

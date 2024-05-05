@@ -64,8 +64,6 @@ require("nvim-tree").setup({
 	}
 })
 
-require("colorizer").setup()
-
 require("aerial").setup({
 	backends = { "treesitter" },
   lsp = {
@@ -149,5 +147,3 @@ require("hbac").setup({
   end,
   close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
 })
-
-require("gps").setup()
