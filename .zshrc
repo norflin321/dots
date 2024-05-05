@@ -58,7 +58,6 @@ gh() {
 alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
-alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias vi="nvim"
 alias python="python3"
 alias py="python3"
