@@ -42,10 +42,11 @@ set termguicolors
 set cmdheight=1
 set mousescroll=ver:1,hor:0
 set smoothscroll
-set signcolumn=yes
-set nonumber
+set number
+set signcolumn=number
 set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
 set colorcolumn=120
+set updatetime=100
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -189,7 +190,6 @@ let g:ctrlp_custom_ignore = {'dir': '\android$\|\ios$\|\.git$'}
 
 let g:AutoPairsMultilineClose=0
 let g:closetag_filenames = '*.html,*.tsx,*.jsx,*.vue'
-let g:cursorhold_updatetime=50
 
 let g:esearch = {}
 let g:esearch.prefill = ['last']
@@ -229,7 +229,6 @@ vmap <silent> f <Plug>(coc-format-selected)
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 lua require('main')

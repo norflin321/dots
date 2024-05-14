@@ -19,7 +19,7 @@ hi NormalFloat guifg=#8085a6 ctermfg=103 guibg=NONE ctermbg=NONE gui=NONE cterm=
 hi FloatBorder guifg=#545c8c ctermfg=60 guibg=#222433 ctermbg=235 gui=NONE cterm=NONE
 hi Folded guifg=#666c99 ctermfg=60 guibg=#32364c ctermbg=237 gui=NONE cterm=NONE
 hi FoldColumn guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi MatchParen guibg=#2f3147 ctermbg=236
+hi MatchParen guibg=#3d415c ctermbg=236
 hi Directory guifg=#a8a384 ctermfg=144
 hi Underlined gui=underline cterm=underline
 hi String guifg=#7cbe8c ctermfg=108
@@ -52,8 +52,9 @@ hi PmenuSel guifg=#9ea3c0 ctermfg=146 guibg=#424865 ctermbg=60
 hi PmenuSbar guibg=#292c3f ctermbg=236
 hi PmenuThumb guibg=#464f7f ctermbg=60
 hi Visual guibg=#33364d ctermbg=61 gui=NONE cterm=NONE
-hi Search guifg=#a6afff ctermfg=147 guibg=#6471e5 ctermbg=63
-hi IncSearch guifg=#a4b2ff ctermfg=147 guibg=#4754cb ctermbg=62 gui=NONE cterm=NONE
+hi Search guifg=#222433 guibg=#8589ad
+hi IncSearch guifg=#222433 guibg=#8589ad
+hi CurSearch guifg=#222433 guibg=#b3b5cc
 hi Question guifg=#73c1a9 ctermfg=79 gui=bold cterm=bold
 hi WildMenu guifg=#222433 ctermfg=235 guibg=#929be5 ctermbg=104
 hi SpellBad guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
@@ -137,7 +138,7 @@ hi link CocCodeLens Comment
 hi CocFadeOut guifg=NONE guibg=#545c8c
 hi TreesitterContext guibg=#33364d
 hi link esearchFilename CursorLine
-hi CocHighlightText guibg=#33364d
+hi CocHighlightText guibg=#373b53
 
 " treesitter
 hi @string guifg=#73c1a9
