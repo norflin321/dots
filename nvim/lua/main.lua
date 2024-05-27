@@ -32,7 +32,7 @@ require("nvim-tree").setup({
 	view = {
 		float = {
 			enable = true,
-			open_win_config = floatWinConfig(0.4, 0.8)
+			open_win_config = floatWinConfig(0.5, 0.95)
 		},
 		width = function()
 			return math.floor(vim.opt.columns:get() * 0.5)
@@ -79,10 +79,9 @@ require("aerial").setup({
 		min_width = 30,
 		max_width = 50,
 		default_direction = "float",
-		-- placement = "edge",
 	},
 	float = {
-		override = floatWinConfig(0.25, 0.4),
+		override = floatWinConfig(0.4, 0.8),
 	},
 	guides = {
     mid_item = "├─ ",

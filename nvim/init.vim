@@ -44,8 +44,8 @@ set mousescroll=ver:1,hor:0
 set smoothscroll
 set number
 set signcolumn=number
-set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
-set colorcolumn=120
+" set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
+" set colorcolumn=120
 set updatetime=100
 
 call plug#begin("~/.vim/plugged")
@@ -61,8 +61,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'eugen0329/vim-esearch'
   Plug 'stevearc/aerial.nvim'
-	Plug 'lewis6991/satellite.nvim'
-	Plug 'rust-lang/rust.vim'
+  Plug 'lewis6991/satellite.nvim'
+  Plug 'rust-lang/rust.vim'
 call plug#end()
 
 map q: :q
@@ -231,8 +231,6 @@ inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-lua require('main')
-
 command H exe ":TSHighlightCapturesUnderCursor"
 command CF exe ":e $MYVIMRC"
 command BL exe ":call gitblame#echo()"
@@ -243,11 +241,11 @@ command CC exe ":CtrlPClearAllCaches"
 command R exe ":edit!"
 
 augroup SourceConfigAfterWrite
-	autocmd!
-	autocmd BufWritePost init.vim source %
+  autocmd!
+  autocmd BufWritePost init.vim source %
 augroup END
 
 set statusline=%f\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
 
 colors dogrun_custom
-hi! link SignColumn StatusLineNC
+lua require('main')
