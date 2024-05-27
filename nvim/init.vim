@@ -63,6 +63,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'lewis6991/satellite.nvim'
   Plug 'rust-lang/rust.vim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
 
 map q: :q
@@ -248,4 +249,7 @@ augroup END
 set statusline=%f\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
 
 colors dogrun_custom
+hi IndentLine guifg=#2d2f43
+hi IndentLineActive guifg=#2d2f43
+
 lua require('main')
