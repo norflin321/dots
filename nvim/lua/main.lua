@@ -147,14 +147,4 @@ require("hbac").setup({
   close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
 })
 
--- require("ibl").setup({
---   debounce = 100,
---   indent = {
---     highlight = "IndentLine",
---     smart_indent_cap = false
---   },
---   scope = {
---     show_start = false,
---     highlight = "IndentLineActive"
---   }
--- })
+require("nvim-gps").setup({})

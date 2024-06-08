@@ -4,9 +4,9 @@ scriptencoding utf-8
 set encoding=UTF-8
 set fileencoding=utf-8
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd Filetype python setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype json setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype rust setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+" set tabstop=4 shiftwidth=4 softtabstop=4 noet
+autocmd Filetype rust setlocal tabstop=4 shiftwidth=4 softtabstop=4 noet
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noet
 
 set autoindent
 set smartindent
@@ -44,8 +44,6 @@ set mousescroll=ver:1,hor:0
 set smoothscroll
 set number
 set signcolumn=number
-" set guicursor=a:block-blinkwait530-blinkon530-blinkoff530
-" set colorcolumn=120
 set updatetime=100
 
 call plug#begin("~/.vim/plugged")
@@ -57,13 +55,14 @@ call plug#begin("~/.vim/plugged")
   Plug 'axkirillov/hbac.nvim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/playground'
   Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'eugen0329/vim-esearch'
   Plug 'stevearc/aerial.nvim'
   Plug 'lewis6991/satellite.nvim'
   Plug 'rust-lang/rust.vim'
-  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'norflin321/nvim-gps'
 call plug#end()
 
 map q: :q
@@ -246,10 +245,12 @@ augroup SourceConfigAfterWrite
   autocmd BufWritePost init.vim source %
 augroup END
 
-set statusline=%f\ %h%r%{&modified?'\[+]\ ':''}%=%-5.(%l,%c%)\ %L
+lua require('main')
+
+func! NvimGps() abort
+  return luaeval("require'nvim-gps'.is_available()") ? luaeval("require'nvim-gps'.get_location()") : ""
+endf
+
+set statusline=%{&modified?'\[+]\ ':''}%t\ %h%r%{NvimGps()}%=%-5.(%l,%c%)\ %L
 
 colors dogrun_custom
-hi IndentLine guifg=#2d2f43
-hi IndentLineActive guifg=#2d2f43
-
-lua require('main')

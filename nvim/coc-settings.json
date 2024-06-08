@@ -11,9 +11,19 @@
 	"coc.preferences.enableMessageDialog": true,
 	"coc.preferences.renameFillCurrent": false,
 	"coc.preferences.maxFileSize": "100MB",
-	"diagnostic.floatConfig": {},
-	"diagnostic.refreshOnInsertMode": true,
-	"suggest.floatConfig": {},
+  "diagnostic.refreshOnInsertMode": true,
+	"diagnostic.floatConfig": {
+    "border": false,
+    "rounded": true,
+  },
+	"suggest.floatConfig": {
+    "border": false,
+    "rounded": true,
+  },
+  "hover.floatConfig": {
+    "border": false,
+    "rounded": true,
+  },
 	"notification.timeout": 1000,
 
   "suggest.noselect": false,
@@ -22,10 +32,10 @@
   "suggest.snippetsSupport": false,
   "signature.preferShownAbove": true,
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.errorSign": "❌",
-  "diagnostic.warningSign": "",
-  "diagnostic.infoSign": "",
-  "diagnostic.hintSign": "",
+  "diagnostic.errorSign": "E",
+  "diagnostic.warningSign": "W",
+  "diagnostic.infoSign": "I",
+  "diagnostic.hintSign": "H",
 
   "javascript.suggestionActions.enabled": false,
   "tsserver.trace.server": "off",
