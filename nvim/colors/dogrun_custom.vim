@@ -41,8 +41,8 @@ hi Special guifg=#b871b8 ctermfg=133
 hi SpecialKey guifg=#b871b8 ctermfg=133
 hi SpecialChar guifg=#b871b8 ctermfg=133
 hi SpecialComment guifg=#b871b8 ctermfg=133
-hi Error guifg=#dc6f79 ctermfg=167 guibg=#252737 ctermbg=235 gui=bold cterm=bold
-hi ErrorMsg guifg=#dc6f79 ctermfg=167 guibg=NONE ctermbg=NONE gui=bold cterm=bold
+hi Error guifg=#b18181 ctermfg=167 guibg=#252737 ctermbg=235 gui=bold cterm=bold
+hi ErrorMsg guifg=#b18181 ctermfg=167 guibg=NONE ctermbg=NONE gui=bold cterm=bold
 hi WarningMsg guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi MoreMsg guifg=#73c1a9 ctermfg=79
 hi Todo guifg=#a8a384 ctermfg=144 guibg=NONE ctermbg=NONE gui=bold cterm=bold
@@ -51,14 +51,14 @@ hi PmenuSel guifg=#9ea3c0 ctermfg=146 guibg=#424865 ctermbg=60
 hi PmenuSbar guibg=#292c3f ctermbg=236
 hi PmenuThumb guibg=#464f7f ctermbg=60
 hi Visual guibg=#33364d ctermbg=61 gui=NONE cterm=NONE
-hi Search guifg=#252737 guibg=#8589ad
-hi IncSearch guifg=#252737 guibg=#8589ad
+hi Search guifg=#252737 guibg=#6f749f
+hi IncSearch guifg=#252737 guibg=#6f749f
 hi CurSearch guifg=#252737 guibg=#b3b5cc
 hi Question guifg=#73c1a9 ctermfg=79 gui=bold cterm=bold
 hi WildMenu guifg=#252737 ctermfg=235 guibg=#929be5 ctermbg=104
-hi SpellBad guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
+hi SpellBad guifg=#b18181 ctermfg=167 gui=underline cterm=underline
 hi SpellCap gui=underline cterm=underline
-hi SpellLocal guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
+hi SpellLocal guifg=#b18181 ctermfg=167 gui=underline cterm=underline
 hi SpellRare guifg=#a8a384 ctermfg=144 gui=underline cterm=underline
 hi DiffAdd guibg=#1c394b ctermbg=237 gui=bold cterm=bold
 hi DiffChange guibg=#26463b ctermbg=23 gui=bold cterm=bold
@@ -69,9 +69,9 @@ hi StatusLine guifg=#15151e ctermfg=103 guibg=#676b98 gui=bold cterm=bold
 hi StatusLineTerm guifg=#757aa5 ctermfg=103 guibg=#33364d gui=bold cterm=bold
 hi StatusLineNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a gui=bold cterm=bold
 hi StatusLineTermNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a gui=bold cterm=bold
-hi DiagnosticError guifg=#dc6f79 ctermfg=167
-hi DiagnosticVirtualTextError guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold
-hi DiagnosticUnderlineError guifg=#dc6f79 ctermfg=167 gui=underline cterm=underline
+hi DiagnosticError guifg=#b18181 ctermfg=167
+hi DiagnosticVirtualTextError guifg=#b18181 ctermfg=167 gui=bold cterm=bold
+hi DiagnosticUnderlineError guifg=#b18181 ctermfg=167 gui=underline cterm=underline
 hi DiagnosticWarn guifg=#ac8b83 ctermfg=138
 hi DiagnosticVirtualTextWarn guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi DiagnosticUnderlineWarn guifg=#ac8b83 ctermfg=138 gui=underline cterm=underline
@@ -126,7 +126,8 @@ hi GitGutterChange guifg=#a8a384 ctermfg=144
 hi GitGutterDelete guifg=#b871b8 ctermfg=133
 hi GitGutterChangeDelete guifg=#28795c ctermfg=29
 hi NullLsInfoBorder guifg=#545c8c ctermfg=60 guibg=#252737 ctermbg=235 gui=NONE cterm=NONE
-hi CocErrorSign guibg=#2a2c3f guifg=#dc6f79 ctermfg=167 gui=bold cterm=bold
+hi CocErrorSign guibg=#2a2c3f guifg=#b18181 ctermfg=167 gui=bold cterm=bold
+hi CocListFgRed guifg=#b18181
 hi CocWarningSign guifg=#ac8b83 ctermfg=138 gui=bold cterm=bold
 hi CocInfoSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
 hi CocHintSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
@@ -139,6 +140,9 @@ hi TreesitterContext guibg=#33364d
 hi link esearchFilename CursorLine
 hi CocHighlightText guibg=#373b53
 hi link CocFloating Pmenu
+
+hi HlSearchLensNear guifg=#545c8c guibg=NONE
+hi HlSearchNear guifg=#252737 guibg=#a3a6c2
 
 " treesitter
 hi @string guifg=#73c1a9

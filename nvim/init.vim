@@ -3,8 +3,7 @@ filetype indent plugin on
 scriptencoding utf-8
 set encoding=UTF-8
 set fileencoding=utf-8
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-" set tabstop=4 shiftwidth=4 softtabstop=4 noet
+set tabstop=4 softtabstop=4 shiftwidth=4 noet
 autocmd Filetype rust setlocal tabstop=4 shiftwidth=4 softtabstop=4 noet
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noet
 
@@ -63,6 +62,11 @@ call plug#begin("~/.vim/plugged")
   Plug 'lewis6991/satellite.nvim'
   Plug 'rust-lang/rust.vim'
   Plug 'norflin321/nvim-gps'
+  Plug 'zivyangll/git-blame.vim'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+  Plug 'kevinhwang91/nvim-hlslens'
+  Plug 'eandrju/cellular-automaton.nvim' 
+  Plug 'chrisgrieser/nvim-chainsaw'
 call plug#end()
 
 map q: :q
@@ -181,6 +185,7 @@ nnoremap z <NOP>
 nnoremap z zz
 nmap <c-f> <plug>(esearch)
 vmap <c-f> <plug>(operator-esearch-prefill)
+nmap <silent> C :ChainSaw variableLog<CR>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
@@ -213,7 +218,7 @@ func! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunc
 
-let g:coc_global_extensions = [ "coc-tsserver", "coc-json", "coc-go", "coc-prettier", "coc-css", "coc-pyright", "coc-clangd", "coc-rust-analyzer", "coc-lua", "coc-eslint" ]
+let g:coc_global_extensions = [ "coc-tsserver", "coc-json", "coc-go", "coc-prettier", "coc-css", "coc-pyright", "coc-clangd", "coc-rust-analyzer", "coc-lua", "coc-eslint", "coc-pretty-ts-errors" ]
 
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -237,8 +242,8 @@ command BL exe ":call gitblame#echo()"
 command PI exe ":PlugInstall"
 command PC exe ":PlugClean"
 command PU exe ":PlugUpdate"
-command CC exe ":CtrlPClearAllCaches"
-command R exe ":edit!"
+command GG exe ":CellularAutomaton make_it_rain"
+command CC exe ":ChainSaw removeLogs"
 
 augroup SourceConfigAfterWrite
   autocmd!

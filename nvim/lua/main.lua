@@ -56,6 +56,10 @@ require("nvim-tree").setup({
 					deleted = "D",
 					ignored = "I",
 				},
+        folder = {
+          arrow_closed = "",
+          arrow_open = ""
+        }
 			}
 		}
 	},
@@ -148,3 +152,11 @@ require("hbac").setup({
 })
 
 require("nvim-gps").setup({})
+require("hlslens").setup({ nearest_only = true })
+require("chainsaw").setup({
+  logStatements = {
+    variableLog = {
+      go = 'fmt.Println("%s %s:", spew.Sdump(%s));'
+    }
+  }
+})

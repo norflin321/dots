@@ -59,6 +59,7 @@
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pyright.inlayHints.variableTypes": false,
 	"python.analysis.typeCheckingMode": "off",
+  "python.pythonPath": "/Users/norflin/code/miniforge3/bin/python3",
 
 	"dialog.floatBorderHighlight": "CocFloatingBorder",
 	"typescript.preferences.importModuleSpecifier": "non-relative",
@@ -74,5 +75,6 @@
 
   "Lua.diagnostics.globals": ["vim"],
   "inlayHint.enable": false,
-  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd"
+  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
+  "pretty-ts-errors.mode": 0
 }

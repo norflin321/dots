@@ -13,10 +13,10 @@ export PATH=$PATH:/Users/norflin/.jsvu/bin
 export PATH=$PATH:/Users/norflin/.cargo/bin
 
 # For compilers to find llvm you may need to set:
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-export CC=/opt/homebrew/opt/llvm/bin/clang
-export CXX=/opt/homebrew/opt/llvm/bin/clang++
+# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+# export CC=/opt/homebrew/opt/llvm/bin/clang
+# export CXX=/opt/homebrew/opt/llvm/bin/clang++
 
 # Android SDK
 export ANDROID_HOME="/Users/norflin/Library/Android/sdk"
@@ -55,6 +55,7 @@ gh() {
   open `git remote -v | grep fetch | awk '{print $2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'`| head -n1
 }
 
+alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
@@ -64,3 +65,6 @@ alias py="python3"
 alias studio="open -a /Applications/Android\ Studio.app"
 alias clang++="/opt/homebrew/opt/llvm/bin/clang++"
 alias clangd="/opt/homebrew/opt/llvm/bin/clangd"
+alias rt=". rt"
+alias requirements-txt=". requirements-txt"
+alias venv="source ./venv/bin/activate"
