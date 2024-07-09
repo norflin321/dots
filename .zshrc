@@ -51,20 +51,27 @@ fi
 # rust
 source "$HOME/.cargo/env"
 
-gh() {
-  open `git remote -v | grep fetch | awk '{print $2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'`| head -n1
-}
-
+# move
 alias clear="printf '\033[2J\033[3J\033[1;1H'"
 alias ls="ls -la"
 alias rm="rm -rf"
 alias cp="cp -R"
-alias vi="nvim"
+
+# python
+alias venv="source ~/code/venv/bin/activate"
 alias python="python3"
 alias py="python3"
+alias pip="python3 -m pip"
+
+# software
+alias vi="nvim"
 alias studio="open -a /Applications/Android\ Studio.app"
 alias clang++="/opt/homebrew/opt/llvm/bin/clang++"
 alias clangd="/opt/homebrew/opt/llvm/bin/clangd"
-alias rt=". rt"
-alias requirements-txt=". requirements-txt"
-alias venv="source ./venv/bin/activate"
+
+# git
+alias ga="git add . && git commit --amend --no-edit"
+alias gc="git add . && git commit -am 'wip'"
+alias gp="git push"
+alias gpf="git push --force"
+gh() { open `git remote -v | grep fetch | awk '{print $2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'`| head -n1 }

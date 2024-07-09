@@ -3,9 +3,10 @@ filetype indent plugin on
 scriptencoding utf-8
 set encoding=UTF-8
 set fileencoding=utf-8
-set tabstop=4 softtabstop=4 shiftwidth=4 noet
-autocmd Filetype rust setlocal tabstop=4 shiftwidth=4 softtabstop=4 noet
-autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noet
+set tabstop=2 softtabstop=2 shiftwidth=2 noet
+autocmd Filetype rust setlocal tabstop=2 shiftwidth=2 softtabstop=2 noet
+autocmd Filetype go setlocal tabstop=2 shiftwidth=2 softtabstop=2 noet
+autocmd Filetype python setlocal tabstop=2 shiftwidth=2 softtabstop=2 noet
 
 set autoindent
 set smartindent
