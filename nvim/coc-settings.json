@@ -76,5 +76,5 @@
   "Lua.diagnostics.globals": ["vim"],
   "inlayHint.enable": false,
   "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
-  "pretty-ts-errors.mode": 0
+  "pretty-ts-errors.mode": 0,
 }

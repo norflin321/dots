@@ -245,6 +245,7 @@ command PC exe ":PlugClean"
 command PU exe ":PlugUpdate"
 command GG exe ":CellularAutomaton make_it_rain"
 command CC exe ":ChainSaw removeLogs"
+command GoFmt exe "!go fmt **/*.go"
 
 augroup SourceConfigAfterWrite
   autocmd!
