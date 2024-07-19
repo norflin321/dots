@@ -258,6 +258,15 @@ func! NvimGps() abort
   return luaeval("require'nvim-gps'.is_available()") ? luaeval("require'nvim-gps'.get_location()") : ""
 endf
 
+func! BrowseGithubRepo(url) abort
+	let l:basename = system("basename " . a:url . " .git")
+	let l:repo_path = fnamemodify(tempname(),':h') . "/" . l:basename
+	execute "!git clone --depth=1 " . a:url . " " . l:repo_path
+	execute "lcd ". l:repo_path
+	edit .
+endf
+command! -nargs=1 BrowseGithubRepo call BrowseGithubRepo(<q-args>)
+
 set statusline=%{&modified?'\[+]\ ':''}%t\ %h%r%{NvimGps()}%=%-5.(%l,%c%)\ %L
 
 colors dogrun_custom
