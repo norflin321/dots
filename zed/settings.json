@@ -30,6 +30,7 @@
   "scroll_beyond_last_line": "off",
   "hard_tabs": true,
   "search_wrap": true,
+  "unstable.ui_density": "compact",
   "indent_guides": { "enabled": false },
   "buffer_font_family": "JetBrains Mono",
   "buffer_font_size": 13,
@@ -114,7 +115,8 @@
     // Whether to reveal it in the project panel automatically,
     // when a corresponding project entry becomes active.
     // Gitignored entries are never auto revealed.
-    "auto_reveal_entries": false
+    "auto_reveal_entries": true,
+    "button": true
   },
   "terminal": {
  	 "font_family": "JetBrains Mono",
@@ -130,7 +132,7 @@
     // Show git status colors in the editor tabs.
     "git_status": false,
     // Position of the close button on the editor tabs.
-    "close_position": "left"
+    "close_position": "right"
   },
-  "extend_comment_on_newline": true
+  "extend_comment_on_newline": true,
 }
