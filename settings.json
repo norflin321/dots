@@ -1,0 +1,136 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "outline_panel": {
+    "dock": "right"
+  },
+  "vim_mode": true,
+  "theme": "Catppuccin Macchiato",
+  "experimental.theme_overrides": {
+	  // "players": [{ "cursor": "#CCCCCC" }],
+    "editor.line_number": "#50557c",
+    "editor.active_line_number": "#50557c",
+    "syntax": {
+      "comment": { "color": "#6e738d", "font_style": "normal" },
+      "comment.doc": { "color": "#6e738d", "font_style": "normal" },
+      "emphasis": { "color": "#ed8796", "font_style": "normal" },
+      "function": { "color": "#8aadf4", "font_style": "normal" },
+      "type": { "color": "#eed49f", "font_style": "normal" },
+      "variable": { "color": "#cad3f5", "font_style": "normal" },
+      "variable.special": { "color": "#ed8796", "font_style": "normal" }
+    }
+  },
+  "inlay_hints": { "enabled": false },
+  "scroll_beyond_last_line": "off",
+  "hard_tabs": true,
+  "search_wrap": true,
+  "indent_guides": { "enabled": false },
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_size": 13,
+  "ui_font_family": "SF Pro",
+  "ui_font_size": 16,
+  "telemetry": { "diagnostics": false, "metrics": false },
+  "show_completions_on_input": false,
+  "show_whitespaces": "none",
+  "buffer_line_height": { "custom": 1.5 },
+  // "buffer_line_height": "comfortable",
+  "current_line_highlight": "none",
+  "tab_bar": { "show_nav_history_buttons": false },
+  "tab_size": 2,
+  // "show_wrap_guides": true,
+  // "wrap_guides": [120],
+  "cursor_blink": false,
+  // "preferred_line_length": 80,
+  "features": { "copilot": false },
+  "toolbar": {
+    // Whether to show breadcrumbs.
+    "breadcrumbs": false,
+    // Whether to show quick action buttons.
+    "quick_actions": false
+  },
+  "gutter": {
+    // Whether to show line numbers in the gutter.
+    "line_numbers": true,
+    // Whether to show code action buttons in the gutter.
+    "code_actions": false,
+    // Whether to show fold buttons in the gutter.
+    "folds": false
+  },
+  "collaboration_panel": {
+    // Whether to show the collaboration panel button in the status bar.
+    "button": false,
+    // Where to dock the collaboration panel. Can be 'left' or 'right'.
+    "dock": "left",
+    // Default width of the collaboration panel.
+    "default_width": 240
+  },
+  "chat_panel": {
+    // Whether to show the chat panel button in the status bar.
+    "button": false,
+    // Where to the chat panel. Can be 'left' or 'right'.
+    "dock": "right",
+    // Default width of the chat panel.
+    "default_width": 240
+  },
+  "assistant": {
+    // Version of this setting.
+    "version": "1",
+    // Whether to show the assistant panel button in the status bar.
+    "button": false
+  },
+  "show_call_status_icon": false,
+  "ensure_final_newline_on_save": false,
+  "format_on_save": "off",
+  "scrollbar": {
+    "show": "auto",
+    // Whether to show git diff indicators in the scrollbar.
+    "git_diff": false,
+    // Whether to show selections in the scrollbar.
+    "selections": true,
+    // Whether to show symbols selections in the scrollbar.
+    "symbols_selections": true,
+    // Whether to show diagnostic indicators in the scrollbar.
+    "diagnostics": true
+  },
+  "project_panel": {
+    // Default width of the project panel.
+    "default_width": 200,
+    // Where to dock the project panel. Can be 'left' or 'right'.
+    "dock": "left",
+    // Whether to show file icons in the project panel.
+    "file_icons": true,
+    // Whether to show folder icons or chevrons for directories in the project panel.
+    "folder_icons": true,
+    // Whether to show the git status in the project panel.
+    "git_status": false,
+    // Amount of indentation for nested items.
+    "indent_size": 20,
+    // Whether to reveal it in the project panel automatically,
+    // when a corresponding project entry becomes active.
+    // Gitignored entries are never auto revealed.
+    "auto_reveal_entries": false
+  },
+  "terminal": {
+ 	 "font_family": "JetBrains Mono",
+   "font_size": 13
+  },
+  "git": {
+    "git_gutter": "hide",
+    "inline_blame": { "enabled": false }
+  },
+  "buffer_font_features": { "calt": true },
+  "vertical_scroll_margin": 5,
+  "tabs": {
+    // Show git status colors in the editor tabs.
+    "git_status": false,
+    // Position of the close button on the editor tabs.
+    "close_position": "left"
+  },
+  "extend_comment_on_newline": true
+}
