@@ -3,8 +3,8 @@
 cp -R ~/.zshrc .
 cp -R ~/.config/kitty .
 cp -R ~/.config/nvim .
-cp -R ~/.config/zed/settings.json .
-cp -R ~/.config/zed/keymaps.json .
+cp -R ~/.config/zed/settings.json ./zed/
+cp -R ~/.config/zed/keymap.json ./zed/
 rm -rf ./nvim/usage_data.json
 cp ~/.gitconfig .
 cp ~/.jupyter .
