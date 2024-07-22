@@ -66,7 +66,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'zivyangll/git-blame.vim'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
   Plug 'kevinhwang91/nvim-hlslens'
-  Plug 'eandrju/cellular-automaton.nvim' 
   Plug 'chrisgrieser/nvim-chainsaw'
 call plug#end()
 
@@ -123,6 +122,10 @@ nmap <c-7> <NOP>
 vmap <c-7> <NOP>
 nmap <c-8> <NOP>
 vmap <c-8> <NOP>
+nmap m <NOP>
+vmap m <NOP>
+nmap M <NOP>
+vmap M <NOP>
 nnoremap <expr> n 'Nn'[v:searchforward]
 xnoremap <expr> n 'Nn'[v:searchforward]
 onoremap <expr> n 'Nn'[v:searchforward]
@@ -219,7 +222,7 @@ func! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunc
 
-let g:coc_global_extensions = [ "coc-tsserver", "coc-json", "coc-go", "coc-prettier", "coc-css", "coc-pyright", "coc-clangd", "coc-rust-analyzer", "coc-lua", "coc-eslint", "coc-pretty-ts-errors" ]
+let g:coc_global_extensions = [ "coc-tsserver", "coc-json", "coc-go", "coc-prettier", "coc-css", "coc-pyright", "coc-lua", "coc-eslint" ]
 
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -243,8 +246,7 @@ command BL exe ":call gitblame#echo()"
 command PI exe ":PlugInstall"
 command PC exe ":PlugClean"
 command PU exe ":PlugUpdate"
-command GG exe ":CellularAutomaton make_it_rain"
-command CC exe ":ChainSaw removeLogs"
+command CC exe ":!rm -rf ~/.cache/ctrlp"
 command GoFmt exe "!go fmt **/*.go"
 
 augroup SourceConfigAfterWrite
