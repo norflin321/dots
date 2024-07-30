@@ -24,7 +24,7 @@
     }
   },
   {
-    "context": "Editor || Terminal",
+    "context": "Editor || Terminal || MarkdownPreview",
     "bindings": {
       "cmd-1": "pane::ActivatePrevItem",
       "cmd-2": "pane::ActivateNextItem"

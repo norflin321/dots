@@ -8,9 +8,8 @@
 // from the command palette or from `Zed` application menu.
 {
   "vim_mode": true,
-  "theme": "Catppuccin Macchiato",
+  "theme": "Catppuccin Macchiato - No Italics",
   "experimental.theme_overrides": {
-	  // "players": [{ "cursor": "#CCCCCC" }],
     "editor.line_number": "#50557c",
     "editor.active_line_number": "#50557c",
     "syntax": {
@@ -32,6 +31,9 @@
   "buffer_font_family": "JetBrains Mono",
   "buffer_font_size": 13,
   "ui_font_family": "SF Pro",
+  "vim": {
+  	"use_system_clipboard": "always"
+  },
   "ui_font_size": 16,
   "telemetry": { "diagnostics": false, "metrics": false },
   "show_completions_on_input": false,
@@ -40,7 +42,7 @@
   // "buffer_line_height": "comfortable",
   "current_line_highlight": "none",
   "tab_bar": { "show_nav_history_buttons": false, "show": true },
-  "auto_signature_help": true,
+  "auto_signature_help": false,
   // "autosave": "on_focus_change",
   "remove_trailing_whitespace_on_save": true,
   "session": {
@@ -61,7 +63,7 @@
     // Whether to show breadcrumbs.
     "breadcrumbs": false,
     // Whether to show quick action buttons.
-    "quick_actions": false,
+    "quick_actions": false
   },
   "gutter": {
     // Whether to show line numbers in the gutter.
@@ -140,7 +142,7 @@
     // Show git status colors in the editor tabs.
     "git_status": false,
     // Position of the close button on the editor tabs.
-    "close_position": "right",
+    "close_position": "left",
     "file_icons": true
   },
   "extend_comment_on_newline": true,
