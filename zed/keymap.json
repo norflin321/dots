@@ -2,9 +2,7 @@
   {
     "bindings": {
       "ctrl-k": "menu::SelectPrev",
-      "ctrl-j": "menu::SelectNext",
-      "ctrl-t": "outline::Toggle",
-      "cmd-n": "workspace::ToggleRightDock"
+      "ctrl-j": "menu::SelectNext"
     }
   },
   {
@@ -68,5 +66,17 @@
     "bindings": {
       "tab": "editor::ShowCompletions"
     }
+  },
+  {
+	  "context": "Editor",
+	  "bindings": {
+		  "cmd-t": "terminal_panel::ToggleFocus"
+	  }
+  },
+  {
+	  "context": "Terminal",
+	  "bindings": {
+		  "cmd-t": "terminal_panel::ToggleFocus"
+	  }
   }
 ]
