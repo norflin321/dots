@@ -13,8 +13,8 @@
     "editor.line_number": "#50557c",
     "editor.active_line_number": "#50557c",
     "syntax": {
-      "comment": { "color": "#6e738d", "font_style": "normal" },
-      "comment.doc": { "color": "#6e738d", "font_style": "normal" },
+      "comment": { "color": "#6e738d", "font_style": "italic" },
+      "comment.doc": { "color": "#6e738d", "font_style": "italic" },
       "emphasis": { "color": "#ed8796", "font_style": "normal" },
       "function": { "color": "#8aadf4", "font_style": "normal" },
       "type": { "color": "#eed49f", "font_style": "normal" },
@@ -29,28 +29,29 @@
   // "unstable.ui_density": "compact",
   "indent_guides": { "enabled": false },
   "buffer_font_family": "JetBrains Mono",
-  "buffer_font_size": 13,
-  "ui_font_family": "SF Pro",
+  // "buffer_font_family": "Fira Code",
+  "buffer_font_size": 12.5,
   "vim": {
-  	"use_system_clipboard": "always"
+    "use_system_clipboard": "always"
   },
-  "ui_font_size": 16,
+  "ui_font_family": "SF Pro",
+  "ui_font_size": 15,
   "telemetry": { "diagnostics": false, "metrics": false },
   "show_completions_on_input": false,
   "show_whitespaces": "none",
   "buffer_line_height": { "custom": 1.5 },
   // "buffer_line_height": "comfortable",
   "current_line_highlight": "none",
-  "tab_bar": { "show_nav_history_buttons": false, "show": true },
+  "tab_bar": { "show_nav_history_buttons": false, "show": false },
   "auto_signature_help": false,
   // "autosave": "on_focus_change",
   "remove_trailing_whitespace_on_save": true,
   "session": {
-	  "restore_unsaved_buffers": false
+    "restore_unsaved_buffers": false
   },
   "preview": {
-		"restore_on_startup": "last_workspace",
-		"ensure_final_newline_on_save": false
+    "restore_on_startup": "last_workspace",
+    "ensure_final_newline_on_save": false
   },
   "preview_tabs": { "enabled": false },
   "tab_size": 2,
@@ -128,11 +129,11 @@
     "button": true
   },
   "terminal": {
- 	 "font_family": "JetBrains Mono",
-   "font_size": 13
+    "font_family": "JetBrains Mono",
+    "font_size": 13
   },
   "git": {
-    "git_gutter": "hide",
+    // "git_gutter": "hide",
     "inline_blame": { "enabled": false }
   },
   "scroll_sensitivity": 1,
