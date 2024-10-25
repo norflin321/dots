@@ -1,86 +1,67 @@
 [
-  {
+	{
     "bindings": {
-      "ctrl-k": "menu::SelectPrev",
-      "ctrl-j": "menu::SelectNext",
-      "cmd-k": "menu::SelectPrev",
-      "cmd-j": "menu::SelectNext",
-      "ctrl-p": "file_finder::Toggle",
-      "ctrl-t": "terminal_panel::ToggleFocus",
-		  "cmd-t": "terminal_panel::ToggleFocus",
-			"cmd-.": "workspace::ToggleBottomDock",
-			"cmd-o": null,
-			"cmd-2": null
-    }
-  },
-  {
-    "context": "Editor && (showing_code_actions || showing_completions)",
-    "bindings": {
-      "up": "editor::ContextMenuPrev",
-      "ctrl-k": "editor::ContextMenuPrev",
-      "down": "editor::ContextMenuNext",
-      "ctrl-j": "editor::ContextMenuNext"
-    }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "cmd-1": null,
+  	  "cmd-1": null,
       "cmd-2": null,
-      "cmd-j": null,
-      "cmt-r": "workspace::ToggleRightDock"
+   	  "ctrl-j": null,
+      "ctrl-k": null,
+      "ctrl-t": null,
+      "ctrl-o": null,
+      "ctrl-i": null
     }
-  },
-  {
-    "context": "Editor || Terminal || MarkdownPreview",
+	},
+	{
     "bindings": {
       "cmd-1": "pane::ActivatePrevItem",
-      "cmd-2": "pane::ActivateNextItem"
+      "cmd-2": "pane::ActivateNextItem",
+   	  "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrev",
+      "ctrl-p": "file_finder::Toggle",
+      "cmd-t": "terminal_panel::ToggleFocus"
     }
-  },
-  {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+	},
+	{
+    "context": "Editor && !VimWaiting && !menu && vim_mode == normal",
     "bindings": {
-      "g n": "editor::Rename",
       "ctrl-d": "editor::GoToDiagnostic",
-      "g f": "editor::ToggleCodeActions",
       "ctrl-c": "editor::ToggleComments",
-      "K": "editor::Hover",
+
+      "shift-k": "editor::Hover",
+      "shift-d": "editor::DeleteLine",
+
+      "g n": "editor::Rename",
+      "g f": "editor::ToggleCodeActions",
       "g r": "editor::FindAllReferences",
-      "D": "editor::DeleteLine",
       "d d": "editor::DeleteLine",
+      "g y": "editor::GoToTypeDefinition",
+
       "9": "editor::MoveToEndOfLine",
       "8": "editor::MoveToEnclosingBracket",
       "x": "editor::Delete",
-      "g y": "editor::GoToTypeDefinition",
+
       "(": ["workspace::SendKeystrokes", "up up up up up up up up up up up up up up up"],
       ")": ["workspace::SendKeystrokes", "down down down down down down down down down down down down down down down"],
       "<": "editor::Outdent",
-      ">": "editor::Indent"
+	    ">": "editor::Indent"
     }
   },
   {
-    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
-    "bindings": {
-      "d": "editor::Delete",
-      "x": "editor::Delete",
-      "9": "editor::SelectToEndOfLine",
-      //"8": "editor::SelectToEnclosingBracket",
-      "<": "editor::Outdent",
-      ">": "editor::Indent",
-      "ctrl-c": "editor::ToggleComments"
-    }
+     "context": "Editor && !VimWaiting && !menu && vim_mode == visual",
+     "bindings": {
+	     "ctrl-c": "editor::ToggleComments",
+
+	     "d": "editor::Delete",
+	     "x": "editor::Delete",
+
+	     "9": "editor::SelectToEndOfLine",
+	     "<": "editor::Outdent",
+	     ">": "editor::Indent"
+     }
   },
   {
-    "context": "Editor && vim_mode == insert && !VimWaiting && !menu",
-    "bindings": {
-      "tab": "editor::ShowCompletions"
-    }
-  },
-	{
-	  "context": "Editor",
-	  "bindings": {
-			"cmd-j": "menu::SelectNext"
-	  }
-	}
+     "context": "Editor && !VimWaiting && !menu && vim_mode == insert",
+     "bindings": {
+	     "tab": "editor::ShowCompletions"
+     }
+  }
 ]

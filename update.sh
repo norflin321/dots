@@ -1,13 +1,12 @@
 #!/bin/sh
 
 cp -R ~/.zshrc .
-cp -R ~/.config/kitty .
-cp -R ~/.config/nvim .
+cp ~/.gitconfig .
+
 cp -R ~/.config/zed/settings.json ./zed/
 cp -R ~/.config/zed/keymap.json ./zed/
-rm -rf ./nvim/usage_data.json
-cp ~/.gitconfig .
-cp ~/.jupyter .
+cp -R ~/.config/zed/tasks.json ./zed/
+cp -R ~/.config/zed/themes ./zed/themes
 
 git add .
 git commit -m "update"
