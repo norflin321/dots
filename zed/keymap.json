@@ -5,11 +5,10 @@
       "cmd-2": null,
    	  "ctrl-j": null,
       "ctrl-k": null,
-      "ctrl-t": null,
-      "ctrl-o": null,
-      "ctrl-i": null,
       "ctrl-l": null,
-      "shift-l": null
+      "shift-l": null,
+      "cmd-t": null,
+      "cmd-r": null
     }
 	},
 	{
@@ -19,7 +18,7 @@
    	  "ctrl-j": "menu::SelectNext",
       "ctrl-k": "menu::SelectPrev",
       "ctrl-p": "file_finder::Toggle",
-      "cmd-t": "terminal_panel::ToggleFocus"
+      "shift-cmd-t": "project_symbols::Toggle"
     }
 	},
 	{
@@ -53,7 +52,9 @@
       "(": ["workspace::SendKeystrokes", "up up up up up up up up up up up up up up up"],
       ")": ["workspace::SendKeystrokes", "down down down down down down down down down down down down down down down"],
       "<": "editor::Outdent",
-	    ">": "editor::Indent"
+	    ">": "editor::Indent",
+
+			"cmd-t": ["workspace::SendKeystrokes", "g s"]
     }
   },
   {
@@ -74,5 +75,11 @@
      "bindings": {
 	     "tab": "editor::ShowCompletions"
      }
-  }
+  },
+  {
+     "context": "Terminal",
+     "bindings": {
+       "cmd-t": "workspace::NewTerminal"
+     }
+   }
 ]

@@ -1,51 +1,42 @@
 {
   "vim_mode": true,
+  "vim": { "use_system_clipboard": "always" },
+
   "theme": "Customized Catpuccin Macchiato",
-  "inlay_hints": { "enabled": false },
-  "scroll_beyond_last_line": "off",
-  "hard_tabs": true,
-  "search_wrap": false,
-  "unstable.ui_density": "compact",
-  "indent_guides": { "enabled": false },
+
   "buffer_font_family": "JetBrains Mono",
   "buffer_font_size": 12,
-  "vim": { "use_system_clipboard": "always" },
   "ui_font_family": "SF Pro",
   "ui_font_size": 14,
-  "telemetry": { "diagnostics": false, "metrics": false },
-  "show_completions_on_input": false,
-  "show_whitespaces": "selection",
   "buffer_line_height": { "custom": 1.6 },
-  "current_line_highlight": "none",
-  "tab_bar": { "show_nav_history_buttons": false, "show": true },
-  "auto_signature_help": false,
-  "remove_trailing_whitespace_on_save": true,
-  "session": { "restore_unsaved_buffers": false },
-  "preview": { "restore_on_startup": "last_workspace", "ensure_final_newline_on_save": false },
-  "preview_tabs": { "enabled": true, "enable_preview_from_file_finder": true, "enable_preview_from_code_navigation": true },
+  "buffer_font_features": { "calt": true },
+
   "tab_size": 2,
   "cursor_blink": false,
-  "features": { "inline_completion_provider": "none", "copilot": false },
+  "current_line_highlight": "none",
+  "show_whitespaces": "selection",
+  "indent_guides": { "enabled": false },
+  "hard_tabs": true,
+  "search_wrap": false,
+  "vertical_scroll_margin": 5,
+  "scroll_beyond_last_line": "off",
+  "inlay_hints": { "enabled": false },
+  "show_completions_on_input": false,
+  "auto_signature_help": false,
+  "scroll_sensitivity": 1,
+
+  "format_on_save": "off",
+  "extend_comment_on_newline": true,
+  "ensure_final_newline_on_save": false,
+  "remove_trailing_whitespace_on_save": true,
+
+  "unstable.ui_density": "compact",
   "toolbar": { "breadcrumbs": true, "quick_actions": true, "selections_menu": false },
   "gutter": { "line_numbers": true, "code_actions": false, "folds": false },
   "collaboration_panel": { "button": false, "dock": "left", "default_width": 240 },
   "chat_panel": { "button": false, "dock": "right", "default_width": 240 },
-  "assistant": {
-    "default_model": { "provider": "zed.dev", "model": "claude-3-5-sonnet-20240620" },
-    "version": "2",
-    "button": false,
-    "enabled": false
-  },
-  "show_call_status_icon": false,
-  "ensure_final_newline_on_save": false,
-  "format_on_save": "off",
-  "scrollbar": {
-    "show": "auto",
-    "git_diff": true,
-    "selections": true,
-    "symbols_selections": true,
-    "diagnostics": true
-  },
+  "tab_bar": { "show_nav_history_buttons": false, "show": true },
+  "scrollbar": { "show": "auto", "git_diff": true, "selections": true, "symbols_selections": true, "diagnostics": true },
   "project_panel": {
     "default_width": 200,
     "dock": "left",
@@ -56,19 +47,41 @@
     "auto_reveal_entries": true,
     "button": true
   },
-  "terminal": { "font_family": "JetBrains Mono", "font_size": 12 },
-  "git": { "inline_blame": { "enabled": false } },
-  "scroll_sensitivity": 1,
-  "buffer_font_features": { "calt": true },
-  "vertical_scroll_margin": 5,
+  "show_call_status_icon": false,
   "tabs": { "git_status": false, "close_position": "left", "file_icons": true },
-  "extend_comment_on_newline": true,
   "outline_panel": { "dock": "right", "git_status": false, "indent_size": 15 },
+
+  "terminal": {
+	  "font_family": "JetBrains Mono",
+		"font_size": 11.5,
+		"cursor_shape": "bar",
+		"blinking": "off",
+		"dock": "right"
+  },
+
+  "telemetry": { "diagnostics": false, "metrics": false },
+  "session": { "restore_unsaved_buffers": false },
+  "features": { "inline_completion_provider": "none", "copilot": false },
+  "preview": { "restore_on_startup": "last_workspace", "ensure_final_newline_on_save": false },
+  "preview_tabs": { "enabled": true, "enable_preview_from_file_finder": true, "enable_preview_from_code_navigation": true },
+
+  "assistant": {
+    "default_model": { "provider": "zed.dev", "model": "claude-3-5-sonnet-20240620" },
+    "version": "2",
+    "button": false,
+    "enabled": false
+  },
+
+  "git": {
+ 	 "inline_blame": { "enabled": false }
+  },
+
   "lsp": {
     "clangd": {
       "binary": { "path": "/opt/homebrew/Cellar/llvm/19.1.1/bin/clangd", "args": [] }
     }
   },
+
 	"ssh_connections": [
 	  { "host": "88.212.207.7", "username": "kurtin", "port": 37, "projects": [ {"paths": ["~/mergicpets_server"]} ] }
 	]
