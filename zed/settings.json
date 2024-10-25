@@ -1,17 +1,21 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
 {
+  "ssh_connections": [
+    {
+      "host": "88.212.207.7",
+      "username": "kurtin",
+      "port": 37,
+      "projects": [
+        {
+          "paths": [
+            "~/mergicpets_server"
+          ]
+        }
+      ]
+    }
+  ],
   "vim_mode": true,
   "theme": "Catppuccin Macchiato - No Italics",
   "experimental.theme_overrides": {
-    "editor.line_number": "#50557c",
-    "editor.active_line_number": "#50557c",
     "syntax": {
       "comment": { "color": "#6e738d", "font_style": "italic" },
       "comment.doc": { "color": "#6e738d", "font_style": "italic" },
@@ -20,29 +24,36 @@
       "type": { "color": "#eed49f", "font_style": "normal" },
       "variable": { "color": "#cad3f5", "font_style": "normal" },
       "variable.special": { "color": "#ed8796", "font_style": "normal" }
-    }
+    },
+    "editor.line_number": "#50557c",
+    "editor.active_line_number": "#50557c",
+    "terminal.background": "#0a0a0a"
   },
   "inlay_hints": { "enabled": false },
   "scroll_beyond_last_line": "off",
   "hard_tabs": true,
-  "search_wrap": true,
-  // "unstable.ui_density": "compact",
+  "search_wrap": false,
+  "unstable.ui_density": "compact",
   "indent_guides": { "enabled": false },
-  "buffer_font_family": "JetBrains Mono",
+  // "buffer_font_family": "PT Mono",
   // "buffer_font_family": "Fira Code",
-  "buffer_font_size": 12.5,
+  "buffer_font_family": "JetBrains Mono",
+  // "buffer_font_family": "Cascadia Code",
+  // "buffer_font_family": "SF Mono",
+  "buffer_font_size": 12,
+  // "buffer_font_size": 11.5,
   "vim": {
     "use_system_clipboard": "always"
   },
   "ui_font_family": "SF Pro",
-  "ui_font_size": 15,
+  "ui_font_size": 14,
   "telemetry": { "diagnostics": false, "metrics": false },
   "show_completions_on_input": false,
-  "show_whitespaces": "none",
-  "buffer_line_height": { "custom": 1.5 },
+  "show_whitespaces": "selection",
+  "buffer_line_height": { "custom": 1.6 },
   // "buffer_line_height": "comfortable",
   "current_line_highlight": "none",
-  "tab_bar": { "show_nav_history_buttons": false, "show": false },
+  "tab_bar": { "show_nav_history_buttons": false, "show": true },
   "auto_signature_help": false,
   // "autosave": "on_focus_change",
   "remove_trailing_whitespace_on_save": true,
@@ -53,7 +64,7 @@
     "restore_on_startup": "last_workspace",
     "ensure_final_newline_on_save": false
   },
-  "preview_tabs": { "enabled": false },
+  "preview_tabs": { "enabled": true, "enable_preview_from_file_finder": true, "enable_preview_from_code_navigation": true },
   "tab_size": 2,
   // "show_wrap_guides": true,
   // "wrap_guides": [120],
@@ -62,9 +73,10 @@
   "features": { "inline_completion_provider": "none", "copilot": false },
   "toolbar": {
     // Whether to show breadcrumbs.
-    "breadcrumbs": false,
+    "breadcrumbs": true,
     // Whether to show quick action buttons.
-    "quick_actions": false
+    "quick_actions": true,
+    "selections_menu": false
   },
   "gutter": {
     // Whether to show line numbers in the gutter.
@@ -92,9 +104,14 @@
   },
   "assistant": {
     // Version of this setting.
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-20240620"
+    },
     "version": "2",
     // Whether to show the assistant panel button in the status bar.
-    "button": false
+    "button": false,
+    "enabled": false
   },
   "show_call_status_icon": false,
   "ensure_final_newline_on_save": false,
@@ -102,7 +119,7 @@
   "scrollbar": {
     "show": "auto",
     // Whether to show git diff indicators in the scrollbar.
-    "git_diff": false,
+    "git_diff": true,
     // Whether to show selections in the scrollbar.
     "selections": true,
     // Whether to show symbols selections in the scrollbar.
@@ -120,7 +137,7 @@
     // Whether to show folder icons or chevrons for directories in the project panel.
     "folder_icons": true,
     // Whether to show the git status in the project panel.
-    "git_status": false,
+    "git_status": true,
     // Amount of indentation for nested items.
     "indent_size": 20,
     // Whether to reveal it in the project panel automatically, // when a corresponding project entry becomes active.
@@ -130,7 +147,7 @@
   },
   "terminal": {
     "font_family": "JetBrains Mono",
-    "font_size": 13
+    "font_size": 12
   },
   "git": {
     // "git_gutter": "hide",
@@ -151,5 +168,10 @@
     "dock": "right",
     "git_status": false,
     "indent_size": 15
+  },
+  "lsp": {
+    "clangd": {
+      "binary": { "path": "/opt/homebrew/Cellar/llvm/19.1.1/bin/clangd", "args": [] }
+    }
   }
 }
