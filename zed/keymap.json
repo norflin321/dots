@@ -7,7 +7,9 @@
       "ctrl-k": null,
       "ctrl-t": null,
       "ctrl-o": null,
-      "ctrl-i": null
+      "ctrl-i": null,
+      "ctrl-l": null,
+      "shift-l": null
     }
 	},
 	{
@@ -20,6 +22,15 @@
       "cmd-t": "terminal_panel::ToggleFocus"
     }
 	},
+	{
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "up": "editor::ContextMenuPrev",
+      "down": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrev",
+      "ctrl-j": "editor::ContextMenuNext"
+    }
+  },
 	{
     "context": "Editor && !VimWaiting && !menu && vim_mode == normal",
     "bindings": {
