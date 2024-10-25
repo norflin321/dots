@@ -2,7 +2,15 @@
   {
     "bindings": {
       "ctrl-k": "menu::SelectPrev",
-      "ctrl-j": "menu::SelectNext"
+      "ctrl-j": "menu::SelectNext",
+      "cmd-k": "menu::SelectPrev",
+      "cmd-j": "menu::SelectNext",
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-t": "terminal_panel::ToggleFocus",
+		  "cmd-t": "terminal_panel::ToggleFocus",
+			"cmd-.": "workspace::ToggleBottomDock",
+			"cmd-o": null,
+			"cmd-2": null
     }
   },
   {
@@ -18,7 +26,9 @@
     "context": "Workspace",
     "bindings": {
       "cmd-1": null,
-      "cmd-2": null
+      "cmd-2": null,
+      "cmd-j": null,
+      "cmt-r": "workspace::ToggleRightDock"
     }
   },
   {
@@ -55,7 +65,7 @@
       "d": "editor::Delete",
       "x": "editor::Delete",
       "9": "editor::SelectToEndOfLine",
-      "8": "editor::SelectToEnclosingBracket",
+      //"8": "editor::SelectToEnclosingBracket",
       "<": "editor::Outdent",
       ">": "editor::Indent",
       "ctrl-c": "editor::ToggleComments"
@@ -67,16 +77,10 @@
       "tab": "editor::ShowCompletions"
     }
   },
-  {
+	{
 	  "context": "Editor",
 	  "bindings": {
-		  "cmd-t": "terminal_panel::ToggleFocus"
+			"cmd-j": "menu::SelectNext"
 	  }
-  },
-  {
-	  "context": "Terminal",
-	  "bindings": {
-		  "cmd-t": "terminal_panel::ToggleFocus"
-	  }
-  }
+	}
 ]
