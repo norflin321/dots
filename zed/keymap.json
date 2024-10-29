@@ -66,6 +66,8 @@
 	     "x": "editor::Delete",
 
 	     "9": "editor::SelectToEndOfLine",
+			 "(": ["workspace::SendKeystrokes", "up up up up up up up up up up up up up up up"],
+       ")": ["workspace::SendKeystrokes", "down down down down down down down down down down down down down down down"],
 	     "<": "editor::Outdent",
 	     ">": "editor::Indent"
      }
@@ -79,7 +81,8 @@
   {
      "context": "Terminal",
      "bindings": {
-       "cmd-t": "workspace::NewTerminal"
+       "cmd-t": "workspace::NewTerminal",
+       "cmd-r": "workspace::ToggleRightDock"
      }
    }
 ]
