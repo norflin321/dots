@@ -7,16 +7,20 @@
       "ctrl-k": null,
       "ctrl-l": null,
       "shift-l": null,
-      "cmd-t": null,
-      "cmd-r": null
+      "cmd-t": null
     }
 	},
 	{
     "bindings": {
+	    "cmd-n": "workspace::ToggleLeftDock",
+	    "ctrl-n": "workspace::ToggleLeftDock",
+	    "ctrl-r": "workspace::ToggleRightDock",
       "cmd-1": "pane::ActivatePrevItem",
       "cmd-2": "pane::ActivateNextItem",
    	  "ctrl-j": "menu::SelectNext",
       "ctrl-k": "menu::SelectPrev",
+   	  "cmd-j": "menu::SelectNext",
+      "cmd-k": "menu::SelectPrev",
       "ctrl-p": "file_finder::Toggle",
       "shift-cmd-t": "project_symbols::Toggle"
     }
@@ -84,5 +88,11 @@
        "cmd-t": "workspace::NewTerminal",
        "cmd-r": "workspace::ToggleRightDock"
      }
-   }
+  },
+  {
+	  "context": "ProjectPanel",
+		"bindings": {
+			// "o": ["workspace::SendKeystroke", "enter q q"]
+		}
+  }
 ]

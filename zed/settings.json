@@ -2,18 +2,66 @@
   "vim_mode": true,
   "vim": { "use_system_clipboard": "always" },
 
-  "theme": "Customized Catpuccin Macchiato",
+  "theme": "Tomorrow Min Custom",
+  "experimental.theme_overrides": {
+	  "syntax": {
+			"attribute": { "font_style": "normal" },
+			"boolean": { "font_style": "normal" },
+			"comment": { "font_style": "normal" },
+			"comment.doc": { "font_style": "normal" },
+			"constant": { "font_style": "normal" },
+			"constructor": { "font_style": "normal" },
+			"embedded": { "font_style": "normal" },
+			"emphasis": { "font_style": "normal" },
+			"emphasis.strong": { "font_style": "normal" },
+			"enum": { "font_style": "normal" },
+			"function": { "font_style": "normal" },
+			"hint": { "font_style": "normal" },
+			"keyword": { "font_style": "normal" },
+			"link_text": { "font_style": "normal" },
+			"link_uri": { "font_style": "normal" },
+			"number": { "font_style": "normal" },
+			"operator": { "font_style": "normal" },
+			"predictive": { "font_style": "normal" },
+			"predoc": { "font_style": "normal" },
+			"primary": { "font_style": "normal" },
+			"property": { "font_style": "normal" },
+			"punctuation": { "font_style": "normal" },
+			"punctuation.bracket": { "font_style": "normal" },
+			"punctuation.delimiter": { "font_style": "normal" },
+			"punctuation.list_marker": { "font_style": "normal" },
+			"punctuation.special": { "font_style": "normal" },
+			"punctuation.special.symbol": { "font_style": "normal" },
+			"string": { "font_style": "normal" },
+			"string.escape": { "font_style": "normal" },
+			"string.regex": { "font_style": "normal" },
+			"string.special": { "font_style": "normal" },
+			"string.special.symbol": { "font_style": "normal" },
+			"tag": { "font_style": "normal" },
+			"text.literal": { "font_style": "normal" },
+			"title": { "font_style": "normal" },
+			"type": { "font_style": "normal" },
+			"type.interface": { "font_style": "normal" },
+			"type.super": { "font_style": "normal" },
+			"variable": { "font_style": "normal" },
+			"variable.member": { "font_style": "normal" },
+			"variable.parameter": { "font_style": "normal" },
+			"variable.special": { "font_style": "normal" },
+			"variant": { "font_style": "normal" }
+		}
+  },
 
   "buffer_font_family": "JetBrains Mono",
   "buffer_font_size": 12,
-  "ui_font_family": "SF Pro",
+  "ui_font_family": "JetBrains Mono",
   "ui_font_size": 14,
+  "ui_font_weight": 300,
   "buffer_line_height": { "custom": 1.70 },
   "buffer_font_features": { "calt": true },
 
   "tab_size": 2,
   "cursor_blink": false,
-  "current_line_highlight": "none",
+  "current_line_highlight": "line",
   "show_whitespaces": "selection",
   "indent_guides": { "enabled": false },
   "hard_tabs": true,
@@ -24,20 +72,22 @@
   "show_completions_on_input": false,
   "auto_signature_help": false,
   "scroll_sensitivity": 1,
-  "expand_excerpt_lines": 5,
+  "expand_excerpt_lines": 15,
+  "soft_wrap": "none",
+  "always_treat_brackets_as_autoclosed": true,
+  // "wrap_guides": [140],
 
-  "format_on_save": "off",
   "extend_comment_on_newline": true,
   "ensure_final_newline_on_save": false,
   "remove_trailing_whitespace_on_save": true,
 
   "unstable.ui_density": "compact",
-  "toolbar": { "breadcrumbs": false, "quick_actions": false, "selections_menu": false },
-  "gutter": { "line_numbers": true, "code_actions": false, "folds": false },
+  "toolbar": { "breadcrumbs": true, "quick_actions": false, "selections_menu": false },
+  "gutter": { "line_numbers": true, "code_actions": false, "folds": false, "runnables": false },
   "collaboration_panel": { "button": false, "dock": "left", "default_width": 240 },
   "chat_panel": { "button": false, "dock": "right", "default_width": 240 },
-  "tab_bar": { "show_nav_history_buttons": true, "show": true },
-  "scrollbar": { "show": "auto", "git_diff": true, "selections": true, "symbols_selections": true, "diagnostics": true },
+  "tab_bar": { "show_nav_history_buttons": false, "show": false },
+  "scrollbar": { "show": "always", "git_diff": true, "selections": true, "symbols_selections": true, "diagnostics": true },
   "project_panel": {
     "default_width": 200,
     "dock": "left",
@@ -51,8 +101,8 @@
     "indent_guides": { "show": "never" }
   },
   "show_call_status_icon": false,
-  "tabs": { "git_status": true, "close_position": "left", "file_icons": true, "activate_on_close": "neighbour" },
-  "outline_panel": { "dock": "left", "git_status": false, "indent_size": 15 },
+  "tabs": { "git_status": true, "close_position": "left", "file_icons": true, "activate_on_close": "history" },
+  "outline_panel": { "dock": "left", "git_status": false, "indent_size": 15, "indent_guides": { "show": "never" } },
 
   "terminal": {
 	  "font_family": "JetBrains Mono",
@@ -76,7 +126,7 @@
 
   "assistant": {
 	  "enabled": false,
-    "default_model": { "provider": "zed.dev", "model": "claude-3-5-sonnet-20240620" },
+    "default_model": { "provider": "zed.dev", "model": "claude-3-5-sonnet-latest" },
     "version": "2",
     "button": false,
     "dock": "bottom"
@@ -87,10 +137,20 @@
    "git_gutter": "tracked_files"
   },
 
+  "format_on_save": "off",
   "lsp": {
     "clangd": {
       "binary": { "path": "/opt/homebrew/Cellar/llvm/19.1.1/bin/clangd", "args": [] }
+    },
+    "rust-analyzer": {
+	    // remove after issue with updating rust-analyzer will be fixed
+      "binary": { "ignore_system_version": true, "path": "/Users/norflin/.rustup/toolchains/beta-aarch64-apple-darwin/bin/rust-analyzer", "args": [] }
     }
+  },
+  "languages": {
+	  "Go": { "format_on_save": "language_server" },
+	  // "Rust": { "format_on_save": "language_server" },
+		"Python": { "enable_language_server": false }
   },
 
 	"ssh_connections": [
