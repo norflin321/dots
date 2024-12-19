@@ -14,7 +14,6 @@
     "bindings": {
 	    "cmd-n": "workspace::ToggleLeftDock",
 	    "ctrl-n": "workspace::ToggleLeftDock",
-	    "ctrl-r": "workspace::ToggleRightDock",
       "cmd-1": "pane::ActivatePrevItem",
       "cmd-2": "pane::ActivateNextItem",
    	  "ctrl-j": "menu::SelectNext",
@@ -50,7 +49,7 @@
       "g y": "editor::GoToTypeDefinition",
 
       "9": "editor::MoveToEndOfLine",
-      "8": "editor::MoveToEnclosingBracket",
+      "8": "vim::Matching",
       "x": "editor::Delete",
 
       "(": ["workspace::SendKeystrokes", "up up up up up up up up up up up up up up up"],
@@ -61,6 +60,12 @@
 			"cmd-t": ["workspace::SendKeystrokes", "g s"]
     }
   },
+  {
+     "context": "Editor && !VimWaiting && !menu && vim_mode == visual",
+     "bindings": {
+       "8": "vim::Matching"
+     }
+   },
   {
      "context": "Editor && !VimWaiting && !menu && vim_mode == visual",
      "bindings": {

@@ -4,6 +4,9 @@
 
   "theme": "Tomorrow Min Custom",
   "experimental.theme_overrides": {
+	  // "players": [{ "cursor": "#ccc" }],
+	  "players": [{ "cursor": "#9499b8" }],
+		"terminal.background": "#15161e",
 	  "syntax": {
 			"attribute": { "font_style": "normal" },
 			"boolean": { "font_style": "normal" },
@@ -86,8 +89,8 @@
   "gutter": { "line_numbers": true, "code_actions": false, "folds": false, "runnables": false },
   "collaboration_panel": { "button": false, "dock": "left", "default_width": 240 },
   "chat_panel": { "button": false, "dock": "right", "default_width": 240 },
-  "tab_bar": { "show_nav_history_buttons": false, "show": false },
-  "scrollbar": { "show": "always", "git_diff": true, "selections": true, "symbols_selections": true, "diagnostics": true },
+  "tab_bar": { "show_nav_history_buttons": false, "show": true },
+  "scrollbar": { "show": "always", "git_diff": true, "selections": true, "symbols_selections": true, "diagnostics": true, "axes": { "horizontal": false } },
   "project_panel": {
     "default_width": 200,
     "dock": "left",
@@ -101,7 +104,7 @@
     "indent_guides": { "show": "never" }
   },
   "show_call_status_icon": false,
-  "tabs": { "git_status": true, "close_position": "left", "file_icons": true, "activate_on_close": "history" },
+  "tabs": { "git_status": true, "close_position": "right", "file_icons": true, "activate_on_close": "history" },
   "outline_panel": { "dock": "left", "git_status": false, "indent_size": 15, "indent_guides": { "show": "never" } },
 
   "terminal": {
@@ -129,7 +132,7 @@
     "default_model": { "provider": "zed.dev", "model": "claude-3-5-sonnet-latest" },
     "version": "2",
     "button": false,
-    "dock": "bottom"
+    "dock": null
   },
 
   "git": {
