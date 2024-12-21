@@ -45,7 +45,7 @@ set smoothscroll
 set number
 set signcolumn=number
 set updatetime=100
-set cursorline
+" set cursorline
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
