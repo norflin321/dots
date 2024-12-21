@@ -5,8 +5,8 @@
   "theme": "Tomorrow Min Custom",
   "experimental.theme_overrides": {
 	  // "players": [{ "cursor": "#ccc" }],
-	  "players": [{ "cursor": "#9499b8" }],
-		"terminal.background": "#15161e",
+	  // "players": [{ "cursor": "#9499b8" }],
+		// "terminal.background": "#15161e",
 	  "syntax": {
 			"attribute": { "font_style": "normal" },
 			"boolean": { "font_style": "normal" },
