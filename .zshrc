@@ -9,6 +9,7 @@ alias cp="cp -R"
 alias code="cd /Users/norflin/main/code"
 alias pets="cd /Users/norflin/main/code/rockstone/mergicpets_client"
 alias nvim="~/main/nvim-macos-arm64/bin/nvim"
+alias vi="nvim"
 
 # git
 alias ga="git add . && git commit --amend --no-edit"

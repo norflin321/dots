@@ -57,7 +57,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'nvim-treesitter/playground'
-  Plug 'kyazdani42/nvim-tree.lua', { 'commit': '8b8d457' }
+  Plug 'kyazdani42/nvim-tree.lua'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'eugen0329/vim-esearch'
   Plug 'stevearc/aerial.nvim'
