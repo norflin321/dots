@@ -45,6 +45,7 @@ set smoothscroll
 set number
 set signcolumn=number
 set updatetime=100
+set cursorline
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -62,11 +63,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'stevearc/aerial.nvim'
   Plug 'lewis6991/satellite.nvim'
   Plug 'rust-lang/rust.vim'
-  Plug 'norflin321/nvim-gps'
   Plug 'zivyangll/git-blame.vim'
-  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-  Plug 'kevinhwang91/nvim-hlslens'
-  Plug 'chrisgrieser/nvim-chainsaw'
 call plug#end()
 
 map q: :q
@@ -189,7 +186,6 @@ nnoremap z <NOP>
 nnoremap z zz
 nmap <c-f> <plug>(esearch)
 vmap <c-f> <plug>(operator-esearch-prefill)
-nmap <silent> C :ChainSaw variableLog<CR>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
@@ -247,28 +243,15 @@ command PI exe ":PlugInstall"
 command PC exe ":PlugClean"
 command PU exe ":PlugUpdate"
 command CC exe ":!rm -rf ~/.cache/ctrlp"
-command GoFmt exe "!go fmt **/*.go"
 
 augroup SourceConfigAfterWrite
   autocmd!
   autocmd BufWritePost init.vim source %
 augroup END
 
+autocmd BufWritePre *.go :call CocAction('organizeImport')
+
 lua require('main')
 
-func! NvimGps() abort
-  return luaeval("require'nvim-gps'.is_available()") ? luaeval("require'nvim-gps'.get_location()") : ""
-endf
-
-func! BrowseGithubRepo(url) abort
-	let l:basename = system("basename " . a:url . " .git")
-	let l:repo_path = fnamemodify(tempname(),':h') . "/" . l:basename
-	execute "!git clone --depth=1 " . a:url . " " . l:repo_path
-	execute "lcd ". l:repo_path
-	edit .
-endf
-command! -nargs=1 BrowseGithubRepo call BrowseGithubRepo(<q-args>)
-
-set statusline=%{&modified?'\[+]\ ':''}%t\ %h%r%{NvimGps()}%=%-5.(%l,%c%)\ %L
-
+set statusline=%{&modified?'\[+]\ ':''}%f\ %h%r%=%-5.(%l,%c%)\ %L
 colors dogrun_custom

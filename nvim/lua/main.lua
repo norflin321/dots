@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup({
-	auto_install = false,
+	auto_install = true,
 	highlight = {
 		enable = true
 	}
@@ -149,14 +149,4 @@ require("hbac").setup({
     vim.api.nvim_buf_delete(bufnr, {})
   end,
   close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
-})
-
-require("nvim-gps").setup({})
-require("hlslens").setup({ nearest_only = true })
-require("chainsaw").setup({
-  logStatements = {
-    variableLog = {
-      go = 'fmt.Println("%s %s:", spew.Sdump(%s));'
-    }
-  }
 })

@@ -49,13 +49,6 @@
 	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
 	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
 
-	"rust-analyzer.inlayHints.bindingModeHints.enable": false,
-	"rust-analyzer.inlayHints.chainingHints.enable": false,
-	"rust-analyzer.inlayHints.closingBraceHints.enable": false,
-	"rust-analyzer.inlayHints.typeHints.enable": false,
-	"rust-analyzer.inlayHints.parameterHints.enable": false,
-  "rust-analyzer.server.path": "~/.cargo/bin/rust-analyzer",
-
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pyright.inlayHints.variableTypes": false,
 	"python.analysis.typeCheckingMode": "off",
@@ -75,6 +68,18 @@
 
   "Lua.diagnostics.globals": ["vim"],
   "inlayHint.enable": false,
-  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
-  "pretty-ts-errors.mode": 0,
+
+	"languageserver": {
+		"go": {
+			"command": "gopls",
+			"rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
+			"filetypes": ["go"],
+			"initializationOptions": {
+				"usePlaceholders": true
+			}
+		}
+	},
+	"[go]": {
+		"coc.preferences.formatOnSave": true
+	}
 }
