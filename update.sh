@@ -1,14 +1,11 @@
 #!/bin/sh
 
-cp -R ~/.zshrc .
-cp ~/.gitconfig .
+git rm --ignore-unmatch .zshrc
+git rm --ignore-unmatch .gitconfig
+git rm --ignore-unmatch -rf ./nvim
 
-cp -R ~/.config/zed/settings.json ./zed/
-cp -R ~/.config/zed/keymap.json ./zed/
-cp -R ~/.config/zed/tasks.json ./zed/
-cp -R ~/.config/zed/themes ./zed/themes
+cp ~/.zshrc ./
+cp ~/.gitconfig ./
 cp -R ~/.config/nvim ./
 
-git add .
-git commit -m "update"
-git push
+git add . && git commit -m "update" && git push
