@@ -16,7 +16,7 @@ alias ga="git add . && git commit --amend --no-edit"
 alias gc="git add . && git commit -am 'wip'"
 alias gp="git push"
 alias gpf="git push --force"
-gh() { open `git remote -v | grep fetch | awk '{print $2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'`| head -n1 }
+# gh() { open `git remote -v | grep fetch | awk '{print $2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'`| head -n1 }
 
 # apps
 alias studio="open -a /Applications/Android\ Studio.app"
