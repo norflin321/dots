@@ -8,16 +8,10 @@ alias rm="rm -rf"
 alias cp="cp -R"
 alias code="cd /Users/norflin/main/code"
 alias pets="cd /Users/norflin/main/code/rockstone/mergicpets_client"
-alias nvim="~/main/nvim-macos-arm64/bin/nvim"
-alias vi="nvim"
-
-# git
-alias ga="git add . && git commit --amend --no-edit"
-alias gc="git add . && git commit -am 'wip'"
-alias gp="git push"
-alias gpf="git push --force"
 
 # apps
+alias nvim="~/main/nvim-macos-arm64/bin/nvim"
+alias vi="nvim"
 alias studio="open -a /Applications/Android\ Studio.app"
 alias clang_cpp="/opt/homebrew/Cellar/llvm/19.1.1/bin/clang++"
 alias ts-ru="trans -shell -brief ru:en"
