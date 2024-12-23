@@ -48,6 +48,7 @@
 	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
 	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
 	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+	"typescript.updateImportsOnFileMove.enabled": "prompt",
 
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pyright.inlayHints.variableTypes": false,
@@ -68,6 +69,8 @@
 
   "Lua.diagnostics.globals": ["vim"],
   "inlayHint.enable": false,
+
+	"eslint.autoFixOnSave": true,
 
 	"languageserver": {
 		"go": {

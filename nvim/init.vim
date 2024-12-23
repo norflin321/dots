@@ -65,7 +65,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'lewis6991/satellite.nvim'
   Plug 'rust-lang/rust.vim'
   Plug 'zivyangll/git-blame.vim'
-	Plug 'neovim/nvim-lspconfig'
+	" Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 map q: :q
@@ -221,7 +221,16 @@ func! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunc
 
-let g:coc_global_extensions = [ "coc-tsserver", "coc-json", "coc-go", "coc-prettier", "coc-css", "coc-pyright", "coc-lua", "coc-eslint" ]
+let g:coc_global_extensions = [
+	\"coc-tsserver",
+	\"coc-json",
+	\"coc-go",
+	\"coc-prettier",
+	\"coc-css",
+	\"coc-pyright",
+	\"coc-lua",
+	\"coc-eslint",
+\]
 
 nmap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> gd <Plug>(coc-definition)
@@ -230,7 +239,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
-vmap <silent> ga <Plug>(coc-codeaction)
+vmap <silent> ga <Plug>(coc-codeaction-selected)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
 vmap <silent> f <Plug>(coc-format-selected)
 
