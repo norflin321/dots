@@ -268,7 +268,7 @@ func! NvimGps() abort
 	return luaeval("require'nvim-gps'.is_available()") ? luaeval("require'nvim-gps'.get_location()") : ""
 endf
 
-set statusline=%{&modified?'\[+]\ ':''}%t\ %h%r%{NvimGps()}%=%-5.(%l,%c%)\ %L
+set statusline=%{&modified?'\[+]\ ':''}%f%r\ %{NvimGps()}
 
 lua << EOF
 require("nvim-treesitter.configs").setup({
