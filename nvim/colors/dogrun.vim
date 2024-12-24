@@ -3,7 +3,6 @@ let g:colors_name = "dogrun"
 hi Normal guifg=#9ea3c0 ctermfg=146 guibg=#252737 ctermbg=235
 hi Delimiter guifg=#8085a6 ctermfg=103
 hi NonText guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE
-hi VertSplit guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi EndOfBuffer guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Comment guifg=#586193 ctermfg=60 gui=NONE cterm=NONE
 hi Cursor guifg=#252737 ctermfg=235 guibg=#9ea3c0 ctermbg=146
@@ -144,6 +143,8 @@ hi LineNr guifg=#454b68 guibg=NONE
 
 hi StatusLine guifg=#52597a guibg=#1f202e gui=NONE
 hi StatusLineNC guifg=#52597a guibg=#1f202e gui=NONE
+hi VertSplit guifg=#1f202e guibg=#1f202e gui=NONE
+hi WinSeparator guifg=#1f202e guibg=NONE gui=NONE
 
 hi @string guifg=#73c1a9
 hi @number guifg=#73c1a9
