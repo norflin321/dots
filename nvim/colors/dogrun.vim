@@ -4,12 +4,11 @@ hi Normal guifg=#9ea3c0 ctermfg=146 guibg=#252737 ctermbg=235
 hi Delimiter guifg=#8085a6 ctermfg=103
 hi NonText guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE
 hi VertSplit guifg=#32364c ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi LineNr guifg=#393d56 ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi EndOfBuffer guifg=#363859 ctermfg=60 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi Comment guifg=#545c8c ctermfg=60 gui=italic cterm=NONE
+hi Comment guifg=#586193 ctermfg=60 gui=NONE cterm=NONE
 hi Cursor guifg=#252737 ctermfg=235 guibg=#9ea3c0 ctermbg=146
 hi CursorIM guifg=#252737 ctermfg=235 guibg=#9ea3c0 ctermbg=146
-hi SignColumn guifg=#2a2c3f guibg=#252737
+hi SignColumn guifg=#2a2c3f guibg=#34354c
 hi ColorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorColumn guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
 hi CursorLine guibg=#2a2c3f ctermbg=236 gui=NONE cterm=NONE
@@ -65,9 +64,7 @@ hi DiffChange guibg=#26463b ctermbg=23 gui=bold cterm=bold
 hi DiffDelete guifg=#d2d9ff ctermfg=189 guibg=#5e3e5e ctermbg=96 gui=bold cterm=bold
 hi DiffText guibg=#28795c ctermbg=29 gui=NONE cterm=NONE
 hi QuickFixLine guifg=#9ea3c0 ctermfg=146 guibg=#363e7f ctermbg=61
-hi StatusLine guifg=#15151e ctermfg=103 guibg=#676b98 gui=bold cterm=bold
 hi StatusLineTerm guifg=#757aa5 ctermfg=103 guibg=#33364d gui=bold cterm=bold
-hi StatusLineNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a gui=bold cterm=bold
 hi StatusLineTermNC guifg=#4b4e6d ctermfg=60 guibg=#282a3a gui=bold cterm=bold
 hi DiagnosticError guifg=#b18181 ctermfg=167
 hi DiagnosticVirtualTextError guifg=#b18181 ctermfg=167 gui=bold cterm=bold
@@ -133,7 +130,6 @@ hi CocInfoSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
 hi CocHintSign guifg=#82dabf ctermfg=115 gui=bold cterm=bold
 hi FloatTitle guifg=#929be5 ctermfg=104 guibg=#252737 ctermbg=235 gui=NONE cterm=NONE
 hi AerialLine guifg=NONE guibg=#2a2c3f
-hi SatelliteBar guibg=#34354c
 hi link CocCodeLens Comment
 hi CocFadeOut guifg=NONE guibg=#545c8c
 hi TreesitterContext guibg=#33364d
@@ -142,6 +138,12 @@ hi CocHighlightText guibg=#373b53
 hi link CocFloating Pmenu
 hi HlSearchLensNear guifg=#545c8c guibg=NONE
 hi HlSearchNear guifg=#252737 guibg=#a3a6c2
+
+hi SatelliteBar guibg=#454b68
+hi LineNr guifg=#454b68 guibg=NONE
+
+hi StatusLine guifg=#52597a guibg=#1f202e gui=NONE
+hi StatusLineNC guifg=#52597a guibg=#1f202e gui=NONE
 
 hi @string guifg=#73c1a9
 hi @number guifg=#73c1a9

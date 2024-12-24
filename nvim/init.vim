@@ -65,6 +65,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'lewis6991/satellite.nvim'
   Plug 'rust-lang/rust.vim'
   Plug 'zivyangll/git-blame.vim'
+	Plug 'norflin321/nvim-gps'
 	" Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
@@ -263,7 +264,11 @@ augroup END
 
 autocmd BufWritePre *.go :call CocAction('organizeImport')
 
-set statusline=%{&modified?'\[+]\ ':''}%f\ %h%r%=%-5.(%l,%c%)\ %L
+func! NvimGps() abort
+	return luaeval("require'nvim-gps'.is_available()") ? luaeval("require'nvim-gps'.get_location()") : ""
+endf
+
+set statusline=%{&modified?'\[+]\ ':''}%t\ %h%r%{NvimGps()}%=%-5.(%l,%c%)\ %L
 
 lua << EOF
 require("nvim-treesitter.configs").setup({
@@ -423,6 +428,8 @@ require("hbac").setup({
 	end,
 	close_buffers_with_windows = false, -- hbac will close buffers with associated windows if this option is `true`
 })
+
+require("nvim-gps").setup({})
 EOF
 
 colors dogrun

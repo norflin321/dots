@@ -30,4 +30,4 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats ' %b'
 setopt prompt_subst
-PROMPT='%n %~${vcs_info_msg_0_} %# '
+PROMPT='%n %~${vcs_info_msg_0_} ❯ '
