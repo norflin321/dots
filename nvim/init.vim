@@ -66,7 +66,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'rust-lang/rust.vim'
   Plug 'zivyangll/git-blame.vim'
 	Plug 'norflin321/nvim-gps'
-	" Plug 'neovim/nvim-lspconfig'
+	Plug 'eandrju/cellular-automaton.nvim'
 call plug#end()
 
 map q: :q
@@ -256,6 +256,7 @@ command PI exe ":PlugInstall"
 command PC exe ":PlugClean"
 command PU exe ":PlugUpdate"
 command CC exe ":!rm -rf ~/.cache/ctrlp"
+command GG exe ":CellularAutomaton make_it_rain"
 
 augroup SourceConfigAfterWrite
   autocmd!
