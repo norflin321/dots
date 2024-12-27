@@ -5,6 +5,8 @@ adjust-cell-height = 10%
 macos-titlebar-style = tabs
 confirm-close-surface = false
 quit-after-last-window-closed = true
+window-save-state = always
+window-padding-color = extend
 
 keybind = super+one=previous_tab
 keybind = super+two=next_tab
