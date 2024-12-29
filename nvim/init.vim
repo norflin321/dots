@@ -67,6 +67,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'zivyangll/git-blame.vim'
 	Plug 'norflin321/nvim-gps'
 	Plug 'eandrju/cellular-automaton.nvim'
+	Plug 'chrisgrieser/nvim-rip-substitute'
+	Plug 'chrisgrieser/nvim-chainsaw'
+	Plug 'ThePrimeagen/refactoring.nvim'
+	Plug 'Wansmer/treesj'
 call plug#end()
 
 map q: :q
@@ -180,16 +184,11 @@ map <CR> <Nop>
 map ga <Nop>
 nnoremap D "_dd
 nnoremap <silent> * :let @/= '\<' . expand('<cword>') . '\>' <bar> set hls <cr>
-nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
-nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
 vmap K <Nop>
 map p ]p
 map P pV=
-nmap <silent> <c-t> :AerialToggle<CR>
 nnoremap z <NOP>
 nnoremap z zz
-nmap <c-f> <plug>(esearch)
-vmap <c-f> <plug>(operator-esearch-prefill)
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:50'
 let g:ctrlp_working_path_mode = ''
@@ -206,7 +205,7 @@ let g:esearch.regex = 1
 let g:esearch.textobj = 0
 let g:esearch.case = 'smart'
 let g:esearch.default_mappings = 0
-let g:esearch.name = '[esearch]'
+let g:esearch.name = ' [esearch]'
 let g:esearch.win_map = [ ['n', 'o', '<plug>(esearch-win-open)'] ]
 
 func! s:show_documentation()
@@ -242,7 +241,12 @@ nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> gf <Plug>(coc-fix-current)
 vmap <silent> ga <Plug>(coc-codeaction-selected)
 nmap <silent> <C-d> <Plug>(coc-diagnostic-next-error)
-vmap <silent> f <Plug>(coc-format-selected)
+
+nnoremap <silent> <c-m> :CtrlPMRUFiles<CR>
+nnoremap <silent> <c-n> :NvimTreeFindFileToggle<CR>
+nmap <silent> <c-t> :AerialToggle<CR>
+nmap sp <plug>(esearch)
+vmap sp <plug>(operator-esearch-prefill)
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
@@ -431,6 +435,33 @@ require("hbac").setup({
 })
 
 require("nvim-gps").setup({})
+
+require("rip-substitute").setup({})
+vim.keymap.set({ "n", "x" }, "sr", function() require("rip-substitute").sub() end, { desc = "rip-substitute" })
+
+require("chainsaw").setup({
+	marker = "-->",
+	visuals = {
+		icon = "",
+		lineHlgroup = false,
+		nvimSatelliteIntegration = {
+			enabled = false,
+		},
+	},
+	logStatements = {
+		variableLog = {
+			go = 'spew.Dump("{{marker}} {{var}}:", {{var}});'
+		},
+	},
+})
+vim.keymap.set({ "n", "x" }, "fp", function() require("chainsaw").variableLog() end, { desc = "chainsaw" })
+
+require('refactoring').setup({})
+vim.keymap.set({ "x" }, "fe", ":Refactor extract_var ")
+vim.keymap.set({ "x", "n" }, "fi", ":Refactor inline_var<CR>")
+
+require('treesj').setup({})
+vim.keymap.set({ "n" }, "fj", require("treesj").toggle)
 EOF
 
 colors dogrun

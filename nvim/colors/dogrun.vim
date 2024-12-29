@@ -132,7 +132,6 @@ hi AerialLine guifg=NONE guibg=#2a2c3f
 hi link CocCodeLens Comment
 hi CocFadeOut guifg=NONE guibg=#545c8c
 hi TreesitterContext guibg=#33364d
-hi link esearchFilename CursorLine
 hi CocHighlightText guibg=#373b53
 hi link CocFloating Pmenu
 hi HlSearchLensNear guifg=#545c8c guibg=NONE
