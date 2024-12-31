@@ -46,7 +46,6 @@ set number
 set signcolumn=number
 set updatetime=100
 set guicursor=a:block
-" set cursorline
 
 call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
@@ -253,6 +252,14 @@ inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+function! RepoEdit(url) abort
+	let l:basename = system("basename " . a:url . " .git")
+	let l:repo_path = fnamemodify(tempname(),':h') . "/" . l:basename
+	execute "!git clone --depth=1 " . a:url . " " . l:repo_path
+	execute "lcd ". l:repo_path
+	edit .
+endfunction
+
 command H exe ":TSHighlightCapturesUnderCursor"
 command CF exe ":e $MYVIMRC"
 command BL exe ":call gitblame#echo()"
@@ -261,6 +268,7 @@ command PC exe ":PlugClean"
 command PU exe ":PlugUpdate"
 command CC exe ":!rm -rf ~/.cache/ctrlp"
 command GG exe ":CellularAutomaton make_it_rain"
+command! -nargs=1 RR call RepoEdit(<q-args>)
 
 augroup SourceConfigAfterWrite
   autocmd!
